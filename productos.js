@@ -14,6 +14,16 @@
    ============================================================ */
 window.PRODUCTOS = [];
 
+/* ============================================================
+   OJO CON EL PRECIO TACHADO (el campo 'was' de cada pack)
+   Ley 7/1996 art. 20.1 (reformado por el RD-ley 1/2021, Directiva Omnibus):
+   cuando se anuncia una rebaja, el precio tachado tiene que ser EL MAS BAJO
+   que se haya aplicado en los ULTIMOS 30 DIAS. Inventar un precio anterior
+   mas alto es practica desleal y lo sancionan las CCAA.
+   Regla practica: producto nuevo => NO se pone 'was' hasta llevar 30 dias
+   vendiendo al precio normal.
+   ============================================================ */
+
 /* Precios aprobados por James para España. Mientras esté vacío, la tienda
    no pinta ningun producto: es a proposito, para que nada salga a la venta
    con un precio que el no haya aprobado. */
