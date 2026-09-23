@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="only light">
+<title data-cfg="seoTitle">Jaye Group</title>
+<meta name="description" data-cfg="seoDesc" content="">
+<meta property="og:type" content="product">
+
+<!-- Meta Pixel: en la UE solo se carga DESPUÉS de que la persona acepta las cookies.
+     Hasta entonces fbq() encola y no envía nada (ver bloque de cookies en app.js). -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+window._cargarPixel=function(){ if(window._pixelCargado) return; window._pixelCargado=true; var t=document.createElement('script'); t.async=true; t.src='https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(t); fbq('init',(window.CONFIG&&window.CONFIG.pixelId)||''); fbq('track','PageView'); };
+</script>
+<!-- Fin Meta Pixel -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- MARQUEE -->
+<div class="marquee"><div class="mq__t" id="mq1"></div></div>
+
+<!-- HEADER (logo centrado + carrito, estilo Shilajit, transparente al scroll) -->
+<header class="header">
+  <div class="wrap">
+    <button class="ham" id="ham" aria-label="Menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <a class="brand" data-scroll="#hero"><span class="bj">JAYE</span><span class="bsep"></span><span class="bgold">GROUP</span></a>
+    <div class="hicons">
+      <span class="ico" data-scroll="#resenas" role="button" aria-label="Reseñas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.6" y1="15.6" x2="21" y2="21"/></svg></span>
+      <span class="ico cart" data-scroll="#pedido" role="button" aria-label="Ver pedido"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
+    </div>
+  </div>
+  <nav class="nav" id="nav">
+    <a data-scroll="#pedido"><svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>Comprar ahora</a>
+    <a data-scroll="#resenas"><svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3.5l2.6 5.2 5.8.9-4.2 4 1 5.7-5.2-2.7-5.2 2.7 1-5.7-4.2-4 5.8-.9z"/></svg>Reseñas</a>
+    <a data-scroll="#faq"><svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.3 9.2a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.1-2.7 4"/></svg>Preguntas frecuentes</a>
+    <a id="navWa" target="_blank" rel="noopener"><svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 3.5z"/></svg>WhatsApp</a>
+  </nav>
+</header>
+
+<!-- HERO full-bleed -->
+<section class="hero" id="hero">
+  <img id="heroImg" class="hero__bg" alt="" fetchpriority="high">
+  <canvas class="hero__fx" id="heroFx" aria-hidden="true"></canvas>
+  <div class="hero__scrim"></div>
+  <div class="hero__in">
+    <div class="hero__top">
+      <span class="kicker" id="heroKicker"></span>
+      <h1 id="heroTitle"></h1>
+      <p class="lead" id="heroLead"></p>
+    </div>
+  </div>
+</section>
+
+<!-- SELLOS (franja propia bajo el hero — no tocan el producto) -->
+<div class="ministrip">
+  <div class="hero__mini">
+    <div class="hm"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg><span>Envío gratis 24/48 h</span></div>
+    <div class="hm"><svg viewBox="0 0 24 24"><path d="M12 2 3 6v6c0 5.5 3.8 9.5 9 11 5.2-1.5 9-5.5 9-11V6z"/><circle cx="12" cy="11" r="3"/></svg><span>Pago contra reembolso</span></div>
+    <div class="hm"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.2"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg><span>Mujer y hombre</span></div>
+  </div>
+</div>
+
+<!-- INTRO PRODUCTO (formato Shilajit: producto + 2 propuestas + precio) -->
+<section class="intro">
+  <div class="wrap">
+    <h2 class="intro__prod" data-rv>Plantillas de confort con amortiguación</h2>
+    <p class="intro__claim" data-rv>Soporte de arco y talón para pies que aguantan todo el día</p>
+    <div class="vp" data-rv>
+      <h3>Menos cansancio al final del día</h3>
+      <p>Reparten el peso y sujetan el arco para que la planta y el talón trabajen menos.</p>
+    </div>
+    <div class="vp" data-rv>
+      <h3>Valen para cualquier calzado</h3>
+      <p>Recortables por talla. Zapatillas, botas de trabajo o zapato de vestir.</p>
+    </div>
+    <p class="intro__price" data-rv>Precio por par <b id="introPrice">19,95 €</b> <span>IVA incluido</span></p>
+  </div>
+</section>
+
+<!-- TARJETAS CON IMÁGENES (1c · 2c · 3c) -->
+<section class="imgcards">
+  <div class="wrap">
+    <div class="imgcard" data-rv>
+      <div class="imgcard__ph"><img src="img/card1.webp" alt="Soporte de arco" loading="lazy"></div>
+      <h3>Soporte de arco firme</h3>
+      <p>Acompaña la curva natural del pie y evita que se hunda con cada paso.</p>
+    </div>
+    <div class="imgcard" data-rv>
+      <div class="imgcard__ph"><img src="img/card2.webp" alt="Amortiguación en el talón" loading="lazy"></div>
+      <h3>Amortiguación en el talón</h3>
+      <p>Absorbe el impacto al caminar o al pasar horas de pie sobre suelo duro.</p>
+    </div>
+    <div class="imgcard" data-rv>
+      <div class="imgcard__ph"><img src="img/card3.webp" alt="Para el trabajo, el paseo y el deporte" loading="lazy"></div>
+      <h3>Trabajo, paseo o deporte</h3>
+      <p>Para quien pasa el día de pie, camina mucho o hace ejercicio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA 2x (justo debajo de las tarjetas) -->
+<section class="offsec">
+  <div class="wrap" data-rv="zoom">
+    <div class="offer">
+      <h2 id="offerTitle"></h2>
+      <p id="offerSub" style="opacity:.92"></p>
+      <img class="offer__img" src="img/oferta.webp" alt="Pack de 2 pares de plantillas" loading="lazy">
+      <div class="prices"><span class="was" id="offerWas"></span><span class="new pulse" id="offerNew"></span></div>
+      <button class="btn btn--acc" data-scroll="#pedido" data-qty="2">Quiero el pack de 2</button>
+      <!-- Sin cuenta atrás: en España una urgencia falsa es práctica comercial desleal (TRLGDCU art. 47). -->
+      <p class="cd-title" id="cdTitle">Precio del pack mientras haya unidades en almacén</p>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTES (sección clara, estilo ejemplo) -->
+<section class="ingredients">
+  <div class="wrap">
+    <span class="eyebrow">Cómo están hechas</span>
+    <h2 class="sec" data-rv>Cada zona del pie, con su apoyo.</h2>
+    <p class="sec-sub" data-rv>Estructura en capas: base de soporte, núcleo amortiguador y tejido superior transpirable.</p>
+    <div class="ing-grid">
+      <div class="ing" data-rv><div class="cir"><svg viewBox="0 0 24 24"><path d="M4 16c4-8 12-8 16 0"/><path d="M4 16h16"/></svg></div><div><b>Soporte de arco</b><p>Pieza central firme que sujeta el puente del pie.</p></div></div>
+      <div class="ing" data-rv><div class="cir"><svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="6"/><path d="M12 4v4"/></svg></div><div><b>Copa de talón</b><p>Recoge el talón y amortigua cada pisada.</p></div></div>
+      <div class="ing" data-rv><div class="cir"><svg viewBox="0 0 24 24"><path d="M4 12h16M4 8h16M4 16h16"/></svg></div><div><b>Capa amortiguadora</b><p>Espuma de alta densidad que no se aplasta a las pocas semanas.</p></div></div>
+      <div class="ing" data-rv><div class="cir"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div><div><b>Tejido transpirable</b><p>Deja pasar el aire y reduce el sudor y el olor.</p></div></div>
+      <div class="ing" data-rv><div class="cir"><svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 8h12M6 16h12"/></svg></div><div><b>Líneas de corte</b><p>Se recortan con tijeras para ajustarlas a tu número exacto.</p></div></div>
+      <div class="ing" data-rv><div class="cir"><svg viewBox="0 0 24 24"><path d="M4 20C4 11 11 4 20 4c0 9-7 16-16 16z"/><path d="M9 15c2-3 5-5 8-6"/></svg></div><div><b>Lavables</b><p>Se lavan a mano con agua y jabón y se secan al aire.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO ACTÚA / CIENCIA -->
+<section class="science">
+  <div class="wrap center">
+    <span class="eyebrow">Por qué alivian</span>
+    <h2 class="sec" data-rv id="howTitle"></h2>
+    <p class="lead-c" data-rv id="howIntro" style="margin-left:auto;margin-right:auto"></p>
+    <div class="steps" id="howSteps"></div>
+  </div>
+</section>
+
+
+<!-- BENEFICIOS: lista vertical con íconos de línea -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Beneficios</span>
+    <h2 class="sec" data-rv>Tus pies aguantan todo.<br>Dales apoyo.</h2>
+    <div class="benefits">
+      <div class="bi" data-rv data-rv-d="0"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 16c4-8 12-8 16 0"/><path d="M4 16h16"/></svg></div><div class="txt"><h3>Sujeción del arco</h3><p>Reparte el peso y evita que el puente del pie se hunda al caminar.</p></div></div>
+      <div class="bi" data-rv data-rv-d="80"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="6"/><path d="M12 4v4"/></svg></div><div class="txt"><h3>Talón amortiguado</h3><p>Menos impacto en cada pisada sobre asfalto, baldosa u hormigón.</p></div></div>
+      <div class="bi" data-rv data-rv-d="160"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div class="txt"><h3>Para jornadas largas</h3><p>Pensadas para quien pasa 8 horas o más de pie o caminando.</p></div></div>
+      <div class="bi" data-rv data-rv-d="240"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 8h12M6 16h12"/></svg></div><div class="txt"><h3>A tu medida</h3><p>Se recortan por las líneas marcadas y entran en cualquier calzado cerrado.</p></div></div>
+      <div class="bi" data-rv data-rv-d="320"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div><div class="txt"><h3>Frescas y sin olor</h3><p>Tejido transpirable y lavable a mano.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTÓN PUENTE (rebote) entre beneficios y carrusel -->
+<div class="midcta"><button class="btn btn--acc bounce" data-scroll="#pedido">Pedir ahora — paga al recibir</button></div>
+
+<!-- CARRUSEL DE IMÁGENES (cinta en movimiento constante) -->
+<section>
+  <div class="wrap">
+    <div class="carousel">
+      <div class="carousel__track">
+        <div class="imgcard"><img src="img/c1.webp" onerror="this.src='img/hero.webp'" alt="Plantillas de confort" loading="lazy"></div>
+        <div class="imgcard"><img src="img/c2.webp" onerror="this.src='img/hero.webp'" alt="Soporte de arco" loading="lazy"></div>
+        <div class="imgcard"><img src="img/c3.webp" onerror="this.src='img/hero.webp'" alt="Amortiguación en el talón" loading="lazy"></div>
+        <div class="imgcard"><img src="img/c4.webp" onerror="this.src='img/hero.webp'" alt="Recortables a tu talla" loading="lazy"></div>
+        <div class="imgcard" aria-hidden="true"><img src="img/c1.webp" onerror="this.src='img/hero.webp'" alt="" loading="lazy"></div>
+        <div class="imgcard" aria-hidden="true"><img src="img/c2.webp" onerror="this.src='img/hero.webp'" alt="" loading="lazy"></div>
+        <div class="imgcard" aria-hidden="true"><img src="img/c3.webp" onerror="this.src='img/hero.webp'" alt="" loading="lazy"></div>
+        <div class="imgcard" aria-hidden="true"><img src="img/c4.webp" onerror="this.src='img/hero.webp'" alt="" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS (claro) -->
+<section class="light">
+  <div class="wrap center">
+    <span class="eyebrow">Resultados</span>
+    <h2 class="sec" data-rv id="statTitle">Resultados que hablan</h2>
+    <div class="statgrid" id="stats"></div>
+  </div>
+</section>
+
+<!-- COMPARATIVA -->
+<section class="compare">
+  <div class="wrap">
+    <h2 class="sec" data-rv id="cmpTitle">¿Qué nos hace diferentes?</h2>
+    <table data-rv>
+      <colgroup><col><col class="c-us"><col class="c-ot"></colgroup>
+      <thead><tr><th>Característica</th><th class="us" id="cmpUs">Nosotros</th><th>Otros</th></tr></thead>
+      <tbody id="compare"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- RESEÑAS (formato Shilajit) -->
+<section class="reviews light" id="resenas">
+  <div class="wrap">
+    <h2 class="rev-title" data-rv>Experiencias reales <span class="stars">★★★★★</span></h2>
+    <div class="rev-score" data-rv><span class="big" id="revScore">4.8</span><span class="cnt"><span id="revCount">180</span> reseñas</span></div>
+
+    <div class="rev-bars" data-rv>
+      <div class="bar"><span class="lvl">5 ★</span><div class="track"><i style="width:85%"></i></div><b>153</b></div>
+      <div class="bar"><span class="lvl">4 ★</span><div class="track"><i style="width:11%"></i></div><b>20</b></div>
+      <div class="bar"><span class="lvl">3 ★</span><div class="track"><i style="width:3%"></i></div><b>5</b></div>
+      <div class="bar"><span class="lvl">2 ★</span><div class="track"><i style="width:1%"></i></div><b>1</b></div>
+      <div class="bar"><span class="lvl">1 ★</span><div class="track"><i style="width:1%"></i></div><b>1</b></div>
+    </div>
+
+    <button class="btn-write" id="btnWrite">Escribir una reseña</button>
+    <div class="rev-list" id="revList"></div>
+    <p class="rev-auto-label">Más experiencias de nuestros clientes</p>
+    <div class="rev-auto"><div class="rev-auto__track" id="revAuto"></div></div>
+  </div>
+</section>
+
+<!-- MODAL RESEÑA -->
+<div class="modal" id="revModal" hidden>
+  <div class="box">
+    <button class="close" id="revClose">×</button>
+    <h3>Escribir una reseña</h3>
+    <p class="sec-sub" style="margin:4px 0 0;text-align:left" id="revAsk">¿Cómo lo calificarías?</p>
+    <div class="starpick" id="starPick"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
+    <input id="revName" placeholder="Tu nombre">
+    <textarea id="revText" rows="4" placeholder="Cuéntanos tu experiencia…"></textarea>
+    <button class="btn btn--pri btn--block" id="revSubmit">Enviar reseña</button>
+    <p class="rev-msg" id="revMsg"></p>
+  </div>
+</div>
+
+<!-- ANTES / DESPUÉS -->
+<section class="ba-sec">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Así se usan</span>
+      <h2 class="sec" data-rv>Listas en dos minutos</h2>
+      <p class="sec-sub" data-rv>Saca la plantilla original de tu calzado, apóyala encima de la nueva y recorta por la línea de tu talla. Métela con el talón bien al fondo y ya está. Los primeros días úsalas unas horas para que el pie se acostumbre.</p>
+    </div>
+    <div class="ba-img" data-rv><img src="img/antes-despues.webp" alt="Cómo recortar y colocar las plantillas en el calzado" loading="lazy"></div>
+    <div class="midcta midcta--in"><button class="btn btn--green bounce" data-scroll="#pedido">Pedir mis plantillas</button></div>
+  </div>
+</section>
+
+<!-- GARANTÍA -->
+<section class="garantia light">
+  <div class="wrap center">
+    <div class="gseal" data-rv>
+      <svg viewBox="0 0 220 220" role="img" aria-label="14 días para desistir de la compra y 3 años de garantía legal">
+        <defs>
+          <linearGradient id="gsealg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="var(--pri)"/><stop offset="1" stop-color="var(--acc)"/>
+          </linearGradient>
+          <path id="gtop" fill="none" d="M44 110a66 66 0 0 1 132 0"/>
+          <path id="gbot" fill="none" d="M48 118a62 62 0 0 0 124 0"/>
+        </defs>
+        <circle cx="110" cy="110" r="98" fill="url(#gsealg)" opacity=".16"/>
+        <circle cx="110" cy="110" r="92" fill="url(#gsealg)"/>
+        <circle cx="110" cy="110" r="84" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-dasharray="1.5 6" stroke-linecap="round"/>
+        <text font-family="Sora,sans-serif" font-weight="700" font-size="14.5" letter-spacing="2.4" fill="#fff"><textPath href="#gtop" startOffset="50%" text-anchor="middle">DESISTIMIENTO</textPath></text>
+        <text font-family="Sora,sans-serif" font-weight="700" font-size="12.5" letter-spacing="1.8" fill="#fff"><textPath href="#gbot" startOffset="50%" text-anchor="middle">GARANTÍA 3 AÑOS</textPath></text>
+        <circle cx="110" cy="110" r="55" fill="#fff"/>
+        <text id="garDias" x="110" y="105" text-anchor="middle" font-family="Sora,sans-serif" font-weight="800" font-size="44" fill="#0c1526">14</text>
+        <text x="110" y="131" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="15" letter-spacing="3" fill="#0c1526">DÍAS</text>
+      </svg>
+    </div>
+    <h2 class="sec" id="garTitle" data-rv>Compra sin riesgo</h2>
+    <p class="sec-sub" id="garText" data-rv></p>
+    <div class="gtrust" data-rv>
+      <div class="gt"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v4h4"/></svg>14 días para desistir</div>
+      <div class="gt"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 11 2 2 4-4"/></svg>Garantía legal 3 años</div>
+      <div class="gt"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="11" rx="2"/><circle cx="12" cy="12.5" r="2.4"/></svg>Pagas al recibir</div>
+    </div>
+  </div>
+</section>
+
+<!-- TU SEGURO DE VIDA -->
+<section>
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Qué recibes</span>
+      <h2 class="sec" data-rv>Un par por cada calzado que uses a diario</h2>
+    </div>
+    <ul class="seguro" data-rv>
+      <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg>Par de plantillas con soporte de arco y copa de talón, en tu talla (mujer 36-41 u hombre 40-46).</li>
+      <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg>Líneas de corte marcadas para ajustarlas a tu número exacto.</li>
+      <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg>Envío gratis en 24/48 h desde nuestro almacén en Sevilla.</li>
+      <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg>Pagas al mensajero al recibirlas. 14 días para desistir y 3 años de garantía legal.</li>
+    </ul>
+    <div class="midcta midcta--in"><button class="btn btn--green bounce" data-scroll="#pedido">Comprar y pagar al recibir</button></div>
+    <div class="trustbx">
+      <div class="tb"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Compra segura</div>
+      <div class="tb"><svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17.5" cy="17" r="1.6"/></svg>Envío rápido</div>
+      <div class="tb"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.2 5.8.9-4.2 4 1 5.7-5.2-2.7-5.2 2.7 1-5.7-4.2-4 5.8-.9z"/></svg>Garantía de calidad</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <h2 class="sec" data-rv>Preguntas frecuentes</h2>
+    <div id="faqList" data-rv></div>
+  </div>
+</section>
+
+<!-- CTA FINAL (oscuro) — arriba del formulario -->
+<section class="ctafinal">
+  <div class="wrap center">
+    <span class="eyebrow">Plantillas de confort</span>
+    <h2 class="sec" data-rv>Que el día no se te haga largo por los pies.</h2>
+    <p class="sec-sub" data-rv style="margin-left:auto;margin-right:auto">Soporte de arco. Talón amortiguado. Envío gratis y pago al recibir.</p>
+    <button class="btn btn--acc btn--lg" data-scroll="#pedido">Comprar ahora</button>
+  </div>
+</section>
+
+<!-- FORMULARIO COD -->
+<section class="order light" id="pedido">
+  <div class="wrap center">
+    <span class="eyebrow">Pedido</span>
+    <h2 class="sec" data-rv>Pide hoy y paga al recibir</h2>
+    <p class="sec-sub" data-rv style="margin-left:auto;margin-right:auto">Sin pagos por adelantado · el mensajero cobra en la entrega · precios con IVA incluido</p>
+    <div class="formcard" data-rv="zoom" style="text-align:left">
+      <div class="cod-badge"><svg style="width:14px;height:14px;vertical-align:-2px;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg> Pago contra reembolso · sin recargo</div>
+      <div class="packs" id="packs"></div>
+      <div class="summary">
+        <div class="r"><span>Subtotal</span><span id="sumSub"></span></div>
+        <div class="r"><span>Descuento</span><span id="sumDisc" style="color:var(--rojo)"></span></div>
+        <div class="r"><span>Envío</span><span class="free">Gratis</span></div>
+        <div class="r tot"><span>Total a pagar al recibir</span><span id="sumTot"></span></div>
+      </div>
+      <form id="orderForm" novalidate>
+        <div class="field"><label for="talla">Talla</label><select id="talla" name="talla"><option value="">Selecciona…</option><option value="mujer">Mujer · 36-41</option><option value="hombre">Hombre · 40-46</option></select><div class="err">Elige tu talla.</div></div>
+        <div class="field"><label for="nombre">Nombre y apellidos</label><input id="nombre" name="nombre" autocomplete="name" placeholder="Ej: María García López"><div class="err">Escribe tu nombre y apellidos.</div></div>
+        <div class="field"><label for="telefono">Móvil / WhatsApp</label>
+          <div class="telrow">
+            <div class="cc" id="cc">
+              <button type="button" class="cc-btn" id="ccBtn" disabled style="cursor:default">
+                <img class="cc-flag" id="ccFlag" src="https://flagcdn.com/es.svg" alt="">
+                <span class="cc-code" id="ccCode">+34</span>
+              </button>
+              <div class="cc-list" id="ccList" hidden></div>
+              <input type="hidden" id="codpais" name="codpais" value="+34">
+            </div>
+            <input id="telefono" name="telefono" type="tel" inputmode="numeric" autocomplete="tel" placeholder="612 345 678" maxlength="12">
+          </div>
+          <div class="err">Escribe tu móvil: 9 dígitos, empieza por 6 o 7.</div>
+        </div>
+        <div class="field"><label for="direccion">Dirección</label><input id="direccion" name="direccion" autocomplete="street-address" placeholder="Calle, número, piso y puerta"><div class="err">Escribe tu dirección completa.</div></div>
+        <div class="row2">
+          <div class="field"><label for="cp">Código postal</label><input id="cp" name="cp" inputmode="numeric" autocomplete="postal-code" placeholder="28001" maxlength="5"><div class="err" id="cpErr">Escribe tu código postal (5 dígitos).</div></div>
+          <div class="field"><label for="ciudad">Población</label><input id="ciudad" name="ciudad" autocomplete="address-level2" placeholder="Ej: Madrid"><div class="err">Escribe tu población.</div></div>
+        </div>
+        <div class="field"><label for="provincia">Provincia</label><select id="provincia" name="provincia"><option value="">Selecciona…</option></select><div class="err">Selecciona tu provincia.</div></div>
+        <div class="field"><label for="referencia">Indicaciones para el repartidor <span style="font-weight:400;opacity:.7">(opcional)</span></label><input id="referencia" name="referencia" placeholder="Portal, timbre, horario preferido…"></div>
+        <div class="field"><label for="correo">Correo electrónico</label><input id="correo" name="correo" type="email" inputmode="email" autocomplete="email" placeholder="Ej: maria@gmail.com"><div class="err">Escribe un correo válido.</div></div>
+        <label class="chk" style="display:flex;gap:8px;align-items:flex-start;font-size:13px;margin:6px 0 12px"><input type="checkbox" id="acepto" name="acepto" style="margin-top:3px"> <span>He leído y acepto las <a href="terminos.html" target="_blank" style="color:inherit">condiciones de compra</a> y la <a href="privacidad.html" target="_blank" style="color:inherit">política de privacidad</a>, y sé que puedo desistir en 14 días.</span></label>
+        <button type="submit" class="btn btn--acc" id="submitBtn" style="display:flex;margin:0 auto">Comprar — pedido con obligación de pago</button>
+        <p class="formnote">No pagas nada ahora. Pagas al mensajero cuando recibes tu pedido. Envío gratis a toda la península en 24/48 h. Al comprar aceptas las <a href="terminos.html" style="color:inherit">condiciones de compra</a>.</p>
+      </form>
+      <div class="carriers" id="carriers" hidden>
+        <span class="cl">Despachamos con</span>
+        <div class="cbadges" id="cbadges"></div>
+      </div>
+      <div class="ok" id="okMsg">
+        <div class="ic"><svg style="width:46px;height:46px;margin:0 auto;fill:none;stroke:#0f8a55;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="m8 12.5 2.7 2.7L16.5 9"/></svg></div>
+        <h3>¡Pedido recibido!</h3>
+        <p>Gracias <b id="okName"></b>. Te contactaremos por WhatsApp para confirmar la entrega.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE 2 -->
+<div class="marquee marquee--acc"><div class="mq__t" id="mq2"></div></div>
+
+<!-- SUSCRIPCIÓN DE CORREO (formato Shilajit) -->
+<section class="newsletter light">
+  <div class="wrap">
+    <h2>Suscríbete a nuestros correos</h2>
+    <p>Conoce las nuevas colecciones y las ofertas exclusivas antes que nadie.</p>
+    <form class="inp" onsubmit="return false">
+      <input type="email" placeholder="Correo electrónico" aria-label="Correo electrónico">
+      <button type="submit" aria-label="Suscribir">→</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER (idéntico a Shilajit) -->
+<footer class="footer">
+  <div class="wrap">
+    <h3 class="ftitle">JAYE GROUP - ESPAÑA</h3>
+    <p id="footTitular"><b>Titular:</b> James Otero Farrayans · NIT 8782874-4 (Colombia)</p>
+    <p><b>Dirección:</b> <span id="footAddr">Carrera 78 # 78-78, Barranquilla, Colombia</span></p>
+    <p><b>Correo:</b> <a id="footMail" href="mailto:gerencia@jayegroup.com.co">gerencia@jayegroup.com.co</a></p>
+    <p id="footWaRow" hidden><b>WhatsApp:</b> <a id="footWa" href="#"></a></p>
+    <p><b>Envíos:</b> desde almacén en Sevilla con MRW, CTT y Correos Express · Península (sin Canarias, Baleares, Ceuta ni Melilla)</p>
+
+    <div class="social">
+      <a href="https://www.facebook.com/share/18bZZKscMB/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path fill="#fff" d="M13.4 21v-7.1h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8v2.8h2.4V21h3z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/jaye.group?igsh=aXB6eHhzMzhoazg4" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".62" stop-color="#d62976"/><stop offset="1" stop-color="#962fbf"/></linearGradient></defs><rect x="1" y="1" width="22" height="22" rx="6.5" fill="url(#ig)"/><rect x="6" y="6" width="12" height="12" rx="4" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="16.8" cy="7.2" r="1.05" fill="#fff"/></svg>
+      </a>
+      <a href="https://tiktok.com/@jaye.group" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path fill="#25F4EE" d="M15.5 1.8c.3 1.9 1.3 3.3 3.4 3.5v2.7c-1.2 0-2.2-.3-3.2-.9v5.3c0 4-2.9 6.3-6.2 5.5-2.5-.6-3.9-2.7-3.7-5.1.2-2.5 2.4-4.3 5.3-3.9v2.8c-.4-.1-.8-.1-1.2 0-1.1.2-1.9 1-1.9 2.1 0 1.3 1 2.3 2.3 2.3s2.3-1 2.3-2.5V1.8h2.6z"/><path fill="#FE2C55" d="M17.5 3.8c.3 1.9 1.3 3.3 3.4 3.5v2.7c-1.2 0-2.2-.3-3.2-.9v5.3c0 4-2.9 6.3-6.2 5.5-2.5-.6-3.9-2.7-3.7-5.1.2-2.5 2.4-4.3 5.3-3.9v2.8c-.4-.1-.8-.1-1.2 0-1.1.2-1.9 1-1.9 2.1 0 1.3 1 2.3 2.3 2.3s2.3-1 2.3-2.5V3.8h2.6z"/><path fill="#fff" d="M16.5 2.8c.3 1.9 1.3 3.3 3.4 3.5v2.7c-1.2 0-2.2-.3-3.2-.9v5.3c0 4-2.9 6.3-6.2 5.5-2.5-.6-3.9-2.7-3.7-5.1.2-2.5 2.4-4.3 5.3-3.9v2.8c-.4-.1-.8-.1-1.2 0-1.1.2-1.9 1-1.9 2.1 0 1.3 1 2.3 2.3 2.3s2.3-1 2.3-2.5V2.8h2.6z"/></svg>
+      </a>
+    </div>
+
+    <div class="paylabel">Formas de pago</div>
+    <div class="paycards">
+      <span class="pc pc-amex">AMEX</span>
+      <span class="pc pc-diners"><i></i>Diners</span>
+      <span class="pc pc-mc"><i class="c1"></i><i class="c2"></i></span>
+      <span class="pc pc-visa">VISA</span>
+    </div>
+
+    <div class="links">
+      <a href="aviso-legal.html">Aviso legal</a> ·
+      <a href="terminos.html">Condiciones de compra y desistimiento</a> ·
+      <a href="reembolso.html">Garantía y devoluciones</a> ·
+      <a href="envio.html">Envíos y pago contra reembolso</a> ·
+      <a href="privacidad.html">Privacidad</a> ·
+      <a href="privacidad.html#cookies">Cookies</a> ·
+      <a href="#" id="ckConfig">Configurar cookies</a> ·
+      <a href="desistir.html">Desistir del contrato aquí</a> ·
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="legal">© <span id="year"></span>, JAYE GROUP</div>
+  </div>
+</footer>
+
+<!-- FLOAT WA -->
+<a class="wa" id="waFloat" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2.1 7.8L.3 31.6l8.1-2.1c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.3c-2.4 0-4.7-.6-6.7-1.9l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.4-2.1-2.1-4.6-2.1-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.7 16 28.7zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.2 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg></a>
+
+<!-- STICKY CTA -->
+<div class="stickycta" id="stickycta"><button class="btn btn--acc" data-scroll="#pedido">Pedir ahora — pago contra entrega</button></div>
+
+<!-- AVISO DE COOKIES (RGPD): el píxel NO se carga hasta que la persona acepta -->
+<div class="cookies" id="cookies" hidden>
+  <p>Usamos cookies propias y de terceros (Meta) para medir las visitas y mostrarte anuncios relevantes. Puedes aceptarlas o rechazarlas; la página funciona igual. <a href="privacidad.html#cookies">Más información</a></p>
+  <div class="ck-btns"><button type="button" class="ck-no" id="ckNo">Rechazar</button><button type="button" class="ck-ok" id="ckOk">Aceptar</button></div>
+</div>
+
+<script src="config.js"></script>
+<script src="provincias-es.js"></script>
+<script src="app.js"></script>
+<script defer src="lib/gsap.min.js"></script>
+<script defer src="lib/SplitText.min.js"></script>
+<script defer src="lib/vanilla-tilt.min.js"></script>
+<script defer src="lib/confetti.browser.min.js"></script>
+<script defer src="motors.js"></script>
+</body>
+</html>

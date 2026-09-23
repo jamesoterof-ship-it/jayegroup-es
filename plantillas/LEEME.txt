@@ -1,0 +1,6 @@
+LANDING DE PLANTILLAS DE CONFORT (guardada, NO esta publicada)
+
+Fue el primer intento de pagina para España, de UN solo producto. James pidio
+una TIENDA como jayegroup.com.co, asi que la tienda vive en la raiz y esto se
+guarda aqui por si algun dia se quiere la landing suelta.
+Para usarla hay que copiar tambien lib/ e img/ y los legales de la raiz.

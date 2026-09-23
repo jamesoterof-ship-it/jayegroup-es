@@ -13,7 +13,8 @@ try{ var _qsC=new URLSearchParams(location.search); var _cmpV=_qsC.get("cmp")||_
 window._trackVenta=function(phone){ try{ if(window._CMP&&phone) fetch("https://n8n-production-8a42.up.railway.app/webhook/track-click",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({phone:phone,cmp:window._CMP,producto:(C.producto||""),canal:"pagina"})}).catch(function(){}); }catch(e){} };
 const $ = (s,r)=> (r||document).querySelector(s);
 const $$ = (s,r)=> [].slice.call((r||document).querySelectorAll(s));
-const money = n => "$" + Math.round(n).toLocaleString(C.pais && C.pais.locale || "es-CL");
+/* España: euros con coma decimal y el símbolo detrás (34,95 €), como se escribe allá */
+const money = n => (Math.round(n*100)/100).toLocaleString((C.pais && C.pais.locale) || "es-ES",{minimumFractionDigits:2,maximumFractionDigits:2}) + " €";
 const set = (id,txt)=>{ var e=$("#"+id); if(e) e.textContent=txt; };
 const html = (id,h)=>{ var e=$("#"+id); if(e) e.innerHTML=h; };
 
@@ -42,12 +43,14 @@ var waLink = "https://wa.me/"+(C.whatsapp||"")+"?text="+encodeURIComponent("Hola
 set("footTitle", C.footTitle||C.marca||"JAYE GROUP");
 set("footAddr", C.footAddr||"");
 var fm=$("#footMail"); if(fm){ fm.textContent=C.footMail||""; fm.href="mailto:"+(C.footMail||""); }
-var fw=$("#footWa"); if(fw){ fw.textContent="+"+(C.whatsapp||""); fw.href=waLink; }
+var fw=$("#footWa"); if(fw && C.whatsapp){ fw.textContent="+"+(C.whatsapp||""); fw.href=waLink; var _fr=$("#footWaRow"); if(_fr) _fr.hidden=false; }
+/* Sin número español todavía: el botón flotante y el enlace del menú de WhatsApp se ocultan */
+if(!C.whatsapp){ ["#navWa","#waFloat"].forEach(function(s){ var e=$(s); if(e) e.style.display="none"; }); }
 set("year", new Date().getFullYear());
 
 /* ---------- 3) Marquees ---------- */
 (function(){
-  var items = ["Calidad Premium","Envío Gratis","Pago Contra Entrega","Satisfacción Garantizada","Mejores Precios"];
+  var items = ["Calidad Premium","Envío Gratis 24/48 h","Pago Contra Reembolso","Satisfacción Garantizada","Envíos desde España"];
   var h = items.concat(items).map(function(t){return "<span>✦ "+t+"</span>";}).join("");
   html("mq1", h); html("mq2", h);
 })();
@@ -63,14 +66,6 @@ var hImg=$("#heroImg"); if(hImg && C.img){ hImg.src=C.img.hero||C.img.oferta||""
 set("introPrice", money(C.precioUnidad||0));
 
 /* ---------- 5) TRUST ---------- */
-/* beneficios dentro del hero (íconos redondos, como la referencia) */
-html("heroFeats", (C.heroFeats||[]).map(function(f){
-  return '<div class="hf"><span class="hf__ic">'+f.ic+'</span><div class="hf__tx"><b>'+f.t+'</b><span>'+f.d+'</span></div></div>';
-}).join(""));
-/* franja blanca de sellos bajo el hero */
-html("sellos", (C.trust||[]).map(function(t){
-  return '<div class="sl"><span class="sl__ic">'+t.em+'</span><b>'+t.b+'</b><span>'+t.s+'</span></div>';
-}).join(""));
 html("trust", (C.trust||[]).map(function(t){
   return '<div class="t"><div class="em">'+t.em+'</div><b>'+t.b+'</b><span>'+t.s+'</span></div>';
 }).join(""));
@@ -92,8 +87,8 @@ html("howSteps", (C.howSteps||[]).map(function(s,i){
 /* ---------- 8) OFERTA ---------- */
 set("offerTitle", C.offerTitle||"");
 set("offerSub", C.offerSub||"");
-if(C.offerWas>C.offerNew){ set("offerWas", money(C.offerWas)); } else { var _ow=$("#offerWas"); if(_ow) _ow.style.display="none"; }
-set("offerNew", money(C.offerNew||0)+" CLP");
+set("offerWas", money(C.offerWas||0));
+set("offerNew", money(C.offerNew||0));
 var oImg=$("#offerImg"); if(oImg && C.img){ oImg.src=C.img.oferta||C.img.hero||""; oImg.alt=C.offerTitle||""; }
 
 /* ---------- 9) GALERÍA ---------- */
@@ -137,7 +132,7 @@ var packsWrap = $("#packs");
 html("packs", (C.packs||[]).map(function(p,i){
   var sel = (i===1 || (C.packs.length===1));
   var thumb = i===0 ? (C.img&&C.img.packThumb1) : (C.img&&C.img.packThumb2);
-  return '<label class="pack'+(sel?' sel':'')+'" data-qty="'+p.qty+'" data-price="'+p.price+'" data-was="'+(p.was||p.price)+'">'+
+  return '<label class="pack'+(sel?' sel':'')+'" data-qty="'+p.qty+'" data-price="'+p.price+'">'+
     (p.tag?'<span class="tag">'+p.tag+'</span>':'')+
     '<span class="radio"></span>'+
     (thumb?'<img class="thumb" src="'+thumb+'" alt="" onerror="this.style.display=\'none\'">':'')+
@@ -157,8 +152,8 @@ function selectPack(qty){
 packs.forEach(function(p){ p.addEventListener("click",function(e){ e.preventDefault(); selectPack(p.dataset.qty); }); });
 function refresh(){
   if(!current) return;
-  var qty=parseInt(current.dataset.qty,10), price=parseInt(current.dataset.price,10);
-  var was=parseInt(current.dataset.was,10)||price, sub=was, disc=sub-price;
+  var qty=parseInt(current.dataset.qty,10), price=parseFloat(current.dataset.price);
+  var unit=C.precioUnidad||price, sub=unit*qty, disc=sub-price;
   set("sumSub", money(sub)); set("sumDisc", "-"+money(disc)); set("sumTot", money(price));
 }
 refresh();
@@ -223,47 +218,39 @@ $("#ham").addEventListener("click",function(){ $("#nav").classList.toggle("open"
   },{passive:true});
 })();
 
-/* ---------- 20) Selector código de país ---------- */
+/* ---------- 20) País fijo: España (+34). Solo se vende a la península. ---------- */
 (function(){
-  var paises=[["+56","cl","Chile"],["+57","co","Colombia"],["+595","py","Paraguay"],["+54","ar","Argentina"],["+591","bo","Bolivia"],["+593","ec","Ecuador"],["+51","pe","Perú"],["+598","uy","Uruguay"],["+58","ve","Venezuela"],["+52","mx","México"],["+1","us","Estados Unidos"],["+34","es","España"]];
-  var pre=(C.pais&&C.pais.prefijo)||"+56", cc=(C.pais&&C.pais.cc)||"cl";
-  html("ccList", paises.map(function(p){return '<button type="button" data-code="'+p[0]+'" data-cc="'+p[1]+'"><img src="https://flagcdn.com/'+p[1]+'.svg" alt="">'+p[2]+'<span class="code">'+p[0]+'</span></button>';}).join(""));
+  var pre=(C.pais&&C.pais.prefijo)||"+34", cc=(C.pais&&C.pais.cc)||"es";
   $("#ccFlag").src="https://flagcdn.com/"+cc+".svg"; set("ccCode",pre); $("#codpais").value=pre;
-  var box=$("#cc"), btn=$("#ccBtn"), list=$("#ccList");
-  btn.addEventListener("click",function(e){ e.stopPropagation(); list.hidden=!list.hidden; });
-  window.TELPAIS={ "56":{n:9,ini:/^9/,ej:"9 1234 5678",txt:"9 dígitos, empieza con 9"},
-    "57":{n:10,ini:/^3/,ej:"300 123 4567",txt:"10 dígitos, empieza con 3"},
-    "595":{n:9,ini:/^9/,ej:"981 123 456",txt:"9 dígitos, empieza con 9"},
-    "54":{n:10,ini:/^\d/,ej:"11 1234 5678",txt:"10 dígitos"},
-    "51":{n:9,ini:/^9/,ej:"912 345 678",txt:"9 dígitos, empieza con 9"},
-    "593":{n:9,ini:/^9/,ej:"99 123 4567",txt:"9 dígitos, empieza con 9"},
-    "591":{n:8,ini:/^[67]/,ej:"7123 4567",txt:"8 dígitos"},
-    "598":{n:8,ini:/^9/,ej:"9 123 4567",txt:"8 dígitos, empieza con 9"},
-    "58":{n:10,ini:/^4/,ej:"412 123 4567",txt:"10 dígitos, empieza con 4"},
-    "52":{n:10,ini:/^\d/,ej:"55 1234 5678",txt:"10 dígitos"},
-    "1":{n:10,ini:/^\d/,ej:"305 123 4567",txt:"10 dígitos"},
-    "34":{n:9,ini:/^[67]/,ej:"612 345 678",txt:"9 dígitos"} };
-  window.pintaTelPais=function(code){
-    var cc=String(code||"").replace(/[^0-9]/g,""), r=window.TELPAIS[cc];
-    var inp=$("#telefono"); if(inp) inp.placeholder=r?r.ej:"Número de celular";
-  };
-  $$("#ccList button").forEach(function(b){ b.addEventListener("click",function(){ $("#codpais").value=b.dataset.code; $("#ccFlag").src="https://flagcdn.com/"+b.dataset.cc+".svg"; set("ccCode",b.dataset.code); list.hidden=true; window.pintaTelPais(b.dataset.code); }); });
-  window.pintaTelPais(pre);
-  document.addEventListener("click",function(e){ if(!box.contains(e.target)) list.hidden=true; });
 })();
 
-/* ---------- 21) Regiones / comunas (Chile) ---------- */
+/* ---------- 20b) COOKIES (RGPD): el píxel de Meta solo arranca si la persona ACEPTA.
+   "Aceptar" y "Rechazar" pesan igual (lo exige la AEPD). La decisión se recuerda 6 meses. ---------- */
 (function(){
-  var region=$("#region"), comuna=$("#comuna");
-  var data = window.CHILE_REGIONES;
-  if(!data){ return; }
-  Object.keys(data).forEach(function(r){ var o=document.createElement("option"); o.value=r; o.textContent=r; region.appendChild(o); });
-  region.addEventListener("change",function(){
-    comuna.innerHTML='<option value="">Selecciona…</option>';
-    (data[region.value]||[]).forEach(function(c){ var o=document.createElement("option"); o.value=c; o.textContent=c; comuna.appendChild(o); });
-    comuna.disabled=(data[region.value]||[]).length===0;
-  });
+  var box=$("#cookies"); if(!box) return;
+  var KEY="ck_meta", dec=null;
+  try{ dec=localStorage.getItem(KEY); }catch(e){}
+  function decidir(v){ try{ localStorage.setItem(KEY, v); }catch(e){} box.hidden=true; if(v==="si" && window._cargarPixel) window._cargarPixel(); }
+  if(dec==="si"){ if(window._cargarPixel) window._cargarPixel(); }
+  else if(dec!=="no"){ box.hidden=false; }
+  $("#ckOk").addEventListener("click",function(){ decidir("si"); });
+  $("#ckNo").addEventListener("click",function(){ decidir("no"); });
+  /* "Configurar cookies" en el pie: vuelve a mostrar el aviso para cambiar o revocar la decisión */
+  var cfg=$("#ckConfig"); if(cfg) cfg.addEventListener("click",function(e){ e.preventDefault(); box.hidden=false; box.scrollIntoView({behavior:"smooth",block:"end"}); });
 })();
+
+/* ---------- 21) Provincias de España + código postal ---------- */
+(function(){
+  var prov=$("#provincia"); if(!prov || !window.PROVINCIAS_ES) return;
+  window.PROVINCIAS_ES.forEach(function(p){ var o=document.createElement("option"); o.value=p; o.textContent=p; prov.appendChild(o); });
+  /* Solo dígitos en el CP y el móvil */
+  ["cp","telefono"].forEach(function(id){ var e=$("#"+id); if(e) e.addEventListener("input",function(){ e.value=e.value.replace(/\D/g,"").slice(0,id==="cp"?5:9); }); });
+})();
+/* CP válido = 5 dígitos y NO de Canarias/Baleares/Ceuta/Melilla (Dropi PRO no despacha allí) */
+function cpValido(cp){ cp=String(cp||"").replace(/\D/g,""); if(cp.length!==5) return false; return (window.CP_SIN_COBERTURA||[]).indexOf(cp.slice(0,2))<0; }
+function cpSinCobertura(cp){ cp=String(cp||"").replace(/\D/g,""); return cp.length===5 && (window.CP_SIN_COBERTURA||[]).indexOf(cp.slice(0,2))>=0; }
+/* Móvil español: 9 dígitos y empieza por 6 o 7 */
+function movilValido(t){ return /^[67]\d{8}$/.test(String(t||"").replace(/\D/g,"")); }
 
 /* ============================================================
    BACKEND (igual que las landings que ya venden)
@@ -273,7 +260,8 @@ function trackPanel(tipo){ try{ var _p=(C&&C.producto)||""; fetch("https://n8n-p
 try{ if(!sessionStorage.getItem("jaye_vis")){ sessionStorage.setItem("jaye_vis","1"); trackPanel("visita"); } }catch(e){ trackPanel("visita"); }
 
 /* Meta Pixel: base + PageView se cargan en el <head> del index. Aquí solo se disparan los eventos. */
-function fb(ev,d){ if(window.fbq){ try{ fbq("track",ev,d||{}); }catch(e){} } }
+/* Sin consentimiento de cookies, fbq solo encola y NO manda nada (el script del píxel no se carga). */
+function fb(ev,d,eid){ if(window.fbq){ try{ if(eid) fbq("track",ev,d||{},{eventID:eid}); else fbq("track",ev,d||{}); }catch(e){} } }
 /* COINCIDENCIA AVANZADA (17-ago-2026). Los eventos del navegador iban SIN un solo
    dato del cliente y por eso Meta calificaba la coincidencia en 6,1 de 10 y pedia
    "mejorar la calidad". Aqui le pasamos lo que el cliente YA escribio en el
@@ -283,21 +271,14 @@ function fbUser(){
   if(!window.fbq || !C.pixelId) return;
   try{
     var d = formData(), u = {};
-    // telefono con el indicativo real que eligio el cliente (no forzamos Chile)
-    var cc  = String(d.indicativo||"+56").replace(/\D/g,"") || "56";
     var tel = String(d.telefono||"").replace(/\D/g,"");
-    if(tel){ u.ph = (tel.indexOf(cc)===0 ? tel : cc+tel); }
-    // correo: es lo que Meta más valora para reconocer a la persona
-    var mail = String(d.correo||"").trim().toLowerCase();
-    if(mail.indexOf("@")>0) u.em = mail;
-    // nombre y apellido por separado
-    var partes = String(d.nombre||"").trim().split(/\s+/).filter(Boolean);
-    if(partes[0]) u.fn = partes[0].toLowerCase();
-    if(partes.length>1) u.ln = partes.slice(1).join(" ").toLowerCase();
-    if(d.comuna) u.ct = String(d.comuna).toLowerCase().replace(/\s+/g,"");
-    if(d.region) u.st = String(d.region).toLowerCase().replace(/\s+/g,"");
-    u.country = ({"56":"cl","57":"co","595":"py","54":"ar","51":"pe","593":"ec","591":"bo","598":"uy","58":"ve","52":"mx","1":"us","34":"es"})[cc] || "cl";
-    if(u.ph || u.em || u.fn) fbq("init", C.pixelId, u);
+    if(tel){ if(tel.length<=9) tel = "34"+tel; u.ph = tel; }
+    var nom = String(d.nombre||"").trim().split(/\s+/)[0]||"";
+    if(nom) u.fn = nom.toLowerCase();
+    if(d.ciudad) u.ct = String(d.ciudad).toLowerCase().replace(/\s+/g,"");
+    if(d.cp) u.zp = String(d.cp);
+    u.country = "es";
+    if(u.ph || u.fn) fbq("init", C.pixelId, u);
   }catch(e){}
 }
 fb("ViewContent",{content_name:PRODUCTO,content_type:"product",value:C.precioUnidad,currency:C.pais.moneda});
@@ -306,20 +287,25 @@ var _checkout=false;
 /* ---------- Reseñas ---------- */
 (function(){
   var list=$("#revList"); if(!list) return;
-  set("revScore", C.revScore||4.8);
-  var NAMES=["Camila Muñoz","Valentina Soto","Francisca Contreras","Catalina Silva","Javiera Sepúlveda","Constanza Rodríguez","Fernanda Fuentes","Antonia Torres","María José Flores","Daniela Valenzuela","Carolina Tapia","Josefa Gutiérrez","Paula Vargas","Andrea Núñez","Marcela Riquelme","Pía Cáceres","Bárbara Salazar","Rocío Fuentealba","Camila Carrasco","Claudia Bravo","Sofía Vera","Isidora Pizarro","Macarena Aravena","Romina Sandoval","Verónica Miranda","Loreto Ortiz","Ximena Vergara","Amanda Cisternas","Gabriela Lagos","Pamela Maturana","Nicole Fuentes","Karina Poblete","Ignacia Espinoza","Alejandra Rojas","Trinidad Castillo","Paulina Herrera","Florencia Reyes","Victoria Morales","Raquel Pérez","Fernanda Díaz","Montserrat Bravo","Gracia Muñoz","Estefanía Ruiz","Joaquina Tapia"];
-  var TEXTS=["Me encantó, cero grumos y el volumen se nota al tiro.","La recomiendo 100%, ya pedí el pack para mi hermana.","Aguanta el día entero, ni con la llovizna se me corrió.","Tengo pestañas cortas y de verdad se ven el doble de largas.","El pago contra entrega me dio confianza para pedir.","Se nota la diferencia desde la primera pasada.","Por fin una máscara que no me deja las pestañas pegadas.","Llegó a regiones sin problema, muy buena atención.","Dejé las postizas por esta, mucho más cómodo.","El cepillo separa una por una, quedan de abanico.","A mis 45 mis pestañas se veían ralas, con esta se ven pobladas.","Me dura desde la mañana hasta la noche intacta.","Se la recomendé a mi mamá y también quedó feliz.","Buen precio, y trae dos así que una queda en la cartera.","No mancha los párpados como otras que he probado.","Calidad premium, se nota que no es cualquier máscara.","La pedí desconfiada y quedé sorprendida, funciona.","De noche sale fácil con agua tibia, no maltrata.","Después de un mes sigue rindiendo, no se seca.","Atención por WhatsApp muy rápida, llegó en dos días.","Waterproof de verdad, lloré en un matrimonio y nada.","Nada de grumos ni pestañas tiesas como con otras.","Me la pongo en la mañana y queda perfecta hasta la noche.","Hasta mi pololo me preguntó si me había hecho extensiones.","Recomendada para las que tenemos pestañas cortitas.","El efecto postizas es real, quedé impresionada.","Se nota el largo y el volumen sin verse cargada.","Llegó bien embalada y antes de lo esperado.","Vale cada peso, ya la volví a pedir.","Mis pestañas se ven más largas y con curva todo el día.","Sin apelmazar, quedan livianas y separadas.","A mi edad cuesta encontrar una que funcione, esta sí.","Me veo más despierta hasta sin sombra ni delineador.","Buenísima, la recomendé a mis amigas del trabajo.","Aguanta gimnasio y piscina, no se corre nada.","Pedido fácil, pagué al recibir, todo perfecto.","El dorado del envase es precioso y rinde harto.","La uso hace un mes y no pienso cambiarla.","Volumen parejo, sin pegotes desde la raíz.","Mis pestañas quedan con curva sin encrespador.","Producto serio, se nota la calidad.","Llegó a Antofagasta en tres días, excelente.","El pack de dos conviene, una para mí y una de regalo.","Lo mejor es que no se borra ni deja sombra negra."];
-  var IMGS=["img/r1.webp","img/r2.webp","img/r3.webp","img/r4.webp"];
-  var seedN=C.revSeed||40, SEED=[];
-  for(var k=0;k<seedN;k++){ var st=(k%9===4)?4:(k%24===7?3:5); var dd=String((k*7)%28+1).padStart(2,"0"); var mm=String((k%5)+1).padStart(2,"0");
-    SEED.push({name:NAMES[k%NAMES.length],stars:st,ver:(k%3===0),text:TEXTS[k%TEXTS.length],date:dd+"/"+mm+"/2026",img:IMGS[k]||""}); }
+  /* La nota media se calcula con las reseñas reales; no se pone a mano */
+  function notaMedia(){ var all=load().concat(SEED||[]); if(!all.length) return "–"; return (all.reduce(function(a,r){return a+(+r.stars||0);},0)/all.length).toFixed(1); }
+  var NAMES=["José Muñoz","Matías Soto","Felipe Contreras","Sebastián Silva","Vicente Sepúlveda","Diego Rodríguez","Cristóbal Fuentes","Ignacio Torres","Benjamín Flores","Tomás Valenzuela","Martín Tapia","Agustín Gutiérrez","Rodrigo Vargas","Carlos Núñez","Manuel Riquelme","Pedro Cáceres","Andrés Salazar","Jorge Fuentealba","Luis Carrasco","Patricio Bravo","Francisco Vera","Gonzalo Pizarro","Héctor Aravena","Roberto Sandoval","Claudio Miranda","Marcelo Ortiz","Óscar Vergara","Ramón Cisternas","Eduardo Lagos","Hernán Maturana","Mauricio Fuentes","Cristián Poblete","Juan Espinoza","Alejandro Rojas","Sergio Castillo","Pablo Herrera","Nicolás Reyes","Víctor Morales","Raúl Pérez","Fernando Díaz","Álvaro Bravo","Gabriel Muñoz","Esteban Ruiz","Joaquín Tapia"];
+  var TEXTS=["Excelente producto, llegó rápido y se siente la diferencia.","Lo recomiendo 100%, ya voy por el segundo frasco.","Llevo dos semanas y ando con mucha más energía.","Más vitalidad y menos cansancio en las tardes.","El pago contra entrega me dio confianza para pedir.","Se nota el cambio desde la primera semana.","Ando con mejor ánimo y más energía todo el día.","Llegó a regiones sin problema, muy buena atención.","Tremendo suplemento, lo noto en el gimnasio.","Más foco y claridad para el trabajo, dejé el café de la tarde.","A mis 58 me siento con otra pila, recomendado.","Despierto con más energía y rindo todo el día.","Se lo recomendé a mi hermano y también quedó conforme.","Buen precio por la cantidad de ingredientes que trae.","Me ayudó con el bajón de las cuatro de la tarde.","Calidad premium, se nota que no es cualquier vitamina.","Lo pedí desconfiado y quedé sorprendido, funciona.","Duermo mejor y amanezco con más energía.","Después del mes me siento más activo y de mejor humor.","Atención por WhatsApp muy rápida, llegó en dos días.","Para la próstata me ha venido muy bien, más tranquilo.","Nada de nervios ni taquicardia como otros energizantes.","Lo tomo en la mañana y rindo hasta la noche sin bajón.","Hasta mi señora me nota más animado y con más ganas.","Recomendado para los que pasamos sentados todo el día.","Volví a entrenar con más fuerza, gran producto.","Se nota en la concentración, ando más despejado.","Llegó bien embalado y antes de lo esperado.","Vale cada peso, ya lo volví a pedir.","Mejoró mi energía y mi estado de ánimo en general.","Sin estimulantes raros, energía limpia y pareja.","A mi edad cuesta encontrar algo que funcione, este sí.","Me siento más joven y con más ganas de hacer cosas.","Buenísimo, lo recomendé a mis amigos del trabajo.","Más resistencia en el día y mejor recuperación.","Pedido fácil, pagué al recibir, todo perfecto.","Noté mejor circulación y menos pesadez en las piernas.","Lo uso hace un mes y no pienso dejarlo.","Energía estable, sin el bajón del café.","Mejor rendimiento físico y más vitalidad, muy conforme.","Producto serio, se nota la calidad de la fórmula.","Llegó a Antofagasta en tres días, excelente.","Más vitalidad en todo sentido, muy conforme.","Lo mejor es la energía sin ponerme acelerado."];
+  var IMGS=["img/r1.webp","img/r2.webp","img/r3.webp","img/r4.webp","img/r5.webp","img/r6.webp","img/r7.webp","img/r8.webp","img/r9.webp"];
+  /* ESPAÑA: NADA de reseñas inventadas ni sello "verificado" sin comprobar la compra
+     (TRLGDCU art. 20 y 49.1, tras la Ley 7/2022 / Directiva Omnibus). Solo se muestran
+     reseñas reales: las que dejen los clientes en esta página o las que James cargue en
+     C.resenas después de verificarlas. Sin reseñas, la sección se oculta entera. */
+  var SEED=(C.resenas||[]).map(function(r){ return {name:r.nombre,stars:r.estrellas,ver:!!r.verificada,text:r.texto,date:r.fecha||"",img:r.img||""}; });
+  NAMES=TEXTS=IMGS=null;
+  if(!SEED.length && !load().length){ var _sec=$("#resenas"); if(_sec) _sec.style.display="none"; $$('[data-scroll="#resenas"]').forEach(function(a){ a.style.display="none"; }); }
   var KEY="rev_"+(C.productoCorto||"prod").replace(/\W+/g,"_");
   function load(){ try{ return JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(e){ return []; } }
   function save(a){ try{ localStorage.setItem(KEY,JSON.stringify(a)); }catch(e){} }
   function stars(n){ var s=""; for(var i=1;i<=5;i++){ s+= i<=n?"★":'<span class="off">★</span>'; } return s; }
   function av(n){ return (n||"?").trim().charAt(0).toUpperCase(); }
   function card(r){ return '<div class="rev"><div class="top"><span class="av">'+av(r.name)+'</span><div><div class="who">'+r.name+(r.ver?'<span class="ver">✓ Verificado</span>':'')+'</div><div class="date">'+r.date+'</div></div></div><div class="st">'+stars(r.stars)+'</div><p>'+r.text+'</p>'+(r.img?'<img class="rev-img" src="'+r.img+'" loading="lazy" onerror="this.remove()">':'')+'</div>'; }
-  function render(){ var all=load().concat(SEED); list.innerHTML=all.slice(0,8).map(card).join(""); var auto=$("#revAuto"); if(auto){ var rest=SEED.slice(8,32); auto.innerHTML=rest.concat(rest).map(card).join(""); } set("revCount",(C.revSeed||40)+load().length); }
+  function render(){ var all=load().concat(SEED); list.innerHTML=all.slice(0,8).map(card).join(""); var auto=$("#revAuto"); if(auto){ var rest=SEED.slice(8,32); auto.innerHTML=rest.concat(rest).map(card).join(""); } set("revCount",SEED.length+load().length); set("revScore",notaMedia()); }
   render();
   var modal=$("#revModal"), rating=0, picks=$$("#starPick span");
   function paint(n){ picks.forEach(function(s,i){ s.classList.toggle("on",i<n); }); }
@@ -346,45 +332,55 @@ var _checkout=false;
   var form=$("#orderForm");
   function setInvalid(id,bad){ $("#"+id).closest(".field").classList.toggle("invalid",bad); }
   var SID="AB"+Date.now()+Math.floor(Math.random()*1e6);
-  function telLimpio(){ var cc=(form.codpais.value||"").replace(/\D/g,""), d=(form.telefono.value||"").replace(/\D/g,""); if(cc&&d.indexOf(cc)===0&&d.length-cc.length>=8) d=d.slice(cc.length); return d; }
-  function sendSheet(p){ if(!SHEET_URL) return; try{ fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(p)}).catch(function(){}); }catch(e){} }
-  function formData(){ return { sid:SID, producto:PRODUCTO, cantidad:current?parseInt(current.dataset.qty,10):"", total:current?parseInt(current.dataset.price,10):"", nombre:form.nombre.value.trim(), indicativo:form.codpais.value, telefono:telLimpio(), correo:form.correo.value.trim(), direccion:form.direccion.value.trim(), referencia:form.referencia.value.trim(), region:form.region.value, comuna:form.comuna.value, pagina:location.href, fecha:new Date().toLocaleString(C.pais.locale) }; }
+  function telLimpio(){ var d=(form.telefono.value||"").replace(/\D/g,""); if(d.indexOf("34")===0&&d.length===11) d=d.slice(2); return d; }
+  /* El pedido entra al PANEL por el webhook de España: ahí se guarda, se confirma y
+     se monta en Dropi PRO. Mismo formato que Chile más cp/ciudad/provincia. */
+  var PEDIDO_ES="https://n8n-production-8a42.up.railway.app/webhook/pedido-tienda-es";
+  var EVENT_ID="es"+Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+  function formData(){ return { sid:SID, producto:PRODUCTO, cantidad:current?parseInt(current.dataset.qty,10):"", total:current?parseFloat(current.dataset.price):"", nombre:form.nombre.value.trim(), indicativo:"+34", telefono:telLimpio(), correo:form.correo.value.trim(), direccion:form.direccion.value.trim(), referencia:form.referencia.value.trim(), cp:form.cp.value.trim(), ciudad:form.ciudad.value.trim(), provincia:form.provincia.value, pagina:location.href, fecha:new Date().toLocaleString("es-ES") }; }
   var abSent=false, abTimer, leadTracked=false;
-  function captureAb(){ if(form.telefono.value.replace(/\D/g,"").length<8) return; abSent=true; sendSheet(Object.assign(formData(),{tipo:"abandonado",estado:"INCOMPLETO"})); fbUser(); if(!leadTracked){ leadTracked=true; fb("Lead",{content_name:PRODUCTO,value:current?+current.dataset.price:C.precioUnidad,currency:C.pais.moneda}); } }
-  ["telefono","nombre","correo","direccion","referencia"].forEach(function(id){ var e=$("#"+id); if(e) e.addEventListener("blur",function(){ clearTimeout(abTimer); abTimer=setTimeout(captureAb,300); }); });
-  var _mail=$("#correo"); if(_mail) _mail.addEventListener("blur",function(){ fbUser(); });
-  ["region","comuna"].forEach(function(id){ var e=$("#"+id); if(e) e.addEventListener("change",function(){ clearTimeout(abTimer); abTimer=setTimeout(captureAb,300); }); });
-  form.telefono.addEventListener("input",function(){ if(form.telefono.value.replace(/\D/g,"").length>=8){ clearTimeout(abTimer); abTimer=setTimeout(captureAb,1200); } });
+  function captureAb(){ if(!movilValido(form.telefono.value)) return; abSent=true; fbUser(); if(!leadTracked){ leadTracked=true; fb("Lead",{content_name:PRODUCTO,value:current?+current.dataset.price:C.precioUnidad,currency:C.pais.moneda}); } }
+  ["telefono","nombre","correo","direccion","cp","ciudad"].forEach(function(id){ var e=$("#"+id); if(e) e.addEventListener("blur",function(){ clearTimeout(abTimer); abTimer=setTimeout(captureAb,300); }); });
+  function mandarPanel(datos,intento){
+    return fetch(PEDIDO_ES,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(datos)})
+      .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return true; })
+      .catch(function(e){ if(intento<3){ return new Promise(function(ok){ setTimeout(ok,1500*intento); }).then(function(){ return mandarPanel(datos,intento+1); }); } throw e; });
+  }
 
   form.addEventListener("submit",async function(e){
     e.preventDefault();
     var ok=true,bad;
-    var nombre=form.nombre.value.trim(), tel=form.telefono.value.replace(/\D/g,""), dir=form.direccion.value.trim();
+    var nombre=form.nombre.value.trim(), tel=telLimpio(), dir=form.direccion.value.trim(), cp=form.cp.value.trim(), ciudad=form.ciudad.value.trim(), correo=form.correo.value.trim();
+    var talla=(form.talla&&form.talla.value)||"";
+    if(form.talla){ bad=!talla; setInvalid("talla",bad); if(bad)ok=false; }
     bad=nombre.length<2; setInvalid("nombre",bad); if(bad)ok=false;
-    var _ccd=(form.codpais.value||"").replace(/\D/g,"");
-    var _rp=(window.TELPAIS||{})[_ccd];
-    bad = _rp ? (tel.length!==_rp.n || !_rp.ini.test(tel)) : (tel.length<7 || tel.length>13);
-    var _te=$("#telefono").closest(".field").querySelector(".err");
-    if(_te) _te.textContent=(_rp&&bad)?("Escribe tu celular: "+_rp.txt+". Ej: "+_rp.ej):"Escribe un teléfono válido.";
-    setInvalid("telefono",bad); if(bad)ok=false;
-    bad=dir.length<4; setInvalid("direccion",bad); if(bad)ok=false;
-    var _esCL=(form.codpais.value||"").replace(/\D/g,"")==="56";
-    if(_esCL){ bad=!form.region.value; setInvalid("region",bad); if(bad)ok=false; bad=!form.comuna.value; setInvalid("comuna",bad); if(bad)ok=false; }
-    if(!ok){ if(window.__ayudaFormWA) window.__ayudaFormWA(); var inv=form.querySelector(".invalid"); if(inv) inv.scrollIntoView({behavior:"smooth",block:"center"}); return; }
-    var qty=parseInt(current.dataset.qty,10), total=parseInt(current.dataset.price,10);
-    var data={ sid:SID, producto:PRODUCTO, cantidad:qty, total:total, nombre:nombre, indicativo:form.codpais.value, telefono:telLimpio(), direccion:dir, correo:form.correo.value.trim(), referencia:form.referencia.value.trim(), region:form.region.value, comuna:form.comuna.value, pagina:location.href, fecha:new Date().toLocaleString(C.pais.locale) };
+    bad=!movilValido(tel); setInvalid("telefono",bad); if(bad)ok=false;
+    bad=dir.length<6; setInvalid("direccion",bad); if(bad)ok=false;
+    bad=!cpValido(cp); setInvalid("cp",bad); if(bad)ok=false;
+    var _ce=$("#cpErr"); if(_ce) _ce.textContent=cpSinCobertura(cp)?"Lo sentimos: por ahora no enviamos a Canarias, Baleares, Ceuta ni Melilla.":"Escribe tu código postal (5 dígitos).";
+    bad=ciudad.length<2; setInvalid("ciudad",bad); if(bad)ok=false;
+    bad=!form.provincia.value; setInvalid("provincia",bad); if(bad)ok=false;
+    bad=!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo); setInvalid("correo",bad); if(bad)ok=false;
+    /* Aceptación expresa de las condiciones (Ley 7/1998 art. 5): sin la casilla no hay pedido */
+    var chk=$("#acepto"); if(chk && !chk.checked){ ok=false; chk.parentElement.style.color="#e1283c"; chk.focus(); } else if(chk){ chk.parentElement.style.color=""; }
+    if(!ok){ var inv=form.querySelector(".invalid"); if(inv) inv.scrollIntoView({behavior:"smooth",block:"center"}); return; }
+    var qty=parseInt(current.dataset.qty,10), total=parseFloat(current.dataset.price);
     var btn=$("#submitBtn"); btn.disabled=true; btn.textContent="Enviando…";
     try{
-      if(SHEET_URL) await fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)});
-      if(C.orderWebhook) await fetch(C.orderWebhook,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
-      if(N8N){ var telWA=(form.codpais.value+"").replace(/\D/g,"")+telLimpio();
-        fetch(N8N,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ customer:{phone:telWA}, shipping_address:{first_name:nombre.split(" ")[0],address1:dir,province:form.region.value,city:form.comuna.value,address2:form.referencia.value.trim(),country_code:form.codpais.value}, order_number:"JG-"+String(Date.now()).slice(-6), line_items:[{title:PRODUCTO,quantity:qty}], total_price:String(total) })}).catch(function(){}); window._trackVenta&&window._trackVenta(telWA); }
-      if(abSent) sendSheet(Object.assign(formData(),{tipo:"abandonado",estado:"COMPLETADO"}));
-      fbUser(); fb("Purchase",{content_name:PRODUCTO,value:total,currency:C.pais.moneda});
+      await mandarPanel({
+        nombre:nombre, indicativo:"+34", telefono:tel, correo:correo,
+        /* La talla decide el producto de Dropi PRO (mujer y hombre son ids distintos) */
+        producto:PRODUCTO+(talla?" · "+(talla==="hombre"?"Hombre 40-46":"Mujer 36-41"):""), talla:talla,
+        dropi_id:(C.dropiPorTalla&&C.dropiPorTalla[talla])||C.dropiId||0, total:total, precio:total, cantidad:qty,
+        direccion:dir, cp:cp, ciudad:ciudad, provincia:form.provincia.value, referencia:form.referencia.value.trim(),
+        origen:C.origen||"espana-plantillas", pais:"34", pais_despacho:"ES", moneda:"EUR",
+        pagina:location.href, event_id:EVENT_ID
+      },1);
+      window._trackVenta&&window._trackVenta("34"+tel);
+      fbUser(); fb("Purchase",{content_name:PRODUCTO,content_ids:[C.origen||"espana-plantillas"],value:total,currency:"EUR"},EVENT_ID);
       form.style.display="none"; $("#packs").style.display="none"; document.querySelector(".summary").style.display="none";
       set("okName",nombre.split(" ")[0]); $("#okMsg").style.display="block"; $("#okMsg").scrollIntoView({behavior:"smooth",block:"center"});
-      if(C.upsell && C.upsell.precio>0) abrirUpsell(nombre.split(" ")[0], (form.codpais.value+"").replace(/[^0-9]/g,"")+telLimpio());
-    }catch(err){ btn.disabled=false; btn.textContent="COMPRAR (pagar al recibir)"; alert("Hubo un problema al enviar. Intenta de nuevo o escríbenos por WhatsApp."); }
+    }catch(err){ btn.disabled=false; btn.textContent="Comprar — pago contra reembolso"; alert("Ha habido un problema al enviar el pedido. Inténtalo de nuevo o escríbenos por correo."); }
   });
 })();
 
@@ -392,7 +388,7 @@ var _checkout=false;
 
 /* ====== Ayuda WhatsApp si el formulario no avanza ====== */
 (function(){
-  var WA='https://wa.me/'+((window.CONFIG&&CONFIG.whatsapp)||'56964775539');
+  var WA='https://wa.me/'+((window.CONFIG&&CONFIG.whatsapp)||'56920007288');
   var WAICO='<svg viewBox="0 0 32 32" width="15" height="15" style="vertical-align:-2px;fill:currentColor" aria-hidden="true"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2.1 7.8L.3 31.6l8.1-2.1c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.3c-2.4 0-4.7-.6-6.7-1.9l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.4-2.1-2.1-4.6-2.1-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.7 16 28.7zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.2 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg>';
   var st=document.createElement('style');
   st.textContent='.form-help-wa{display:none;margin-top:12px;padding:11px 14px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;font-size:13.5px;color:#9a3412;text-align:center;line-height:1.5}.form-help-wa a{color:#16a34a;font-weight:700;text-decoration:none}';
@@ -407,11 +403,76 @@ var _checkout=false;
   };
 })();
 
-/* (ruleta eliminada a pedido del jefe) */
+/* ====== Ruleta de premios al entrar (premio: ENVÍO GRATIS) — colores de NAD+ ====== */
+(function(){
+  try{ if(sessionStorage.getItem('jaye_ruleta')) return; }catch(e){}
+  var st=document.createElement('style');
+  st.textContent=
+  '.jrul-ov{position:fixed;inset:0;background:rgba(6,9,18,.82);backdrop-filter:blur(5px);display:grid;place-items:center;z-index:99998;padding:16px}'+
+  '.jrul-ov[hidden]{display:none}'+
+  '.jrul-card{position:relative;width:100%;max-width:360px;background:linear-gradient(160deg,#0d1726,#070d1a);border:1px solid var(--acc,#00d6a8);border-radius:24px;padding:24px 20px 26px;text-align:center;color:#fff;font-family:var(--ff,sans-serif);box-shadow:0 26px 80px rgba(0,0,0,.6)}'+
+  '.jrul-x{position:absolute;top:10px;right:14px;background:none;border:0;color:#7e8da6;font-size:25px;cursor:pointer;line-height:1}'+
+  '.jrul-k{display:inline-block;background:rgba(0,214,168,.12);color:var(--acc,#00d6a8);border:1px solid var(--acc,#00d6a8);font-weight:800;font-size:11px;padding:5px 12px;border-radius:999px;letter-spacing:.04em}'+
+  '.jrul-card h2{font-family:var(--fh,inherit);font-size:22px;font-weight:800;margin:10px 0 2px;color:#fff}'+
+  '.jrul-sub{color:#a7b6cc;font-size:13.5px;margin-bottom:14px}'+
+  '.jrul-wrap{position:relative;width:272px;height:272px;margin:0 auto 4px}'+
+  '.jrul-ptr{position:absolute;top:-4px;left:50%;transform:translateX(-50%);z-index:5;width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:24px solid #fff;filter:drop-shadow(0 3px 4px rgba(0,0,0,.4))}'+
+  '.jrul-wheel{width:272px;height:272px;border-radius:50%;position:relative;transition:transform 4.6s cubic-bezier(.16,.84,.3,1);border:7px solid #fff;box-shadow:0 0 0 5px rgba(255,255,255,.12),0 16px 44px rgba(0,0,0,.5);background:conic-gradient(var(--pri,#1565d8) 0 60deg,var(--acc,#00d6a8) 60deg 120deg,var(--pri-d,#0a2a54) 120deg 180deg,var(--sec,#22a7e6) 180deg 240deg,var(--acc,#00d6a8) 240deg 300deg,var(--pri,#1565d8) 300deg 360deg)}'+
+  '.jrul-wheel .l{position:absolute;left:50%;top:14px;width:120px;margin-left:-60px;text-align:center;transform-origin:60px 122px;font-family:var(--fh,sans-serif);font-weight:800;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.55);white-space:nowrap;pointer-events:none}'+
+  '.jrul-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:50px;height:50px;border-radius:50%;background:#fff;z-index:4;display:grid;place-items:center;font-weight:800;color:var(--pri,#1565d8);font-size:11px;font-family:var(--fh,sans-serif)}'+
+  '.jrul-spin{margin-top:16px;width:100%;background:linear-gradient(90deg,var(--acc,#00d6a8),var(--pri,#1565d8));color:#fff;border:0;border-radius:13px;padding:15px;font-family:var(--fh,sans-serif);font-weight:800;font-size:16px;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.3)}'+
+  '.jrul-spin:disabled{opacity:.5;cursor:not-allowed}'+
+  '.jrul-foot{color:#7e8da6;font-size:11px;margin-top:10px}'+
+  '.jrul-win{display:none}.jrul-win .em{font-size:48px}.jrul-win h2{font-size:24px;margin:4px 0;color:#fff}'+
+  '.jrul-premio{font-family:var(--fh,sans-serif);font-weight:800;font-size:28px;color:var(--acc,#00d6a8);margin:4px 0}'+
+  '.jrul-win p{color:#a7b6cc;font-size:14px;margin-bottom:16px}'+
+  '.jrul-cta{width:100%;background:linear-gradient(135deg,var(--pri,#1565d8),var(--acc,#00d6a8));color:#fff;border:0;border-radius:13px;padding:15px;font-family:var(--fh,sans-serif);font-weight:800;font-size:16px;cursor:pointer}'+
+  '.jrul-note{margin-top:10px;color:var(--acc,#00d6a8);font-weight:700;font-size:12.5px}';
+  document.head.appendChild(st);
+  var PREM=['ENVÍO GRATIS','5% OFF','REGALO','10% OFF','ENVÍO GRATIS','15% OFF'];
+  var GRATIS=[0,4];
+  var N=PREM.length, SEG=360/N, labels='';
+  for(var i=0;i<N;i++){ labels+='<div class="l" style="transform:rotate('+(i*SEG+SEG/2)+'deg)">'+PREM[i]+'</div>'; }
+  var ov=document.createElement('div'); ov.className='jrul-ov'; ov.hidden=true;
+  ov.innerHTML=
+   '<div class="jrul-card">'+
+    '<button class="jrul-x" aria-label="Cerrar">&times;</button>'+
+    '<div class="jrul-intro">'+
+      '<span class="jrul-k">SOLO POR HOY</span>'+
+      '<h2>¡Gira y gana tu premio!</h2><div class="jrul-sub">Tienes 1 giro gratis. ¡Mucha suerte!</div>'+
+      '<div class="jrul-wrap"><div class="jrul-ptr"></div><div class="jrul-wheel">'+labels+'</div><div class="jrul-hub">GIRA</div></div>'+
+      '<button class="jrul-spin">GIRAR LA RULETA</button>'+
+      '<div class="jrul-foot">Válido solo en tu compra de hoy · pago contra entrega</div>'+
+    '</div>'+
+    '<div class="jrul-win">'+
+      '<div class="em">🎉</div><h2>¡Felicidades!</h2>'+
+      '<div class="jrul-premio">ENVÍO GRATIS</div>'+
+      '<p>¡Tu envío gratis quedó activo en tu compra de hoy!</p>'+
+      '<button class="jrul-cta">¡Empezar a comprar!</button>'+
+      '<div class="jrul-note">Envío gratis aplicado</div>'+
+    '</div>'+
+   '</div>';
+  document.body.appendChild(ov);
+  var wheel=ov.querySelector('.jrul-wheel'), spin=ov.querySelector('.jrul-spin');
+  var girando=false, giro=0;
+  function cerrar(){ ov.hidden=true; }
+  function entrarPagina(){ cerrar(); try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } }
+  function fiesta(){ if(typeof confetti!=='function') return; confetti({particleCount:120,spread:80,origin:{y:.4}}); }
+  function girar(){ if(girando) return; girando=true; spin.disabled=true;
+    var idx=GRATIS[Math.floor(Math.random()*GRATIS.length)], centro=idx*SEG+SEG/2, jit=(Math.random()*0.6-0.3)*SEG;
+    giro+=360*6+(360-(centro+jit)); wheel.style.transform='rotate('+giro+'deg)';
+    setTimeout(function(){ ov.querySelector('.jrul-intro').style.display='none'; ov.querySelector('.jrul-win').style.display='block'; fiesta(); setTimeout(entrarPagina,1500); },4700);
+  }
+  function _spinTap(e){ if(e&&e.target&&(e.target.closest('.jrul-x')||e.target.closest('.jrul-cta'))) return; var win=ov.querySelector('.jrul-win'); if(win&&win.style.display==='block') return; girar(); }
+  ov.querySelector('.jrul-x').addEventListener('click',cerrar);
+  ov.querySelector('.jrul-cta').addEventListener('click',entrarPagina);
+  ov.addEventListener('click',_spinTap);
+  setTimeout(function(){ ov.hidden=false; try{ sessionStorage.setItem('jaye_ruleta','1'); }catch(e){} }, 700);
+})();
 
 /* ====== Aviso al salir (exit-intent) — 1 vez por sesión ====== */
 (function(){
-  var WA='https://wa.me/'+((window.CONFIG&&CONFIG.whatsapp)||'56964775539');
+  var WA='https://wa.me/'+((window.CONFIG&&CONFIG.whatsapp)||'56920007288');
   var WAICO='<svg viewBox="0 0 32 32" width="15" height="15" style="vertical-align:-2px;fill:currentColor" aria-hidden="true"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2.1 7.8L.3 31.6l8.1-2.1c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.3c-2.4 0-4.7-.6-6.7-1.9l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.4-2.1-2.1-4.6-2.1-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.7 16 28.7zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.2 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg>';
   var st=document.createElement('style');
   st.textContent='.exit-ov{position:fixed;inset:0;background:rgba(6,9,18,.7);display:grid;place-items:center;z-index:99999;padding:18px;animation:exitfade .2s ease}@keyframes exitfade{from{opacity:0}to{opacity:1}}'+
@@ -442,53 +503,3 @@ var _checkout=false;
   document.addEventListener('mouseout',function(e){ if(e.clientY<=0 && !e.relatedTarget) showExit(); });
   try{ history.pushState(null,'',location.href); window.addEventListener('popstate',function(){ if(!shown){ showExit(); history.pushState(null,'',location.href); } }); }catch(e){}
 })();
-
-
-/* ====== VENTANA POST-COMPRA: oferta del Parche Adelgazante ====== */
-function abrirUpsell(nombre, telWA){
-  var C=window.CONFIG||{};
-  var U=C.upsell||{}; if(!(U.precio>0)) return;
-  var money=function(n){ return "$"+Math.round(n).toLocaleString((C.pais&&C.pais.locale)||"es-CL"); };
-  var fb=function(ev,obj){ try{ if(window.fbq) window.fbq("track",ev,obj); }catch(e){} };
-  var st=document.createElement("style");
-  st.textContent=".upov{position:fixed;inset:0;background:rgba(8,6,2,.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}"+
-  ".upcard{background:#ffffff;border:2px solid #f5a04a;border-radius:18px;max-width:330px;width:92%;padding:16px;text-align:center;color:#4a3113;box-shadow:0 24px 60px rgba(0,0,0,.45)}"+
-  ".upcard .tag{display:inline-block;background:linear-gradient(135deg,#ee7f1d,#fbaf3f);color:#fff;font-weight:800;border-radius:999px;padding:6px 14px;font-size:12px;letter-spacing:.04em;text-shadow:0 1px 2px rgba(120,60,0,.35)}"+
-  ".upcard h3{font-family:var(--fh);font-size:19px;margin:10px 0 2px;color:#e2711d}"+
-  ".upcard .sub{font-size:12.5px;color:#8a6a3c;margin-bottom:9px}"+
-  ".upcard img{width:52%;max-width:180px;border-radius:12px;margin:4px auto 8px;display:block}"+
-  ".upcard ul{list-style:none;padding:0;margin:0 0 12px;text-align:left;display:inline-block}"+
-  ".upcard li{font-size:12.5px;margin:4px 0;padding-left:20px;position:relative}"+
-  ".upcard li::before{content:\"✓\";position:absolute;left:0;color:#2e9e4f;font-weight:800}"+
-  ".upcard .precio{font-family:var(--fh);font-size:25px;font-weight:800;color:#ee7f1d;margin:2px 0 10px}"+
-  ".upcard .precio small{font-size:13px;color:#8a6a3c;font-weight:400;display:block}"+
-  ".upsi{width:100%;border:0;border-radius:999px;padding:13px;font-weight:800;font-size:14.5px;background:linear-gradient(135deg,#ee7f1d,#fbaf3f);color:#fff;text-shadow:0 1px 2px rgba(120,60,0,.4);cursor:pointer}"+
-  ".upno{width:100%;border:0;background:none;color:#8f8264;margin-top:10px;font-size:13px;cursor:pointer;text-decoration:underline}";
-  document.head.appendChild(st);
-  var ov=document.createElement("div"); ov.className="upov";
-  ov.innerHTML='<div class="upcard">'+
-    '<span class="tag">🎁 OFERTA SOLO PARA TI, '+nombre.toUpperCase()+'</span>'+
-    '<h3>'+U.nombre+'</h3>'+
-    '<p class="sub">Antes de despachar tu paquete, agrégalo con UN toque — va en el mismo envío.</p>'+
-    (U.img?'<img src="'+U.img+'" alt="'+U.nombre+'">':'')+
-    '<ul>'+(U.beneficios||[]).map(function(b){return "<li>"+b+"</li>";}).join("")+'</ul>'+
-    '<div class="precio">+'+money(U.precio)+'<small>lo pagas al recibir, junto con tu pedido</small></div>'+
-    '<button class="upsi" id="upSi">SÍ, AGREGARLO A MI PEDIDO</button>'+
-    '<button class="upno" id="upNo">No gracias, solo mi pedido</button>'+
-  '</div>';
-  document.body.appendChild(ov);
-  fb("ViewContent",{content_name:U.nombre,content_type:"product",value:U.precio,currency:C.pais.moneda});
-  ov.querySelector("#upNo").addEventListener("click",function(){ ov.remove(); });
-  ov.querySelector("#upSi").addEventListener("click",function(){
-    var b=ov.querySelector("#upSi"); b.disabled=true; b.textContent="Agregando…";
-    fetch(C.upsellWebhook,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({telefono:telWA})})
-      .then(function(r){return r.json();}).catch(function(){return {};})
-      .then(function(){
-        fb("Purchase",{content_name:U.nombre,value:U.precio,currency:C.pais.moneda});
-        ov.querySelector(".upcard").innerHTML='<h3 style="margin:18px 0 8px;color:#2e9e4f">✅ ¡Agregado a tu pedido!</h3><p class="sub">Tu '+U.nombre+' va en el mismo envío. Pagas todo junto al recibir.</p><button class="upsi" id="upOk">Listo</button>';
-        ov.querySelector("#upOk").addEventListener("click",function(){ ov.remove(); });
-      });
-  });
-}
-
-
