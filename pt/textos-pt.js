@@ -84,6 +84,14 @@ window.TEXTOS = {
   totalCod: 'Total a pagar na entrega',
   totalPre: 'Total a pagar agora',
 
+  /* ---- opiniões do produto ----
+     A linha da fonte é OBRIGATÓRIA e não se esconde: são avaliações de
+     compradores DO PRODUTO, não de clientes da nossa loja. */
+  revTit: 'Opiniões do produto',
+  revFuente: 'Avaliações de compradores verificados deste produto.',
+  compraVerificada: 'Compra verificada',
+  resenas: 'avaliações',
+
   /* ---- textos soltos da ficha ---- */
   desde: 'Desde',
   desdePie: '· portes grátis e paga quando o receber em casa.',

@@ -463,12 +463,21 @@
     });
     mias = conFoto.concat(mias.slice(fotosCli.length));
   }
+  /* La fecha llega como 2026-02-17 y se muestra como 17/02/2026, que es como
+     se escribe en España y en Portugal. */
+  function fechaCorta(f) {
+    var m = String(f || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return m ? (m[3] + '/' + m[2] + '/' + m[1]) : (f || '');
+  }
   function tarjetaResena(r) {
+    /* Se quita la comuna: estas opiniones son DEL PRODUCTO, no de clientes de
+       nuestra tienda, así que poner una ciudad daría a entender otra cosa.
+       El sello dice "Compra verificada", que es lo que de verdad significa. */
     return '<article class="rsc"><div class="arriba">'
       + '<span class="ini">' + esc((r.nombre || '?').charAt(0)) + '</span>'
       + '<span class="quien">' + esc(r.nombre)
-      + '<i class="verif">✓ Verificado</i>'
-      + '<small>' + esc(r.comuna || '') + ' · ' + esc(r.fecha || '') + '</small></span>'
+      + '<i class="verif">✓ ' + t('compraVerificada', 'Compra verificada') + '</i>'
+      + '<small>' + esc(fechaCorta(r.fecha)) + '</small></span>'
       + estrellas(r.estrellas) + '</div>'
       + '<p>' + esc(r.texto) + '</p>'
       + (r.foto ? '<img class="rfoto" src="' + esc(r.foto) + '" alt="" loading="lazy" onerror="this.remove()">' : '')
@@ -489,9 +498,15 @@
      Cuando entren clientes de verdad se llena resenas.js y la seccion vuelve
      sola, sin tocar este archivo. */
   var resenas = !mias.length ? '' : ('<section class="bloque rev-sec" id="resenas" data-rv>'
-    + '<h2 class="rev-title">Experiencias reales <span class="stars">★★★★★</span></h2>'
+    + '<h2 class="rev-title">' + t('revTit', 'Opiniones del producto') + ' <span class="stars">★★★★★</span></h2>'
+    /* 🔴 ESTA LÍNEA NO SE QUITA NI SE ACHICA. Es lo que hace que estas
+       opiniones sean válidas: son de compradores del PRODUCTO, no de clientes
+       de nuestra tienda. Escondida o cambiada por "nuestros clientes" pasan a
+       ser engañosas (art. 7 de la Directiva 2005/29 y la lista negra de la
+       Directiva UE 2019/2161). Va en 13 px y gris medio: discreta, pero se lee. */
+    + '<p class="rev-fuente">' + t('revFuente', 'Reseñas de compradores verificados de este producto.') + '</p>'
     + '<div class="rev-score"><span class="big">' + prom.toFixed(1) + '</span>'
-    + '<span class="cnt">' + mias.length + ' reseñas</span></div>'
+    + '<span class="cnt">' + mias.length + ' ' + t('resenas', 'reseñas') + '</span></div>'
     + '<div class="rev-bars">' + barras + '</div>'
     + '<button class="btn-write" id="btnWrite">Escribir una reseña</button>'
     + '<div class="rs" id="listaRs"></div>'

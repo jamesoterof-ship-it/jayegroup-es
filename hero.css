@@ -180,6 +180,20 @@
   .heroP__cta { transition: none; }
 }
 
+/* ============================================================
+   LA LÍNEA DE LA FUENTE DE LAS OPINIONES
+   Va justo bajo el título de la sección. 13 px y gris medio: discreta, pero
+   perfectamente legible. NO se achica ni se aclara más: información poco
+   clara es omisión engañosa (art. 7 de la Directiva 2005/29).
+   Gris #6E6A66 sobre blanco = 5,4:1, por encima del 4,5:1 de WCAG.
+   ============================================================ */
+.rev-fuente {
+  font: 400 13px/1.5 Inter, system-ui, sans-serif;
+  color: #6E6A66;
+  margin: -4px 0 16px;
+  max-width: 46ch;
+}
+
 /* ---------- pantallas grandes ----------
    Solo a partir de aquí se parte en dos. Todo lo de arriba es el móvil. */
 @media (min-width: 900px) {
