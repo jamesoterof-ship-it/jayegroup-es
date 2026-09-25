@@ -921,9 +921,12 @@
     };
     var min = p.packs.reduce(function (a, k) { return k.precio < a.precio ? k : a; }, p.packs[0]);
     return '<section class="heroP">'
-      + '<img class="heroP__img" src="' + esc(h.img) + '" alt="' + esc(p.nombre) + '"'
-      +   ' width="1024" height="1536" fetchpriority="high" decoding="async">'
-      + '<div class="heroP__velo"></div>'
+      /* la foto en su marco, con el fundido al crema abajo: sin corte duro */
+      + '<div class="heroP__marco">'
+      +   '<img class="heroP__img" src="' + esc(h.img) + '" alt="' + esc(p.nombre) + '"'
+      +     ' width="1024" height="1536" fetchpriority="high" decoding="async">'
+      +   '<div class="heroP__fundido"></div>'
+      + '</div>'
       + '<div class="heroP__txt">'
       +   '<span class="heroP__kicker"><i></i>' + esc(h.kicker || t('recienLlegado', 'Nuevo')) + '</span>'
       +   '<h1 class="heroP__h1">' + (h.titulo || esc(p.nombre)) + '</h1>'

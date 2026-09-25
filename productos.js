@@ -36,8 +36,11 @@ window.PRODUCTOS = [
        'fotos' es la GALERÍA: primero el hero vertical 1024x1536 que hizo James
        —el bálsamo en primer plano y la modelo detrás, desenfocada— porque el
        producto tiene que mandar, y detrás la del catálogo. */
+    /* La foto del hero NO se repite en la galería: James la vio dos veces en la
+       misma pantalla y con razón. Aquí va solo la del catálogo, y cuando
+       lleguen las demás fotos se añaden a esta lista. */
     foto: 'img/prod-balsamo.jpg?v=1',
-    fotos: ['img/hero-balsamo.webp?v=1', 'img/prod-balsamo.jpg?v=1'],
+    fotos: ['img/prod-balsamo.jpg?v=1'],
 
     /* ---- HERO ----
        La foto vertical 1024x1536 que hizo James: el bálsamo en primer plano y
