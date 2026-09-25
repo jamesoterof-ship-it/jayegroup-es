@@ -24,7 +24,14 @@
   --rosaF:  #C9808B;   /* rosa fuerte, para acentuar una palabra */
   --tinta:  #3B2B2A;   /* marrón cálido: el texto */
   --tinta2: #6E5A56;   /* secundario */
-  --oro:    #D8A52E;   /* el de la marca, solo en el botón */
+  /* 🔴 ESTE ORO SALE DEL PROPIO ENVASE, no de la marca. Se midió sobre la foto
+     del hero: la banda dorada está al 73 % de la altura y sus tonos van de
+     #E0B058 a #F8C860. La media es #E8BE62: un oro claro y brillante.
+     El #D8A52E de JAYE GROUP es un mostaza apagado y al lado del crema y el
+     rosa se ve sucio — James: "se ve feo". El de la marca se queda en el
+     encabezado y el pie, que es donde manda. */
+  --oro:    #E8BE62;
+  --oroOsc: #DCB055;   /* el mismo, un punto más bajo, para el hover */
 
   position: relative;
   background: var(--crema);
@@ -139,17 +146,21 @@
   font-weight: 800; font-size: 40px; color: var(--tinta);
   font-variant-numeric: tabular-nums;   /* el precio no baila al cambiar */
 }
+/* EL BOTÓN VA EN EL ORO DEL ENVASE (--oro), no en el mostaza de la marca.
+   Letra en marrón oscuro: contraste 7,5:1, muy por encima del 4,5:1 de WCAG.
+   Un oro claro con letra blanca NO pasaría: se quedaría en 2:1. */
 .heroP__cta {
   width: 100%; max-width: 420px;
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
   min-height: 56px; padding: 0 22px;
   border: 0; border-radius: 16px; cursor: pointer;
-  background: var(--oro); color: #2A1F1E;
+  background: var(--oro); color: var(--tinta);
   font: 800 16px/1 Inter, system-ui, sans-serif;
-  box-shadow: 0 10px 24px rgba(216,165,46,.34);
-  transition: transform .16s ease-out, box-shadow .16s ease-out, filter .16s ease-out;
+  letter-spacing: .01em;
+  box-shadow: 0 10px 26px rgba(232,190,98,.42);
+  transition: transform .16s ease-out, box-shadow .16s ease-out, background .16s ease-out;
 }
-.heroP__cta:hover { filter: brightness(1.05); box-shadow: 0 13px 28px rgba(216,165,46,.42); }
+.heroP__cta:hover { background: var(--oroOsc); box-shadow: 0 13px 30px rgba(232,190,98,.5); }
 .heroP__cta:active { transform: scale(.975); }   /* no mueve nada alrededor */
 .heroP__cta:focus-visible { outline: 3px solid var(--rosaF); outline-offset: 3px; }
 
