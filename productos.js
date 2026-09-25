@@ -37,10 +37,22 @@ window.PRODUCTOS = [
        —el bálsamo en primer plano y la modelo detrás, desenfocada— porque el
        producto tiene que mandar, y detrás la del catálogo. */
     /* La foto del hero NO se repite en la galería: James la vio dos veces en la
-       misma pantalla y con razón. Aquí va solo la del catálogo, y cuando
-       lleguen las demás fotos se añaden a esta lista. */
-    foto: 'img/prod-balsamo.jpg?v=1',
-    fotos: ['img/prod-balsamo.jpg?v=1'],
+       misma pantalla y con razón.
+       Van llegando las suyas; se añaden a esta lista según lleguen. */
+    foto: 'img/prod-balsamo-2.webp?v=1',
+    fotos: [
+      'img/prod-balsamo-2.webp?v=1',   // mujer de ~50 aplicándose en el pómulo
+      'img/prod-balsamo.jpg?v=1',      // la del catálogo del proveedor
+    ],
+
+    /* ---- VÍDEO DE LA FICHA ----
+       Sale del vídeo del propio vendedor del producto (720x1280, sin marca de
+       agua de ningún creador). Se mapeó a 2 fotogramas por segundo para
+       localizar los rótulos en inglés y se cortaron SOLO los tramos limpios:
+       quedan 7,2 s con cinco planos, sin una sola letra y SIN AUDIO (James:
+       "nada de texto ni audio"). Los textos estaban en 4,0-5,3 · 7,0-7,3 ·
+       10,5-11,3 y esos segundos no entran. */
+    video: 'img/balsamo-ficha.mp4?v=1',
 
     /* ---- HERO ----
        La foto vertical 1024x1536 que hizo James: el bálsamo en primer plano y

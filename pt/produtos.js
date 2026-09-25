@@ -20,8 +20,15 @@ window.PRODUTOS = [
     etiqueta: 'Novo em Portugal',
     etiquetaOro: true,
 
-    foto: '../img/prod-balsamo.jpg?v=1',
-    fotos: ['../img/prod-balsamo.jpg?v=1'],
+    foto: '../img/prod-balsamo-2.webp?v=1',
+    fotos: [
+      '../img/prod-balsamo-2.webp?v=1',   // mulher de ~50 a aplicar no malar
+      '../img/prod-balsamo.jpg?v=1',      // a do catálogo do fornecedor
+    ],
+
+    /* Vídeo do próprio vendedor do produto, cortado só nos trechos limpos:
+       7,2 s, sem uma única letra e SEM ÁUDIO. */
+    video: '../img/balsamo-ficha.mp4?v=1',
     acento: '#B76E79',
 
     escasez: { hoy: 81, mejorDia: 105, quedan: 3898,
