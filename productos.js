@@ -31,8 +31,32 @@ window.PRODUCTOS = [
     etiqueta: 'Nuevo en España',
     etiquetaOro: true,
 
+    /* 'foto' es la MINIATURA (tarjeta y packs): va la cuadrada del catálogo,
+       que en un recuadro pequeño se lee mejor.
+       'fotos' es la GALERÍA: primero el hero vertical 1024x1536 que hizo James
+       —el bálsamo en primer plano y la modelo detrás, desenfocada— porque el
+       producto tiene que mandar, y detrás la del catálogo. */
     foto: 'img/prod-balsamo.jpg?v=1',
-    fotos: ['img/prod-balsamo.jpg?v=1'],
+    fotos: ['img/hero-balsamo.webp?v=1', 'img/prod-balsamo.jpg?v=1'],
+
+    /* ---- HERO ----
+       La foto vertical 1024x1536 que hizo James: el bálsamo en primer plano y
+       la modelo detrás, desenfocada. El producto manda.
+       En 'titulo' se permite <b> para el trozo en dorado; el resto se escapa.
+       OJO CON EL TITULAR: nada de "elimina arrugas" ni "rejuvenece". Solo se
+       puede hablar de APARIENCIA (Reglamento UE 655/2013), y además Meta
+       rechaza las promesas médicas en cosmética. */
+    hero: {
+      img: 'img/hero-balsamo.webp?v=1',
+      kicker: 'Nuevo en España',
+      titulo: 'Dos segundos<br>y la piel<br><b>deja de tirar</b>',
+      sub: 'Bálsamo de colágeno en stick. Se desliza y listo: rostro, contorno, labios, cuello y escote.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Pagas al recibir'],
+      ],
+    },
     acento: '#B76E79',   /* oro rosa: cosmetica, y distinto del oro de la marca */
 
     /* ---- Escasez: SOLO datos reales del Radar. En España inventar urgencia

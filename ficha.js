@@ -907,7 +907,41 @@
       + '</section>';
   }
 
-  cont.innerHTML = '<div class="arriba2">' + galeria + cabecera + '</div>'
+  /* ---------- 1 bis · HERO ----------
+     Si el producto trae `hero`, va ANTES de todo: foto vertical a tamaño real
+     con el titular encima. La galeria sigue debajo, con el resto de fotos.
+     Si no trae `hero`, no se pinta nada y la ficha queda como antes. */
+  function seccionHero() {
+    var h = p.hero;
+    if (!h || !h.img) return '';
+    var ico = {
+      envio: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',
+      pago:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>',
+      reloj: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    };
+    var min = p.packs.reduce(function (a, k) { return k.precio < a.precio ? k : a; }, p.packs[0]);
+    return '<section class="heroP">'
+      + '<img class="heroP__img" src="' + esc(h.img) + '" alt="' + esc(p.nombre) + '"'
+      +   ' width="1024" height="1536" fetchpriority="high" decoding="async">'
+      + '<div class="heroP__velo"></div>'
+      + '<div class="heroP__txt">'
+      +   '<span class="heroP__kicker"><i></i>' + esc(h.kicker || t('recienLlegado', 'Nuevo')) + '</span>'
+      +   '<h1 class="heroP__h1">' + (h.titulo || esc(p.nombre)) + '</h1>'
+      +   '<p class="heroP__sub">' + esc(h.sub || p.sub || '') + '</p>'
+      +   '<div class="heroP__datos">'
+      +     (h.datos || []).map(function (d, i) {
+            return '<span class="heroP__dato' + (i === 0 ? ' heroP__dato--oro' : '') + '">'
+              + (ico[d[0]] || '') + esc(d[1]) + '</span>'; }).join('')
+      +   '</div>'
+      +   '<div class="heroP__pie">'
+      +     '<div class="heroP__precio"><span>' + t('desde', 'Desde') + '</span><b>' + pesos(min.precio) + '</b></div>'
+      +     '<button type="button" class="heroP__cta" id="heroCta">' + t('ctaGrande', 'Lo quiero, pago al recibir') + '</button>'
+      +   '</div>'
+      + '</div></section>';
+  }
+
+  cont.innerHTML = seccionHero()
+    + '<div class="arriba2">' + galeria + cabecera + '</div>'
     + promo
     /* La descripcion va pegada al precio: el cliente que acaba de entrar
        primero quiere saber QUE ES, y despues le hablamos de la oferta. */
@@ -1053,6 +1087,14 @@
       x.classList.toggle('sel', x === b); });
     pintarPrecio();
   });
+  /* el boton del hero baja al formulario. Sin esto era un boton bonito que no
+     hacia nada, que es peor que no ponerlo. */
+  if ($('heroCta')) $('heroCta').addEventListener('click', function () {
+    var d = $('pedir'); if (!d) return;
+    d.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (window.avisarPanel) try { window.avisarPanel('clic_hero'); } catch (e) {}
+  });
+
   /* los dos selectores (el de arriba y el del formulario) se mueven juntos:
      si el cliente cambia el pack abajo, arriba tambien cambia */
   var _ic = false;
