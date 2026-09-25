@@ -9,11 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@200;300;400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="tienda.css?v=99">
-<link rel="stylesheet" href="organizador.css?v=17">
-<link rel="stylesheet" href="clorofila.css?v=11">
-<link rel="stylesheet" href="lymphoria.css?v=12">
-<link rel="stylesheet" href="antena.css?v=6">
-<link rel="stylesheet" href="cargador.css?v=11">
+<!-- Los CSS de los productos de Chile (organizador, clorofila, lymphoria,
+     antena, cargador) NO existen en este repo: daban cinco 404 en cada carga. -->
 <style>
 /* ============================================================
    FICHA DE PRODUCTO
@@ -1003,10 +1000,10 @@ window.jayePixel = (function () {
     <div class="pista">
       <span>Envío gratis a toda España</span><span>·</span>
       <span>Pagas cuando lo recibes</span><span>·</span>
-      <span>Despacho en 2 a 4 días</span><span>·</span>
+      <span>Entrega en 24-48 h</span><span>·</span>
       <span>Envío gratis a toda España</span><span>·</span>
       <span>Pagas cuando lo recibes</span><span>·</span>
-      <span>Despacho en 2 a 4 días</span><span>·</span>
+      <span>Entrega en 24-48 h</span><span>·</span>
     </div>
   </div>
 
@@ -1058,9 +1055,10 @@ window.jayePixel = (function () {
         <div class="col contacto">
           <h4>Contacto</h4>
           <p><a href="mailto:soporte@jayegroup.com.es">soporte@jayegroup.com.es</a></p>
-          <p><a href="https://wa.me/56964775539" target="_blank" rel="noopener">WhatsApp +56 9 6477 5539</a></p>
-          <p>Providencia 1208, Oficina 16<br>Santiago, Región Metropolitana</p>
-          <p>Despacho a toda España</p>
+          <!-- El WhatsApp de Chile NO va aqui. Cuando James de el numero español
+               se pone; mientras tanto, el contacto es el correo. -->
+          <p>Almacén en Sevilla</p>
+          <p>Envíos a toda la península y Baleares</p>
         </div>
       </div>
 
@@ -1087,7 +1085,7 @@ window.jayePixel = (function () {
           <a href="https://www.facebook.com/1021271641058424" target="_blank" rel="noopener" aria-label="Facebook">
             <svg viewBox="0 0 24 24" width="34" height="34"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path fill="#fff" d="M13.4 21v-7.1h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8v2.8h2.4V21h3z"/></svg>
           </a>
-          <a href="https://wa.me/56964775539" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <a href="mailto:soporte@jayegroup.com.es" aria-label="Escríbenos por correo" style="display:none">
             <svg viewBox="0 0 24 24" width="34" height="34"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17 14.4c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.6.9-.8 1-.1.2-.3.2-.5.1a7.3 7.3 0 0 1-3.6-3.2c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5v-.5c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.1s.9 2.5 1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.2.7 3 .6.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/><path fill="#fff" d="M12 3.5A8.4 8.4 0 0 0 4.7 16l-1.2 4.5 4.6-1.2A8.4 8.4 0 1 0 12 3.5zm0 15.3c-1.3 0-2.5-.3-3.5-1l-.3-.1-2.6.7.7-2.6-.2-.3a6.9 6.9 0 1 1 5.9 3.3z"/></svg>
           </a>
           <a href="https://www.tiktok.com/@jaye.group" target="_blank" rel="noopener" aria-label="TikTok">
@@ -1102,17 +1100,19 @@ window.jayePixel = (function () {
 
       <div class="abajo">
         <small>© 2026 Jaye Group España. Todos los derechos reservados.</small>
-        <small>Envío gratis · Pago contra entrega en todo Chile</small>
+        <small>Envío gratis · Pago contra reembolso en toda España</small>
       </div>
 
     </div>
   </footer>
 
-<script src="productos.js?v=73"></script>
-<script src="chile-regiones.js?v=2"></script>
+<script src="productos.js?v=101"></script>
+<!-- ESPAÑA: provincias y codigos postales sin cobertura, en vez de las
+     regiones y comunas de Chile. -->
+<script src="provincias-es.js?v=3"></script>
 <script src="resenas.js?v=13"></script>
 <script src="efectos.js?v=4"></script>
-<script src="ficha.js?v=94"></script>
+<script src="ficha.js?v=101"></script>
 <!-- GSAP, de lib/ y del propio dominio. NO se carga ScrollTrigger: para saber
      cuando algo entra en pantalla ya sirve IntersectionObserver, que viene en
      el navegador y no pesa. Va al final para no frenar la pintura. -->
@@ -1120,11 +1120,9 @@ window.jayePixel = (function () {
   <script src="lib/ScrollTrigger.min.js"></script>
   <script src="lib/countup.umd.js"></script>
 <script src="efectos-ficha.js?v=9"></script>
-<script src="organizador.js?v=20"></script>
-<script src="clorofila.js?v=11"></script>
-<script src="lymphoria.js?v=13"></script>
-<script src="antena.js?v=8"></script>
-<script src="cargador.js?v=14"></script>
+<!-- Los js de los productos de Chile (organizador, clorofila, lymphoria,
+     antena, cargador) NO van aqui: no existen en este repo y daban 404. -->
+
 <script>
 /* ---- el video del producto NO se baja al abrir la pagina ----
    Antes iba con preload="auto": el celular se traia los 2,1 MB de una,
@@ -1160,9 +1158,10 @@ window.jayePixel = (function () {
 })();
 </script>
 
-<a class="wa" href="https://wa.me/56964775539" aria-label="WhatsApp" target="_blank" rel="noopener">
-  <svg viewBox="0 0 32 32"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2.1 7.8L.3 31.6l8.1-2.1c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.3c-2.4 0-4.7-.6-6.7-1.9l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.4-2.1-2.1-4.6-2.1-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.7 16 28.7zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.2 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg>
-</a>
+<!-- El boton flotante de WhatsApp apuntaba al numero de CHILE (+56 9 6477 5539):
+     un cliente español escribiendo a un numero chileno, en horario chileno.
+     Se quita hasta que James de el numero español. -->
+
 
 <!-- Aviso de cookies (obligatorio en España, LSSI art. 22.2 + guia AEPD) -->
 <div class="cookies" id="cookies" hidden>
