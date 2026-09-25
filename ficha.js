@@ -16,6 +16,21 @@
 
   var $ = function (id) { return document.getElementById(id); };
 
+  /* ============================================================
+     DOS PAISES, UN SOLO ARCHIVO
+     España y Portugal usan ESTE MISMO ficha.js. Lo unico que cambia son los
+     textos, que viven en textos-pt.js (Portugal) y en los valores por defecto
+     de aqui abajo (España).
+     Se hizo asi a proposito, en vez de copiar el archivo: un arreglo se hace
+     UNA vez y sirve para los dos paises. Si una clave falta en portugues, se
+     queda el texto español — feo, pero la pagina NO se rompe.
+     Para anadir un idioma: otro textos-XX.js y ya.
+     ============================================================ */
+  var T = window.TEXTOS || {};
+  var t = function (k, d) { return (T[k] != null && T[k] !== '') ? T[k] : d; };
+  /* pais de despacho: 'ES' por defecto, 'PT' lo pone textos-pt.js */
+  var PAIS = (window.TEXTOS && window.TEXTOS._pais) || 'ES';
+
   /* Paises para el indicativo del movil. ESPAÑA primero: es donde
      despachamos. Detras van los paises con mas residentes extranjeros en
      España (INE), porque hay clientes que viven aqui con numero de su pais y
@@ -24,7 +39,7 @@
      El largo se usa para avisar en los demas paises; en ESPAÑA si bloquea
      (9 digitos y empieza por 6 o 7, que son los moviles): un numero mal
      puesto es una entrega fallida, y la entrega fallida la pagamos nosotros. */
-  var PAISES = [
+  var PAISES = T.paises || [
     ['ES', '+34',  9, 'España'],
     ['MA', '+212', 9, 'Marruecos'],
     ['RO', '+40',  9, 'Rumanía'],
@@ -38,12 +53,19 @@
     ['FR', '+33',  9, 'Francia'],
     ['GB', '+44', 10, 'Reino Unido'],
   ];
+  /* el pais propio va SIEMPRE el primero y elegido por defecto */
+  var CC = PAIS === 'PT' ? 'PT' : 'ES';
+  var CCIND = PAIS === 'PT' ? '+351' : '+34';
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (m) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); };
   /* ESPAÑA: euros. 28.5 se ve "28,50 €" — coma decimal y simbolo detras, como
      manda es-ES. Los dos decimales son obligatorios: un precio a secas ("28 €")
      cuando se cobran 28,50 es informacion enganosa (art. 60 TRLGDCU). */
-  var pesos = function (n) { return Number(n).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; };
+  var LOC = T.locale || 'es-ES';   /* 'pt-PT' en Portugal */
+  /* El correo de soporte cambia por pais: el cliente portugues escribe a un
+     correo .pt y el español a uno .es. Da confianza y separa las bandejas. */
+  var CORREO = T.correo || 'soporte@jayegroup.com.es';
+  var pesos = function (n) { return Number(n).toLocaleString(LOC, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; };
   var ESTRELLA = '<svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.6.7-4.9 4.5 1.4 6.5L12 16.7 6 20l1.4-6.5L2.5 9l6.6-.7z"/></svg>';
   var estrellas = function (n) { var s = ''; for (var i = 0; i < 5; i++) s += ESTRELLA; return '<span class="est">' + s + '</span>'; };
 
@@ -109,7 +131,7 @@
     content_ids:[p.id], value:p.packs[0].precio, currency:'EUR' });
   else if (window.fbq) try { fbq('track','ViewContent',{ content_name:p.nombre, content_type:'product',
     content_ids:[p.id], value:p.packs[0].precio, currency:'EUR' }); } catch (e) {}   // lo usa efectos.js para marcar la categoria
-  document.title = p.nombre + ' · Jaye Group España';
+  document.title = p.nombre + ' · ' + t('marca', 'Jaye Group España');
   var meta = document.querySelector('meta[name="description"]');
   if (meta && p.sub) meta.setAttribute('content', p.sub + ' · Envío gratis a toda España, pagas al recibir.');
   /* El color del producto manda en botones y secciones. Si no trae, se queda
@@ -365,7 +387,7 @@
     + (mias.length
         ? '<div class="estrellas">' + estrellas(prom)
           + '<span class="cuantas">' + prom.toFixed(1) + ' · <a href="#resenas">' + mias.length + ' reseñas</a></span></div>'
-        : '<div class="estrellas"><span class="cuantas">Recién llegado a España · sé de los primeros en probarlo</span></div>')
+        : '<div class="estrellas"><span class="cuantas">' + t('recienLlegado', 'Recién llegado a España · sé de los primeros en probarlo') + '</span></div>')
     + '<h1>' + esc(p.nombre) + '</h1>'
     + '<p class="sub">' + esc(p.sub) + '</p>'
     + '<div class="precioTop"><span class="ahora" id="pcAhora">' + pesos(kPop.precio) + '</span>'
@@ -381,8 +403,8 @@
   /* Los packs viven SOLO en el formulario: arriba repetian el precio grande
      y estorbaban. Aca queda el boton que baja al pedido. */
   var promo = '<section class="bloque">'
-    + '<button class="cta rojo rebota" id="btnArriba">Lo quiero, pago al recibir</button>'
-    + '<p class="ctaSub">Envío gratis · No pagas nada por adelantado</p></section>';
+    + '<button class="cta rojo rebota" id="btnArriba">' + t('ctaGrande', 'Lo quiero, pago al recibir') + '</button>'
+    + '<p class="ctaSub">' + t('ctaSub', 'Envío gratis · No pagas nada por adelantado') + '</p></section>';
 
   /* ---------- PROMOCION · el pack que se empuja, con contador ----------
      Arriba el cliente ve el precio de salida. Aca ve la oferta de verdad:
@@ -473,14 +495,14 @@
     + '<div class="rev-bars">' + barras + '</div>'
     + '<button class="btn-write" id="btnWrite">Escribir una reseña</button>'
     + '<div class="rs" id="listaRs"></div>'
-    + (mias.length > VER ? '<button class="masRs" id="masRs">Ver más reseñas</button>' : '')
-    + '<p class="rev-auto-label">Más experiencias de nuestros clientes</p>'
+    + (mias.length > VER ? '<button class="masRs" id="masRs">' + t('verMas', 'Ver más reseñas') + '</button>' : '')
+    + '<p class="rev-auto-label">' + t('masExp', 'Más experiencias de nuestros clientes') + '</p>'
     + '<div class="rev-auto"><div class="rev-auto__track" id="revAuto"></div></div>'
     + '</section>');
 
 
   /* ---------- 7 · preguntas ---------- */
-  var preguntas = '<section class="bloque"><h2>Preguntas frecuentes</h2><div class="fq">'
+  var preguntas = '<section class="bloque"><h2>' + t('faqTit', 'Preguntas frecuentes') + '</h2><div class="fq">'
     + (p.preguntas ? p.preguntas.concat((window.PREGUNTAS || []).slice(0, 4)) : (window.PREGUNTAS || [])).map(function (x) {
         return '<details><summary>' + esc(x.q) + '</summary><p>' + esc(x.a) + '</p></details>'; }).join('')
     + '</div>'
@@ -502,19 +524,23 @@
       + (p.sub ? '<p>' + esc(p.sub) + '</p>' : '')
       + (pun.length ? '<ul>' + pun.map(function (x, i) {
           return '<li style="--i:' + i + '">' + esc(x) + '</li>'; }).join('') + '</ul>' : '')
-      + '<p style="margin-top:16px">Desde <b>' + pesos(min.precio) + '</b> · envío gratis y pagas cuando lo recibes en tu casa.</p>'
-      + '<a class="cta azul" href="#pedir" style="margin-top:14px">Pedir el mío ahora</a>'
+      + '<p style="margin-top:16px">' + t('desde', 'Desde') + ' <b>' + pesos(min.precio) + '</b> ' + t('desdePie', '· envío gratis y pagas cuando lo recibes en tu casa.') + '</p>'
+      + '<a class="cta azul" href="#pedir" style="margin-top:14px">' + t('pedirAhora', 'Pedir el mío ahora') + '</a>'
       + '</section>';
   }
 
   /* ---------- 8 · sellos de las transportadoras ---------- */
   /* ESPAÑA: las transportadoras reales del proveedor. Starken y Blue Express
      son de Chile y sus imagenes ni siquiera existen en este repo. */
-  var sellos = '<section class="bloque"><h2>Con quién enviamos</h2><div class="sellos">'
-    + '<div class="sello"><div class="nom">MRW</div><small>24/48 h en la península</small></div>'
-    + '<div class="sello"><div class="nom">CTT Express</div><small>También a Baleares</small></div>'
-    + '<div class="sello"><div class="nom">Correos Express</div><small>Entrega a domicilio</small></div>'
-    + '<div class="sello"><div class="nom">Pagas al recibir</div><small>Al repartidor, cuando lo tienes en la mano</small></div>'
+  var sellos = '<section class="bloque"><h2>' + t('conQuien', 'Con quién enviamos') + '</h2><div class="sellos">'
+    + (T.sellos || [
+        ['MRW', '24/48 h en la península'],
+        ['CTT Express', 'También a Baleares'],
+        ['Correos Express', 'Entrega a domicilio'],
+        ['Pagas al recibir', 'Al repartidor, cuando lo tienes en la mano'],
+      ]).map(function (s) {
+        return '<div class="sello"><div class="nom">' + esc(s[0]) + '</div><small>' + esc(s[1]) + '</small></div>';
+      }).join('')
     + '</div></section>';
 
   /* ---------- 9 · te puede interesar ---------- */
@@ -599,14 +625,14 @@
     /* NO se ponen pedidos entregados: en España todavia no hemos entregado
        ninguno y decir un numero seria mentir. Solo van hechos comprobables:
        los plazos del transportista y lo que da la ley. */
-    var datos = [
+    var datos = T.resDatos || [
       ['24-48 h', 'de entrega en la península'],
       ['0 €', 'de gastos de envío'],
       ['14', 'días para desistir de tu compra'],
       ['3', 'años de garantía legal'],
     ];
-    return '<section class="bloque res-sec" data-rv><span class="eyebrow">Lo que te garantizamos</span>'
-      + '<h2 class="tit2">Sin letra pequeña</h2>'
+    return '<section class="bloque res-sec" data-rv><span class="eyebrow">' + t('resRotulo', 'Lo que te garantizamos') + '</span>'
+      + '<h2 class="tit2">' + t('resTit', 'Sin letra pequeña') + '</h2>'
       + '<div class="res-grid">'
       + datos.map(function (d, i) { return '<div class="res" style="--i:' + i + '"><b data-num="' + d[0] + '">' + d[0] + '</b><span>' + d[1] + '</span></div>'; }).join('')
       + '</div></section>';
@@ -647,15 +673,16 @@
       + '<circle cx="110" cy="110" r="92" fill="url(#gs)" stroke="#8f741c" stroke-width="3"/>'
       + '<ellipse cx="86" cy="72" rx="46" ry="26" fill="#fff" opacity="0.28"/>'
       + '<circle cx="110" cy="110" r="84" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-dasharray="1.5 6" stroke-linecap="round"/>'
-      + '<text font-family="Inter,sans-serif" font-weight="700" font-size="14.5" letter-spacing="2.4" fill="#fff"><textPath href="#gt" startOffset="50%" text-anchor="middle">DERECHO DE</textPath></text>'
-      + '<text font-family="Inter,sans-serif" font-weight="700" font-size="12.5" letter-spacing="1.8" fill="#fff"><textPath href="#gb" startOffset="50%" text-anchor="middle">DESISTIMIENTO</textPath></text>'
+      + '<text font-family="Inter,sans-serif" font-weight="700" font-size="14.5" letter-spacing="2.4" fill="#fff"><textPath href="#gt" startOffset="50%" text-anchor="middle">' + t('selloArriba', 'DERECHO DE') + '</textPath></text>'
+      + '<text font-family="Inter,sans-serif" font-weight="700" font-size="12.5" letter-spacing="1.8" fill="#fff"><textPath href="#gb" startOffset="50%" text-anchor="middle">' + t('selloAbajo', 'DESISTIMIENTO') + '</textPath></text>'
       + '<text x="110" y="105" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="46" fill="#fff">14</text>'
-      + '<text x="110" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" letter-spacing="3" fill="#fff">DÍAS</text>'
+      + '<text x="110" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" letter-spacing="3" fill="#fff">' + t('dias', 'DÍAS') + '</text>'
       + '</svg></div>'
-      + '<h2 class="tit2">Compras sin riesgo</h2>'
-      + '<p class="sub2">Tienes <b>14 días naturales</b> desde que recibes el pedido para desistir de la compra sin dar explicaciones, y <b>3 años de garantía legal</b> si el producto no está conforme. No es un favor nuestro: lo dice la ley española y lo cumplimos.</p>'
-      + '<div class="gar-chips"><span>14 días para desistir</span><span>3 años de garantía legal</span><span>Pagas al recibir</span></div>'
-      + '<p class="sub2" style="font-size:14px;opacity:.75;margin-top:10px">Para desistir basta con escribirnos a soporte@jayegroup.com.es. Te devolvemos el importe en un máximo de 14 días.</p>'
+      + '<h2 class="tit2">' + t('garTit', 'Compras sin riesgo') + '</h2>'
+      + '<p class="sub2">' + t('garTxt', 'Tienes <b>14 días naturales</b> desde que recibes el pedido para desistir de la compra sin dar explicaciones, y <b>3 años de garantía legal</b> si el producto no está conforme. No es un favor nuestro: lo dice la ley española y lo cumplimos.') + '</p>'
+      + '<div class="gar-chips">' + (T.garChips || ['14 días para desistir', '3 años de garantía legal', 'Pagas al recibir']).map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>'
+      + '<p class="sub2" style="font-size:14px;opacity:.75;margin-top:10px">' + t('garPie', 'Para desistir basta con escribirnos a ') + CORREO + t('garPie2', '. Te devolvemos el importe en un máximo de 14 días.') + '</p>'
+      + (T.livroReclamacoes ? '<p class="sub2" style="font-size:14px;margin-top:10px"><a href="https://www.livroreclamacoes.pt/inicio" target="_blank" rel="noopener">Livro de Reclamações Eletrónico</a></p>' : '')
       + '</section>';
   }
 
@@ -681,7 +708,7 @@
   function packsHTML() {
     return p.packs.map(function (k, i) {
       var o = k.antes ? Math.round((1 - k.precio / k.antes) * 100) : 0;
-      var etiqueta = i === iPop ? 'Más vendido' : (i === p.packs.length - 1 ? 'Mejor precio' : '');
+      var etiqueta = i === iPop ? t('masVendido', 'Más vendido') : (i === p.packs.length - 1 ? t('mejorPrecio', 'Mejor precio') : '');
       return '<button type="button" class="pack' + (i === elegido ? ' sel' : '') + '" data-i="' + i + '">'
         + (etiqueta ? '<span class="tag">' + etiqueta + '</span>' : '')
         + '<span class="radio"></span>'
@@ -711,8 +738,8 @@
 
   /* el bloque del sellador: mismo aspecto de los packs, pero aparte */
   var kSel = p.packs[elegido];
-  var formulario = '<section class="form" id="pedir" data-rv><h2>Pide el tuyo</h2>'
-    + '<p class="baj">Sale hoy de nuestro almacén en Sevilla. Pagas cuando lo recibes.</p>'
+  var formulario = '<section class="form" id="pedir" data-rv><h2>' + t('pideTit', 'Pide el tuyo') + '</h2>'
+    + '<p class="baj">' + t('saleHoy', 'Sale hoy de nuestro almacén en Sevilla. Pagas cuando lo recibes.') + '</p>'
     + '<div class="formcard">'
     + '<div class="cod-badge">'
     + '<svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg>'
@@ -727,70 +754,71 @@
     + (p.anticipado ? '<div class="packs pagoSel" id="pagoSel">'
         + '<button type="button" class="pack pagoOp sel" data-pago="cod">'
         + '<span class="radio"></span>'
-        + '<span class="info"><span class="t">Pago al recibir</span>'
-        + '<span class="s">Envío gratis · 24-48 h</span></span>'
+        + '<span class="info"><span class="t">' + t('pagoCod', 'Pago al recibir') + '</span>'
+        + '<span class="s">' + t('pagoCodSub', 'Envío gratis · 24-48 h') + '</span></span>'
         + '<span class="pr"><span class="n" id="prCod">' + pesos(kSel.precio) + '</span></span>'
         + '</button>'
         + '<button type="button" class="pack pagoOp" data-pago="pre">'
-        + '<span class="tag">Ahorras ' + pesos(p.anticipado.descuento) + '</span>'
+        + '<span class="tag">' + t('ahorras', 'Ahorras ') + pesos(p.anticipado.descuento) + '</span>'
         + '<span class="radio"></span>'
-        + '<span class="info"><span class="t">' + esc(p.anticipado.titulo || 'Paga ahora') + '</span>'
+        + '<span class="info"><span class="t">' + esc(p.anticipado.titulo || t('pagaAhora', 'Paga ahora')) + '</span>'
         + '<span class="s">' + esc(p.anticipado.envio || '') + '</span></span>'
         + '<span class="pr"><span class="n" id="prPre">' + pesos(precioPre(elegido)) + '</span></span>'
         + '</button>'
         + '</div>' : '')
     + '<div class="summary">'
-    + '<div class="r" id="rowSub"><span>Subtotal</span><span id="sumSub">' + pesos(kSel.antes || kSel.precio) + '</span></div>'
-    + '<div class="r" id="rowDesc"><span>Descuento</span><span id="sumDesc" class="desc">-' + pesos((kSel.antes || kSel.precio) - kSel.precio) + '</span></div>'
-    + '<div class="r"><span>Envío</span><span class="free">Gratis</span></div>'
-    + '<div class="r tot"><span id="sumTotRot">Total a pagar al recibir</span><span id="sumTot">' + pesos(kSel.precio) + '</span></div>'
+    + '<div class="r" id="rowSub"><span>' + t('subtotal', 'Subtotal') + '</span><span id="sumSub">' + pesos(kSel.antes || kSel.precio) + '</span></div>'
+    + '<div class="r" id="rowDesc"><span>' + t('descuento', 'Descuento') + '</span><span id="sumDesc" class="desc">-' + pesos((kSel.antes || kSel.precio) - kSel.precio) + '</span></div>'
+    + '<div class="r"><span>' + t('envio', 'Envío') + '</span><span class="free">' + t('gratis', 'Gratis') + '</span></div>'
+    + '<div class="r tot"><span id="sumTotRot">' + t('totalCod', 'Total a pagar al recibir') + '</span><span id="sumTot">' + pesos(kSel.precio) + '</span></div>'
     + '</div>'
     + '<form id="fPedido" novalidate>'
-    + '<div class="field"><label for="fNombre">Nombre y apellidos</label><input id="fNombre" autocomplete="name" placeholder="Ej: María González Ruiz"><div class="err">Escribe tu nombre y apellidos.</div></div>'
+    + '<div class="field"><label for="fNombre">' + t('lNombre', 'Nombre y apellidos') + '</label><input id="fNombre" autocomplete="name" placeholder="' + t('phNombre', 'Ej: María González Ruiz') + '"><div class="err">' + t('eNombre', 'Escribe tu nombre y apellidos.') + '</div></div>'
     /* El indicativo era una bandera pintada, no se podia cambiar. Hay clientes
        que viven en España con numero de otro pais, y no podian pedir. Ahora es
        un selector de verdad; España queda elegida por defecto. */
-    + '<div class="field"><label for="fTel">Móvil</label>'
+    + '<div class="field"><label for="fTel">' + t('lMovil', 'Móvil') + '</label>'
     /* Lista PROPIA, no un <select>: el desplegable del sistema solo pinta
        texto y las banderas no se ven. Aca cada opcion lleva su imagen. */
     + '<div class="telrow"><span class="cc-wrap">'
     + '<button type="button" class="cc-btn" id="ccBtn" aria-haspopup="listbox" aria-expanded="false">'
-    + '<img class="cc-flag" id="ccFlag" src="https://flagcdn.com/es.svg" alt="">'
-    + '<span class="cc-code" id="ccCode">+34</span></button>'
+    + '<img class="cc-flag" id="ccFlag" src="https://flagcdn.com/' + CC.toLowerCase() + '.svg" alt="">'
+    + '<span class="cc-code" id="ccCode">' + CCIND + '</span></button>'
     + '<div class="cc-lista" id="ccLista" role="listbox" hidden>'
     + PAISES.map(function (x) {
         return '<button type="button" role="option" data-v="' + x[0] + '|' + x[1] + '|' + x[2] + '"'
-          + (x[0] === 'ES' ? ' aria-selected="true"' : '') + '>'
+          + (x[0] === CC ? ' aria-selected="true"' : '') + '>'
           + '<img src="https://flagcdn.com/' + x[0].toLowerCase() + '.svg" alt="" loading="lazy">'
           + '<span>' + esc(x[3]) + '</span><i>' + x[1] + '</i></button>';
       }).join('')
     + '</div>'
-    + '<input type="hidden" id="fPais" value="ES|+34|9"></span>'
-    + '<input id="fTel" inputmode="numeric" autocomplete="tel" placeholder="612 34 56 78"></div>'
-    + '<div class="err">Escribe un móvil español válido: 9 cifras, empieza por 6 o 7.</div></div>'
-    /* El correo NO es opcional en España: el art. 98.7 del TRLGDCU obliga a
-       confirmar el pedido en soporte duradero. Sin correo no se puede cumplir. */
-    + '<div class="field"><label for="fCorreo">Correo electrónico</label><input id="fCorreo" type="email" inputmode="email" autocomplete="email" placeholder="Ej: maria@gmail.com"><div class="err">Escribe un correo válido: ahí te enviamos la confirmación del pedido.</div></div>'
-    + '<div class="field"><label for="fDir">Dirección</label><input id="fDir" autocomplete="street-address" placeholder="Calle, número, piso y puerta"><div class="err">Escribe la calle y el número.</div></div>'
-    + '<div class="field"><label for="fRef">Indicaciones para el repartidor <span class="opc">(opcional)</span></label><input id="fRef" placeholder="Portal, timbre, horario en el que estás en casa…"></div>'
+    + '<input type="hidden" id="fPais" value="' + CC + '|' + CCIND + '|9"></span>'
+    + '<input id="fTel" inputmode="numeric" autocomplete="tel" placeholder="' + t('phMovil', '612 34 56 78') + '"></div>'
+    + '<div class="err">' + t('eMovil', 'Escribe un móvil español válido: 9 cifras, empieza por 6 o 7.') + '</div></div>'
+    /* El correo NO es opcional: el art. 98.7 del TRLGDCU en España (y el
+       Decreto-Lei 24/2014 en Portugal) obligan a confirmar el pedido en
+       soporte duradero. Sin correo no se puede cumplir. */
+    + '<div class="field"><label for="fCorreo">' + t('lCorreo', 'Correo electrónico') + '</label><input id="fCorreo" type="email" inputmode="email" autocomplete="email" placeholder="' + t('phCorreo', 'Ej: maria@gmail.com') + '"><div class="err">' + t('eCorreo', 'Escribe un correo válido: ahí te enviamos la confirmación del pedido.') + '</div></div>'
+    + '<div class="field"><label for="fDir">' + t('lDir', 'Dirección') + '</label><input id="fDir" autocomplete="street-address" placeholder="' + t('phDir', 'Calle, número, piso y puerta') + '"><div class="err">' + t('eDir', 'Escribe la calle y el número.') + '</div></div>'
+    + '<div class="field"><label for="fRef">' + t('lRef', 'Indicaciones para el repartidor') + ' <span class="opc">' + t('opcional', '(opcional)') + '</span></label><input id="fRef" placeholder="' + t('phRef', 'Portal, timbre, horario en el que estás en casa…') + '"></div>'
     + '<div class="row2">'
-    + '<div class="field"><label for="fCP">Código postal</label><input id="fCP" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="41001"><div class="err">Escribe los 5 dígitos de tu código postal.</div></div>'
-    + '<div class="field"><label for="fCiudad">Localidad</label><input id="fCiudad" autocomplete="address-level2" placeholder="Ej: Sevilla"><div class="err">Escribe tu localidad.</div></div>'
+    + '<div class="field"><label for="fCP">' + t('lCP', 'Código postal') + '</label><input id="fCP" inputmode="' + (PAIS === 'PT' ? 'text' : 'numeric') + '" autocomplete="postal-code" maxlength="' + (PAIS === 'PT' ? 8 : 5) + '" placeholder="' + t('phCP', '41001') + '"><div class="err">' + t('eCP', 'Escribe los 5 dígitos de tu código postal.') + '</div></div>'
+    + '<div class="field"><label for="fCiudad">' + t('lCiudad', 'Localidad') + '</label><input id="fCiudad" autocomplete="address-level2" placeholder="' + t('phCiudad', 'Ej: Sevilla') + '"><div class="err">' + t('eCiudad', 'Escribe tu localidad.') + '</div></div>'
     + '</div>'
-    + '<div class="field"><label for="fProvincia">Provincia</label><select id="fProvincia"><option value="">Selecciona…</option></select><div class="err">Selecciona tu provincia.</div></div>'
+    + '<div class="field"><label for="fProvincia">' + t('lProvincia', 'Provincia') + '</label><select id="fProvincia"><option value="">' + t('elige', 'Selecciona…') + '</option></select><div class="err">' + t('eProvincia', 'Selecciona tu provincia.') + '</div></div>'
     + '<div class="aviso" id="fErr"></div>'
-    /* El texto del boton lo fija el art. 98.2 del TRLGDCU: si el pedido obliga
-       a pagar, el boton tiene que decirlo con esas palabras o equivalentes.
-       Si no, el consumidor NO queda obligado por el contrato. */
-    + '<button type="submit" class="cta rojo rebota">Pedido con obligación de pago</button>'
-    + '<p class="formnote">No pagas nada ahora: pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.</p>'
+    /* El texto del boton lo fija el art. 98.2 del TRLGDCU (España) y el art. 4
+       del Decreto-Lei 24/2014 (Portugal): si el pedido obliga a pagar, el boton
+       tiene que decirlo. Si no, el consumidor NO queda obligado por el contrato. */
+    + '<button type="submit" class="cta rojo rebota">' + t('btnPedir', 'Pedido con obligación de pago') + '</button>'
+    + '<p class="formnote">' + t('notaCod', 'No pagas nada ahora: pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.') + '</p>'
     /* Salida para el que se traba llenando el formulario: si algo no le calza
        y no tiene a donde ir, se va y la venta se pierde. */
-    + '<p class="formnote ayuda">¿Tienes alguna duda? Escríbenos a '
-    + '<a href="mailto:soporte@jayegroup.com.es?subject=' + encodeURIComponent('Pedido de ' + p.nombre) + '">soporte@jayegroup.com.es</a> y te ayudamos.</p>'
+    + '<p class="formnote ayuda">' + t('dudas', '¿Tienes alguna duda? Escríbenos a ')
+    + '<a href="mailto:' + CORREO + '?subject=' + encodeURIComponent(t('asuntoPedido', 'Pedido de ') + p.nombre) + '">' + CORREO + '</a>' + t('yTeAyudamos', ' y te ayudamos.') + '</p>'
     + '</form>'
-    + '<div class="carriers"><span class="cl">Enviamos con</span>'
-    + '<div class="cbadges cbadges-txt"><span>MRW</span><span>CTT Express</span><span>Correos Express</span></div></div>'
+    + '<div class="carriers"><span class="cl">' + t('enviamosCon', 'Enviamos con') + '</span>'
+    + '<div class="cbadges cbadges-txt">' + (T.carriers || ['MRW', 'CTT Express', 'Correos Express']).map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div></div>'
     + '</div></section>';
 
 
@@ -854,7 +882,7 @@
         }).join('')
       + '</div>'
       + '<p style="margin:12px 0 16px;font-size:15.5px;line-height:1.55;color:#333">' + esc(m.texto || '') + '</p>'
-      + '<a class="cta" href="#pedir" style="display:block;text-align:center">' + esc(m.boton || 'Lo quiero, pago al recibir') + '</a>'
+      + '<a class="cta" href="#pedir" style="display:block;text-align:center">' + esc(m.boton || t('ctaGrande', 'Lo quiero, pago al recibir')) + '</a>'
       + '</section>';
   }
 
@@ -1007,13 +1035,14 @@
     if ($('rowSub')) $('rowSub').style.display = desc > 0 ? '' : 'none';
     if ($('rowDesc')) $('rowDesc').style.display = desc > 0 ? '' : 'none';
     if ($('sumTot')) $('sumTot').textContent = pesos(cobra);
-    if ($('sumTotRot')) $('sumTotRot').textContent = formaPago === 'pre' ? 'Total a pagar ahora' : 'Total a pagar al recibir';
+    if ($('sumTotRot')) $('sumTotRot').textContent = formaPago === 'pre'
+      ? t('totalPre', 'Total a pagar ahora') : t('totalCod', 'Total a pagar al recibir');
     var btn = document.querySelector('#fPedido button[type="submit"]');
-    if (btn && !btn.disabled) btn.textContent = 'Pedido con obligación de pago';
+    if (btn && !btn.disabled) btn.textContent = t('btnPedir', 'Pedido con obligación de pago');
     var nota = document.querySelector('#fPedido .formnote');
     if (nota) nota.textContent = formaPago === 'pre'
-      ? 'Al enviar el pedido te llevamos a la pasarela de pago. Tu pedido sale con entrega prioritaria en 14 h.'
-      : 'No pagas nada ahora: pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.';
+      ? t('notaPre', 'Al enviar el pedido te llevamos a la pasarela de pago. Tu pedido sale con entrega prioritaria en 14 h.')
+      : t('notaCod', 'No pagas nada ahora: pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.');
   }
   /* cambiar entre pagar al recibir y pagar ahora */
   document.addEventListener('click', function (ev) {
@@ -1181,12 +1210,12 @@
   /* Provincias a las que despacha Dropi PRO: las 47 de la peninsula mas
      Baleares (provincias-es.js). Canarias, Ceuta y Melilla no tienen ninguna
      transportadora en el panel del proveedor, asi que no se ofrecen. */
-  var PROV = window.PROVINCIAS_ES || null;
+  var PROV = window.PROVINCIAS_ES || window.DISTRITOS_PT || null;
   var selP = $('fProvincia');
   if (PROV && selP) {
     PROV.forEach(function (pr) { selP.add(new Option(pr, pr)); });
   } else if (selP) {
-    selP.outerHTML = '<input id="fProvincia" placeholder="Tu provincia">';
+    selP.outerHTML = '<input id="fProvincia" placeholder="' + t('lProvincia', 'Provincia') + '">';
   }
 
   /* Aviso EN CALIENTE si el codigo postal es de una zona sin envio: se le dice
@@ -1194,15 +1223,25 @@
      Un pedido a Canarias que entra es un pedido que hay que cancelar a mano. */
   (function avisaCP() {
     var cp = $('fCP'); if (!cp) return;
-    var sin = window.CP_SIN_COBERTURA || [];
+    var sin = window.CP_SIN_COBERTURA || window.CP_SEM_COBERTURA || [];
     cp.addEventListener('input', function () {
-      var v = cp.value.replace(/\D/g, '').slice(0, 5);
+      var v;
+      if (PAIS === 'PT') {
+        /* Portugal: 4 digitos, guion y 3. El guion se pone solo mientras
+           escribe, para que nadie tenga que acordarse de ponerlo. */
+        var d = cp.value.replace(/\D/g, '').slice(0, 7);
+        v = d.length > 4 ? d.slice(0, 4) + '-' + d.slice(4) : d;
+      } else {
+        v = cp.value.replace(/\D/g, '').slice(0, 5);
+      }
       cp.value = v;
-      var fuera = v.length >= 2 && sin.indexOf(v.slice(0, 2)) >= 0;
+      var digitos = v.replace(/\D/g, '');
+      var largo = PAIS === 'PT' ? 1 : 2;   /* en PT basta el primer digito (9 = islas) */
+      var fuera = digitos.length >= largo && sin.indexOf(digitos.slice(0, largo)) >= 0;
       cp.classList.toggle('mal', fuera);
       var av = $('fErr');
       if (fuera && av) {
-        av.textContent = 'Lo sentimos: todavía no enviamos a Canarias, Ceuta ni Melilla. Sí enviamos a toda la península y a Baleares.';
+        av.textContent = t('sinCobertura', 'Lo sentimos: todavía no enviamos a Canarias, Ceuta ni Melilla. Sí enviamos a toda la península y a Baleares.');
         av.style.display = 'block';
       } else if (av && av.style.display === 'block' && !fuera) {
         av.style.display = 'none';
@@ -1226,22 +1265,30 @@
     var falla = '';
     [['fNombre'], ['fTel'], ['fCorreo'], ['fCP'], ['fCiudad'], ['fProvincia'], ['fDir']]
       .forEach(function (c) { if ($(c[0])) $(c[0]).classList.remove('mal'); });
-    var cp = g('fCP').replace(/\D/g, '');
-    var sinCob = window.CP_SIN_COBERTURA || [];
-    if (g('fNombre').length < 3) falla = 'Escribe tu nombre y apellidos.', $('fNombre').classList.add('mal');
+    var cpCrudo = g('fCP');
+    var cp = PAIS === 'PT' ? cpCrudo : cpCrudo.replace(/\D/g, '');
+    var cpDig = cpCrudo.replace(/\D/g, '');
+    var sinCob = window.CP_SIN_COBERTURA || window.CP_SEM_COBERTURA || [];
+    if (g('fNombre').length < 3) falla = t('eNombre', 'Escribe tu nombre y apellidos.'), $('fNombre').classList.add('mal');
     /* España es estricto: movil de 9 cifras que empieza por 6 o 7. Un numero
        mal puesto es una entrega fallida, y la fallida la pagamos nosotros.
        Para los demas paises se mantiene la tolerancia: sus formatos varian. */
-    else if (paisCod === 'ES' ? !/^[67]\d{8}$/.test(tel) : tel.length < Math.min(7, largo)) falla = (paisCod === 'ES' ? 'Revisa tu móvil: en España son 9 cifras y empieza por 6 o 7.' : 'Revisa tu número de móvil.'), $('fTel').classList.add('mal');
+    /* El movil propio del pais se valida estricto (España: 9 cifras que
+       empiezan por 6 o 7 · Portugal: 9 cifras que empiezan por 9). Para los
+       demas paises se mantiene la tolerancia: sus formatos varian. */
+    else if (paisCod === CC
+        ? !(PAIS === 'PT' ? /^9\d{8}$/ : /^[67]\d{8}$/).test(tel)
+        : tel.length < Math.min(7, largo))
+      falla = (paisCod === CC ? t('eMovil', 'Revisa tu móvil: en España son 9 cifras y empieza por 6 o 7.') : t('eMovilOtro', 'Revisa tu número de móvil.')), $('fTel').classList.add('mal');
     /* El correo es obligatorio: sin el no podemos mandar la confirmacion del
-       pedido en soporte duradero, que exige el art. 98.7 del TRLGDCU. */
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(g('fCorreo'))) falla = 'Escribe un correo válido: ahí te enviamos la confirmación del pedido.', $('fCorreo').classList.add('mal');
-    else if (!/^\d{5}$/.test(cp)) falla = 'El código postal son 5 cifras.', $('fCP').classList.add('mal');
-    else if (sinCob.indexOf(cp.slice(0, 2)) >= 0) falla = 'Todavía no enviamos a Canarias, Ceuta ni Melilla. Sí enviamos a toda la península y a Baleares.', $('fCP').classList.add('mal');
-    else if (g('fCiudad').length < 2) falla = 'Escribe tu localidad.', $('fCiudad').classList.add('mal');
-    else if (!g('fProvincia')) falla = 'Selecciona tu provincia.', $('fProvincia').classList.add('mal');
+       pedido en soporte duradero, que exige la ley en los dos paises. */
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(g('fCorreo'))) falla = t('eCorreo', 'Escribe un correo válido: ahí te enviamos la confirmación del pedido.'), $('fCorreo').classList.add('mal');
+    else if (!(PAIS === 'PT' ? (window.CP_PT_REGEX || /^\d{4}-\d{3}$/) : /^\d{5}$/).test(cp)) falla = t('eCP', 'El código postal son 5 cifras.'), $('fCP').classList.add('mal');
+    else if (sinCob.indexOf(cpDig.slice(0, PAIS === 'PT' ? 1 : 2)) >= 0) falla = t('sinCobertura', 'Todavía no enviamos a Canarias, Ceuta ni Melilla. Sí enviamos a toda la península y a Baleares.'), $('fCP').classList.add('mal');
+    else if (g('fCiudad').length < 2) falla = t('eCiudad', 'Escribe tu localidad.'), $('fCiudad').classList.add('mal');
+    else if (!g('fProvincia')) falla = t('eProvincia', 'Selecciona tu provincia.'), $('fProvincia').classList.add('mal');
     /* el mismo candado que ya tiene la operacion: sin calle Y numero no se despacha */
-    else if (g('fDir').length < 8 || !/\d/.test(g('fDir'))) falla = 'Falta el número de la dirección: sin eso el transportista no puede entregar.', $('fDir').classList.add('mal');
+    else if (g('fDir').length < 8 || !/\d/.test(g('fDir'))) falla = t('eDirNum', 'Falta el número de la dirección: sin eso el transportista no puede entregar.'), $('fDir').classList.add('mal');
     /* Si el formulario lo frena, no lo dejamos ahi parado: se le ofrece el
        WhatsApp en el mismo error, con el pedido ya escrito. El 09-09 quedaron 50
        carritos sin terminar y a la gente que se traba no le queda salida.
@@ -1253,10 +1300,10 @@
       _t.textContent = falla;
       err.appendChild(_t);
       var _a = document.createElement('a');
-      _a.href = 'mailto:soporte@jayegroup.com.es?subject=' + encodeURIComponent(
-        'Quiero pedir ' + p.nombre);
+      _a.href = 'mailto:' + CORREO + '?subject=' + encodeURIComponent(
+        t('asuntoQuiero', 'Quiero pedir ') + p.nombre);
       _a.style.cssText = 'display:block;margin-top:6px;color:inherit;text-decoration:underline;font-weight:700';
-      _a.textContent = '¿Se te complica? Escríbenos a soporte@jayegroup.com.es y te ayudamos';
+      _a.textContent = t('seTeComplica', '¿Se te complica? Escríbenos a ') + CORREO;
       err.appendChild(_a);
       err.style.display = 'block';
       return;
@@ -1266,7 +1313,7 @@
     var k = p.packs[elegido];
     var _cobra = precioAhora(elegido);
     var btn = this.querySelector('button[type="submit"]');
-    btn.disabled = true; btn.textContent = 'Enviando…';
+    btn.disabled = true; btn.textContent = t('enviando', 'Enviando…');
     var _pedido = {
       nombre: g('fNombre'), indicativo: indic, telefono: tel,
       /* `total` es el nombre que espera el webhook: es el que manda la
@@ -1292,7 +1339,7 @@
       referencia: g('fRef'), correo: g('fCorreo'),
       /* el DESPACHO es España; `pais` es el del numero del cliente, para poder
          escribirle al indicativo correcto */
-      origen: 'ficha', pais: paisCod, pais_despacho: 'ES',
+      origen: 'ficha', pais: paisCod, pais_despacho: PAIS,
       /* EL NOMBRE DEL CAMPO IMPORTA: tiene que ser `event_id`, tal cual.
          El flujo `Pedido Tienda Jaye` ya lo guarda en `capi_event_id` con
          `NULLIF(d.j->>'event_id','')`, y de ahi lo toma el flujo `CAPI Ventas
@@ -1383,12 +1430,11 @@
        avisaba la compra a Meta: el cliente se quedaba esperando algo que nadie
        iba a despachar. Ahora se le dice la verdad y se le da una salida. */
     function noEntro() {
-      var ay = 'mailto:soporte@jayegroup.com.es?subject=' + encodeURIComponent('Mi pedido no se confirmó')
-        + '&body=' + encodeURIComponent('Hola, hice mi pedido de ' + p.nombre + ' en la página y no me confirmó. Mi nombre es ' + g('fNombre'));
-      $('pedir').innerHTML = '<div class="listo"><h3>No pudimos registrar tu pedido</h3>'
-        + '<p>Se cayó la conexión justo al enviarlo, y no queremos decirte que quedó si no es cierto.'
-        + '<br>Tus datos quedaron guardados: vuelve a intentarlo en un momento, o escríbenos y lo tomamos nosotros.</p>'
-        + '<a class="cta negro" href="' + ay + '" style="width:auto;display:inline-block;padding:14px 26px;margin-top:6px">Escribir a soporte</a>'
+      var ay = 'mailto:' + CORREO + '?subject=' + encodeURIComponent(t('asuntoFallo', 'Mi pedido no se confirmó'))
+        + '&body=' + encodeURIComponent(t('cuerpoFallo', 'Hola, hice mi pedido de ') + p.nombre + t('cuerpoFallo2', ' en la página y no me confirmó. Mi nombre es ') + g('fNombre'));
+      $('pedir').innerHTML = '<div class="listo"><h3>' + t('falloTit', 'No pudimos registrar tu pedido') + '</h3>'
+        + '<p>' + t('falloTxt', 'Se cayó la conexión justo al enviarlo, y no queremos decirte que quedó si no es cierto.<br>Tus datos quedaron guardados: vuelve a intentarlo en un momento, o escríbenos y lo tomamos nosotros.') + '</p>'
+        + '<a class="cta negro" href="' + ay + '" style="width:auto;display:inline-block;padding:14px 26px;margin-top:6px">' + t('falloBtn', 'Escribir a soporte') + '</a>'
         + '</div>';
       $('pedir').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -1533,9 +1579,15 @@ contarNumeros();
    queda reemplazado por el mensaje "Pedido recibido", y eso es lo que se
    mira para no molestar a quien ya compro.                                */
 (function () {
-  /* Numero de WhatsApp español: pendiente. Mientras no exista, los avisos usan
-     el correo de soporte; NUNCA el numero de Chile. */
-  var WA = (window.CONFIG && CONFIG.whatsapp) ? ('https://wa.me/' + CONFIG.whatsapp) : 'mailto:soporte@jayegroup.com.es';
+  /* Este bloque es OTRO IIFE, aparte del de la ficha: no ve la `t` de arriba.
+     Se redefinen aqui el diccionario y el correo para no dejar textos pegados
+     en español en la version portuguesa. */
+  var XT_ = window.TEXTOS || {};
+  var XT = function (k, d) { return (XT_[k] != null && XT_[k] !== '') ? XT_[k] : d; };
+  var XCORREO = XT_.correo || 'soporte@jayegroup.com.es';
+  /* Numero de WhatsApp: pendiente en los dos paises. Mientras no exista, los
+     avisos usan el correo de soporte; NUNCA el numero de Chile. */
+  var WA = (window.CONFIG && CONFIG.whatsapp) ? ('https://wa.me/' + CONFIG.whatsapp) : ('mailto:' + XCORREO);
   var st = document.createElement('style');
   st.textContent =
     '.exit-ov{position:fixed;inset:0;background:rgba(6,9,18,.7);display:grid;place-items:center;z-index:99999;padding:18px;animation:exitfade .2s ease}'
@@ -1568,11 +1620,10 @@ contarNumeros();
       /* OJO: aqui decia "esta promocion es SOLO POR HOY". El envio gratis es
          permanente, asi que eso era falso, y en España la urgencia inventada es
          practica desleal (art. 5 y 7 de la Ley 3/1991). Solo se dicen verdades. */
-      + '<div class="em">🎁</div><h3>¿Te falta poco?</h3>'
-      + '<p>Tu pedido llega en <b>24 a 48 h</b> con <b>envío gratis</b>. '
-      + 'No pagas nada ahora: <b>pagas al repartidor</b> cuando lo recibes en casa.</p>'
-      + '<button class="exit-cta">Quiero completar mi pedido</button>'
-      + '<a class="exit-wa" href="mailto:soporte@jayegroup.com.es">o escríbenos a soporte@jayegroup.com.es</a></div>';
+      + '<div class="em">🎁</div><h3>' + XT('exitTit', '¿Te falta poco?') + '</h3>'
+      + '<p>' + XT('exitTxt', 'Tu pedido llega en <b>24 a 48 h</b> con <b>envío gratis</b>. No pagas nada ahora: <b>pagas al repartidor</b> cuando lo recibes en casa.') + '</p>'
+      + '<button class="exit-cta">' + XT('exitBtn', 'Quiero completar mi pedido') + '</button>'
+      + '<a class="exit-wa" href="mailto:' + XCORREO + '">' + XT('exitMail', 'o escríbenos a ') + XCORREO + '</a></div>';
     document.body.appendChild(ov);
     function cerrar() { if (ov.parentNode) ov.parentNode.removeChild(ov); }
     ov.querySelector('.exit-x').onclick = cerrar;
