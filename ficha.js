@@ -456,13 +456,27 @@
      Se quita la foto generica que traia resenas.js (esas son de la tienda) y
      se usan solo las del producto. */
   var fotosCli = p.fotosResenas || [];
-  mias = mias.map(function (r) { return Object.assign({}, r, { foto: '' }); });
+  /* 🔴 AQUÍ SE PERDÍAN LAS FOTOS DE LAS OPINIONES.
+     Esta línea borraba la foto de TODAS las reseñas:
+         mias = mias.map(r => Object.assign({}, r, { foto: '' }));
+     Venía de Chile, donde las fotos eran un montón genérico del producto
+     (`fotosResenas`) y se repartían por orden, así que había que limpiar antes.
+     Aquí NO: cada foto es la que subió el comprador que escribió ESE texto, y
+     viene dentro de su propia reseña. Si se borra, la foto deja de
+     corresponder con lo que cuenta la persona.
+     Ahora: la foto propia se respeta, y el reparto por orden solo rellena las
+     que no traen ninguna. */
   if (fotosCli.length) {
-    var conFoto = mias.slice(0, fotosCli.length).map(function (r, i) {
-      return Object.assign({}, r, { foto: fotosCli[i] });   /* nunca se repite una foto: una por resena, en orden */
+    var iCli = 0;
+    mias = mias.map(function (r) {
+      if (r.foto) return r;                       // la suya, intacta
+      if (iCli >= fotosCli.length) return r;
+      return Object.assign({}, r, { foto: fotosCli[iCli++] });
     });
-    mias = conFoto.concat(mias.slice(fotosCli.length));
   }
+  /* las que llevan foto, delante: son las que dan confianza */
+  mias = mias.filter(function (r) { return r.foto; }).concat(mias.filter(function (r) { return !r.foto; }));
+  window.RESENAS_MIAS = mias;
   /* La fecha llega como 2026-02-17 y se muestra como 17/02/2026, que es como
      se escribe en España y en Portugal. */
   function fechaCorta(f) {
