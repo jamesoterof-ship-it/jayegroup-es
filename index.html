@@ -907,31 +907,36 @@ body.con-barra .wa{bottom:72px}
  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(ya)}else{ya()}
  setTimeout(ya,400);})();
 </script>
-<!-- Meta Pixel: el mismo de las landings (Jaye Hogar) -->
+<!-- Meta Pixel · JAYE GROUP EUROPA (1788531032387111) -->
 <script>
-/* El pixel SOLO en la tienda de verdad. Cuando la pagina se abre desde otro
+/* PIXEL PROPIO DE EUROPA, creado el 24-09-2026. Antes estaba puesto el de
+   Chile (Jaye Hogar, 1249894010361489): los eventos de España y Portugal se
+   habrian mezclado con los de Chile y el aprendizaje de las campañas chilenas
+   se habria ensuciado con gente que nunca va a comprar alli.
+   El MISMO pixel sirve para España y para Portugal: arrancando de cero, partir
+   los eventos en dos hace que ninguno de los dos salga del aprendizaje. Lo que
+   se separa son las campanas, no el pixel.
+
+   El pixel SOLO en la tienda de verdad. Cuando la pagina se abre desde otro
    lado —una copia local, una revision, una vista previa— tambien disparaba
    eventos, y esos entraban a Meta como si fueran clientes: el 28-08 hubo 72
-   eventos desde localhost que ensuciaron el conteo de compras y el
-   aprendizaje de las campañas.
+   eventos desde localhost que ensuciaron el conteo de compras.
 
-   OJO con el orden: el cargador de Meta se llamaba SIEMPRE, incluso fuera
-   de la tienda, y bajaba fbevents.js igual. Justo despues se reemplazaba
-   `window.fbq` por una funcion vacia, sin la cola que el cargador habia
-   dejado. Cuando fbevents.js terminaba de bajar, buscaba esa cola para
-   vaciarla, se encontraba con `undefined` e intentaba recorrerla:
-   «undefined is not iterable», un error por cada carga en localhost y en
-   cualquier vista previa. En jayegroup.com.es nunca paso, porque ahi si
-   entraba por el `if`. Ahora el cargador vive DENTRO del `if`: fuera de la
-   tienda ni siquiera se baja el script de Facebook. En la tienda de verdad
-   se comporta exactamente igual que antes. */
-if (location.hostname === 'jayegroup.com.es' || location.hostname === 'www.jayegroup.com.es') {
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','1249894010361489');
+   🔴 Y NO SE CARGA HASTA QUE EL VISITANTE ACEPTE LAS COOKIES. Lo exige el
+   art. 22.2 de la LSSI en España y la Lei 41/2004 en Portugal: cargar el pixel
+   antes del consentimiento es lo que multa la AEPD. Quien prende esto es
+   cookies-es.js, llamando a window._cargarPixel(). Nunca antes. */
+window.PIXEL_EU = '1788531032387111';
+window.fbq = window.fbq || function () {};   // por defecto, no se manda nada
+window._cargarPixel = function () {
+  var h = location.hostname;
+  if (h !== 'jayegroup.com.es' && h !== 'www.jayegroup.com.es') return;
+  if (window._pixelPuesto) return;
+  window._pixelPuesto = true;
+  !function(f,b,e,v,n,t,s){if(f.fbq&&f.fbq.loaded)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', window.PIXEL_EU);
   fbq('track','PageView');
-} else {
-  window.fbq = function () {};   // fuera de la tienda no se manda nada
-}
+};
 
 /* ---- LOS DATOS QUE PIDE LA API DE CONVERSIONES ----
    Hoy la compra se le avisa a Meta SOLO desde el navegador, y ahi se pierde
