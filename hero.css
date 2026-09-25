@@ -116,17 +116,100 @@
 }
 .heroP__nota a:hover { color: var(--rosaF); }
 
-.heroP__h1 {
+/* 🔴 MÁS GRANDE. James, 25-09: "estas letras se ven muy pequeñas, deberían ser
+   más grandes para que llamen más la atención". De 11,5vw a 14vw: en un móvil
+   de 390 px pasa de 45 a 55 px. */
+/* 🔴 OJO CON LA ESPECIFICIDAD. El titular vive dentro de <main class="prod">,
+   y el HTML trae en un <style> propio la regla .prod h1 { font-size:
+   clamp(28px,7vw,40px) }. Al ir en el documento, esa gana a .heroP__h1 por
+   mucho clamp que le pongamos aqui: el titular se quedaba en 28 px pasara lo
+   que pasara. Por eso las reglas del titular llevan .heroP delante. */
+.heroP .heroP__h1 {
   font-family: "Barlow Condensed", Inter, sans-serif;
   font-weight: 800;
-  font-size: clamp(36px, 11.5vw, 56px);
-  line-height: .96;
+  font-size: clamp(44px, 14vw, 72px);
+  line-height: .92;
+  letter-spacing: -.012em;
   text-transform: uppercase;
   color: var(--tinta);
-  margin: 0 0 13px;
+  margin: 0 0 15px;
   text-wrap: balance;
 }
-.heroP__h1 b { color: var(--rosaF); font-weight: 800; }
+.heroP .heroP__h1 b { color: var(--rosaF); font-weight: 800; }
+
+/* ============================================================
+   CASCADA DEL TITULAR, letra por letra
+   Cada palabra va en su caja para que el navegador no la parta al saltar de
+   línea; dentro, las letras con su índice --k, que corre por TODO el titular
+   para que la cascada no se reinicie en cada renglón.
+   Arranca a los 40 ms y cada letra entra 28 ms después de la anterior: un
+   titular de 30 letras termina en menos de un segundo.
+   ============================================================ */
+.hCas__w { display: inline-block; white-space: nowrap; }
+.hCas__w.es-oro .hCas__l { color: var(--rosaF); }
+.hCas__salto { display: block; height: 0; }
+.hCas__l {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(.22em) rotate(2deg);
+  animation: hCasCae .34s cubic-bezier(.2,.85,.3,1.1) forwards;
+  animation-delay: calc(.04s + var(--k) * .028s);
+}
+@keyframes hCasCae {
+  from { opacity: 0; transform: translateY(.22em) rotate(2deg); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   LLUVIA DE DESTELLOS sobre la foto
+   Adorno, nada más: va con aria-hidden y pointer-events:none, así que no
+   estorba al tocar la pantalla. Son puntos de luz del mismo oro del envase.
+   ============================================================ */
+.heroP__luces {
+  position: absolute; inset: 0;
+  overflow: hidden; pointer-events: none;
+  z-index: 2;
+}
+.heroP__luces i {
+  position: absolute;
+  left: var(--x); top: -12px;
+  width: var(--s); height: var(--s);
+  border-radius: 50%;
+  background: var(--oro);
+  box-shadow: 0 0 10px 2px rgba(232,190,98,.75);
+  opacity: 0;
+  animation: hLuz var(--t) linear infinite;
+  animation-delay: var(--d);
+}
+@keyframes hLuz {
+  0%   { opacity: 0;   transform: translateY(0)     scale(.5); }
+  12%  { opacity: .95; }
+  70%  { opacity: .75; }
+  100% { opacity: 0;   transform: translateY(105vh) scale(1.1); }
+}
+
+/* ---- la descripción, junto al precio ---- */
+.dscTop {
+  font: 400 15.5px/1.6 Inter, system-ui, sans-serif;
+  color: #514543;
+  margin: 14px 0 12px;
+  max-width: 60ch;
+}
+.dscTop__ul { list-style: none; padding: 0; margin: 0 0 4px; }
+.dscTop__ul li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 9px;
+  font: 500 15px/1.5 Inter, system-ui, sans-serif;
+  color: #3B2B2A;
+}
+.dscTop__ul li::before {
+  content: "";
+  position: absolute; left: 2px; top: .42em;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #E8BE62;
+  box-shadow: 0 0 0 4px rgba(232,190,98,.22);
+}
 
 .heroP__sub {
   font: 400 15.5px/1.55 Inter, system-ui, sans-serif;
@@ -202,6 +285,9 @@
 @media (prefers-reduced-motion: reduce) {
   .heroP__txt > * { animation: none; }
   .heroP__cta { transition: none; }
+  /* las letras aparecen puestas, sin caer, y los destellos se apagan del todo */
+  .hCas__l { animation: none; opacity: 1; transform: none; }
+  .heroP__luces { display: none; }
 }
 
 /* ============================================================
@@ -235,7 +321,7 @@
     background: linear-gradient(to left, var(--crema) 10%, rgba(251,244,240,0) 100%);
   }
   .heroP__txt { padding: 54px 0; text-align: left; }
-  .heroP__h1 { font-size: clamp(46px, 4.2vw, 66px); }
+  .heroP .heroP__h1 { font-size: clamp(52px, 4.6vw, 74px); }
   .heroP__sub { margin-left: 0; }
   .heroP__datos { justify-content: flex-start; }
   .heroP__pie { flex-direction: row; align-items: center; gap: 20px; }

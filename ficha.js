@@ -397,6 +397,15 @@
        cree que ese valor es por una sola unidad. Se muestra tambien cuanto le
        sale cada una, que es el argumento que cierra el pack. */
     + (kPop.cant > 1 ? '<p class="packDe" id="pcPack">' + esc(kPop.texto) + ' · ' + pesos(Math.round(kPop.precio / kPop.cant)) + ' cada ' + (p.unidad || 'una') + '</p>' : '<div style="height:10px"></div>')
+    /* LA DESCRIPCIÓN, aquí mismo (James, 25-09: "donde pusiste la estrella
+       abajo, ponle la descripción del producto"). Antes vivía mucho más abajo
+       y el cliente llegaba al precio sin saber todavía qué es esto.
+       Va el primer párrafo, que es el que explica qué es, y los puntos. */
+    + (p.desc ? '<p class="dscTop">' + esc(String(p.desc).split('\n\n')[0]) + '</p>' : '')
+    + (p.puntos && p.puntos.length
+        ? '<ul class="dscTop__ul">' + p.puntos.map(function (x) {
+            return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>'
+        : '')
     + '</div>';
 
   /* ---------- 4 · promocion ---------- */
@@ -940,6 +949,32 @@
      Si el producto trae `hero`, va ANTES de todo: foto vertical a tamaño real
      con el titular encima. La galeria sigue debajo, con el resto de fotos.
      Si no trae `hero`, no se pinta nada y la ficha queda como antes. */
+  /* CASCADA del titular, letra por letra.
+     Copiado del molde de la antena, que es el que funciona: cada PALABRA va en
+     su caja (hCas__w) para que el navegador no la parta al saltar de línea, y
+     dentro van las letras con un índice --k que corre por todo el titular, así
+     la cascada no se reinicia en cada renglón.
+     El <b>…</b> del titular se respeta: esa parte sale en rosa. */
+  function cascada(html) {
+    var k = 0;
+    return String(html).split(/(<br\s*\/?>)/i).map(function (parte) {
+      if (/^<br/i.test(parte)) return '<span class="hCas__salto"></span>';
+      return parte.split(/(<b>.*?<\/b>)/i).map(function (trozo) {
+        var oro = /^<b>/i.test(trozo);
+        var limpio = trozo.replace(/<\/?b>/gi, '');
+        if (!limpio) return '';
+        return limpio.split(' ').map(function (palabra) {
+          if (!palabra) return '';
+          return '<span class="hCas__w' + (oro ? ' es-oro' : '') + '">'
+            + palabra.split('').map(function (ch) {
+                return '<span class="hCas__l" style="--k:' + (k++) + '">' + esc(ch) + '</span>';
+              }).join('')
+            + '</span>';
+        }).join(' ');
+      }).join('');
+    }).join('');
+  }
+
   function seccionHero() {
     var h = p.hero;
     if (!h || !h.img) return '';
@@ -949,9 +984,22 @@
       reloj: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
     };
     var min = p.packs.reduce(function (a, k) { return k.precio < a.precio ? k : a; }, p.packs[0]);
+    /* Lluvia de destellos (James: "que no quede plano"). Son 14 puntos de luz
+       dorados que bajan despacio sobre la foto, con tamaños y tiempos
+       distintos para que no se vea el patrón. Van en un <div> aparte y con
+       aria-hidden: es adorno, no contenido. Se apagan enteros con
+       prefers-reduced-motion. */
+    var destellos = '<div class="heroP__luces" aria-hidden="true">'
+      + [0,1,2,3,4,5,6,7,8,9,10,11,12,13].map(function (i) {
+          var x = [6,17,28,39,50,61,72,83,12,34,56,78,91,45][i];
+          return '<i style="--x:' + x + '%;--d:' + (i * 0.9).toFixed(1) + 's;--t:' + (7 + (i % 5) * 1.6).toFixed(1) + 's;--s:' + (i % 3 === 0 ? 5 : i % 3 === 1 ? 3 : 4) + 'px"></i>';
+        }).join('')
+      + '</div>';
+
     return '<section class="heroP">'
       /* la foto en su marco, con el fundido al crema abajo: sin corte duro */
       + '<div class="heroP__marco">'
+      +   destellos
       +   '<img class="heroP__img" src="' + esc(h.img) + '" alt="' + esc(p.nombre) + '"'
       +     ' width="1024" height="1536" fetchpriority="high" decoding="async">'
       +   '<div class="heroP__fundido"></div>'
@@ -965,7 +1013,10 @@
               + '<b>' + prom.toFixed(1).replace('.', ',') + '</b>'
               + '<a href="#resenas">' + mias.length + ' ' + t('resenas', 'reseñas') + '</a></span>'
             : '<span class="heroP__kicker"><i></i>' + esc(h.kicker || t('recienLlegado', 'Nuevo')) + '</span>')
-      +   '<h1 class="heroP__h1">' + (h.titulo || esc(p.nombre)) + '</h1>'
+      /* aria-label con el texto plano: el lector de pantalla lee la frase
+         entera y no letra por letra */
+      +   '<h1 class="heroP__h1 hCas" aria-label="' + esc(String(h.titulo || p.nombre).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()) + '">'
+      +     cascada(h.titulo || esc(p.nombre)) + '</h1>'
       +   '<p class="heroP__sub">' + esc(h.sub || p.sub || '') + '</p>'
       +   '<div class="heroP__datos">'
       +     (h.datos || []).map(function (d, i) {
