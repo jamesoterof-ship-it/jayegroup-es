@@ -957,7 +957,14 @@
       +   '<div class="heroP__fundido"></div>'
       + '</div>'
       + '<div class="heroP__txt">'
-      +   '<span class="heroP__kicker"><i></i>' + esc(h.kicker || t('recienLlegado', 'Nuevo')) + '</span>'
+      /* Si hay opiniones, arriba del todo van la nota y las estrellas: es el
+         primer golpe de confianza y sale antes que el titular. Si algún día no
+         las hubiera, se cae al rótulo de siempre y no se rompe nada. */
+      +   (mias.length
+            ? '<span class="heroP__nota">' + estrellas(prom)
+              + '<b>' + prom.toFixed(1).replace('.', ',') + '</b>'
+              + '<a href="#resenas">' + mias.length + ' ' + t('resenas', 'reseñas') + '</a></span>'
+            : '<span class="heroP__kicker"><i></i>' + esc(h.kicker || t('recienLlegado', 'Nuevo')) + '</span>')
       +   '<h1 class="heroP__h1">' + (h.titulo || esc(p.nombre)) + '</h1>'
       +   '<p class="heroP__sub">' + esc(h.sub || p.sub || '') + '</p>'
       +   '<div class="heroP__datos">'

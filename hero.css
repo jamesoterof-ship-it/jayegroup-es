@@ -92,6 +92,30 @@
 }
 .heroP__kicker i { width: 6px; height: 6px; border-radius: 50%; background: var(--rosaF); flex: 0 0 auto; }
 
+/* La nota del producto, arriba del titular: es el primer golpe de confianza.
+   Sustituye al rótulo "Nuevo en España" en cuanto hay opiniones. */
+.heroP__nota {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: #fff;
+  border: 1px solid var(--rosa);
+  padding: 8px 15px; border-radius: 999px;
+  margin-bottom: 15px;
+  box-shadow: 0 6px 18px rgba(201,128,139,.14);
+}
+.heroP__nota .est { display: inline-flex; gap: 2px; }
+.heroP__nota .est svg { width: 15px; height: 15px; fill: var(--oro); }
+.heroP__nota b {
+  font: 800 15px/1 Inter, system-ui, sans-serif;
+  color: var(--tinta);
+  font-variant-numeric: tabular-nums;
+}
+.heroP__nota a {
+  font: 500 13px/1 Inter, system-ui, sans-serif;
+  color: var(--tinta2); text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.heroP__nota a:hover { color: var(--rosaF); }
+
 .heroP__h1 {
   font-family: "Barlow Condensed", Inter, sans-serif;
   font-weight: 800;
