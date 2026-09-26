@@ -229,6 +229,16 @@
     /* el video de más abajo: su póster era un flyer con letras; va uno limpio */
     var vp = cont.querySelector('.vid-prod');
     if (vp) vp.setAttribute('poster', 'img/balsamo-ficha-poster.webp?v=1');
+
+    /* 🔴 LAS CIFRAS, AL SITIO, Y AL FINAL DE TODO.
+       Se insertaron justo detrás del hero, pero acababan apareciendo entre los
+       pasos y las tarjetas: las secciones que se montan después las empujan.
+       En vez de pelearse con el orden de inserción, se mueven aquí, cuando ya
+       está todo puesto y nadie las va a desplazar. */
+    var cif = cont.querySelector('.ba-cifras');
+    var hp = cont.querySelector('.heroP');
+    if (cif && hp && hp.nextElementSibling !== cif) hp.insertAdjacentElement('afterend', cif);
+
     return true;
   }
 
