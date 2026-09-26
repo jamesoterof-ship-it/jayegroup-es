@@ -20,10 +20,13 @@ window.PRODUTOS = [
     etiqueta: 'Novo em Portugal',
     etiquetaOro: true,
 
-    foto: '../img/prod-balsamo-2.webp?v=1',
+    /* As mesmas três de Espanha. Tirou-se a do catálogo do fornecedor: era uma
+       montagem com FOREHEAD / FACE / LIPS / BODY em INGLÊS por cima. */
+    foto: '../img/balsamo-mano.webp?v=1',
     fotos: [
-      '../img/prod-balsamo-2.webp?v=1',   // mulher de ~50 a aplicar no malar
-      '../img/prod-balsamo.jpg?v=1',      // a do catálogo do fornecedor
+      '../img/balsamo-uso.webp?v=1',    // a aplicar no malar
+      '../img/balsamo-mano.webp?v=1',   // na mão: lê-se o rótulo e o tamanho real
+      '../img/balsamo-bolso.webp?v=1',  // ao lado da mala: os 9 g cabem em qualquer lado
     ],
 
     /* Vídeo do próprio vendedor do produto, cortado só nos trechos limpos:

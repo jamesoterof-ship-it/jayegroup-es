@@ -8,15 +8,15 @@
    ============================================================ */
 
 .p-balsamo {
-  --ba-negro: #2A1F1E;   /* marron cacao, NO negro puro: contra este rosa el negro se ve sucio */
-  --ba-fondo: #332624;   /* el fondo de las franjas */
-  --ba-panel: #40302C;   /* tarjetas, un punto mas claro */
+  --ba-base:    #FBF4F0;   /* crema: el fondo de todo */
+  --ba-suave:   #F7EAE7;   /* rosa muy suave: el fondo de las franjas */
+  --ba-tarjeta: #FFFFFF;   /* tarjetas en blanco, con borde rosa */
   --ba-oro:   #E8BE62;   /* el oro DEL ENVASE, medido sobre la foto */
   --ba-oro2:  #f0c867;
-  --ba-rosa:  #E9BDC2;   /* el rosa del envase */
-  --ba-crema: #FBF4F0;   /* el texto sobre las franjas */
-  --ba-tenue: #CBB8B2;   /* secundario */
-  --ba-borde: rgba(232,190,98,.26);
+  --ba-rosa:  #C9808B;   /* rosa fuerte: sobre fondo claro hace falta este, no el palido */
+  --ba-texto:   #3B2B2A;   /* marron: el texto */
+  --ba-texto2:  #6E5A56;   /* secundario, contraste 5,9:1 sobre el crema */
+  --ba-borde: rgba(201,128,139,.30);
   --ba-disp:  'Bodoni Moda', 'Didot', Georgia, serif;
   --ba-rotf:  'Jost', 'Futura', system-ui, sans-serif;
   --ba-ease:  cubic-bezier(.2,.8,.2,1);
@@ -40,7 +40,7 @@
   font-size: clamp(32px, 9vw, 50px);
   line-height: 1.04;
   letter-spacing: -.01em;
-  color: var(--ba-crema);
+  color: var(--ba-texto);
   text-wrap: balance;
 }
 .p-balsamo #prod .ba-h2 em { display: block; font-weight: 700; color: var(--ba-oro); }
@@ -61,7 +61,7 @@
   min-height: 92svh;
   overflow: hidden;
   border-radius: 0;
-  background: var(--ba-negro);
+  background: var(--ba-base);
 }
 @supports not (min-height: 92svh) { .ba-hero { min-height: 92vh; } }
 
@@ -84,7 +84,7 @@
 .ba-hero .ba-funde {
   position: absolute; left: 0; right: 0; top: calc(34% - 3px); height: 26%;
   z-index: 1; pointer-events: none;
-  background: linear-gradient(to bottom, var(--ba-negro) 0%, rgba(11,9,8,.7) 38%, rgba(11,9,8,0) 100%);
+  background: linear-gradient(to bottom, var(--ba-base) 0%, rgba(11,9,8,.7) 38%, rgba(11,9,8,0) 100%);
 }
 .ba-hero::after {
   content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 18%;
@@ -140,7 +140,7 @@
   font-size: clamp(33px, 9.6vw, 70px);
   line-height: 1.02;
   letter-spacing: -.012em;
-  color: var(--ba-crema);
+  color: var(--ba-texto);
   text-transform: none;
 }
 .p-balsamo #prod .ba-h1 .ba-ln { display: block; }
@@ -182,8 +182,8 @@
   width: var(--ba-vw, 100vw);
   max-width: var(--ba-vw, 100vw);
   padding: 58px max(20px, calc(var(--ba-vw, 100vw) / 2 - 50% + 20px)) 54px;
-  background: var(--ba-fondo);
-  color: var(--ba-tenue);
+  background: var(--ba-suave);
+  color: var(--ba-texto2);
 }
 .p-balsamo .ba-oscura::before {
   content: ''; position: absolute; top: 0; left: 20px; right: 20px; height: 1px;
@@ -234,7 +234,7 @@
   letter-spacing: .06em;
   text-transform: uppercase;
   line-height: 1.35;
-  color: var(--ba-tenue);
+  color: var(--ba-texto2);
   max-width: 13ch;
 }
 
@@ -261,7 +261,7 @@
   font-weight: 600;
   font-size: 26px;
   line-height: 1.1;
-  color: var(--ba-crema);
+  color: var(--ba-texto);
 }
 /* la pincelada: se dibuja de izquierda a derecha bajo el título */
 .p-balsamo .ba-trazo {
@@ -273,7 +273,7 @@
   transform: scaleX(1);
 }
 .p-balsamo #prod .ba-paso h3 { z-index: 0; isolation: isolate; }
-.p-balsamo .ba-paso p { margin: 0; font-size: 15.5px; line-height: 1.62; color: var(--ba-tenue); max-width: 46ch; }
+.p-balsamo .ba-paso p { margin: 0; font-size: 15.5px; line-height: 1.62; color: var(--ba-texto2); max-width: 46ch; }
 .p-balsamo.ba-anima .ba-paso.ba-pre .ba-trazo { transform: scaleX(0); }
 .p-balsamo.ba-anima .ba-paso.ba-pre.ba-in .ba-trazo {
   transform: scaleX(1);
@@ -284,14 +284,14 @@
    4 · ANTES/DESPUÉS de la ficha — oscuro, con un brillo que lo cruza
    ============================================================ */
 .p-balsamo #prod .ba-sec,
-.p-balsamo .ba-cta-franja { background: var(--ba-fondo); box-shadow: 0 0 0 100vmax var(--ba-fondo); clip-path: inset(0 -100vmax); }
+.p-balsamo .ba-cta-franja { background: var(--ba-suave); box-shadow: 0 0 0 100vmax var(--ba-suave); clip-path: inset(0 -100vmax); }
 .p-balsamo #prod .ba-sec { margin-top: 0; margin-bottom: 0; padding-top: 56px; }
 .p-balsamo #prod .ba-sec .eyebrow { font-family: var(--ba-rotf); letter-spacing: .24em; color: var(--ba-oro2); }
 .p-balsamo #prod .ba-sec .tit2 {
   font-family: var(--ba-disp); font-style: italic; font-weight: 600;
-  color: var(--ba-crema); letter-spacing: -.01em;
+  color: var(--ba-texto); letter-spacing: -.01em;
 }
-.p-balsamo #prod .ba-sec .sub2 { color: var(--ba-tenue); }
+.p-balsamo #prod .ba-sec .sub2 { color: var(--ba-texto2); }
 .p-balsamo #prod .ba-img { position: relative; overflow: hidden; border-radius: 14px; }
 .p-balsamo #prod .ba-img .ba-brillo {
   position: absolute; top: 0; bottom: 0; left: 0; width: 40%; z-index: 2; pointer-events: none;
@@ -356,7 +356,7 @@
 }
 .p-balsamo #prod .ba-tar b {
   font-family: var(--ba-disp); font-style: italic; font-weight: 600;
-  font-size: 18px; line-height: 1.25; color: var(--ba-crema);
+  font-size: 18px; line-height: 1.25; color: var(--ba-texto);
 }
 @media (min-width: 620px) { .p-balsamo .ba-grid { grid-template-columns: 1fr 1fr; } }
 
@@ -367,15 +367,15 @@
   margin-top: 0; margin-bottom: 0;
   position: relative;
   padding-top: 58px; padding-bottom: 24px;
-  background: var(--ba-fondo);
-  box-shadow: 0 0 0 100vmax var(--ba-fondo);
+  background: var(--ba-suave);
+  box-shadow: 0 0 0 100vmax var(--ba-suave);
   clip-path: inset(0 -100vmax);
 }
 .p-balsamo #prod section.desc p,
-.p-balsamo #prod section.desc li { color: var(--ba-tenue); }
+.p-balsamo #prod section.desc li { color: var(--ba-texto2); }
 .p-balsamo #prod section.desc h2,
 .p-balsamo #prod section.desc h3,
-.p-balsamo #prod section.desc b { color: var(--ba-crema); }
+.p-balsamo #prod section.desc b { color: var(--ba-texto); }
 .p-balsamo #prod section.desc .eyebrow { font-family: var(--ba-rotf); letter-spacing: .24em; color: var(--ba-oro2); }
 .p-balsamo #prod section.desc .tit2 { font-family: var(--ba-disp); font-style: italic; font-weight: 600; }
 
@@ -384,8 +384,8 @@
 .p-balsamo #prod .ba-foto {
   position: relative; overflow: hidden;
   border-radius: 16px;
-  background: var(--ba-panel);
-  box-shadow: 0 18px 40px rgba(0,0,0,.5), 0 0 0 1px var(--ba-borde);
+  background: var(--ba-tarjeta);
+  box-shadow: 0 18px 40px rgba(59,43,42,.12), 0 0 0 1px var(--ba-borde);
 }
 .p-balsamo #prod .ba-foto img { display: block; width: 100%; height: auto; margin: 0; border-radius: 0; }
 /* el telón: dos hojas que se abren hacia los lados (sin JS, ya abiertas) */
@@ -403,7 +403,7 @@
 .p-balsamo #prod .ba-fi figcaption b {
   display: block; margin: 0 0 8px;
   font-family: var(--ba-disp); font-style: italic; font-weight: 600;
-  font-size: 25px; line-height: 1.15; color: var(--ba-crema);
+  font-size: 25px; line-height: 1.15; color: var(--ba-texto);
 }
 .p-balsamo #prod .ba-fi figcaption p { margin: 0; font-size: 15.5px; line-height: 1.62; }
 

@@ -31,18 +31,16 @@ window.PRODUCTOS = [
     etiqueta: 'Nuevo en España',
     etiquetaOro: true,
 
-    /* 'foto' es la MINIATURA (tarjeta y packs): va la cuadrada del catálogo,
-       que en un recuadro pequeño se lee mejor.
-       'fotos' es la GALERÍA: primero el hero vertical 1024x1536 que hizo James
-       —el bálsamo en primer plano y la modelo detrás, desenfocada— porque el
-       producto tiene que mandar, y detrás la del catálogo. */
-    /* La foto del hero NO se repite en la galería: James la vio dos veces en la
-       misma pantalla y con razón.
-       Van llegando las suyas; se añaden a esta lista según lleguen. */
-    foto: 'img/prod-balsamo-2.webp?v=1',
+    /* 'foto' es la MINIATURA (tarjeta y packs). 'fotos' es la GALERÍA.
+       Las tres las hizo James el 25-09. Se quitó la del catálogo del proveedor:
+       era un collage con los rótulos FOREHEAD / FACE / LIPS / BODY en INGLÉS
+       encima, y esto se vende en España.
+       El hero NO se repite aquí: se veía dos veces en la misma pantalla. */
+    foto: 'img/balsamo-mano.webp?v=1',
     fotos: [
-      'img/prod-balsamo-2.webp?v=1',   // mujer de ~50 aplicándose en el pómulo
-      'img/prod-balsamo.jpg?v=1',      // la del catálogo del proveedor
+      'img/balsamo-uso.webp?v=1',    // aplicándoselo en el pómulo: se entiende el gesto de un vistazo
+      'img/balsamo-mano.webp?v=1',   // sosteniéndolo: se lee la etiqueta y el tamaño real
+      'img/balsamo-bolso.webp?v=1',  // junto al bolso: los 9 g que caben en cualquier parte
     ],
 
     /* ---- VÍDEO DE LA FICHA ----
