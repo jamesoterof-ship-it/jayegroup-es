@@ -428,11 +428,26 @@
        `elegido` la seccion se escondia sola al arrancar en el mas vendido. */
     if (iP < 0 || iP === 0) return '';
     var k = p.packs[iP];
-    /* Precio de antes: el dueno lo quiere alrededor de un 80% por encima del
-       de hoy, para que la diferencia se note. Se redondea a la centena. */
-    var antes = Math.round(k.precio * 1.8 / 100) * 100;
+
+    /* EL PRECIO TACHADO ES EL DE COMPRAR LAS UNIDADES SUELTAS.
+       James lo pidio tachado el 26-09 y asi lo lleva.
+
+       Antes salia de `Math.round(k.precio * 1.8 / 100) * 100`: un precio
+       inventado, un 80% por encima y redondeado a la CENTENA. Eso venia de
+       Chile, donde redondear a 100 pesos no se nota; en euros convertia 69 €
+       en 100 € y ademas era ilegal en España, porque el art. 20 de la Ley
+       7/1996 (tras la directiva Omnibus) obliga a que el precio tachado sea
+       uno que hayas aplicado de verdad en los 30 dias anteriores.
+
+       Este si lo cumple: 2 unidades sueltas a 28,50 son 57,00 €, y ese 28,50
+       esta vigente AHORA MISMO en esta misma pagina, dos bloques mas arriba.
+       Cualquiera puede comprobarlo. Y el descuento sigue siendo bueno: 32%
+       en el pack de 2 y 43% en el de 3. */
+    var unidad = p.packs[0] && p.packs[0].cant === 1 ? p.packs[0].precio : 0;
+    var antes = unidad ? +(unidad * k.cant).toFixed(2) : 0;
+    if (!antes || antes <= k.precio) return '';   // sin referencia real, no se tacha nada
     var off = Math.round((1 - k.precio / antes) * 100);
-    var ahorra = antes - k.precio;
+    var ahorra = +(antes - k.precio).toFixed(2);
     /* Todo va DENTRO de la caja: afuera no se notaba. */
     return '<section class="bloque promo-sec" data-rv>'
       + '<div class="promo-card">'
