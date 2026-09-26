@@ -188,10 +188,14 @@
       document.head.appendChild(l);
     }
 
-    /* La franja de cifras va justo DEBAJO del hero y encima de la ficha.
+    /* La franja de cifras va justo DEBAJO del hero. Se cuelga del propio hero
+       y no de .arriba2: colgada de arriba2 acababa cayendo detrás de los pasos,
+       porque las demás secciones se insertan después y la empujaban.
        🔴 La galería NO se borra: en la máscara eran flyers del proveedor
        llenos de letras y estorbaban; aquí son las fotos buenas de James. */
-    arriba.insertAdjacentHTML('beforebegin', hero());
+    var heroReal = cont.querySelector('.heroP');
+    if (heroReal) heroReal.insertAdjacentHTML('afterend', hero());
+    else arriba.insertAdjacentHTML('beforebegin', hero());
 
     var desc = cont.querySelector('section.desc');
     if (desc) {
