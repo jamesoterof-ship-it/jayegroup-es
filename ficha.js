@@ -940,7 +940,13 @@
          hueco no aparece vacio mientras tanto. */
       + '<video class="vid-prod" playsinline autoplay muted loop preload="none" '
       +   'data-src="' + esc(p.video) + '" '
-      +   'poster="' + esc(poster) + '" style="width:100%;display:block;aspect-ratio:1080/1920;object-fit:cover;background:#000" '
+      /* El fondo iba en #000 metido aquí en línea, y un estilo en línea le gana
+         a cualquier hoja: en la página clara del bálsamo dejaba un rectángulo
+         negro de 667 px en mitad del crema. Ahora hereda el color de su
+         sección con currentColor->transparent, y cada página decide en su CSS
+         (el bálsamo lo pone en rosa suave; una página oscura puede ponerlo
+         negro sin tocar esto). */
+      +   'poster="' + esc(poster) + '" style="width:100%;display:block;aspect-ratio:1080/1920;object-fit:cover;background:transparent" '
       +   'onerror="this.closest(\'.vid-wrap\').style.display=\'none\'"></video>'
       + '</section>';
   }

@@ -393,6 +393,16 @@
       var repetidos = sec.querySelectorAll('.ing, .si, .no, .rsc, .res, .sello');
       [].forEach.call(repetidos, function (e, i) { if (i < 8) piezas.push(e); });
 
+      /* Secciones sin titular ni rotulo -el video, la promo, la escasez, los
+         sellos de pago-: no habia nada que marcar y se quedaban planas. Se
+         marca el bloque entero.
+         .arriba2 se queda FUERA a proposito: ahi estan el precio y el boton, y
+         no se esconde ni un instante lo que el visitante viene a mirar. */
+      if (!piezas.length && !/arriba2/.test((sec.className || '').toString())) {
+        var dentro = sec.firstElementChild;
+        piezas.push(dentro && dentro.offsetHeight > 40 ? dentro : sec);
+      }
+
       piezas.forEach(function (e, i) {
         e.classList.add('ba-rev');
         e.style.setProperty('--i', i);   // el escalonado lo pone el CSS
