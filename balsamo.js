@@ -354,9 +354,108 @@
     }, 400);
   }
 
+  /* ============================================================
+     LAS SECCIONES QUE VENIAN DEL MOLDE NO TENIAN NINGUN EFECTO.
+     Medido el 25-09: de 20 secciones, 13 entraban de golpe. Las que traje de
+     la mascara (cifras, pasos, tarjetas, fichas) si se animaban; las del molde
+     de la ficha —formula, comparativa, opiniones, garantia, preguntas...— no.
+     De ahi que la pagina se sintiera plana por abajo.
+
+     Aqui NO se anima la seccion entera: se marcan su rotulo, su titular y sus
+     elementos de lista, que entran escalonados. Asi el bloque no desaparece si
+     algo falla, y el movimiento acompaña a la lectura en vez de taparla.
+     Reglas aplicadas (ui-ux-pro-max): revelado-scroll, escalonado (30-50ms),
+     duracion (<=520ms) y movimiento-reducido.
+     ============================================================ */
+  function animarElResto(cont) {
+    if (QUIETO) return;
+    /* Estas ya tienen su propio efecto: no se tocan o se animaria dos veces. */
+    var YA = /heroP|ba-cifras|ba-pasos-sec|ba-trae|ba-fichas/;
+
+    [].forEach.call(cont.children, function (sec) {
+      if (YA.test((sec.className || '').toString())) return;
+
+      var piezas = [];
+      /* El encabezado de la seccion: primero el rotulo, luego el titular. */
+      ['.eyebrow', '.ba-rot', 'h2'].forEach(function (s) {
+        var e = sec.querySelector(s);
+        if (e && piezas.indexOf(e) < 0) piezas.push(e);
+      });
+      /* Y lo que se repite dentro. Estas clases estan LEIDAS de la pagina en
+         vivo, no supuestas: la primera vez puse siete selectores inventados
+         (.faq-item, .rev-card, .cmp-fila...) y no existia ninguno.
+           .ing   los seis activos de la formula
+           .si/.no las filas de la comparativa
+           .rsc   cada opinion
+           .res   lo que garantizamos
+           .sello cada transportadora
+         Se cortan en 8: mas alla, el ultimo tardaria una eternidad en salir. */
+      var repetidos = sec.querySelectorAll('.ing, .si, .no, .rsc, .res, .sello');
+      [].forEach.call(repetidos, function (e, i) { if (i < 8) piezas.push(e); });
+
+      piezas.forEach(function (e, i) {
+        e.classList.add('ba-rev');
+        e.style.setProperty('--i', i);   // el escalonado lo pone el CSS
+      });
+    });
+  }
+
+  /* ============================================================
+     OPINIONES LARGAS: SE PLIEGAN, NO SE REESCRIBEN.
+     Son reales, de compradores de este mismo producto, y la ley europea
+     (Directiva 2019/2161) no deja tocarles una palabra. Lo que si se puede es
+     plegarlas: se ven cuatro lineas y un "Leer mas". El texto entero sigue en
+     el DOM, asi que se puede leer completo y comprobar.
+     Medido el 25-09: 19 pasaban de 200 caracteres y la mas larga tenia 765.
+     Una sola llenaba la pantalla del movil.
+     Regla: ux/texto-largo-plegado.
+     ============================================================ */
+  var PLIEGA_DESDE = 200;   // por debajo de esto cabe en cuatro lineas
+
+  function plegarOpiniones(raiz) {
+    var fichas = (raiz || document).querySelectorAll('.rsc');
+    [].forEach.call(fichas, function (f) {
+      var p = f.querySelector(':scope > p');
+      if (!p || p.classList.contains('rsc-txt')) return;
+
+      /* El 🗨 del principio no lo escribio el comprador: lo arrastra el volcado
+         de AliExpress. Quitarlo no cambia la opinion. */
+      p.textContent = p.textContent.replace(/^\s*[\u{1F5E8}\u{1F4AC}]️?\s*/u, '');
+
+      if (p.textContent.trim().length <= PLIEGA_DESDE) return;
+
+      p.classList.add('rsc-txt');
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'rsc-mas';
+      b.textContent = 'Leer más';
+      b.setAttribute('aria-expanded', 'false');
+      b.addEventListener('click', function () {
+        var abierta = p.classList.toggle('abierta');
+        b.textContent = abierta ? 'Leer menos' : 'Leer más';
+        b.setAttribute('aria-expanded', abierta ? 'true' : 'false');
+      });
+      p.insertAdjacentElement('afterend', b);
+    });
+  }
+
+  /* Las opiniones se pintan despues, y se repintan al pulsar "ver mas
+     opiniones": por eso no basta con hacerlo una vez. Se vigila el contenedor
+     y se pliega lo que vaya entrando. */
+  function vigilarOpiniones() {
+    var caja = document.querySelector('.rev-sec') || document.querySelector('#prod');
+    if (!caja) return;
+    plegarOpiniones(caja);
+    if (!('MutationObserver' in window)) return;
+    var mo = new MutationObserver(function () { plegarOpiniones(caja); });
+    mo.observe(caja, { childList: true, subtree: true });
+  }
+
   var intentos = 0;
   (function esperar() {
     if (montar()) {
+      animarElResto(document.querySelector('#prod') || document.body);
+      vigilarOpiniones();
       contar(); espejo(); revelar();
       return;
     }

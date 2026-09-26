@@ -414,9 +414,14 @@
 .p-balsamo.ba-anima .ba-rev.ba-pre { transform: translateY(24px); opacity: .25; }
 .p-balsamo.ba-anima .ba-tar.ba-pre:nth-child(odd)  { transform: translateX(-22px); }
 .p-balsamo.ba-anima .ba-tar.ba-pre:nth-child(even) { transform: translateX(22px); }
+/* El escalonado estaba en 80ms por pieza y la entrada en 750ms: con ocho
+   elementos el ultimo salia 1,3 s despues del primero y se notaba la espera.
+   La regla (ui-ux-pro-max, escalonado + duracion) pide 30-50ms de separacion y
+   la entrada por debajo de 520ms. */
 .p-balsamo.ba-anima .ba-rev.ba-pre.ba-in {
   transform: none; opacity: 1;
-  transition: transform .75s var(--ba-ease) calc(var(--i, 0) * .08s), opacity .6s ease calc(var(--i, 0) * .08s);
+  transition: transform .52s var(--ba-ease) calc(var(--i, 0) * .04s),
+              opacity   .42s ease           calc(var(--i, 0) * .04s);
 }
 
 /* ============================================================
@@ -460,3 +465,76 @@
    molde viejo se colara y pintara una caja oscura encima del hero bueno.
    ============================================================ */
 .ba-hero, .ba-polvo, .ba-focos, .ba-sobre, .ba-funde { display: none !important; }
+
+/* ============================================================
+   10 · EL VIDEO YA NO ES UN AGUJERO NEGRO
+   James, 25-09: "sigues metiendo el negro". Medido: .vid-prod tenia
+   background rgb(0,0,0) y 668 px de alto. En una pagina crema es un boquete.
+   El navegador pinta negro cuando no hay poster; con el poster puesto y el
+   fondo del color de la seccion, deja de verse.
+   Regla: ux/video-fondo.
+   ============================================================ */
+.p-balsamo #prod .vid-prod,
+.p-balsamo #prod .vid-wrap video {
+  background: var(--ba-suave);
+  border-radius: 14px;
+}
+.p-balsamo #prod .vid-wrap { background: var(--ba-base); }
+
+/* ============================================================
+   11 · OPINIONES LARGAS, PLEGADAS
+   Son reales de compradores del producto y NO se pueden reescribir (Directiva
+   UE 2019/2161): lo que se hace es plegarlas, no editarlas. 19 pasaban de 200
+   caracteres y la mas larga tenia 765; una sola tapaba la pantalla entera.
+   Se cortan a la vista en 4 lineas con "Leer mas". El texto completo sigue en
+   el DOM, asi que cualquiera lo puede leer entero y comprobar.
+   Regla: ux/texto-largo-plegado.
+   ============================================================ */
+.p-balsamo #prod .rsc > p.rsc-txt {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: none;
+}
+.p-balsamo #prod .rsc > p.rsc-txt.abierta {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+.p-balsamo #prod .rsc-mas {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 0;          /* el area tocable llega a 44px con la linea */
+  min-height: 34px;
+  background: none;
+  border: 0;
+  font-family: var(--ba-rotf);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--ba-rosa);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.p-balsamo #prod .rsc-mas:focus-visible { outline: 2px solid var(--ba-rosa); outline-offset: 3px; }
+
+/* ============================================================
+   12 · MOVIMIENTO REDUCIDO
+   Si el sistema lo pide, todo aparece ya puesto: nada se desplaza, nada se
+   retrasa. Es obligatorio, no un extra (ui-ux-pro-max §1 reduced-motion).
+   El JS ademas ni monta el observador, pero esto lo cubre por si acaso.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .p-balsamo *,
+  .p-balsamo *::before,
+  .p-balsamo *::after {
+    animation-duration: .001ms !important;
+    animation-delay: 0 !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    transition-delay: 0 !important;
+  }
+  .p-balsamo.ba-anima .ba-rev.ba-pre { transform: none !important; opacity: 1 !important; }
+}
