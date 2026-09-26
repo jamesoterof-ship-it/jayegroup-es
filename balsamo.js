@@ -476,6 +476,20 @@
   function airearDescripcion(cont) {
     var bloques = cont.querySelectorAll('section.desc, .bloque.desc');
 
+    /* La lista va aparte del parrafo. Antes iba dentro del mismo bucle y, si
+       el parrafo de ese bloque era corto, la funcion salia antes de llegar a
+       la lista y se quedaba sin formato. Ademas hay DOS listas iguales: la de
+       la descripcion y la de .datos. Las dos se peinan igual. */
+    var listas = cont.querySelectorAll('section.desc > ul, .bloque.desc > ul, .datos > ul');
+    [].forEach.call(listas, function (ul) {
+      if (ul.classList.contains('ba-puntos')) return;
+      ul.classList.add('ba-puntos');
+      [].forEach.call(ul.children, function (li, i) {
+        li.classList.add('ba-rev');
+        li.style.setProperty('--i', i);
+      });
+    });
+
     [].forEach.call(bloques, function (b) {
       var p = b.querySelector(':scope > p');
       if (!p || p.classList.contains('ba-leido')) return;
@@ -501,18 +515,6 @@
                  }).join('');
       p.insertAdjacentHTML('afterend', html);
       p.remove();
-
-      /* La lista de puntos: eran cinco viñetas identicas pegadas. Se convierte
-         en filas separadas por un filete, que es como respira una ficha de
-         revista. El texto no se toca. */
-      var ul = b.querySelector(':scope > ul');
-      if (ul && !ul.classList.contains('ba-puntos')) {
-        ul.classList.add('ba-puntos');
-        [].forEach.call(ul.children, function (li, i) {
-          li.classList.add('ba-rev');
-          li.style.setProperty('--i', i);
-        });
-      }
     });
   }
 

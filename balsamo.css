@@ -612,7 +612,8 @@
 
 /* Los puntos: cinco viñetas identicas pegadas no se leen, se saltan. Ahora
    cada una es una fila con su filete debajo y aire alrededor. */
-.p-balsamo #prod ul.ba-puntos {
+.p-balsamo #prod ul.ba-puntos,
+.p-balsamo #prod .datos ul.ba-puntos {
   list-style: none;
   margin: 22px 0 6px;
   padding: 0;
