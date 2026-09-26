@@ -169,6 +169,22 @@
     return { rotas: rotas, sinAlt: sinAlt, sinMedida: sinMedida };
   }
 
+  /* ---- 3b · lo que se quedó apagado ------------------------------------ */
+
+  /* Solo tiene sentido DESPUES de recorrer(): un bloque que sigue por debajo
+     de 0,9 cuando ya paso por pantalla y las transiciones acabaron es un
+     bloque que el visitante no llega a ver. */
+  function apagados() {
+    var fuera = [];
+    document.querySelectorAll('#prod *, .pie *').forEach(function (e) {
+      if (e.offsetHeight < 30) return;
+      var o = parseFloat(getComputedStyle(e).opacity);
+      if (o >= 0.9) return;
+      fuera.push('.' + (e.className || e.tagName).toString().slice(0, 26) + ' = ' + o);
+    });
+    return [...new Set(fuera)].slice(0, 10);
+  }
+
   /* ---- 4 · efectos ----------------------------------------------------- */
 
   function efectos(cfg) {
@@ -242,6 +258,27 @@
 
   /* ---- el revisor ------------------------------------------------------ */
 
+  /* Baja por toda la pagina como un visitante y ESPERA a que terminen las
+     transiciones antes de medir.
+     Sin esto, el revisor mide en mitad de los fundidos y canta como apagados
+     bloques que en realidad acaban en opacidad 1. Me paso el 26-09: di por
+     rota media pagina que estaba bien. Un revisor que da falsas alarmas hace
+     perder mas tiempo del que ahorra. */
+  function recorrer() {
+    var alto = document.body.scrollHeight;
+    var y = 0;
+    return new Promise(function (listo) {
+      (function paso() {
+        if (y < alto) { window.scrollTo(0, y); y += 450; return setTimeout(paso, 110); }
+        window.scrollTo(0, 0);
+        /* La entrada mas lenta de la pagina son 900ms (el telon de las fotos);
+           1.600 deja margen de sobra. */
+        setTimeout(listo, 1600);
+      })();
+    });
+  }
+  global.recorrer = recorrer;
+
   function revisar(cfg) {
     cfg = cfg || {};
     var todo = !cfg.paleta && !cfg.solo;
@@ -255,6 +292,7 @@
       r.toqueChico = toque();
       r.emojisComoIcono = emojis();
       r.erroresConsola = (global.__erroresJS || []).slice(0, 5);
+      r.apagados = apagados();
     }
 
     /* El veredicto: lo que de verdad impide enseñar la página. */
@@ -263,6 +301,7 @@
     if (r.contraste && r.contraste.length) graves.push(r.contraste.length + ' textos por debajo del mínimo');
     if (r.fotos && r.fotos.rotas.length) graves.push(r.fotos.rotas.length + ' fotos rotas');
     if (r.erroresConsola && r.erroresConsola.length) graves.push(r.erroresConsola.length + ' errores de JS');
+    if (r.apagados && r.apagados.length) graves.push(r.apagados.length + ' bloques que se quedan apagados');
 
     var avisos = [];
     if (r.sinEfecto && r.sinEfecto.length) avisos.push(r.sinEfecto.length + ' secciones sin efecto');
