@@ -908,9 +908,15 @@
     + '<button type="submit" class="cta rojo rebota">' + t('btnPedir', 'Comprar · pago al recibir') + '</button>'
     + '<p class="formnote">' + t('notaCod', 'Pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.') + '</p>'
     /* Salida para el que se traba llenando el formulario: si algo no le calza
-       y no tiene a donde ir, se va y la venta se pierde. */
-    + '<p class="formnote ayuda">' + t('dudas', '¿Tienes alguna duda? Escríbenos a ')
-    + '<a href="mailto:' + CORREO + '?subject=' + encodeURIComponent(t('asuntoPedido', 'Pedido de ') + p.nombre) + '">' + CORREO + '</a>' + t('yTeAyudamos', ' y te ayudamos.') + '</p>'
+       y no tiene a donde ir, se va y la venta se pierde. En Chile, de 6 que
+       llegaban hasta aqui solo 1 lo mandaba; con esta salida se recuperan.
+       Iba al correo porque no habia numero español. James dio el +34 672 42
+       37 35 el 26-09 y dijo que si a esta salida, sabiendo que en España no
+       hay bot: cada uno que escriba lo atiende una persona. El mensaje va
+       prellenado con el producto, como en Chile. */
+    + '<p class="formnote ayuda">' + t('dudas', '¿Se te complica llenarlo? ')
+    + '<a href="https://wa.me/34672423735?text=' + encodeURIComponent(t('msgWa', 'Hola, quiero pedir ') + p.nombre + t('msgWa2', ' y se me complica el formulario'))
+    + '" target="_blank" rel="noopener">' + t('ayudaWa', 'Escríbenos por WhatsApp') + '</a>' + t('yTeAyudamos', ' y te lo tomamos nosotros.') + '</p>'
     + '</form>'
     + '<div class="carriers"><span class="cl">' + t('enviamosCon', 'Enviamos con') + '</span>'
     + '<div class="cbadges cbadges-txt">' + (T.carriers || ['MRW', 'CTT Express', 'Correos Express']).map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div></div>'

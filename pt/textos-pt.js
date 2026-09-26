@@ -72,8 +72,15 @@ window.TEXTOS = {
      adiantado. */
   notaCod: 'Paga ao estafeta quando receber a encomenda. Enviamos-lhe a confirmação por email.',
   notaPre: 'Ao enviar a encomenda levamo-lo à página de pagamento. A sua encomenda segue com entrega prioritária em 14 h.',
-  dudas: 'Alguma dúvida? Escreva-nos para ',
-  yTeAyudamos: ' e nós ajudamos.',
+  /* ---- saida por WhatsApp para quem se atrapalha no formulario ----
+     Antes apontava para o correio porque nao havia numero. O mesmo numero
+     de Espanha (+34), por decisao de James em 26-09-2026. A mensagem vai
+     pre-preenchida com o produto, como no Chile. */
+  dudas: 'Complica-se preencher? ',
+  msgWa: 'Olá, quero encomendar ',
+  msgWa2: ' e o formulário está a complicar-se',
+  ayudaWa: 'Escreva-nos por WhatsApp',
+  yTeAyudamos: ' e tratamos nós.',
   seTeComplica: 'Está com dificuldades? Escreva-nos para ',
   asuntoPedido: 'Encomenda de ',
   asuntoQuiero: 'Quero encomendar ',

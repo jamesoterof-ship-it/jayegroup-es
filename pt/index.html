@@ -1075,8 +1075,10 @@ window.jayePixel = (function () {
         <div class="col contacto">
           <h4>Contacto</h4>
           <p><a href="mailto:apoio@jayegroup.com.es">apoio@jayegroup.com.es</a></p>
-          <!-- El WhatsApp de Chile NO va aqui. Cuando James de el numero español
-               se pone; mientras tanto, el contacto es el correo. -->
+          <!-- O mesmo numero de Espanha (+34), por decisao de James em 26-09-2026:
+               nao ha numero portugues. Por WhatsApp o prefixo nao muda nada para
+               o cliente. -->
+          <p><a href="https://wa.me/34672423735">WhatsApp +34 672 42 37 35</a></p>
           <p>Armazém em Sevilha</p>
           <p>Entregas em todo o Portugal continental</p>
         </div>
@@ -1130,17 +1132,17 @@ window.jayePixel = (function () {
 <!-- PORTUGAL: distritos y codigos postales sin cobertura (Acores y Madeira), en vez de las
      regiones y comunas de Chile. -->
 <script src="distritos-pt.js?v=110"></script>
-<script src="textos-pt.js?v=203"></script>
+<script src="textos-pt.js?v=204"></script>
 <script src="resenas-pt.js?v=200"></script>
 <script src="../efectos.js?v=4"></script>
-<script src="../ficha.js?v=216"></script>
+<script src="../ficha.js?v=217"></script>
 <!-- GSAP, de lib/ y del propio dominio. NO se carga ScrollTrigger: para saber
      cuando algo entra en pantalla ya sirve IntersectionObserver, que viene en
      el navegador y no pesa. Va al final para no frenar la pintura. -->
 <script src="../lib/gsap.min.js"></script>
   <script src="../lib/ScrollTrigger.min.js"></script>
   <script src="../lib/countup.umd.js"></script>
-<script src="../efectos-ficha.js?v=216"></script>
+<script src="../efectos-ficha.js?v=217"></script>
 <script src="../balsamo.js?v=12"></script>
 <!-- Los js de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO van aqui: no existen en este repo y daban 404. -->
@@ -1180,9 +1182,12 @@ window.jayePixel = (function () {
 })();
 </script>
 
-<!-- El boton flotante de WhatsApp apuntaba al numero de CHILE (+56 9 6477 5539):
-     un cliente español escribiendo a un numero chileno, en horario chileno.
-     Se quita hasta que James de el numero español. -->
+<!-- Botao flutuante de WhatsApp: o molde do Chile com o numero de Espanha, por
+     decisao de James em 26-09-2026 (nao ha numero portugues). Antes ia apagado
+     de proposito: apontava para o +56. O CSS (.wa) ja estava nesta pagina. -->
+<a class="wa" href="https://wa.me/34672423735" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 32 32"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2.1 7.8L.3 31.6l8.1-2.1c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.3c-2.4 0-4.7-.6-6.7-1.9l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.4-2.1-2.1-4.6-2.1-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.7 16 28.7zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.2 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg>
+</a>
 
 
 <!-- Aviso de cookies (obligatorio en Portugal: Lei 41/2004 art. 5 + RGPD) -->
