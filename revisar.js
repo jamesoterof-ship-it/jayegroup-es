@@ -175,6 +175,16 @@
      de 0,9 cuando ya paso por pantalla y las transiciones acabaron es un
      bloque que el visitante no llega a ver. */
   function apagados() {
+    /* CON LA PESTAÑA OCULTA ESTA MEDIDA NO VALE.
+       El navegador congela los IntersectionObserver y las transiciones de una
+       pestaña que no se ve: todo queda en su estado de partida y parece
+       apagado. El 26-09 di por rotos diez bloques que estaban bien, y el pane
+       de la app estaba escondido detrás de otra ventana.
+       Antes de creerse un apagado, la pestaña tiene que estar delante. */
+    if (document.visibilityState !== 'visible') {
+      return ['(sin medir: la pestaña está oculta y el navegador congela las '
+            + 'transiciones. Ponla delante y repite.)'];
+    }
     var fuera = [];
     document.querySelectorAll('#prod *, .pie *').forEach(function (e) {
       if (e.offsetHeight < 30) return;
@@ -301,9 +311,11 @@
     if (r.contraste && r.contraste.length) graves.push(r.contraste.length + ' textos por debajo del mínimo');
     if (r.fotos && r.fotos.rotas.length) graves.push(r.fotos.rotas.length + ' fotos rotas');
     if (r.erroresConsola && r.erroresConsola.length) graves.push(r.erroresConsola.length + ' errores de JS');
-    if (r.apagados && r.apagados.length) graves.push(r.apagados.length + ' bloques que se quedan apagados');
-
     var avisos = [];
+    var apagadosDeVerdad = (r.apagados || []).filter(function (x) { return x.indexOf('sin medir') < 0; });
+    if (apagadosDeVerdad.length) graves.push(apagadosDeVerdad.length + ' bloques que se quedan apagados');
+    if (document.visibilityState !== 'visible') avisos.push('pestaña oculta: las opacidades no se han medido');
+
     if (r.sinEfecto && r.sinEfecto.length) avisos.push(r.sinEfecto.length + ' secciones sin efecto');
     if (r.textosLargos && r.textosLargos.length) avisos.push(r.textosLargos.length + ' textos largos sin plegar');
     if (r.toqueChico && r.toqueChico.length) avisos.push(r.toqueChico.length + ' zonas de toque pequeñas');
