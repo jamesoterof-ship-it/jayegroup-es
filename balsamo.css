@@ -771,3 +771,12 @@
   .p-balsamo #prod .pagoOp { min-height: 0; grid-template-areas: 'ico tit' 'ico pr' 'ico sub'; grid-template-columns: 34px 1fr; }
   .p-balsamo #prod .pagoOp__ico { align-self: center; margin: 0; }
 }
+
+/* ============================================================
+   16 · LA LETRA PEQUEÑA DEL PIE
+   El gris #7e7869 sobre el negro del pie daba 4,39:1 y pide 4,5. Se aclara
+   un punto: 5,2:1. El pie no cambia de color -James lo dijo: el encabezado y
+   el pie se respetan-, solo se aclara el texto para que se lea.
+   Regla: ux/contraste.
+   ============================================================ */
+.pie small { color: #8E887A; }
