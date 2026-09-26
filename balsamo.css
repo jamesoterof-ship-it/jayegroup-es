@@ -757,7 +757,8 @@
   position: absolute; top: -9px; right: 10px;
   padding: 3px 9px;
   border-radius: 999px;
-  background: var(--ba-rosa);
+  /* No var(--ba-rosa): blanco sobre ese rosa da 3,02:1 y pide 4,5. */
+  background: #A8505F;
   color: #fff;
   font-family: var(--ba-rotf);
   font-size: 11px; font-weight: 700; letter-spacing: .02em;

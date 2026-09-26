@@ -70,7 +70,11 @@ window.PRODUCTOS = [
         ['pago', 'Pagas al recibir'],
       ],
     },
-    acento: '#B76E79',   /* oro rosa: cosmetica, y distinto del oro de la marca */
+    /* Rosa de acento. Era #B76E79 y daba 3,8:1 tanto en blanco sobre él (la
+       cinta de la promo, el -32%, el contador) como al revés (el botón
+       secundario). Pide 4,5. Este da 5,3:1 y sigue siendo el rosa del envase,
+       solo un punto más cerrado. Regla: ux/contraste. */
+    acento: '#A8505F',   /* oro rosa: cosmetica, y distinto del oro de la marca */
 
     /* ---- Escasez: SOLO datos reales del Radar. En España inventar urgencia
        es practica desleal (art. 5 y 7 Ley 3/1991). Estas cifras salen de
