@@ -461,9 +461,65 @@
     mo.observe(caja, { childList: true, subtree: true });
   }
 
+  /* ============================================================
+     EL LADRILLO DE TEXTO.
+     James, 26-09: "muy plano esto". Y tenia razon: 496 caracteres en un solo
+     parrafo, sin un respiro, y debajo una lista de viñetas todas iguales.
+     Lo que se hace es lo que hace una revista con un texto largo:
+       · la primera frase sale como ENTRADILLA, un punto mas grande;
+       · su primera letra, en capital de Bodoni, que es donde entra el ojo;
+       · el resto se parte en parrafos de dos o tres frases.
+     No se cambia NI UNA PALABRA: solo se reparte lo que ya estaba escrito.
+     Reglas: jerarquia-editorial (4 niveles por tamaño y espacio) y
+     medida-linea (34ch en movil).
+     ============================================================ */
+  function airearDescripcion(cont) {
+    var bloques = cont.querySelectorAll('section.desc, .bloque.desc');
+
+    [].forEach.call(bloques, function (b) {
+      var p = b.querySelector(':scope > p');
+      if (!p || p.classList.contains('ba-leido')) return;
+      var txt = (p.textContent || '').trim();
+      if (txt.length < 260) return;         // corto: se deja como esta
+
+      /* Partir por frases. El punto de "9 g." o "0,32 oz." no cuenta: se pide
+         espacio y mayuscula detras. */
+      var frases = txt.split(/(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÑ¿¡])/);
+      if (frases.length < 3) return;
+
+      var entradilla = frases.shift();
+      /* Grupos de dos frases: un parrafo de tres ya vuelve a pesar. */
+      var parrafos = [];
+      for (var i = 0; i < frases.length; i += 2) {
+        parrafos.push(frases.slice(i, i + 2).join(' '));
+      }
+
+      var html = '<p class="ba-entrada ba-leido"><span class="ba-cap" aria-hidden="true">'
+               + esc(entradilla.charAt(0)) + '</span>' + esc(entradilla.slice(1)) + '</p>'
+               + parrafos.map(function (t) {
+                   return '<p class="ba-cuerpo ba-leido">' + esc(t) + '</p>';
+                 }).join('');
+      p.insertAdjacentHTML('afterend', html);
+      p.remove();
+
+      /* La lista de puntos: eran cinco viñetas identicas pegadas. Se convierte
+         en filas separadas por un filete, que es como respira una ficha de
+         revista. El texto no se toca. */
+      var ul = b.querySelector(':scope > ul');
+      if (ul && !ul.classList.contains('ba-puntos')) {
+        ul.classList.add('ba-puntos');
+        [].forEach.call(ul.children, function (li, i) {
+          li.classList.add('ba-rev');
+          li.style.setProperty('--i', i);
+        });
+      }
+    });
+  }
+
   var intentos = 0;
   (function esperar() {
     if (montar()) {
+      airearDescripcion(document.querySelector('#prod') || document.body);
       animarElResto(document.querySelector('#prod') || document.body);
       vigilarOpiniones();
       contar(); espejo(); revelar();

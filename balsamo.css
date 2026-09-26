@@ -569,3 +569,79 @@
   min-height: 44px;
   padding: 0 4px;
 }
+
+/* ============================================================
+   14 · LA DESCRIPCION, AIREADA
+   James, 26-09: "muy plano esto". Eran 496 caracteres de corrido y cinco
+   viñetas iguales. Esto le da los cuatro niveles de la jerarquia editorial:
+   rotulo, titular, ENTRADILLA y cuerpo, separados por tamaño y por aire, no
+   por color (quitando el color la jerarquia se sigue leyendo).
+   Reglas: jerarquia-editorial, medida-linea.
+   ============================================================ */
+
+/* La entradilla: la primera frase, un punto mas grande que el cuerpo. */
+.p-balsamo #prod .ba-entrada {
+  margin: 0 0 18px;
+  max-width: 34ch;
+  font-size: 17.5px;
+  line-height: 1.62;
+  color: var(--ba-texto);
+}
+
+/* La capital. Es el recurso de revista de toda la vida: el ojo entra por ahi.
+   Va en Bodoni, que es la letra de los titulares, para que ate con ellos. */
+.p-balsamo #prod .ba-cap {
+  float: left;
+  margin: 6px 10px 0 0;
+  font-family: var(--ba-disp);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 58px;
+  line-height: .72;
+  color: var(--ba-rosa);
+}
+
+.p-balsamo #prod .ba-cuerpo {
+  margin: 0 0 14px;
+  max-width: 34ch;
+  font-size: 15.5px;
+  line-height: 1.72;         /* mas aire entre lineas que antes (1,75) */
+  color: var(--ba-texto2);
+}
+.p-balsamo #prod .ba-cuerpo:last-of-type { margin-bottom: 22px; }
+
+/* Los puntos: cinco viñetas identicas pegadas no se leen, se saltan. Ahora
+   cada una es una fila con su filete debajo y aire alrededor. */
+.p-balsamo #prod ul.ba-puntos {
+  list-style: none;
+  margin: 22px 0 6px;
+  padding: 0;
+}
+.p-balsamo #prod ul.ba-puntos > li {
+  position: relative;
+  margin: 0;
+  padding: 13px 0 13px 30px;
+  border-bottom: 1px solid var(--ba-borde);
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--ba-texto);
+  list-style: none;
+}
+.p-balsamo #prod ul.ba-puntos > li:last-child { border-bottom: 0; }
+.p-balsamo #prod ul.ba-puntos > li::marker { content: none; }
+
+/* El filete corto en oro delante de cada punto: pesa menos que un circulo
+   relleno y ordena la columna. */
+.p-balsamo #prod ul.ba-puntos > li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 21px;
+  width: 16px; height: 1.5px;
+  background: var(--ba-oro);
+}
+
+@media (min-width: 760px) {
+  .p-balsamo #prod .ba-entrada { font-size: 19px; max-width: 58ch; }
+  .p-balsamo #prod .ba-cuerpo  { font-size: 16.5px; max-width: 58ch; }
+  .p-balsamo #prod .ba-cap     { font-size: 68px; }
+}
