@@ -70,7 +70,7 @@ window.TEXTOS = {
   /* Ja nao diz "nao paga nada agora": com duas formas de pagamento no mesmo
      ecra, essa frase deixa de ser verdade assim que o cliente escolhe pagar
      adiantado. */
-  notaCod: 'Paga ao estafeta quando receber a encomenda, em dinheiro ou com cartão. Enviamos-lhe a confirmação por email.',
+  notaCod: 'Paga ao estafeta quando receber a encomenda. Enviamos-lhe a confirmação por email.',
   notaPre: 'Ao enviar a encomenda levamo-lo à página de pagamento. A sua encomenda segue com entrega prioritária em 14 h.',
   dudas: 'Alguma dúvida? Escreva-nos para ',
   yTeAyudamos: ' e nós ajudamos.',

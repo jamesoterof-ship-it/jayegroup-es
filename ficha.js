@@ -906,7 +906,7 @@
        la misma pantalla, esa frase es falsa en cuanto el cliente elige pagar
        por adelantado. James lo señalo. */
     + '<button type="submit" class="cta rojo rebota">' + t('btnPedir', 'Comprar · pago al recibir') + '</button>'
-    + '<p class="formnote">' + t('notaCod', 'Pagas al repartidor cuando recibes el paquete, en efectivo o con tarjeta. Te enviamos la confirmación por correo.') + '</p>'
+    + '<p class="formnote">' + t('notaCod', 'Pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.') + '</p>'
     /* Salida para el que se traba llenando el formulario: si algo no le calza
        y no tiene a donde ir, se va y la venta se pierde. */
     + '<p class="formnote ayuda">' + t('dudas', '¿Tienes alguna duda? Escríbenos a ')
@@ -1240,7 +1240,7 @@
     var nota = document.querySelector('#fPedido .formnote');
     if (nota) nota.textContent = formaPago === 'pre'
       ? t('notaPre', 'Al enviar el pedido te llevamos a la pasarela de pago. Tu pedido sale con entrega prioritaria en 14 h.')
-      : t('notaCod', 'Pagas al repartidor cuando recibes el paquete, en efectivo o con tarjeta. Te enviamos la confirmación por correo.');
+      : t('notaCod', 'Pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.');
   }
   /* cambiar entre pagar al recibir y pagar ahora */
   document.addEventListener('click', function (ev) {
