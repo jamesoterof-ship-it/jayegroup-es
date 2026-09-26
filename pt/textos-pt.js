@@ -156,4 +156,40 @@ window.TEXTOS = {
   asuntoFallo: 'A minha encomenda não foi confirmada',
   cuerpoFallo: 'Olá, fiz a minha encomenda de ',
   cuerpoFallo2: ' na página e não foi confirmada. O meu nome é ',
+
+  /* ============================================================
+     DESENHO DO BÁLSAMO (balsamo.js) — o mesmo de Espanha, em português.
+     O ficheiro balsamo.js é partilhado: se estas chaves não existirem,
+     cai para o espanhol. Os caminhos das fotos vão sem ../ : o próprio
+     balsamo.js põe-no quando o país é PT.
+     ============================================================ */
+  baCifra1: 'gramas que cabem na mala',
+  baCifra2: 'ativos na fórmula',
+  baCifra3: 'mãos sujas',
+
+  baPasosRot: 'Como se usa',
+  baPasosH2: 'Três gestos, <em>e está feito.</em>',
+  baPasos: [
+    ['Roda a base', 'Um giro e assoma um pouco de bálsamo. Não é preciso sujar as mãos nem calcular quantidade: sai o que precisa.'],
+    ['Deslize-o', 'Passe o stick pelo malar, o contorno, os lábios, o pescoço ou o decote. Absorve rápido e não deixa sensação oleosa.'],
+    ['Quando quiser', 'De manhã, à noite ou a meio da tarde para retocar. Vai antes da maquilhagem ou por cima, sem a arrastar.'],
+  ],
+
+  baTraeRot: 'O que o torna diferente',
+  baTraeH2: 'Não é um creme: <em>é um gesto.</em>',
+
+  baFotos: [
+    ['img/balsamo-uso.webp?v=1',
+     'Uma mulher de cerca de cinquenta anos a deslizar o bálsamo VITALIS pelo malar',
+     'O gesto', 'Dois segundos e está feito',
+     'Desliza diretamente sobre a pele, sem mãos e sem medir quantidade. Por isso se usa mesmo todos os dias, e não fica na gaveta.'],
+    ['img/balsamo-mano.webp?v=1',
+     'O stick de bálsamo de colagénio VITALIS na mão, com o seu rótulo dourado',
+     'Onde se aplica', 'Rosto, lábios, pescoço e decote',
+     'Um só produto para todas as zonas que ficam secas. Nada de ter um frasco diferente para cada parte da cara.'],
+    ['img/balsamo-bolso.webp?v=1',
+     'O stick ao lado de uma mala, uns óculos de sol e um frasco de perfume sobre uma mesa de mármore',
+     'Vai consigo', 'Nove gramas, e pronto',
+     'É sólido: não se entorna na mala nem seca como um frasco aberto. Leva-o consigo e retoca onde estiver.'],
+  ],
 };

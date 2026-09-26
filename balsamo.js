@@ -44,7 +44,17 @@
 
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-  var PASOS = [
+  /* ---- ES / PT ----
+     El mismo archivo sirve para los dos países, igual que ficha.js: si hay
+     window.TEXTOS (que solo carga Portugal) manda lo que traiga; si no, el
+     español que va aquí abajo.
+     Portugal cuelga de /pt/, así que sus imágenes llevan ../ delante. */
+  var T = window.TEXTOS || {};
+  function t(k, d) { return (T[k] != null && T[k] !== '') ? T[k] : d; }
+  var PAIS = T._pais || 'ES';
+  var RUTA = (PAIS === 'PT') ? '../' : '';
+
+  var PASOS = (T.baPasos && T.baPasos.length) ? T.baPasos : [
     ['Gira la base', 'Un giro y asoma un poco de bálsamo. No hay que untarse las manos ni calcular cantidad: sale justo lo que necesitas.'],
     ['Deslízalo', 'Pasa el stick por el pómulo, el contorno, los labios, el cuello o el escote. Se absorbe rápido y no deja sensación grasa.'],
     ['Cuando quieras', 'Por la mañana, por la noche o a media tarde para retocar. Va antes del maquillaje o por encima, sin arrastrarlo.'],
@@ -54,7 +64,7 @@
      se lo señaló en la máscara y tenía razón.
      Se quitó la del catálogo del proveedor, que era un collage con FOREHEAD /
      FACE / LIPS / BODY en INGLÉS encima. */
-  var FOTOS = [
+  var FOTOS = (T.baFotos && T.baFotos.length) ? T.baFotos : [
     ['img/balsamo-uso.webp?v=1',
      'Una mujer de unos cincuenta años deslizando el bálsamo VITALIS por su pómulo',
      'El gesto', 'Dos segundos y ya está',
@@ -118,17 +128,19 @@
   function hero() {
     return '<section class="ba-sec ba-oscura ba-cifras">' +
       '<div class="ba-med">' +
-        '<div><b data-hasta="9">9</b><span>gramos que caben en el bolso</span></div>' +
-        '<div><b data-hasta="3">3</b><span>activos en la fórmula</span></div>' +
-        '<div><b data-hasta="0" data-rodillo="1">0</b><span>manos manchadas</span></div>' +
+        '<div><b data-hasta="9">9</b><span>' + esc(t('baCifra1', 'gramos que caben en el bolso')) + '</span></div>' +
+        '<div><b data-hasta="3">3</b><span>' + esc(t('baCifra2', 'activos en la fórmula')) + '</span></div>' +
+        '<div><b data-hasta="0" data-rodillo="1">0</b><span>' + esc(t('baCifra3', 'manos manchadas')) + '</span></div>' +
       '</div>' +
     '</section>';
   }
 
   function bloquePasos() {
     return '<section class="ba-sec ba-oscura ba-pasos-sec">' +
-      '<span class="ba-rot">Cómo se usa</span>' +
-      '<h2 class="ba-h2">Tres gestos, <em>y ya está.</em></h2>' +
+      '<span class="ba-rot">' + esc(t('baPasosRot', 'Cómo se usa')) + '</span>' +
+      /* El <em> es el trozo en oro: va sin escapar a propósito, y lo que
+         entra aquí lo escribimos nosotros, no el cliente. */
+      '<h2 class="ba-h2">' + t('baPasosH2', 'Tres gestos, <em>y ya está.</em>') + '</h2>' +
       '<ol class="ba-pasos">' +
         PASOS.map(function (p, i) {
           return '<li class="ba-paso ba-rev" style="--i:' + i + '">' +
@@ -143,8 +155,8 @@
 
   function bloqueTrae(puntos) {
     return '<section class="ba-sec ba-oscura ba-trae">' +
-      '<span class="ba-rot">Lo que lo hace distinto</span>' +
-      '<h2 class="ba-h2">No es una crema: <em>es un gesto.</em></h2>' +
+      '<span class="ba-rot">' + esc(t('baTraeRot', 'Lo que lo hace distinto')) + '</span>' +
+      '<h2 class="ba-h2">' + t('baTraeH2', 'No es una crema: <em>es un gesto.</em>') + '</h2>' +
       '<div class="ba-grid">' +
         puntos.map(function (t, i) {
           return '<button type="button" class="ba-tar ba-rev" style="--i:' + i + '">' +
@@ -160,7 +172,7 @@
     return '<div class="ba-fichas">' + FOTOS.map(function (f) {
       return '<figure class="ba-fi ba-rev">' +
         '<div class="ba-foto">' +
-          '<img src="' + f[0] + '" alt="' + esc(f[1]) + '" loading="lazy" width="900" height="900">' +
+          '<img src="' + RUTA + f[0] + '" alt="' + esc(f[1]) + '" loading="lazy" width="900" height="900">' +
           '<span class="ba-telon ba-t1" aria-hidden="true"></span><span class="ba-telon ba-t2" aria-hidden="true"></span>' +
         '</div>' +
         '<figcaption><span class="ba-rot">' + esc(f[2]) + '</span><b>' + esc(f[3]) + '</b><p>' + esc(f[4]) + '</p></figcaption>' +
