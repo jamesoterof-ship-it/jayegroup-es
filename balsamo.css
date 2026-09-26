@@ -646,3 +646,127 @@
   .p-balsamo #prod .ba-cuerpo  { font-size: 16.5px; max-width: 58ch; }
   .p-balsamo #prod .ba-cap     { font-size: 68px; }
 }
+
+/* ============================================================
+   15 · LOS DOS PAGOS, QUE SE ENTIENDAN
+   James, 26-09: "eso esta como enredado, no se logra aclarar bien los dos
+   pagos". El selector de pago llevaba las clases del selector de cantidad
+   "para no escribir CSS nuevo", asi que eran cinco filas identicas seguidas
+   y parecian una sola lista.
+   Ahora la cantidad son filas y el pago son dos fichas LADO A LADO: al ser
+   solo dos, se abarcan de un vistazo y no se confunden con lo de arriba.
+   Baymard: lo que importa no es el formato, es que cada decision se lea como
+   una decision aparte.
+   ============================================================ */
+
+/* El numero y la pregunta de cada paso. Sin esto, el visitante no sabe que
+   son dos decisiones distintas. */
+.p-balsamo #prod .pasoRot {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 22px 0 10px;
+  font-family: var(--ba-rotf);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--ba-texto);
+}
+.p-balsamo #prod .pasoRot:first-of-type { margin-top: 4px; }
+.p-balsamo #prod .pasoRot b {
+  display: grid;
+  place-items: center;
+  width: 21px; height: 21px;
+  border-radius: 50%;
+  background: var(--ba-rosa);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.p-balsamo #prod .pagoSel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0 0 4px;
+}
+
+.p-balsamo #prod .pagoOp {
+  position: relative;
+  display: grid;
+  grid-template-areas: 'ico' 'tit' 'pr' 'sub';
+  align-content: start;
+  gap: 2px;
+  min-height: 132px;            /* de sobra sobre los 44px de zona tocable */
+  padding: 16px 12px 13px;
+  border: 1.5px solid var(--ba-borde);
+  border-radius: 14px;
+  background: #fff;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.p-balsamo #prod .pagoOp:active { transform: scale(.985); }
+
+/* La elegida: borde rosa, fondo teñido y un filete arriba. Se distingue por
+   TRES cosas a la vez, no solo por color (jerarquia-sin-color). */
+.p-balsamo #prod .pagoOp.sel {
+  border-color: var(--ba-rosa);
+  background: var(--ba-suave);
+  box-shadow: 0 0 0 3px rgba(201,128,139,.14);
+}
+.p-balsamo #prod .pagoOp.sel::after {
+  content: '';
+  position: absolute; left: 12px; right: 12px; top: -1.5px;
+  height: 3px; border-radius: 0 0 3px 3px;
+  background: var(--ba-rosa);
+}
+.p-balsamo #prod .pagoOp:focus-visible { outline: 2px solid var(--ba-rosa); outline-offset: 3px; }
+
+.p-balsamo #prod .pagoOp__ico { grid-area: ico; margin-bottom: 4px; }
+.p-balsamo #prod .pagoOp__ico svg {
+  width: 26px; height: 26px;
+  fill: none; stroke: var(--ba-texto2); stroke-width: 1.7;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.p-balsamo #prod .pagoOp.sel .pagoOp__ico svg { stroke: var(--ba-rosa); }
+
+.p-balsamo #prod .pagoOp__tit {
+  grid-area: tit;
+  font-size: 14px; font-weight: 700; line-height: 1.25;
+  color: var(--ba-texto);
+}
+.p-balsamo #prod .pagoOp__pr {
+  grid-area: pr;
+  margin-top: 2px;
+  font-size: 21px; font-weight: 800; line-height: 1.1;
+  font-variant-numeric: tabular-nums;   /* al cambiar de pack no baila */
+  color: var(--ba-texto);
+}
+.p-balsamo #prod .pagoOp__sub {
+  grid-area: sub;
+  margin-top: 3px;
+  font-size: 12px; line-height: 1.35;
+  color: var(--ba-texto2);
+}
+
+/* La cinta del ahorro: va fuera, en la esquina, para que no empuje el texto. */
+.p-balsamo #prod .pagoOp__cinta {
+  position: absolute; top: -9px; right: 10px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--ba-rosa);
+  color: #fff;
+  font-family: var(--ba-rotf);
+  font-size: 11px; font-weight: 700; letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+/* Muy estrecho (320px): una debajo de otra antes que apretarlas. */
+@media (max-width: 349px) {
+  .p-balsamo #prod .pagoSel { grid-template-columns: 1fr; }
+  .p-balsamo #prod .pagoOp { min-height: 0; grid-template-areas: 'ico tit' 'ico pr' 'ico sub'; grid-template-columns: 34px 1fr; }
+  .p-balsamo #prod .pagoOp__ico { align-self: center; margin: 0; }
+}

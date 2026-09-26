@@ -800,26 +800,49 @@
     + '<div class="cod-badge">'
     + '<svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg>'
     + ' Pago 100% seguro contra entrega</div>'
+    /* ---- PASO 1: CUANTAS UNIDADES ---- */
+    + '<p class="pasoRot"><b>1</b>' + t('paso1', '¿Cuántas quieres?') + '</p>'
     + '<div class="packs" id="packsForm">' + packsHTML() + '</div>'
-    /* ---- LAS DOS FORMAS DE PAGO ----
+
+    /* ---- PASO 2: COMO PAGA ----
+       James, 26-09: "eso esta como enredado, no se logra aclarar bien los dos
+       pagos". Tenia razon, y el motivo estaba escrito aqui mismo: al selector
+       de pago se le habian puesto las clases del selector de cantidad "para no
+       escribir CSS nuevo". Resultado: cinco filas identicas seguidas, tres de
+       cantidad y dos de pago, que parecian una sola lista de cinco opciones.
+
+       Ahora son DOS COSAS DISTINTAS a la vista:
+         · cada grupo lleva su numero y su pregunta;
+         · la cantidad sigue en filas verticales con foto;
+         · el pago son dos fichas LADO A LADO, que al ser solo dos se abarcan
+           de un vistazo y no se confunden con la lista de arriba.
+       Baymard: radios, pestañas o fichas rinden igual; lo que importa es que
+       cada decision se lea como una decision aparte.
+
        OJO con como se dice: es un DESCUENTO POR PAGAR AHORA, nunca un recargo
        por pagar al recibir. El art. 60 ter del TRLGDCU prohibe cobrar por usar
        un medio de pago mas de lo que ese medio nos cuesta. */
-    /* Se le ponen las clases 'packs' y 'pack' a proposito: asi hereda el mismo
-       estilo que el selector de cantidades y no hay que escribir CSS nuevo. */
-    + (p.anticipado ? '<div class="packs pagoSel" id="pagoSel">'
-        + '<button type="button" class="pack pagoOp sel" data-pago="cod">'
-        + '<span class="radio"></span>'
-        + '<span class="info"><span class="t">' + t('pagoCod', 'Pago al recibir') + '</span>'
-        + '<span class="s">' + t('pagoCodSub', 'Envío gratis · 24-48 h') + '</span></span>'
-        + '<span class="pr"><span class="n" id="prCod">' + pesos(kSel.precio) + '</span></span>'
+    + (p.anticipado ? '<p class="pasoRot"><b>2</b>' + t('paso2', '¿Cómo quieres pagar?') + '</p>'
+        + '<div class="pagoSel" id="pagoSel" role="radiogroup" aria-label="'
+        + esc(t('paso2', '¿Cómo quieres pagar?')) + '">'
+
+        + '<button type="button" class="pagoOp sel" data-pago="cod" role="radio" aria-checked="true">'
+        + '<span class="pagoOp__ico" aria-hidden="true"><svg viewBox="0 0 24 24">'
+        + '<rect x="2.5" y="7" width="19" height="12" rx="2.2"/><path d="M2.5 11h19"/>'
+        + '<circle cx="17.5" cy="15.5" r="1.3"/></svg></span>'
+        + '<span class="pagoOp__tit">' + t('pagoCod', 'Pago al recibir') + '</span>'
+        + '<span class="pagoOp__pr" id="prCod">' + pesos(kSel.precio) + '</span>'
+        + '<span class="pagoOp__sub">' + t('pagoCodSub', 'Envío gratis · 24-48 h') + '</span>'
         + '</button>'
-        + '<button type="button" class="pack pagoOp" data-pago="pre">'
-        + '<span class="tag">' + t('ahorras', 'Ahorras ') + pesos(p.anticipado.descuento) + '</span>'
-        + '<span class="radio"></span>'
-        + '<span class="info"><span class="t">' + esc(p.anticipado.titulo || t('pagaAhora', 'Paga ahora')) + '</span>'
-        + '<span class="s">' + esc(p.anticipado.envio || '') + '</span></span>'
-        + '<span class="pr"><span class="n" id="prPre">' + pesos(precioPre(elegido)) + '</span></span>'
+
+        + '<button type="button" class="pagoOp" data-pago="pre" role="radio" aria-checked="false">'
+        + '<span class="pagoOp__cinta">−' + pesos(p.anticipado.descuento) + '</span>'
+        + '<span class="pagoOp__ico" aria-hidden="true"><svg viewBox="0 0 24 24">'
+        + '<path d="M12 3v18"/><path d="M16.5 7.5c-.6-1.4-2.3-2.2-4.5-2.2-2.5 0-4.2 1.1-4.2 2.9 0 1.9 1.8 2.6 4.4 3.2 2.9.6 4.8 1.4 4.8 3.5 0 2-1.9 3.2-4.6 3.2-2.4 0-4.2-.9-4.8-2.4"/>'
+        + '</svg></span>'
+        + '<span class="pagoOp__tit">' + esc(p.anticipado.titulo || t('pagaAhora', 'Paga ahora')) + '</span>'
+        + '<span class="pagoOp__pr" id="prPre">' + pesos(precioPre(elegido)) + '</span>'
+        + '<span class="pagoOp__sub">' + esc(p.anticipado.envio || '') + '</span>'
         + '</button>'
         + '</div>' : '')
     + '<div class="summary">'
@@ -1185,8 +1208,19 @@
     if ($('sumTot')) $('sumTot').textContent = pesos(cobra);
     if ($('sumTotRot')) $('sumTotRot').textContent = formaPago === 'pre'
       ? t('totalPre', 'Total a pagar ahora') : t('totalCod', 'Total a pagar al recibir');
+    /* EL BOTON DICE A DONDE LLEVA.
+       Es el fallo que Baymard senala como el mas grave del paso de pago: si
+       el boton pone "Hacer el pedido" y al pulsarlo salta una pasarela, el
+       cliente se siente enganado y se va. Aqui hay dos caminos distintos y
+       el boton tiene que decir cual.
+       Las dos formulas cumplen el art. 8.2 de la Directiva 2011/83, que
+       obliga a que el boton diga que el pedido conlleva pagar. */
     var btn = document.querySelector('#fPedido button[type="submit"]');
-    if (btn && !btn.disabled) btn.textContent = t('btnPedir', 'Pedido con obligación de pago');
+    if (btn && !btn.disabled) {
+      btn.textContent = formaPago === 'pre'
+        ? t('btnPedirPre', 'Pagar ahora ') + pesos(cobra)
+        : t('btnPedir', 'Pedido con obligación de pago');
+    }
     var nota = document.querySelector('#fPedido .formnote');
     if (nota) nota.textContent = formaPago === 'pre'
       ? t('notaPre', 'Al enviar el pedido te llevamos a la pasarela de pago. Tu pedido sale con entrega prioritaria en 14 h.')
@@ -1198,7 +1232,12 @@
     if (!b || !$('pagoSel')) return;
     formaPago = b.getAttribute('data-pago') === 'pre' ? 'pre' : 'cod';
     Array.prototype.forEach.call($('pagoSel').children, function (x) {
-      x.classList.toggle('sel', x === b); });
+      var esta = x === b;
+      x.classList.toggle('sel', esta);
+      /* Para un lector de pantalla el grupo es un radiogroup: hay que decirle
+         cual queda marcado, o anuncia las dos como si nada hubiera cambiado. */
+      if (x.setAttribute) x.setAttribute('aria-checked', esta ? 'true' : 'false');
+    });
     pintarPrecio();
   });
   /* el boton del hero baja al formulario. Sin esto era un boton bonito que no

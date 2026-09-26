@@ -157,6 +157,11 @@ window.TEXTOS = {
   cuerpoFallo: 'Olá, fiz a minha encomenda de ',
   cuerpoFallo2: ' na página e não foi confirmada. O meu nome é ',
 
+  /* ---- os dois passos do formulário ---- */
+  paso1: 'Quantas quer?',
+  paso2: 'Como quer pagar?',
+  btnPedirPre: 'Pagar agora ',
+
   /* ============================================================
      DESENHO DO BÁLSAMO (balsamo.js) — o mesmo de Espanha, em português.
      O ficheiro balsamo.js é partilhado: se estas chaves não existirem,
