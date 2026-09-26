@@ -34,6 +34,24 @@ window.PRODUTOS = [
     video: '../img/balsamo-ficha.mp4?v=1',
     acento: '#B76E79',
 
+    /* ---- HERO ----
+       Faltava: sem este bloco, ficha.js punha o nome do produto como título e
+       Portugal ficava sem o titular. É o mesmo de Espanha, em português, com a
+       mesma pontuação (vírgula e ponto final), porque a letra é a Bodoni em
+       itálico e sem pontuação fica coxa.
+       Só se pode falar da APARÊNCIA da pele (Regulamento UE 655/2013). */
+    hero: {
+      img: '../img/hero-balsamo.webp?v=1',
+      kicker: 'Novo em Portugal',
+      titulo: 'Dois segundos,<br>e a pele<br><b>deixa de repuxar.</b>',
+      sub: 'Bálsamo de colagénio em stick. Desliza e está feito: rosto, contorno, lábios, pescoço e decote.',
+      datos: [
+        ['envio', 'Portes grátis'],
+        ['reloj', 'Em 24-48 h'],
+        ['pago', 'Paga na entrega'],
+      ],
+    },
+
     escasez: { hoy: 81, mejorDia: 105, quedan: 3898,
       nota: 'Sai do nosso armazém em Sevilha por ordem de encomenda. Paga quando já o tem na mão.' },
 

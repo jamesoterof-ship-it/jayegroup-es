@@ -124,18 +124,28 @@
    clamp(28px,7vw,40px) }. Al ir en el documento, esa gana a .heroP__h1 por
    mucho clamp que le pongamos aqui: el titular se quedaba en 28 px pasara lo
    que pasara. Por eso las reglas del titular llevan .heroP delante. */
+/* La misma letra que el titular de la máscara: Bodoni Moda en cursiva, del
+   cuerpo 500 y en minúsculas. Antes iba en Barlow Condensed a 800 y TODO EN
+   MAYÚSCULA, que es la letra de la ficha de tienda, no la de la máscara: era
+   lo primero que se veía y lo que hacía que la página no se le pareciera.
+   Los valores salen de `.p-mascara #prod .ma-h1`, medidos, no inventados.
+   El tamaño baja de 14vw a 9.6vw porque la cursiva con minúsculas ocupa más
+   ancho por letra que la condensada en caja alta. */
 .heroP .heroP__h1 {
-  font-family: "Barlow Condensed", Inter, sans-serif;
-  font-weight: 800;
-  font-size: clamp(44px, 14vw, 72px);
-  line-height: .92;
+  font-family: 'Bodoni Moda', Didot, Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(36px, 10.4vw, 72px);
+  line-height: 1.02;
   letter-spacing: -.012em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--tinta);
   margin: 0 0 15px;
   text-wrap: balance;
 }
-.heroP .heroP__h1 b { color: var(--rosaF); font-weight: 800; }
+/* En la máscara el trozo destacado va en oro y en negrita; aquí en el rosa
+   fuerte del envase, que sobre la crema sí se lee (el oro claro daba 1,49:1). */
+.heroP .heroP__h1 b { color: var(--rosaF); font-weight: 700; font-style: italic; }
 
 /* ============================================================
    CASCADA DEL TITULAR, letra por letra
@@ -321,7 +331,7 @@
     background: linear-gradient(to left, var(--crema) 10%, rgba(251,244,240,0) 100%);
   }
   .heroP__txt { padding: 54px 0; text-align: left; }
-  .heroP .heroP__h1 { font-size: clamp(52px, 4.6vw, 74px); }
+  .heroP .heroP__h1 { font-size: clamp(48px, 4.6vw, 74px); }
   .heroP__sub { margin-left: 0; }
   .heroP__datos { justify-content: flex-start; }
   .heroP__pie { flex-direction: row; align-items: center; gap: 20px; }

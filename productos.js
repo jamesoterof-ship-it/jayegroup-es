@@ -62,7 +62,7 @@ window.PRODUCTOS = [
     hero: {
       img: 'img/hero-balsamo.webp?v=1',
       kicker: 'Nuevo en España',
-      titulo: 'Dos segundos<br>y la piel<br><b>deja de tirar</b>',
+      titulo: 'Dos segundos,<br>y la piel<br><b>deja de tirar.</b>',   /* con coma y punto, como el titular de la máscara: la cursiva sin puntuación queda coja */
       sub: 'Bálsamo de colágeno en stick. Se desliza y listo: rostro, contorno, labios, cuello y escote.',
       datos: [
         ['envio', 'Envío gratis'],

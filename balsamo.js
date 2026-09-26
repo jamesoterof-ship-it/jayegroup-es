@@ -205,12 +205,23 @@
 
     /* La franja de cifras va justo DEBAJO del hero. Se cuelga del propio hero
        y no de .arriba2: colgada de arriba2 acababa cayendo detrás de los pasos,
-       porque las demás secciones se insertan después y la empujaban.
-       🔴 La galería NO se borra: en la máscara eran flyers del proveedor
-       llenos de letras y estorbaban; aquí son las fotos buenas de James. */
+       porque las demás secciones se insertan después y la empujaban. */
     var heroReal = cont.querySelector('.heroP');
     if (heroReal) heroReal.insertAdjacentHTML('afterend', hero());
     else arriba.insertAdjacentHTML('beforebegin', hero());
+
+    /* 🔴 LA GALERÍA SE BORRA, igual que en la máscara.
+       Aquí escribí lo contrario y estaba mal: razoné que las fotos eran buenas,
+       pero el problema nunca fue la calidad. El hero YA enseña el producto a
+       pantalla completa, así que el carrusel que va justo debajo lo repite: son
+       1.123 px contra los 194 px de la máscara, y por eso al bajar parecía una
+       ficha de tienda cualquiera. James lo señaló dos veces.
+       Las tres fotos no se pierden: salen abajo en las fichas con telón (el
+       gesto, dónde se aplica, se va contigo), que es donde la máscara las pone. */
+    ['.gal', '.miniz'].forEach(function (s) {
+      var el = arriba.querySelector(s);
+      if (el) el.remove();
+    });
 
     var desc = cont.querySelector('section.desc');
     if (desc) {
