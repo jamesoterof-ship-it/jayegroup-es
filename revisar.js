@@ -41,7 +41,7 @@
      Leer el tercero como si fuera 0-255 da una luminancia de 0 y hace pensar
      que un rosa es negro. La primera versión de este revisor cayó justo ahí y
      marcó dos falsos oscuros: se comprueba el formato, no se asume. */
-  function aRGB(c) {
+  function aRGB(c, conAlfa) {
     if (!c) return null;
     var s = String(c).trim();
     if (s === 'transparent' || s === 'none') return null;
@@ -56,7 +56,17 @@
 
     if (esSrgb) v = v.map(function (x) { return Math.round(x * 255); });
     if (v.some(function (x) { return isNaN(x); })) return null;
-    return v.map(function (x) { return Math.max(0, Math.min(255, x)); });
+    v = v.map(function (x) { return Math.max(0, Math.min(255, x)); });
+    return conAlfa ? { rgb: v, a: alfa } : v;
+  }
+
+  /* Mezcla un color semitransparente con lo que tiene debajo. Sin esto, un
+     fondo "rosa al 10% sobre blanco" -que el ojo ve casi blanco- se mide como
+     rosa opaco, y el texto oscuro encima parece tener mal contraste cuando lo
+     tiene de sobra. Me paso el 26-09 con el pack elegido: cantaba 3,46 y en
+     pantalla se lee perfectamente. */
+  function mezclar(encima, debajo, a) {
+    return encima.map(function (v, i) { return Math.round(v * a + debajo[i] * (1 - a)); });
   }
 
   function lum(rgb) {
@@ -76,13 +86,21 @@
   /* El fondo de verdad: si el elemento es transparente, el que se ve es el de
      su padre. Sin esto, todo mide contra transparente y no detecta nada. */
   function fondoReal(el) {
-    var p = el;
+    /* Se suben las capas guardando las semitransparentes, y al llegar a una
+       opaca se mezclan de abajo arriba. Asi sale el color que ve el ojo. */
+    var capas = [], p = el;
     while (p && p !== document.documentElement) {
-      var rgb = aRGB(getComputedStyle(p).backgroundColor);
-      if (rgb) return rgb;
+      var c = aRGB(getComputedStyle(p).backgroundColor, true);
+      if (c) {
+        if (c.a >= 0.999) { capas.push(c); break; }
+        capas.push(c);
+      }
       p = p.parentElement;
     }
-    return [255, 255, 255];
+    var base = (capas.length && capas[capas.length - 1].a >= 0.999)
+      ? capas.pop().rgb : [255, 255, 255];
+    for (var i = capas.length - 1; i >= 0; i--) base = mezclar(capas[i].rgb, base, capas[i].a);
+    return base;
   }
 
   /* AQUÍ ESTABA EL AGUJERO: un degradado va en background-image, y
@@ -114,6 +132,15 @@
 
       coloresDelFondo(e).forEach(function (rgb) {
         if (lum(rgb) > LIMITE) return;
+        /* Un color oscuro NO es lo mismo que negro. Lo que aquí se persigue es
+           el negro y los grises muy oscuros; un rosa vino o un verde bosque
+           son colores de marca y pueden ir de fondo.
+           Sin esto, al cerrar el rosa de acento a #A8505F el revisor canto
+           ocho "negros" que eran ese rosa. Se mide la saturacion: si el color
+           tiene color de verdad, no es lo que buscamos. */
+        var mx = Math.max.apply(null, rgb), mn = Math.min.apply(null, rgb);
+        var satura = mx === 0 ? 0 : (mx - mn) / mx;
+        if (satura > 0.35) return;
         fallos.push({
           donde: '.' + (cl || e.tagName).slice(0, 26),
           alto: e.offsetHeight,
