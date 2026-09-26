@@ -50,20 +50,23 @@
     ['Cuando quieras', 'Por la mañana, por la noche o a media tarde para retocar. Va antes del maquillaje o por encima, sin arrastrarlo.'],
   ];
 
-  /* 🔴 25-09 James: "repetiste la misma del hero abajo, no tiene variedad".
-     Las fotos de abajo NO pueden ser el camerino del hero: salen de las otras
-     fotos limpias de la landing vieja de nad (card2, card3, duo). */
-  /* Las fotos de abajo NO repiten la del hero: eso ya se lo señaló James en la
-     máscara. Según lleguen las suyas se van cambiando aquí. */
+  /* Las tres fotos las hizo James el 25-09. Ninguna repite la del hero: eso ya
+     se lo señaló en la máscara y tenía razón.
+     Se quitó la del catálogo del proveedor, que era un collage con FOREHEAD /
+     FACE / LIPS / BODY en INGLÉS encima. */
   var FOTOS = [
-    ['img/prod-balsamo-2.webp?v=1',
+    ['img/balsamo-uso.webp?v=1',
      'Una mujer de unos cincuenta años deslizando el bálsamo VITALIS por su pómulo',
      'El gesto', 'Dos segundos y ya está',
      'Se desliza directo sobre la piel, sin manos y sin medir cantidad. Por eso se usa de verdad todos los días, y no se queda en el cajón.'],
-    ['img/prod-balsamo.jpg?v=1',
-     'El stick de bálsamo de colágeno VITALIS con sus zonas de uso',
+    ['img/balsamo-mano.webp?v=1',
+     'El stick de bálsamo de colágeno VITALIS sostenido en la mano, con su etiqueta dorada',
      'Dónde se aplica', 'Rostro, labios, cuello y escote',
      'Un solo producto para todas las zonas que se resecan. Nada de tener un bote distinto para cada parte de la cara.'],
+    ['img/balsamo-bolso.webp?v=1',
+     'El stick junto a un bolso, unas gafas de sol y un frasco de perfume sobre una mesa de mármol',
+     'Se va contigo', 'Nueve gramos, y ya está',
+     'Es sólido: no se derrama en el bolso ni se seca como un bote abierto. Lo llevas encima y retocas donde estés.'],
   ];
 
   var ICONOS = {
