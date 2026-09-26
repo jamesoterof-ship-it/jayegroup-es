@@ -12,7 +12,8 @@
   --ba-suave:   #F7EAE7;   /* rosa muy suave: el fondo de las franjas */
   --ba-tarjeta: #FFFFFF;   /* tarjetas en blanco, con borde rosa */
   --ba-oro:   #E8BE62;   /* el oro DEL ENVASE, medido sobre la foto */
-  --ba-oro2:  #f0c867;
+  --ba-oro2:  #f0c867;   /* solo destellos */
+  --ba-oroTxt:#8A6210;   /* el oro para TEXTO: el claro sobre crema da 1,49:1 y no se lee */
   --ba-rosa:  #C9808B;   /* rosa fuerte: sobre fondo claro hace falta este, no el palido */
   --ba-texto:   #3B2B2A;   /* marron: el texto */
   --ba-texto2:  #6E5A56;   /* secundario, contraste 5,9:1 sobre el crema */
@@ -43,7 +44,7 @@
   color: var(--ba-texto);
   text-wrap: balance;
 }
-.p-balsamo #prod .ba-h2 em { display: block; font-weight: 700; color: var(--ba-oro); }
+.p-balsamo #prod .ba-h2 em { display: block; font-weight: 700; color: var(--ba-oroTxt); }
 .p-balsamo .ba-ico {
   width: 22px; height: 22px;
   fill: none; stroke: var(--ba-oro2); stroke-width: 1.7;
@@ -144,7 +145,7 @@
   text-transform: none;
 }
 .p-balsamo #prod .ba-h1 .ba-ln { display: block; }
-.p-balsamo #prod .ba-h1 em { font-style: italic; font-weight: 700; color: var(--ba-oro); }
+.p-balsamo #prod .ba-h1 em { font-style: italic; font-weight: 700; color: var(--ba-oroTxt); }
 .p-balsamo #prod .ba-h1 .ba-pal { display: inline-block; white-space: nowrap; }
 .p-balsamo #prod .ba-h1 .ba-le { display: inline-block; }
 .p-balsamo #prod .ba-frase {
@@ -219,13 +220,13 @@
   font-weight: 700;
   font-size: clamp(40px, 12vw, 60px);
   line-height: 1;
-  color: var(--ba-oro);
+  color: var(--ba-oroTxt);
   font-variant-numeric: tabular-nums;
 }
 .p-balsamo .ba-med b.ba-fin { animation: ba-cifra 1.1s ease-out 1; }
 @keyframes ba-cifra {
-  0%   { transform: scale(1.22); text-shadow: 0 0 22px rgba(240,200,103,.95), 0 0 44px rgba(216,165,46,.6); }
-  100% { transform: scale(1);    text-shadow: 0 0 0 rgba(216,165,46,0); }
+  0%   { transform: scale(1.22); text-shadow: 0 0 22px rgba(201,128,139,.55), 0 0 44px rgba(201,128,139,.3); }
+  100% { transform: scale(1);    text-shadow: 0 0 0 rgba(201,128,139,0); }
 }
 .p-balsamo .ba-med span {
   margin-top: 8px;
@@ -250,7 +251,7 @@
   font-size: 64px;
   line-height: .85;
   color: transparent;
-  -webkit-text-stroke: 1.2px var(--ba-oro);
+  -webkit-text-stroke: 1.2px var(--ba-oroTxt);
 }
 .p-balsamo #prod .ba-paso h3 {
   position: relative;
@@ -286,7 +287,7 @@
 .p-balsamo #prod .ba-sec,
 .p-balsamo .ba-cta-franja { background: var(--ba-suave); box-shadow: 0 0 0 100vmax var(--ba-suave); clip-path: inset(0 -100vmax); }
 .p-balsamo #prod .ba-sec { margin-top: 0; margin-bottom: 0; padding-top: 56px; }
-.p-balsamo #prod .ba-sec .eyebrow { font-family: var(--ba-rotf); letter-spacing: .24em; color: var(--ba-oro2); }
+.p-balsamo #prod .ba-sec .eyebrow { font-family: var(--ba-rotf); letter-spacing: .24em; color: var(--ba-oroTxt); }
 .p-balsamo #prod .ba-sec .tit2 {
   font-family: var(--ba-disp); font-style: italic; font-weight: 600;
   color: var(--ba-texto); letter-spacing: -.01em;
@@ -376,7 +377,7 @@
 .p-balsamo #prod section.desc h2,
 .p-balsamo #prod section.desc h3,
 .p-balsamo #prod section.desc b { color: var(--ba-texto); }
-.p-balsamo #prod section.desc .eyebrow { font-family: var(--ba-rotf); letter-spacing: .24em; color: var(--ba-oro2); }
+.p-balsamo #prod section.desc .eyebrow { font-family: var(--ba-rotf); letter-spacing: .24em; color: var(--ba-oroTxt); }
 .p-balsamo #prod section.desc .tit2 { font-family: var(--ba-disp); font-style: italic; font-weight: 600; }
 
 .p-balsamo #prod .ba-fichas { display: grid; gap: 38px; margin: 28px -4px 20px; }
