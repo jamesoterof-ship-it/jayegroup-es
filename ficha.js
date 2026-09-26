@@ -750,7 +750,10 @@
       return '<button type="button" class="pack' + (i === elegido ? ' sel' : '') + '" data-i="' + i + '">'
         + (etiqueta ? '<span class="tag">' + etiqueta + '</span>' : '')
         + '<span class="radio"></span>'
-        + (p.foto ? '<img class="thumb" src="' + esc(p.foto) + '" alt="" onerror="this.remove()">' : '')
+        /* alt="" a propósito: la miniatura repite lo que ya dice el texto del
+           pack, así que para un lector de pantalla es ruido. Las medidas sí
+           hacen falta o la fila salta al cargar la imagen. */
+        + (p.foto ? '<img class="thumb" src="' + esc(p.foto) + '" alt="" width="46" height="46" loading="lazy" onerror="this.remove()">' : '')
         + '<span class="info"><span class="t">' + esc(k.texto) + '</span>'
         + (o ? '<span class="s">Ahorra ' + o + '%</span>' : '') + '</span>'
         + '<span class="pr"><span class="n">' + pesos(k.precio) + '</span>'

@@ -34,12 +34,29 @@
 
   /* ---- color ---------------------------------------------------------- */
 
+  /* Los navegadores devuelven el color de tres maneras:
+       rgb(183, 110, 121)            de toda la vida, 0-255
+       rgba(183, 110, 121, .5)       con alfa
+       color(srgb 0.717 0.431 0.47)  el formato nuevo, 0-1
+     Leer el tercero como si fuera 0-255 da una luminancia de 0 y hace pensar
+     que un rosa es negro. La primera versión de este revisor cayó justo ahí y
+     marcó dos falsos oscuros: se comprueba el formato, no se asume. */
   function aRGB(c) {
     if (!c) return null;
-    var m = String(c).match(/(\d+(?:\.\d+)?)/g);
+    var s = String(c).trim();
+    if (s === 'transparent' || s === 'none') return null;
+
+    var m = s.match(/-?\d*\.?\d+(?:e-?\d+)?/gi);
     if (!m || m.length < 3) return null;
-    if (m.length > 3 && parseFloat(m[3]) === 0) return null;   // transparente
-    return [+m[0], +m[1], +m[2]];
+
+    var esSrgb = /^color\(/i.test(s);
+    var v = m.slice(0, 3).map(parseFloat);
+    var alfa = m.length > 3 ? parseFloat(m[3]) : 1;
+    if (alfa === 0) return null;                    // transparente
+
+    if (esSrgb) v = v.map(function (x) { return Math.round(x * 255); });
+    if (v.some(function (x) { return isNaN(x); })) return null;
+    return v.map(function (x) { return Math.max(0, Math.min(255, x)); });
   }
 
   function lum(rgb) {
@@ -76,7 +93,7 @@
     if (c) fuera.push(c);
     var img = s.backgroundImage || '';
     if (img && img !== 'none') {
-      var trozos = img.match(/rgba?\([^)]+\)/g) || [];
+      var trozos = img.match(/(?:rgba?|color)\([^)]+\)/g) || [];
       trozos.forEach(function (t) { var r = aRGB(t); if (r) fuera.push(r); });
     }
     return fuera;
@@ -141,7 +158,11 @@
     [].forEach.call(document.images, function (i) {
       var n = (i.currentSrc || i.src).split('/').pop();
       if (i.complete && i.naturalWidth === 0) rotas.push(n);
-      if (!i.alt && !i.getAttribute('aria-hidden')) sinAlt.push(n);
+      /* alt="" PUESTO A PROPOSITO es lo correcto para una imagen decorativa:
+         le dice al lector de pantalla que la salte. Lo que esta mal es que
+         falte el atributo. La primera version no distinguia y marcaba como
+         fallo las miniaturas de los packs y las banderas, que estan bien. */
+      if (!i.hasAttribute('alt')) sinAlt.push(n);
       var s = getComputedStyle(i);
       if (!i.getAttribute('width') && !i.getAttribute('height') && s.aspectRatio === 'auto') sinMedida.push(n);
     });
@@ -205,6 +226,7 @@
       if (e.children.length) return;
       var t = (e.textContent || '').trim();
       if (!t || t.length > 3 || !EMO.test(t)) return;   // suelto = usado como icono
+      if (/^[★☆·•\s\d]+$/.test(t)) return;          // estrellas y viñetas de valoracion: son texto, no icono
       fuera.push(t + '  en .' + (e.className || e.tagName).toString().slice(0, 20));
     });
     return [...new Set(fuera)].slice(0, 10);

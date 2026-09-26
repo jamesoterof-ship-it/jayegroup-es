@@ -538,3 +538,34 @@
   }
   .p-balsamo.ba-anima .ba-rev.ba-pre { transform: none !important; opacity: 1 !important; }
 }
+
+/* ============================================================
+   13 · LO QUE ENCONTRO revisar.js
+   Nada de esto se vio a ojo: salio de pasar el revisor sobre la pagina ya
+   publicada. Son contrastes por debajo del minimo (WCAG AA: 4,5:1 normal,
+   3:1 grande). Regla: ux/contraste.
+   ============================================================ */
+
+/* Estrellas de valoracion: #d8a52e sobre blanco da 2,25:1 y pide 3.
+   El dorado oscuro sigue leyendose como dorado y llega a 3,3:1. */
+.p-balsamo #prod .stars,
+.p-balsamo #prod .est svg { color: #B8860B; fill: #B8860B; }
+
+/* Precio tachado: el gris #a29c90 daba 2,73:1. */
+.p-balsamo #prod .promo-antes { color: var(--ba-texto2); }
+
+/* "Leer mas": el rosa del envase a 13px daba 3,02:1 y pide 4,5.
+   Este rosa mas cerrado da 5,3:1 y sigue siendo el mismo color de marca. */
+.p-balsamo #prod .rsc-mas { color: #A8505F; font-size: 13.5px; }
+
+/* "157 reseñas" medía 73x13: por debajo de los 44px de alto que pide
+   cualquier zona tocable. Se le da altura sin mover el texto de sitio.
+   Regla: ux/area-toque. */
+.p-balsamo #prod .rev-link,
+.p-balsamo #prod a[href="#opiniones"],
+.p-balsamo .heroP__estr a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 4px;
+}
