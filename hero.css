@@ -337,3 +337,31 @@
   .heroP__pie { flex-direction: row; align-items: center; gap: 20px; }
   .heroP__cta { width: auto; flex: 1; max-width: 340px; }
 }
+
+/* ============================================================
+   CANDADO: EL HERO SE VE AUNQUE LA ANIMACION NO ARRANQUE
+   ------------------------------------------------------------
+   El titular y las letras de la cascada parten de opacity:0 con fill-mode
+   both/forwards. Si la animacion no llega a correr -pestaña abierta en
+   segundo plano, movil ahorrando bateria, navegador que la pospone- el
+   visitante se encuentra el hero VACIO. Y es la primera pantalla de una
+   pagina que va a recibir trafico pagado.
+   Comprobado el 26-09: tras recorrer la pagina, .heroP__h1 y las .hCas__l
+   median opacity 0.
+
+   El arreglo: las animaciones solo se aplican cuando el JS ha puesto
+   .ba-lista en el <html>. Si el JS no corre, no hay animacion pero SE VE
+   TODO, que es lo que importa. El JS pone la clase en la primera linea, asi
+   que en un caso normal la animacion se ve igual que antes.
+   ============================================================ */
+html:not(.ba-lista) .heroP__txt > *,
+html:not(.ba-lista) .hCas__l {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Y si algo deja la animacion a medias, el JS pone .ba-visto a los 3 s y
+   esto lo descubre pase lo que pase. */
+html.ba-visto .heroP__txt > *,
+html.ba-visto .hCas__l { opacity: 1 !important; transform: none !important; }
