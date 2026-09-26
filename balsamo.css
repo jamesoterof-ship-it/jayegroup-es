@@ -31,7 +31,7 @@
   font-weight: 600;
   letter-spacing: .24em;
   text-transform: uppercase;
-  color: var(--ba-oro2);
+  color: var(--ba-oroTxt);
 }
 .p-balsamo #prod .ba-h2 {
   margin: 0 0 14px;
@@ -47,7 +47,7 @@
 .p-balsamo #prod .ba-h2 em { display: block; font-weight: 700; color: var(--ba-oroTxt); }
 .p-balsamo .ba-ico {
   width: 22px; height: 22px;
-  fill: none; stroke: var(--ba-oro2); stroke-width: 1.7;
+  fill: none; stroke: var(--ba-oroTxt); stroke-width: 1.7;
   stroke-linecap: round; stroke-linejoin: round;
 }
 
