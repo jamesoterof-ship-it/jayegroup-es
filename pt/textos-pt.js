@@ -62,9 +62,15 @@ window.TEXTOS = {
   /* ---- botão e notas ----
      O texto do botão é obrigatório: o artigo 4.º do Decreto-Lei 24/2014 exige
      que se diga que a encomenda obriga a pagar. */
-  btnPedir: 'Encomenda com obrigação de pagamento',
+  /* "Comprar" e inequivoco em linguagem corrente e cumpre o art. 4.º do
+     DL 24/2014, que pede a mesma clareza que a diretiva europeia (e o TJUE,
+     no acordao de 7-4-2022, confirmou que nao ha formula obrigatoria). */
+  btnPedir: 'Comprar · pagamento na entrega',
   enviando: 'A enviar…',
-  notaCod: 'Não paga nada agora: paga ao estafeta quando receber a encomenda. Enviamos-lhe a confirmação por correio eletrónico.',
+  /* Ja nao diz "nao paga nada agora": com duas formas de pagamento no mesmo
+     ecra, essa frase deixa de ser verdade assim que o cliente escolhe pagar
+     adiantado. */
+  notaCod: 'Paga ao estafeta quando receber a encomenda, em dinheiro ou com cartão. Enviamos-lhe a confirmação por email.',
   notaPre: 'Ao enviar a encomenda levamo-lo à página de pagamento. A sua encomenda segue com entrega prioritária em 14 h.',
   dudas: 'Alguma dúvida? Escreva-nos para ',
   yTeAyudamos: ' e nós ajudamos.',

@@ -852,7 +852,7 @@
     + '<div class="r tot"><span id="sumTotRot">' + t('totalCod', 'Total a pagar al recibir') + '</span><span id="sumTot">' + pesos(kSel.precio) + '</span></div>'
     + '</div>'
     + '<form id="fPedido" novalidate>'
-    + '<div class="field"><label for="fNombre">' + t('lNombre', 'Nombre y apellidos') + '</label><input id="fNombre" autocomplete="name" placeholder="' + t('phNombre', 'Ej: María González Ruiz') + '"><div class="err">' + t('eNombre', 'Escribe tu nombre y apellidos.') + '</div></div>'
+    + '<div class="field"><label for="fNombre">' + t('lNombre', 'Nombre y apellidos') + '</label><input id="fNombre" required autocomplete="name" placeholder="' + t('phNombre', 'Ej: María González Ruiz') + '"><div class="err">' + t('eNombre', 'Escribe tu nombre y apellidos.') + '</div></div>'
     /* El indicativo era una bandera pintada, no se podia cambiar. Hay clientes
        que viven en España con numero de otro pais, y no podian pedir. Ahora es
        un selector de verdad; España queda elegida por defecto. */
@@ -872,25 +872,41 @@
       }).join('')
     + '</div>'
     + '<input type="hidden" id="fPais" value="' + CC + '|' + CCIND + '|9"></span>'
-    + '<input id="fTel" inputmode="numeric" autocomplete="tel" placeholder="' + t('phMovil', '612 34 56 78') + '"></div>'
+    + '<input id="fTel" required inputmode="numeric" autocomplete="tel" placeholder="' + t('phMovil', '612 34 56 78') + '"></div>'
     + '<div class="err">' + t('eMovil', 'Escribe un móvil español válido: 9 cifras, empieza por 6 o 7.') + '</div></div>'
     /* El correo NO es opcional: el art. 98.7 del TRLGDCU en España (y el
        Decreto-Lei 24/2014 en Portugal) obligan a confirmar el pedido en
        soporte duradero. Sin correo no se puede cumplir. */
-    + '<div class="field"><label for="fCorreo">' + t('lCorreo', 'Correo electrónico') + '</label><input id="fCorreo" type="email" inputmode="email" autocomplete="email" placeholder="' + t('phCorreo', 'Ej: maria@gmail.com') + '"><div class="err">' + t('eCorreo', 'Escribe un correo válido: ahí te enviamos la confirmación del pedido.') + '</div></div>'
-    + '<div class="field"><label for="fDir">' + t('lDir', 'Dirección') + '</label><input id="fDir" autocomplete="street-address" placeholder="' + t('phDir', 'Calle, número, piso y puerta') + '"><div class="err">' + t('eDir', 'Escribe la calle y el número.') + '</div></div>'
-    + '<div class="field"><label for="fRef">' + t('lRef', 'Indicaciones para el repartidor') + ' <span class="opc">' + t('opcional', '(opcional)') + '</span></label><input id="fRef" placeholder="' + t('phRef', 'Portal, timbre, horario en el que estás en casa…') + '"></div>'
+    + '<div class="field"><label for="fCorreo">' + t('lCorreo', 'Correo electrónico') + '</label><input id="fCorreo" required type="email" inputmode="email" autocomplete="email" placeholder="' + t('phCorreo', 'Ej: maria@gmail.com') + '"><div class="err">' + t('eCorreo', 'Escribe un correo válido: ahí te enviamos la confirmación del pedido.') + '</div></div>'
+    + '<div class="field"><label for="fDir">' + t('lDir', 'Dirección') + '</label><input id="fDir" required autocomplete="street-address" placeholder="' + t('phDir', 'Calle, número, piso y puerta') + '"><div class="err">' + t('eDir', 'Escribe la calle y el número.') + '</div></div>'
+    + '<div class="field"><label for="fRef">' + t('lRef', 'Indicaciones para el repartidor') + ' <span class="opc">' + t('opcional', '(opcional)') + '</span></label><input id="fRef" autocomplete="address-line2" placeholder="' + t('phRef', 'Portal, timbre, horario en el que estás en casa…') + '"></div>'
     + '<div class="row2">'
-    + '<div class="field"><label for="fCP">' + t('lCP', 'Código postal') + '</label><input id="fCP" inputmode="' + (PAIS === 'PT' ? 'text' : 'numeric') + '" autocomplete="postal-code" maxlength="' + (PAIS === 'PT' ? 8 : 5) + '" placeholder="' + t('phCP', '41001') + '"><div class="err">' + t('eCP', 'Escribe los 5 dígitos de tu código postal.') + '</div></div>'
-    + '<div class="field"><label for="fCiudad">' + t('lCiudad', 'Localidad') + '</label><input id="fCiudad" autocomplete="address-level2" placeholder="' + t('phCiudad', 'Ej: Sevilla') + '"><div class="err">' + t('eCiudad', 'Escribe tu localidad.') + '</div></div>'
+    + '<div class="field"><label for="fCP">' + t('lCP', 'Código postal') + '</label><input id="fCP" required inputmode="' + (PAIS === 'PT' ? 'text' : 'numeric') + '" autocomplete="postal-code" maxlength="' + (PAIS === 'PT' ? 8 : 5) + '" placeholder="' + t('phCP', '41001') + '"><div class="err">' + t('eCP', 'Escribe los 5 dígitos de tu código postal.') + '</div></div>'
+    + '<div class="field"><label for="fCiudad">' + t('lCiudad', 'Localidad') + '</label><input id="fCiudad" required autocomplete="address-level2" placeholder="' + t('phCiudad', 'Ej: Sevilla') + '"><div class="err">' + t('eCiudad', 'Escribe tu localidad.') + '</div></div>'
     + '</div>'
-    + '<div class="field"><label for="fProvincia">' + t('lProvincia', 'Provincia') + '</label><select id="fProvincia"><option value="">' + t('elige', 'Selecciona…') + '</option></select><div class="err">' + t('eProvincia', 'Selecciona tu provincia.') + '</div></div>'
+    + '<div class="field"><label for="fProvincia">' + t('lProvincia', 'Provincia') + '</label><select id="fProvincia" required autocomplete="address-level1"><option value="">' + t('elige', 'Selecciona…') + '</option></select><div class="err">' + t('eProvincia', 'Selecciona tu provincia.') + '</div></div>'
     + '<div class="aviso" id="fErr"></div>'
     /* El texto del boton lo fija el art. 98.2 del TRLGDCU (España) y el art. 4
        del Decreto-Lei 24/2014 (Portugal): si el pedido obliga a pagar, el boton
        tiene que decirlo. Si no, el consumidor NO queda obligado por el contrato. */
-    + '<button type="submit" class="cta rojo rebota">' + t('btnPedir', 'Pedido con obligación de pago') + '</button>'
-    + '<p class="formnote">' + t('notaCod', 'No pagas nada ahora: pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.') + '</p>'
+    /* EL BOTON Y LA NOTA, 26-09.
+       Decia "Pedido con obligación de pago" y justo debajo "No pagas nada
+       ahora". Se contradecian en dos lineas seguidas, y eso espanta.
+
+       La ley NO obliga a esa frase literal. El art. 98.2 del TRLGDCU pide
+       "esa expresion o una formulacion correspondiente no ambigua", y el
+       TJUE (sentencia de 7-4-2022, asunto C-249/21) lo dejo claro: vale
+       cualquier expresion "siempre que de ella resulte inequivocamente que el
+       consumidor esta sujeto a una obligacion de pago". Lo que tumbo fue
+       "Finalizar la reserva", porque reservar puede entenderse como algo
+       gratuito. "Comprar" no tiene esa ambiguedad: en lenguaje corriente
+       comprar es pagar.
+
+       Y la nota ya no dice "no pagas nada ahora": con dos formas de pago en
+       la misma pantalla, esa frase es falsa en cuanto el cliente elige pagar
+       por adelantado. James lo señalo. */
+    + '<button type="submit" class="cta rojo rebota">' + t('btnPedir', 'Comprar · pago al recibir') + '</button>'
+    + '<p class="formnote">' + t('notaCod', 'Pagas al repartidor cuando recibes el paquete, en efectivo o con tarjeta. Te enviamos la confirmación por correo.') + '</p>'
     /* Salida para el que se traba llenando el formulario: si algo no le calza
        y no tiene a donde ir, se va y la venta se pierde. */
     + '<p class="formnote ayuda">' + t('dudas', '¿Tienes alguna duda? Escríbenos a ')
@@ -1219,12 +1235,12 @@
     if (btn && !btn.disabled) {
       btn.textContent = formaPago === 'pre'
         ? t('btnPedirPre', 'Pagar ahora ') + pesos(cobra)
-        : t('btnPedir', 'Pedido con obligación de pago');
+        : t('btnPedir', 'Comprar · pago al recibir');
     }
     var nota = document.querySelector('#fPedido .formnote');
     if (nota) nota.textContent = formaPago === 'pre'
       ? t('notaPre', 'Al enviar el pedido te llevamos a la pasarela de pago. Tu pedido sale con entrega prioritaria en 14 h.')
-      : t('notaCod', 'No pagas nada ahora: pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.');
+      : t('notaCod', 'Pagas al repartidor cuando recibes el paquete, en efectivo o con tarjeta. Te enviamos la confirmación por correo.');
   }
   /* cambiar entre pagar al recibir y pagar ahora */
   document.addEventListener('click', function (ev) {
