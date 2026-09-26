@@ -474,14 +474,32 @@
      medida-linea (34ch en movil).
      ============================================================ */
   function airearDescripcion(cont) {
-    var bloques = cont.querySelectorAll('section.desc, .bloque.desc');
+    /* Se busca por CONTENIDO, no por contenedor.
+       Las dos versiones anteriores iban por selector -primero
+       'section.desc', luego '.bloque.desc'- y las dos se dejaron copias
+       fuera: el mismo texto de 496 caracteres esta TRES veces en la pagina
+       (la descripcion, .datos y .dscTop, la que va pegada al precio). James
+       me enseño dos veces el mismo ladrillo ya "arreglado" porque yo miraba
+       donde no estaba.
+       Cualquier parrafo largo dentro de #prod se airea, este donde este. */
+    var parrafosLargos = [].filter.call(
+      cont.querySelectorAll('p'),
+      function (p) {
+        return !p.classList.contains('ba-leido')
+            && (p.textContent || '').trim().length >= 260
+            && !p.closest('.rsc');          // las opiniones se pliegan, no se parten
+      });
 
     /* La lista va aparte del parrafo. Antes iba dentro del mismo bucle y, si
        el parrafo de ese bloque era corto, la funcion salia antes de llegar a
        la lista y se quedaba sin formato. Ademas hay DOS listas iguales: la de
        la descripcion y la de .datos. Las dos se peinan igual. */
-    var listas = cont.querySelectorAll('section.desc > ul, .bloque.desc > ul, .datos > ul');
-    [].forEach.call(listas, function (ul) {
+    /* Igual que con los parrafos: por contenido, no por contenedor. Cualquier
+       lista de tres o mas puntos dentro de #prod, este donde este. */
+    var listas = [].filter.call(cont.querySelectorAll('ul'), function (u) {
+      return u.children.length >= 3 && !u.closest('.rsc, .form, nav, .pie');
+    });
+    listas.forEach(function (ul) {
       if (ul.classList.contains('ba-puntos')) return;
       ul.classList.add('ba-puntos');
       [].forEach.call(ul.children, function (li, i) {
@@ -490,11 +508,8 @@
       });
     });
 
-    [].forEach.call(bloques, function (b) {
-      var p = b.querySelector(':scope > p');
-      if (!p || p.classList.contains('ba-leido')) return;
+    parrafosLargos.forEach(function (p) {
       var txt = (p.textContent || '').trim();
-      if (txt.length < 260) return;         // corto: se deja como esta
 
       /* Partir por frases. El punto de "9 g." o "0,32 oz." no cuenta: se pide
          espacio y mayuscula detras. */
@@ -508,10 +523,15 @@
         parrafos.push(frases.slice(i, i + 2).join(' '));
       }
 
-      var html = '<p class="ba-entrada ba-leido"><span class="ba-cap" aria-hidden="true">'
-               + esc(entradilla.charAt(0)) + '</span>' + esc(entradilla.slice(1)) + '</p>'
+      /* Se heredan las clases del parrafo original. .dscTop, por ejemplo,
+         trae su propio tamaño y color porque va pegada al precio: si se
+         pierden, ese bloque se descoloca. */
+      var heredadas = (p.className || '').trim();
+      var html = '<p class="ba-entrada ba-leido ' + heredadas + '">'
+               + '<span class="ba-cap" aria-hidden="true">' + esc(entradilla.charAt(0)) + '</span>'
+               + esc(entradilla.slice(1)) + '</p>'
                + parrafos.map(function (t) {
-                   return '<p class="ba-cuerpo ba-leido">' + esc(t) + '</p>';
+                   return '<p class="ba-cuerpo ba-leido ' + heredadas + '">' + esc(t) + '</p>';
                  }).join('');
       p.insertAdjacentHTML('afterend', html);
       p.remove();
