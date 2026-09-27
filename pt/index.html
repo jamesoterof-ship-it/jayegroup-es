@@ -1135,6 +1135,11 @@ window.jayePixel = (function () {
 <script src="textos-pt.js?v=204"></script>
 <script src="resenas-pt.js?v=200"></script>
 <script src="../efectos.js?v=4"></script>
+<script>/* A DONDE VA EL PEDIDO. Sin esto, ficha.js manda al webhook de CHILE
+   (pedido-tienda): un pedido español entraria como chileno, con hora de
+   Santiago y plantilla de WhatsApp chilena. Flujo nuevo en n8n
+   GGeFaB7R2qWLsca2, creado el 27-09-2026 y probado con ROLLBACK. */
+window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-tienda-es';</script>
 <script src="../ficha.js?v=217"></script>
 <!-- GSAP, de lib/ y del propio dominio. NO se carga ScrollTrigger: para saber
      cuando algo entra en pantalla ya sirve IntersectionObserver, que viene en
