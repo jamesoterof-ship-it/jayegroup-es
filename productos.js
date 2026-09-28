@@ -50,7 +50,10 @@ window.PRODUCTOS = [
        quedan 7,2 s con cinco planos, sin una sola letra y SIN AUDIO (James:
        "nada de texto ni audio"). Los textos estaban en 4,0-5,3 · 7,0-7,3 ·
        10,5-11,3 y esos segundos no entran. */
-    video: 'img/balsamo-ficha.mp4?v=1',
+    /* 28-09: re-cortado. El video anterior dejaba un cuadro con el nombre de OTRA marca
+       ("Wrinkle Bounce Multi Balm", seg. 3,3), el antes/despues de las munecas (4,2-4,6) y un
+       texto en ingles (5,9). En la UE y en Meta el antes/despues en cosmetica esta prohibido. */
+    video: 'img/balsamo-ficha.mp4?v=2',
 
     /* ---- HERO ----
        La foto vertical 1024x1536 que hizo James: el bálsamo en primer plano y

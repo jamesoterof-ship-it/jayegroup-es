@@ -31,7 +31,7 @@ window.PRODUTOS = [
 
     /* Vídeo do próprio vendedor do produto, cortado só nos trechos limpos:
        7,2 s, sem uma única letra e SEM ÁUDIO. */
-    video: '../img/balsamo-ficha.mp4?v=1',
+    video: '../img/balsamo-ficha.mp4?v=2',
     acento: '#A8505F',   /* o mesmo de Espanha: o anterior dava 3,8:1 */
 
     /* ---- HERO ----
