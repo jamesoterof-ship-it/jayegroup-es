@@ -170,6 +170,109 @@ window.PRODUCTOS = [
       precios: [26.50, 36.50, 46.50],
     },
   },
+
+  /* ============================================================
+     CABEZAL DE DUCHA · 29-09-2026
+     Dropi PRO id 575 ("Alcachofa de ducha de alta presión"), coste 3,49 €.
+     Radar: 7 de 7 días vendiendo; 5.189 en Sevilla y 13.600 más por llegar.
+     Diseño PROPIO (ducha.css / ducha.js), salido de ui-ux-pro-max ORIGINAL:
+     design-system/jaye-espana/pages/ducha.md. NO es el del bálsamo.
+     Fotos: el héroe lo hizo James (29-09). Las otras son las de Chile, recortadas
+     SIN "Envío a todo Chile", bandera ni precios en pesos. La de las ofertas en
+     CLP no entra. Vídeo: el de Chile SIN la franja de subtítulos y SIN audio.
+     Palabras de España: tubería (no cañería), fontanero (no gásfiter), cal (no sarro).
+     ============================================================ */
+  {
+    id: 'ducha', unidad: 'uno', promo: 2,
+    dropiId: 575,
+
+    nombre: 'Cabezal de Ducha Masajeadora Spa',
+    sub: 'Alta presión con filtro · rosca universal',
+    categoria: 'Hogar',
+    etiqueta: 'Nuevo en España',
+    etiquetaOro: true,
+
+    foto: 'img/ducha-1.webp?v=1',
+    fotos: ['img/ducha-1.webp?v=1', 'img/ducha-2.webp?v=1', 'img/ducha-3.webp?v=1'],
+    video: 'img/ducha-ficha.mp4?v=1',
+
+    hero: {
+      img: 'img/hero-ducha.webp?v=1',
+      kicker: 'Nuevo en España',
+      titulo: 'Tu ducha,<br>con la fuerza<br><b>que le faltaba.</b>',
+      sub: 'Cabezal de alta presión con filtro y masaje. Se enrosca a mano en dos minutos, sin fontanero.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Pagas al recibir'],
+      ],
+    },
+    /* Azul del sistema de la ducha, un punto más cerrado (#0369A1) para que el
+       blanco encima (cinta de la promo, contador) dé 5,9:1 y no 4,1:1. */
+    acento: '#0369A1',
+
+    /* Escasez: datos REALES de radar_stock (España, id 575): 5.882 → 5.552 → 5.227. */
+    escasez: { hoy: 325, mejorDia: 330, quedan: 5189,
+      nota: 'Se despacha desde el almacén de Sevilla por orden de pedido. Pagas cuando lo tienes en la mano.' },
+
+    desc: 'El Cabezal de Ducha Masajeadora Spa concentra el agua en microboquillas, así que sale con más fuerza aunque la tubería sea la misma. Tiene tres modos, lluvia, masaje y mixto, y un filtro dentro que ayuda a retener la cal y el sedimento del agua. Se enrosca a mano en la manguera que ya tienes, con la rosca universal de media pulgada: sin herramientas y sin llamar al fontanero.',
+
+    puntos: [
+      'Más presión con la misma tubería',
+      'Tres modos: lluvia, masaje y mixto',
+      'Filtro dentro: ayuda a retener la cal',
+      'Se enrosca a mano, sin fontanero',
+    ],
+
+    formulaRotulo: 'Qué trae',
+    formulaTitulo: 'Lo que tu ducha de siempre no tiene.',
+    formulaSub: 'Cuatro cosas, en un cabezal que se cambia en dos minutos.',
+    formula: [
+      ['agua', 'Alta presión', 'Las microboquillas concentran el chorro: más fuerza con el mismo grifo.'],
+      ['pluma', 'Masaje relajante', 'Puntas de silicona que masajean el cuero cabelludo, el cuello y la espalda.'],
+      ['llave', '3 modos de agua', 'Lluvia, masaje y mixto. Se cambia con una sola mano.'],
+      ['escudo', 'Filtro incorporado', 'Capas de bolitas minerales que ayudan a retener la cal y el sedimento.'],
+    ],
+
+    comparaTitulo: '¿Por qué este y no otro?',
+    compara: [
+      'Más fuerza sin cambiar la tubería ni llamar al fontanero.',
+      'Tres modos de verdad: lluvia, masaje y mixto.',
+      'Filtro dentro, pensado para el agua con cal de media España.',
+    ],
+
+    preguntas: [
+      { q: '¿Sirve para mi ducha?', a: 'Sí. La rosca es la universal de media pulgada, la que traen casi todas las duchas de mano en España. Se enrosca a mano, sin herramientas ni fontanero.' },
+      { q: '¿De verdad sube la presión?', a: 'Sí, y te decimos cómo: las microboquillas achican la salida, así que el agua sale con más fuerza aunque llegue igual por la tubería. Lo que no hace es arreglar un problema de presión de toda la casa.' },
+      { q: '¿Qué son los 3 modos?', a: 'Lluvia para el día a día, masaje para el cuello y la espalda, y mixto, que junta los dos. Se cambian con una mano.' },
+      { q: '¿El filtro se cambia?', a: 'El filtro va dentro del mango y ayuda a retener la cal y el sedimento. Cuando lo notes cargado, se enjuaga con agua.' },
+      { q: '¿Viene la manguera?', a: 'No. Viene el cabezal, que es lo que se cambia. Se conecta a la manguera que ya tienes en casa.' },
+    ],
+
+    /* Sin fotos de clientes: en España no hay compradores todavía y en la UE no
+       se pueden enseñar testimonios que no sean reales (Directiva 2019/2161).
+       Las de Chile NO se ponen aquí. */
+    fotosResenas: [],
+    antesDespues: 'img/ducha-ba.webp?v=1',
+    antesDespuesSub: 'La misma ducha y la misma tubería: el hilo de agua de antes, y el chorro con el cabezal puesto.',
+
+    /* PRECIOS aprobados por James el 29-09-2026 (1 € por debajo de la más barata:
+       VELYN 24,99 / 39,99 / 49,99). 'antes' en 0: producto nuevo (Ley 7/1996 art. 20.1). */
+    packs: [
+      { cant: 1, precio: 23.99, antes: 0, texto: '1 unidad' },
+      { cant: 2, precio: 32.99, antes: 0, texto: '2 unidades' },
+      { cant: 3, precio: 41.99, antes: 0, texto: '3 unidades' },
+    ],
+    popular: 1,
+
+    anticipado: {
+      descuento: 2,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [21.99, 30.99, 39.99],
+    },
+  },
 ];
 
 /* ============================================================
@@ -185,4 +288,6 @@ window.PRODUCTOS = [
 /* Precios aprobados por James para España (24-09-2026).
    Si un precio no esta en esta lista, el producto NO se pinta en la tienda.
    Es el mismo candado de Chile. */
-window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50];
+window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
+  /* cabezal de ducha, aprobados 29-09-2026 */
+  23.99, 32.99, 41.99, 21.99, 30.99, 39.99];

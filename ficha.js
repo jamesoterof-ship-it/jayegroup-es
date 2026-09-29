@@ -324,13 +324,16 @@
      "duermo de lado". El aviso deja el problema a la vista en la consola en
      vez de que se descubra mirando la pagina. */
   var prestadas = false;
+  /* 🔴 29-09 · EN ESPAÑA NO SE PRESTAN OPINIONES DE OTRO PRODUCTO.
+     En Chile, si un producto nuevo no tenía opiniones propias, se le ponían
+     las de otro. Aquí eso es ilegal (Directiva UE 2019/2161: solo opiniones
+     reales DEL PRODUCTO) y además se notaba: la ficha del cabezal de ducha
+     salió con 32 opiniones del bálsamo ("Excelente bálsamo…").
+     Sin opiniones propias, no se pinta ninguna: ni la sección, ni la nota del
+     hero. Se llenan cuando haya compradores reales. */
   if (mias.length < 8) {
-    try { console.warn('[resenas] "' + p.nombre + '" no tiene textos propios en resenas.js: '
-      + 'esta mostrando las de otro producto. Agregalos ahi.'); } catch (e) {}
-    /* 98 y no 40: James, 10-sep. Y el promedio se fuerza a 4,9 mas abajo
-       porque con la tajada cruda quedaba en 4,8 igual que todos los demas. */
-    mias = TODAS.slice(0, 98);
-    prestadas = true;
+    try { console.warn('[resenas] "' + p.nombre + '" no tiene opiniones propias en resenas.js: no se muestra ninguna.'); } catch (e) {}
+    mias = [];
   }
   /* sin repetir el mismo texto: salian dos resenas identicas seguidas */
   var textos = {};
@@ -550,7 +553,7 @@
     + '<button class="btn-write" id="btnWrite">Escribir una reseña</button>'
     + '<div class="rs" id="listaRs"></div>'
     + (mias.length > VER ? '<button class="masRs" id="masRs">' + t('verMas', 'Ver más reseñas') + '</button>' : '')
-    + '<p class="rev-auto-label">' + t('masExp', 'Más experiencias de nuestros clientes') + '</p>'
+    + '<p class="rev-auto-label">' + t('masExp', 'Más opiniones de compradores de este producto') + '</p>'
     + '<div class="rev-auto"><div class="rev-auto__track" id="revAuto"></div></div>'
     + '</section>');
 
@@ -683,7 +686,9 @@
       ['24-48 h', 'de entrega en la península'],
       ['0 €', 'de gastos de envío'],
       ['14', 'días para desistir de tu compra'],
-      ['3', 'años de garantía legal'],
+      /* 29-09 · antes: ['3', 'años de garantía legal']. James: los 3 años NO se
+         anuncian en las páginas de venta (solo en las legales). */
+      ['2', 'formas de pago: al recibir o ahora con tarjeta'],
     ];
     return '<section class="bloque res-sec" data-rv><span class="eyebrow">' + t('resRotulo', 'Lo que te garantizamos') + '</span>'
       + '<h2 class="tit2">' + t('resTit', 'Sin letra pequeña') + '</h2>'
@@ -733,8 +738,8 @@
       + '<text x="110" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" letter-spacing="3" fill="#fff">' + t('dias', 'DÍAS') + '</text>'
       + '</svg></div>'
       + '<h2 class="tit2">' + t('garTit', 'Compras sin riesgo') + '</h2>'
-      + '<p class="sub2">' + t('garTxt', 'Tienes <b>14 días naturales</b> desde que recibes el pedido para desistir de la compra sin dar explicaciones, y <b>3 años de garantía legal</b> si el producto no está conforme. No es un favor nuestro: lo dice la ley española y lo cumplimos.') + '</p>'
-      + '<div class="gar-chips">' + (T.garChips || ['14 días para desistir', '3 años de garantía legal', 'Pagas al recibir']).map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>'
+      + '<p class="sub2">' + t('garTxt', 'Tienes <b>14 días naturales</b> desde que recibes el pedido para desistir de la compra sin dar explicaciones. No es un favor nuestro: lo dice la ley española y lo cumplimos.') + '</p>'
+      + '<div class="gar-chips">' + (T.garChips || ['14 días para desistir', 'Envío gratis', 'Pagas al recibir']).map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>'
       + '<p class="sub2" style="font-size:14px;opacity:.75;margin-top:10px">' + t('garPie', 'Para desistir basta con escribirnos a ') + CORREO + t('garPie2', '. Te devolvemos el importe en un máximo de 14 días.') + '</p>'
       + (T.livroReclamacoes ? '<p class="sub2" style="font-size:14px;margin-top:10px"><a href="https://www.livroreclamacoes.pt/inicio" target="_blank" rel="noopener">Livro de Reclamações Eletrónico</a></p>' : '')
       + '</section>';
@@ -940,7 +945,7 @@
       + '<div style="border:1px solid rgba(0,0,0,.10);border-radius:16px;padding:16px 16px 18px;background:#fff">'
       + '<div style="display:flex;align-items:center;gap:9px;margin-bottom:11px">'
       + '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--acento)" stroke-width="2" stroke-linecap="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5V2"/></svg>'
-      + '<b style="font-size:15.5px;color:var(--acento)"><span class="cnt-hoy" data-n="' + e.hoy + '">0</span> salieron hoy</b></div>'
+      + '<b style="font-size:15.5px;color:var(--acento)"><span class="cnt-hoy" data-n="' + e.hoy + '">' + e.hoy + '</span> salieron hoy</b></div>'
       + '<div style="height:9px;border-radius:9px;background:rgba(0,0,0,.09);overflow:hidden">'
       + '<div class="esc-barra" style="height:100%;width:0;border-radius:9px;background:var(--acento);transition:width 1.1s cubic-bezier(.2,.8,.2,1)" data-w="' + pct + '"></div></div>'
       + '<p style="margin:11px 0 0;font-size:13.5px;line-height:1.5;color:#4a4a4a">'

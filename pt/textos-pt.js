@@ -130,7 +130,7 @@ window.TEXTOS = {
   masVendido: 'Mais vendido',
   mejorPrecio: 'Melhor preço',
   verMas: 'Ver mais avaliações',
-  masExp: 'Mais experiências dos nossos clientes',
+  masExp: 'Mais opiniões de compradores deste produto',
 
   /* ---- cabeçalho e botão grande ---- */
   ctaGrande: 'Quero o meu, pago na entrega',
@@ -156,7 +156,7 @@ window.TEXTOS = {
     ['24-48 h', 'de entrega em Portugal continental'],
     ['0 €', 'de portes de envio'],
     ['14', 'dias para desistir da compra'],
-    ['3', 'anos de garantia legal'],
+    ['2', 'formas de pagamento: na entrega ou já com cartão'],
   ],
 
   /* ---- garantia ----
@@ -167,8 +167,8 @@ window.TEXTOS = {
   selloAbajo: 'LIVRE RESOLUÇÃO',
   dias: 'DIAS',
   garTit: 'Compra sem risco',
-  garTxt: 'Tem <b>14 dias</b> desde que recebe a encomenda para desistir da compra sem ter de dar explicações, e <b>3 anos de garantia legal</b> se o produto não estiver conforme. Não é um favor nosso: é o que a lei portuguesa manda e nós cumprimos.',
-  garChips: ['14 dias para desistir', '3 anos de garantia legal', 'Paga na entrega'],
+  garTxt: 'Tem <b>14 dias</b> desde que recebe a encomenda para desistir da compra sem ter de dar explicações. Não é um favor nosso: é o que a lei portuguesa manda e nós cumprimos.',
+  garChips: ['14 dias para desistir', 'Envio grátis', 'Paga na entrega'],
   garPie: 'Para desistir basta escrever-nos para ',
   garPie2: '. Devolvemos-lhe o valor no prazo máximo de 14 dias.',
   livroReclamacoes: true,

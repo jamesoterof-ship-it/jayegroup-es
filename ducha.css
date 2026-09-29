@@ -1,0 +1,336 @@
+/* ============================================================
+   CABEZAL DE DUCHA · ESPAÑA · estilos propios. Solo con <body class="p-ducha">.
+   Escrito desde cero el 29-09-2026 con ui-ux-pro-max ORIGINAL
+   (design-system/jaye-espana/pages/ducha.md). No sale del bálsamo.
+
+   Contrastes medidos (WCAG):
+     texto #0F172A sobre #F0F9FF  17,4:1 · secundario #475569  7,2:1
+     rótulo #0369A1 sobre #E0F2FE  5,4:1 · azul #0284C7 en titulares grandes 4,1:1 (≥24px: vale 3:1)
+     botón blanco sobre #EA580C  3,6:1 → texto de 19px/800 = "texto grande" (pide 3:1). Hover #C2410C 5,2:1.
+   ============================================================ */
+
+body.p-ducha {
+  --d-pri:    #0284C7;
+  --d-pri2:   #0369A1;
+  --d-sec:    #06B6D4;
+  --d-fondo:  #F0F9FF;
+  --d-franja: #E0F2FE;
+  --d-tarj:   #FFFFFF;
+  --d-texto:  #0F172A;
+  --d-texto2: #475569;
+  --d-cta:    #EA580C;
+  --d-cta2:   #C2410C;
+  --d-borde:  #BAE6FD;
+  --d-sombra: 0 8px 24px rgba(2,132,199,.10);
+  --d-tit:    'Rubik', 'Segoe UI', system-ui, sans-serif;
+  --d-cuerpo: 'Nunito Sans', 'Segoe UI', system-ui, sans-serif;
+  --d-ease:   cubic-bezier(.2,.8,.2,1);
+  background: var(--d-fondo);
+}
+body.p-ducha #prod { background: var(--d-fondo); font-family: var(--d-cuerpo); color: var(--d-texto); }
+body.p-ducha #prod p { color: var(--d-texto2); }
+
+/* ---------- títulos y rótulos ---------- */
+body.p-ducha #prod h2.tit2,
+body.p-ducha #prod .rev-title,
+body.p-ducha .du-h2 {
+  font-family: var(--d-tit);
+  font-weight: 700;
+  font-size: clamp(26px, 7vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  color: var(--d-texto);
+  text-wrap: balance;
+  margin: 10px 0 12px;
+}
+body.p-ducha #prod h2 em, body.p-ducha .du-h2 em { font-style: normal; color: var(--d-pri); }
+body.p-ducha #prod .eyebrow,
+body.p-ducha .du-rot {
+  display: inline-block;
+  font-family: var(--d-tit);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--d-pri2);
+  background: var(--d-franja);
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+body.p-ducha #prod .sub2 { font-size: 16px; line-height: 1.6; color: var(--d-texto2); }
+
+/* ---------- HÉROE: la foto de James manda; el texto sube encima en una tarjeta ---------- */
+body.p-ducha .heroP {
+  --crema: #F0F9FF; --rosa: #E0F2FE; --rosaF: #0284C7;
+  --tinta: #0F172A; --tinta2: #475569;
+  --oro: #EA580C;   --oroOsc: #C2410C;
+  background: var(--d-fondo);
+}
+body.p-ducha .heroP__marco { background: var(--d-franja); }
+body.p-ducha .heroP__img { background: var(--d-franja); }
+body.p-ducha .heroP__fundido {
+  background: linear-gradient(to top, #F0F9FF 12%, rgba(240,249,255,.70) 46%, rgba(240,249,255,0) 100%);
+}
+body.p-ducha .heroP__txt {
+  position: relative;
+  margin: 0 12px;
+  background: rgba(255,255,255,.94);
+  border: 1px solid var(--d-borde);
+  border-radius: 22px;
+  box-shadow: 0 12px 24px rgba(2,132,199,.14);
+  padding: 20px 18px 18px;
+}
+body.p-ducha .heroP .heroP__h1 {
+  font-family: var(--d-tit);
+  font-weight: 800;
+  font-style: normal;
+  font-size: clamp(34px, 9.6vw, 46px);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  color: var(--d-texto);
+}
+body.p-ducha .heroP .heroP__h1 b,
+body.p-ducha .hCas__w.es-oro .hCas__l { color: var(--d-pri); font-style: normal; font-weight: 800; }
+body.p-ducha .heroP__sub { font-family: var(--d-cuerpo); font-size: 16.5px; line-height: 1.55; color: var(--d-texto2); }
+body.p-ducha .heroP__kicker { font-family: var(--d-tit); color: var(--d-pri2); border-color: var(--d-borde); background: var(--d-franja); }
+body.p-ducha .heroP__kicker i { background: var(--d-sec); }
+body.p-ducha .heroP__dato { font-family: var(--d-cuerpo); font-weight: 700; color: var(--d-texto); background: #fff; border-color: var(--d-borde); }
+body.p-ducha .heroP__dato svg { color: var(--d-pri); }
+body.p-ducha .heroP__dato--oro { background: var(--d-franja); border-color: var(--d-franja); }
+body.p-ducha .heroP__ahorra { background: #FFF7ED; border-color: #FED7AA; color: #7C2D12; }
+body.p-ducha .heroP__ahorra svg { color: var(--d-cta); }
+body.p-ducha .heroP__precio span { color: var(--d-texto2); }
+body.p-ducha .heroP__precio b { font-family: var(--d-tit); font-weight: 800; color: var(--d-texto); font-variant-numeric: tabular-nums; }
+/* la lluvia del héroe: GOTAS de agua, no destellos */
+body.p-ducha .heroP__luces i {
+  background: radial-gradient(circle at 35% 30%, #fff 0 25%, #A5F3FC 60%, rgba(6,182,212,.6) 100%);
+  box-shadow: 0 0 8px 1px rgba(6,182,212,.55);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+/* ---------- BOTONES: todos naranja, el mismo en toda la página ---------- */
+body.p-ducha .heroP__cta,
+body.p-ducha #prod .cta.rojo,
+body.p-ducha #prod .du-cta,
+body.p-ducha .btn-flota,
+body.p-ducha #stickycta button,
+body.p-ducha #stickycta a {
+  background: var(--d-cta);
+  color: #fff;
+  font-family: var(--d-tit);
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: 0;
+  border: 0;
+  border-radius: 14px;
+  min-height: 56px;
+  box-shadow: 0 10px 22px rgba(234,88,12,.28);
+  transition: background .2s var(--d-ease), transform .15s var(--d-ease);
+  cursor: pointer;
+}
+body.p-ducha .heroP__cta:hover, body.p-ducha #prod .cta.rojo:hover, body.p-ducha #prod .du-cta:hover,
+body.p-ducha .btn-flota:hover, body.p-ducha #stickycta button:hover { background: var(--d-cta2); }
+body.p-ducha .heroP__cta:active, body.p-ducha #prod .cta.rojo:active, body.p-ducha #prod .du-cta:active { transform: scale(.97); }
+body.p-ducha .heroP__cta:focus-visible, body.p-ducha #prod .cta:focus-visible { outline: 3px solid var(--d-pri); outline-offset: 3px; }
+body.p-ducha #prod .du-cta { display: block; width: 100%; margin-top: 18px; }
+body.p-ducha .btn-flota, body.p-ducha #prod .cta { text-transform: none; }
+body.p-ducha #prod .cta.azul { color: var(--d-pri2); border: 2px solid var(--d-pri2); background: #fff; font-family: var(--d-tit); font-weight: 700; }
+
+/* ---------- ANTES / DESPUÉS: justo debajo del héroe ---------- */
+body.p-ducha #prod .ba-sec {
+  background: var(--d-tarj);
+  margin: 22px 12px 0;
+  border-radius: 22px;
+  border: 1px solid var(--d-borde);
+  box-shadow: var(--d-sombra);
+  padding: 22px 16px 18px;
+}
+body.p-ducha #prod .ba-sec .ba-img { border-radius: 16px; overflow: hidden; margin: 14px 0 4px; }
+body.p-ducha #prod .ba-sec .ba-img img { display: block; width: 100%; }
+
+/* ---------- compra corta ---------- */
+body.p-ducha #prod .arriba2 { background: transparent; }
+body.p-ducha #prod .arriba2 .datos h1 { font-family: var(--d-tit); font-weight: 800; color: var(--d-texto); letter-spacing: -.01em; }
+body.p-ducha #prod .precioTop { font-family: var(--d-tit); font-variant-numeric: tabular-nums; }
+
+/* ---------- QUÉ TRAE: cuatro tarjetas, una idea cada una ---------- */
+body.p-ducha #prod .form-sec { background: var(--d-franja); padding-top: 34px; padding-bottom: 34px; }
+body.p-ducha #prod .form-sec :has(> .ing) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+body.p-ducha #prod .form-sec .ing {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  background: var(--d-tarj);
+  border: 1px solid var(--d-borde);
+  border-radius: 18px;
+  padding: 16px 14px;
+  box-shadow: var(--d-sombra);
+}
+body.p-ducha #prod .form-sec .ing .cir {
+  width: 46px; height: 46px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--d-pri), var(--d-sec));
+  display: grid; place-items: center; border: 0;
+}
+body.p-ducha #prod .form-sec .ing .cir svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+body.p-ducha #prod .form-sec .ing b { font-family: var(--d-tit); font-weight: 700; font-size: 16.5px; color: var(--d-texto); display: block; }
+body.p-ducha #prod .form-sec .ing p { font-size: 14.5px; line-height: 1.5; margin: 4px 0 0; }
+
+/* ---------- fotos sueltas ---------- */
+body.p-ducha .du-foto { margin: 16px 0; }
+body.p-ducha .du-foto img {
+  display: block; width: 100%; height: auto; aspect-ratio: 1 / 1;
+  border-radius: 20px; box-shadow: var(--d-sombra);
+  background: var(--d-franja);
+}
+
+/* ---------- VÍDEO ---------- */
+body.p-ducha #prod .vid-wrap { background: var(--d-fondo); }
+body.p-ducha #prod .du-cab { padding: 0 16px 14px; }
+body.p-ducha #prod .vid-prod, body.p-ducha #prod .vid-wrap video { background: var(--d-franja); border-radius: 20px; }
+
+/* ---------- INSTALACIÓN ---------- */
+body.p-ducha .du-sec { padding: 34px 16px; }
+body.p-ducha .du-instala { background: var(--d-tarj); }
+body.p-ducha .du-pasos { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 12px; }
+body.p-ducha .du-paso {
+  position: relative;
+  display: grid; grid-template-columns: 46px 1fr; gap: 12px; align-items: start;
+  background: var(--d-fondo);
+  border: 1px solid var(--d-borde);
+  border-radius: 18px;
+  padding: 16px 14px;
+}
+body.p-ducha .du-num {
+  position: absolute; top: -9px; left: -6px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--d-cta); color: #fff;
+  font: 800 14px/26px var(--d-tit); text-align: center;
+}
+body.p-ducha .du-pico {
+  width: 46px; height: 46px; border-radius: 14px;
+  background: #fff; border: 1px solid var(--d-borde);
+  display: grid; place-items: center; color: var(--d-pri);
+}
+body.p-ducha .du-pico svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+body.p-ducha .du-paso b { font-family: var(--d-tit); font-weight: 700; font-size: 17px; color: var(--d-texto); }
+body.p-ducha .du-paso p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: var(--d-texto2); }
+
+/* ---------- el resto de la ficha, en el mismo idioma visual ---------- */
+body.p-ducha #prod section.desc { background: var(--d-fondo); }
+body.p-ducha #prod .promo-sec,
+body.p-ducha #prod .cmp-sec,
+body.p-ducha #prod .gar-sec { background: var(--d-tarj); }
+body.p-ducha #prod .res-sec { background: var(--d-franja); }
+body.p-ducha #prod .cmp th.us { color: var(--d-pri2); font-family: var(--d-tit); }
+body.p-ducha #prod .cmp .si svg { stroke: #059669; }
+body.p-ducha #prod .form { background: var(--d-fondo); }
+body.p-ducha #prod .form h2 { font-family: var(--d-tit); }
+
+/* ---------- FORMULARIO: los dos pasos y las dos formas de pago ----------
+   Estos estilos solo existían dentro de balsamo.css (.p-balsamo), así que en
+   cualquier otro producto el selector de pago salía roto: dos iconos negros
+   gigantes. Aquí van con los colores del cabezal. */
+body.p-ducha #prod .pasoRot {
+  display: flex; align-items: center; gap: 9px;
+  margin: 22px 0 10px;
+  font-family: var(--d-tit); font-size: 15px; font-weight: 600; color: var(--d-texto);
+}
+body.p-ducha #prod .pasoRot:first-of-type { margin-top: 4px; }
+body.p-ducha #prod .pasoRot b {
+  display: grid; place-items: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--d-pri2); color: #fff; font-size: 13px; font-weight: 700;
+}
+body.p-ducha #prod .pagoSel { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 4px; }
+body.p-ducha #prod .pagoOp {
+  position: relative;
+  display: grid; grid-template-areas: 'ico' 'tit' 'pr' 'sub'; align-content: start; gap: 2px;
+  min-height: 132px; padding: 16px 12px 13px;
+  border: 1.5px solid var(--d-borde); border-radius: 16px;
+  background: #fff; font: inherit; text-align: left; cursor: pointer;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+body.p-ducha #prod .pagoOp:active { transform: scale(.985); }
+body.p-ducha #prod .pagoOp.sel { border-color: var(--d-pri2); background: var(--d-franja); box-shadow: 0 0 0 3px rgba(3,105,161,.14); }
+body.p-ducha #prod .pagoOp:focus-visible { outline: 2px solid var(--d-pri2); outline-offset: 3px; }
+body.p-ducha #prod .pagoOp__ico { grid-area: ico; margin-bottom: 4px; }
+body.p-ducha #prod .pagoOp__ico svg { width: 26px; height: 26px; fill: none; stroke: var(--d-texto2); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+body.p-ducha #prod .pagoOp.sel .pagoOp__ico svg { stroke: var(--d-pri2); }
+body.p-ducha #prod .pagoOp__tit { grid-area: tit; font-size: 14px; font-weight: 700; line-height: 1.25; color: var(--d-texto); }
+body.p-ducha #prod .pagoOp__pr { grid-area: pr; margin-top: 2px; font-family: var(--d-tit); font-size: 21px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; color: var(--d-texto); }
+body.p-ducha #prod .pagoOp__sub { grid-area: sub; margin-top: 3px; font-size: 12px; line-height: 1.35; color: var(--d-texto2); }
+body.p-ducha #prod .pagoOp__cinta {
+  position: absolute; top: -9px; right: 10px; padding: 3px 9px; border-radius: 999px;
+  background: var(--d-cta2); color: #fff; font-family: var(--d-tit); font-size: 11px; font-weight: 700; white-space: nowrap;
+}
+@media (max-width: 349px) {
+  body.p-ducha #prod .pagoSel { grid-template-columns: 1fr; }
+  body.p-ducha #prod .pagoOp { min-height: 0; grid-template-areas: 'ico tit' 'ico pr' 'ico sub'; grid-template-columns: 34px 1fr; }
+}
+
+/* bloque de compra CORTO (skill: nombre, precio y botón). La descripción ya
+   está más abajo en "Qué es y para qué sirve": aquí salía repetida. */
+body.p-ducha #prod .arriba2 .dscTop,
+body.p-ducha #prod .arriba2 .dscTop__ul { display: none; }
+/* las tarjetas de "Qué trae", en frase normal */
+body.p-ducha #prod .form-sec .ing b { text-transform: none; letter-spacing: 0; }
+
+/* los títulos en frase normal, no en mayúsculas (la tienda los pone en caja alta) */
+body.p-ducha #prod h1, body.p-ducha #prod h2 { text-transform: none; }
+/* TODOS los títulos de la ficha con la letra del cabezal (los de preguntas, envíos
+   y 'también te puede interesar' seguían con la condensada de la tienda) */
+body.p-ducha #prod h2, body.p-ducha #prod h3, body.p-ducha #prod .rev-more, body.p-ducha #prod .cta.azul { font-family: var(--d-tit); letter-spacing: 0; }
+/* la tienda pone los .tit2 en fila (display:flex) y el trozo en azul se iba a
+   una segunda columna: "De un hilo de agua | a un chorro de verdad" */
+body.p-ducha #prod h2.tit2, body.p-ducha #prod .du-h2 { display: block; }
+body.p-ducha #prod h2 em { display: inline; }
+
+/* ---------- LA GOTA: cae sobre cada título al leerlo y abre una onda ---------- */
+body.p-ducha #prod h2.du-tit { position: relative; }
+body.p-ducha .du-gota {
+  position: absolute; left: 14px; top: -4px;
+  width: 0; height: 0; pointer-events: none;
+}
+body.p-ducha .du-gota i {                 /* la gota */
+  position: absolute; left: -6px; top: -8px;
+  width: 12px; height: 12px;
+  background: radial-gradient(circle at 35% 35%, #fff 0 18%, #67E8F9 45%, #0284C7 100%);
+  border-radius: 0 50% 50% 50%;
+  transform: translateY(-70px) rotate(45deg);
+  opacity: 0;
+  box-shadow: 0 2px 6px rgba(2,132,199,.35);
+  animation: duCae .46s cubic-bezier(.55,0,.9,.45) forwards;
+}
+body.p-ducha .du-gota b {                 /* las ondas al tocar */
+  position: absolute; left: -14px; top: -5px;
+  width: 28px; height: 10px;
+  border: 2px solid rgba(6,182,212,.75);
+  border-radius: 50%;
+  opacity: 0; transform: scale(.2);
+  animation: duOnda .6s cubic-bezier(.2,.8,.2,1) .42s forwards;
+}
+body.p-ducha .du-gota b + b { animation-delay: .56s; border-color: rgba(2,132,199,.45); }
+@keyframes duCae {
+  0%   { transform: translateY(-70px) rotate(45deg); opacity: 0; }
+  15%  { opacity: 1; }
+  92%  { transform: translateY(0) rotate(45deg) scale(1); opacity: 1; }
+  100% { transform: translateY(2px) rotate(45deg) scale(.2); opacity: 0; }
+}
+@keyframes duOnda {
+  0%   { transform: scale(.2); opacity: .95; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* ---------- entrada al hacer scroll (200-300 ms, escalonado 40 ms) ---------- */
+body.p-ducha.du-anima .du-rev { opacity: 0; transform: translateY(14px); transition: opacity .3s var(--d-ease), transform .3s var(--d-ease); transition-delay: calc(var(--i, 0) * 40ms); }
+body.p-ducha.du-anima .du-rev.du-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  body.p-ducha .du-rev { opacity: 1 !important; transform: none !important; transition: none !important; }
+  body.p-ducha .heroP__luces { display: none; }
+}

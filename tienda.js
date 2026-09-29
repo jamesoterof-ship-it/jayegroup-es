@@ -24,6 +24,14 @@
       var t = (r.producto || '').toLowerCase(), n = p.nombre.toLowerCase();
       return t && (n.indexOf(t.split(' ')[0]) >= 0 || t.indexOf(n.split(' ')[0].toLowerCase()) >= 0);
     });
+    /* sin textos repetidos, IGUAL que ficha.js: si no, la tarjeta del cabezal
+       decía 167 reseñas y su ficha 154 */
+    var vistos = {};
+    mias = mias.filter(function (r) {
+      var k = String(r.texto || '').trim().toLowerCase();
+      if (vistos[k]) return false;
+      vistos[k] = 1; return true;
+    });
     if (mias.length < 8) return null;
     var suma = mias.reduce(function (a, r) { return a + (Number(r.estrellas) || 5); }, 0);
     return { n: mias.length, prom: (suma / mias.length).toFixed(1) };
