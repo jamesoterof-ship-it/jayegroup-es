@@ -102,7 +102,7 @@
     if (trae) {
       /* la foto con las medidas encabeza las cuatro tarjetas */
       var sub = trae.querySelector('.sub2') || trae.querySelector('h2');
-      sub.insertAdjacentHTML('afterend', '<figure class="du-foto"><img src="img/ducha-tienda.webp?v=1" alt="El cabezal de ducha sobre una piedra, soltando un chorro fuerte, con las bolitas del filtro a la vista" loading="lazy" width="1000" height="1000"></figure>');
+      sub.insertAdjacentHTML('afterend', '<figure class="du-foto"><img src="img/ducha-info.webp?v=1" alt="El cabezal con sus funciones: filtro multicapa, alta presión, botón stop y tres modos de ducha: lluvia, masaje y mixto" loading="lazy" width="1000" height="1000"></figure>');
       /* iconos propios: una llave para "3 modos" no decía nada */
       var ICO_T = {
         'modos': '<path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="9" r="2.2"/><circle cx="12" cy="15" r="2.2"/><circle cx="19" cy="8" r="2.2"/>',

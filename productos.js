@@ -193,8 +193,9 @@ window.PRODUCTOS = [
     etiquetaOro: true,
 
     /* 29-09: fotos de James (tienda y pelo). Las de Chile se van quedando fuera a medida que llegan las nuevas. */
-    foto: 'img/ducha-tienda.webp?v=1',
-    fotos: ['img/ducha-tienda.webp?v=1', 'img/ducha-pelo.webp?v=1', 'img/ducha-3.webp?v=1'],
+    /* 29-09 James: la INFOGRAFÍA en vez de la foto sencilla */
+    foto: 'img/ducha-info.webp?v=1',
+    fotos: ['img/ducha-info.webp?v=1', 'img/ducha-tienda.webp?v=1', 'img/ducha-pelo.webp?v=1', 'img/ducha-3.webp?v=1'],
     video: 'img/ducha-ficha.mp4?v=1',
 
     hero: {
