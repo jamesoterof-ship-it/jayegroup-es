@@ -587,6 +587,20 @@
   }
 
   /* ---------- 8 · sellos de las transportadoras ---------- */
+  /* 29-09 (James: "busca los logos oficiales, no así sencillo"). Logos OFICIALES:
+     MRW de Wikimedia Commons (File:MRW logo.svg), CTT Express y Correos Express
+     de sus propias webs (cttexpress.com, correosexpress.es). Cada uno con su
+     altura para que se vean del mismo peso: el de MRW es ancho y macizo, los
+     otros dos traen aire dentro del dibujo. */
+  var RAIZ = /\/pt\//.test(location.pathname) ? '../' : '';
+  var LOGOS = {
+    'MRW': ['img/logos/mrw.svg', 20],
+    'CTT Express': ['img/logos/ctt.svg', 30],
+    'Correos Express': ['img/logos/correosexpress.svg', 34],
+  };
+  function logoImg(nombre, lg, alto) {
+    return '<img class="logoTr" src="' + RAIZ + lg[0] + '" alt="' + esc(nombre) + '" style="height:' + (alto || lg[1]) + 'px" loading="lazy">';
+  }
   /* ESPAÑA: las transportadoras reales del proveedor. Starken y Blue Express
      son de Chile y sus imagenes ni siquiera existen en este repo. */
   var sellos = '<section class="bloque"><h2>' + t('conQuien', 'Con quién enviamos') + '</h2><div class="sellos">'
@@ -596,7 +610,8 @@
         ['Correos Express', 'Entrega a domicilio'],
         ['Pagas al recibir', 'Al repartidor, cuando lo tienes en la mano'],
       ]).map(function (s) {
-        return '<div class="sello"><div class="nom">' + esc(s[0]) + '</div><small>' + esc(s[1]) + '</small></div>';
+        var lg = LOGOS[s[0]];
+        return '<div class="sello">' + (lg ? logoImg(s[0], lg) : '<div class="nom">' + esc(s[0]) + '</div>') + '<small>' + esc(s[1]) + '</small></div>';
       }).join('')
     + '</div></section>';
 
@@ -925,7 +940,7 @@
     + '" target="_blank" rel="noopener">' + t('ayudaWa', 'Escríbenos por WhatsApp') + '</a>' + t('yTeAyudamos', ' y te lo tomamos nosotros.') + '</p>'
     + '</form>'
     + '<div class="carriers"><span class="cl">' + t('enviamosCon', 'Enviamos con') + '</span>'
-    + '<div class="cbadges cbadges-txt">' + (T.carriers || ['MRW', 'CTT Express', 'Correos Express']).map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div></div>'
+    + '<div class="cbadges">' + (T.carriers || ['MRW', 'CTT Express', 'Correos Express']).map(function (c) { return LOGOS[c] ? logoImg(c, LOGOS[c], Math.round(LOGOS[c][1] * .85)) : '<span>' + esc(c) + '</span>'; }).join('') + '</div></div>'
     + '</div></section>';
 
 

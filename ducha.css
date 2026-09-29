@@ -525,3 +525,7 @@ body.p-ducha.du-anima .du-rev.du-in { opacity: 1; transform: none; }
   body.p-ducha .du-rev { opacity: 1 !important; transform: none !important; transition: none !important; }
   body.p-ducha .heroP__luces { display: none; }
 }
+
+/* la tarjeta "Pagas al recibir" junto a los logos, con la letra del cabezal */
+body.p-ducha #prod .sello .nom { font-family: var(--d-tit); font-weight: 800; font-size: 16px; text-transform: none; letter-spacing: 0; color: var(--d-texto); }
+body.p-ducha #prod .sello img.logoTr { margin: 4px auto 10px; }
