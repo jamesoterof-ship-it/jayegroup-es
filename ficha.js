@@ -1518,10 +1518,14 @@
       _t.textContent = falla;
       err.appendChild(_t);
       var _a = document.createElement('a');
-      _a.href = 'mailto:' + CORREO + '?subject=' + encodeURIComponent(
-        t('asuntoQuiero', 'Quiero pedir ') + p.nombre);
+      /* 29-09 (James): igual que en Chile, el aviso manda al WhatsApp de España
+         (+34 672 42 37 35, lo atiende Carmen) con el pedido ya escrito. Antes
+         mandaba al correo porque todavía no había número español. */
+      _a.href = 'https://wa.me/34672423735?text=' + encodeURIComponent(
+        t('msgWa', 'Hola, quiero pedir ') + p.nombre + t('msgWa2', ' y se me complica el formulario'));
+      _a.target = '_blank'; _a.rel = 'noopener';
       _a.style.cssText = 'display:block;margin-top:6px;color:inherit;text-decoration:underline;font-weight:700';
-      _a.textContent = t('seTeComplica', '¿Se te complica? Escríbenos a ') + CORREO;
+      _a.textContent = t('seTeComplicaWa', '¿Se te complica? Escríbenos al WhatsApp y te lo tomamos nosotros');
       err.appendChild(_a);
       err.style.display = 'block';
       return;

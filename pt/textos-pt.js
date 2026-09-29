@@ -82,6 +82,7 @@ window.TEXTOS = {
   ayudaWa: 'Escreva-nos por WhatsApp',
   yTeAyudamos: ' e tratamos nós.',
   seTeComplica: 'Está com dificuldades? Escreva-nos para ',
+  seTeComplicaWa: 'Está com dificuldades? Escreva-nos por WhatsApp e tratamos nós da encomenda',
   asuntoPedido: 'Encomenda de ',
   asuntoQuiero: 'Quero encomendar ',
 
