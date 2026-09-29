@@ -1044,15 +1044,19 @@ window.jayePixel = (function () {
   <!-- la barra de categorías se quita en la ficha: le quita vista al producto.
        Sigue en index.html, que es donde el cliente navega. -->
 
-  <!-- PAGINA DE UN SOLO PRODUCTO, no tienda (decision de James, 24-09).
-       Se quitan el buscador, el carrito y el enlace "Inicio": en una pagina de
-       un producto no llevan a ningun sitio, y un carrito vacio que no hace nada
-       resta confianza en vez de darla. Queda solo la marca, centrada. -->
+  <!-- 29-09 (James: "se ve plano, míralo el de Chile que tiene donde dice inicio").
+       El 24-09 se habían quitado porque era una página de UN producto y no llevaban a
+       ningún sitio. Ahora hay TIENDA con dos productos, así que vuelven igual que en
+       Chile, pero FUNCIONANDO: Inicio -> la tienda · lupa -> el catálogo · carrito ->
+       el formulario de compra de esta ficha. -->
   <header class="top">
     <div class="fila">
-      <span class="ofertas" style="visibility:hidden">·</span>
+      <a class="ofertas" href="/">Inicio</a>
       <a class="logo" href="/"><span class="j">JAYE</span><i class="raya"></i><span class="g">GROUP</span></a>
-      <div class="icos"></div>
+      <div class="icos">
+        <a href="/#productos" aria-label="Ver todos los productos" style="color:inherit;display:flex"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg></a>
+        <a href="#pedir" aria-label="Ir a comprar" style="color:inherit;display:flex"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.2l1.7 10.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L20 8H6"></path><circle cx="10" cy="20" r="1.2"></circle><circle cx="17" cy="20" r="1.2"></circle></svg></a>
+      </div>
     </div>
   </header>
   </div>
