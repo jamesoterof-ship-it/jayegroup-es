@@ -114,7 +114,8 @@
     try {
       fetch('https://n8n-production-8a42.up.railway.app/webhook/track-visita', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pagina: 'tienda-' + p.id, producto: p.nombre, tipo: tipo }),
+        /* 28-09: con el país adelante (es-/pt-) para que el panel separe España, Portugal y Chile */
+        body: JSON.stringify({ pagina: (PAIS === 'PT' ? 'pt-' : 'es-') + p.id, producto: p.nombre + (PAIS === 'PT' ? ' · Portugal' : ' · España'), tipo: tipo }),
       }).catch(function () {});
     } catch (e) {}
   };
