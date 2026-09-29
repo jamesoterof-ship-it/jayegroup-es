@@ -133,6 +133,37 @@ body.p-ducha .btn-flota:hover, body.p-ducha #stickycta button:hover { background
 body.p-ducha .heroP__cta:active, body.p-ducha #prod .cta.rojo:active, body.p-ducha #prod .du-cta:active { transform: scale(.97); }
 body.p-ducha .heroP__cta:focus-visible, body.p-ducha #prod .cta:focus-visible { outline: 3px solid var(--d-pri); outline-offset: 3px; }
 body.p-ducha #prod .du-cta { display: block; width: 100%; margin-top: 18px; }
+
+/* 🔴 TODOS LOS BOTONES DEL MISMO GROSOR (James, 29-09: "tienen que ser del
+   mismo grueso"). Medido antes: 56, 53 y 76 px, anchos de 305 a 343 px, uno
+   con letra de 15 px y esquinas rectas. Ahora: 56 px, a todo el ancho, una
+   sola línea, mismo naranja, misma letra. */
+body.p-ducha .heroP__cta,
+body.p-ducha #prod .cta,
+body.p-ducha #prod .du-cta,
+body.p-ducha .btn-flota,
+body.p-ducha #stickycta button,
+body.p-ducha #stickycta a {
+  box-sizing: border-box;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  height: 56px !important;
+  min-height: 56px;
+  padding: 0 18px !important;
+  font-family: var(--d-tit) !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  white-space: nowrap;
+  border-radius: 14px !important;
+  background: var(--d-cta) !important;
+  color: #fff !important;
+  border: 0 !important;
+  text-decoration: none;
+}
+body.p-ducha .heroP__pie { flex-wrap: wrap; }
 body.p-ducha .btn-flota, body.p-ducha #prod .cta { text-transform: none; }
 body.p-ducha #prod .cta.azul { color: var(--d-pri2); border: 2px solid var(--d-pri2); background: #fff; font-family: var(--d-tit); font-weight: 700; }
 

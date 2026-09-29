@@ -91,7 +91,14 @@
     if (ba) {
       var eb = ba.querySelector('.eyebrow'); if (eb) eb.textContent = 'El cambio';
       var h = ba.querySelector('h2'); if (h) h.innerHTML = 'De un hilo de agua <em>a un chorro de verdad.</em>';
+      /* sin botón aquí (James: "no queda bien ahí"): quedaba pegado a la foto y
+         justo debajo ya viene la compra con el suyo */
+      var bb = ba.querySelector('.cta'); if (bb) bb.remove();
     }
+    /* la barra fija de abajo decía "Pedir ahora — pago contra entrega" en dos
+       líneas (76 px): mismo texto que los demás, en una */
+    var flota = document.querySelector('.btn-flota');
+    if (flota) flota.textContent = 'Lo quiero, pago al recibir';
     if (trae) {
       /* la foto con las medidas encabeza las cuatro tarjetas */
       var sub = trae.querySelector('.sub2') || trae.querySelector('h2');
