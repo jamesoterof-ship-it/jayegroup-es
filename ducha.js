@@ -102,7 +102,7 @@
     if (trae) {
       /* la foto con las medidas encabeza las cuatro tarjetas */
       var sub = trae.querySelector('.sub2') || trae.querySelector('h2');
-      sub.insertAdjacentHTML('afterend', '<figure class="du-foto"><img src="img/ducha-1.webp?v=1" alt="El cabezal de ducha con sus medidas: 7,5 cm de cabeza y 25 cm de largo" loading="lazy" width="900" height="900"></figure>');
+      sub.insertAdjacentHTML('afterend', '<figure class="du-foto"><img src="img/ducha-tienda.webp?v=1" alt="El cabezal de ducha sobre una piedra, soltando un chorro fuerte, con las bolitas del filtro a la vista" loading="lazy" width="1000" height="1000"></figure>');
       /* iconos propios: una llave para "3 modos" no decía nada */
       var ICO_T = {
         'modos': '<path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="9" r="2.2"/><circle cx="12" cy="15" r="2.2"/><circle cx="19" cy="8" r="2.2"/>',
@@ -126,11 +126,124 @@
     }
     if (desc) {
       var pd = desc.querySelector('p');
-      if (pd) pd.insertAdjacentHTML('afterend', '<figure class="du-foto"><img src="img/ducha-2.webp?v=1" alt="Una mujer disfrutando del chorro del cabezal de ducha" loading="lazy" width="900" height="900"></figure>');
+      /* 29-09: la foto de James (el pelo bajo el chorro) sustituye a la de Chile */
+      if (pd) pd.insertAdjacentHTML('afterend', '<figure class="du-foto"><img src="img/ducha-pelo.webp?v=1" alt="Una mujer de espaldas aclarándose el pelo largo bajo el chorro del cabezal de ducha" loading="lazy" width="1000" height="1000"></figure>');
     }
     if (cmp) { var us = cmp.querySelector('th.us'); if (us) us.textContent = 'Este'; }
 
     return true;
+  }
+
+  /* ============================================================
+     HÉROE VIVO (James, 29-09: "muy sencillo… lo más llamativo").
+     · CHORRO: un canvas encima de la foto suelta gotas desde las boquillas, en
+       la misma dirección que el agua de la foto. Medido sobre la foto de
+       1024x1536: la cara de las boquillas va de (620,190) a (500,430) y el
+       agua sale entre 30° y 80° hacia abajo a la derecha.
+     · ONDAS al abrir, PRECIO que cuenta y la foto que baja más lento al hacer
+       scroll (parallax suave).
+     Solo corre con la foto en pantalla y la pestaña visible. Con movimiento
+     reducido no se pinta nada de esto.
+     ============================================================ */
+  function heroVivo() {
+    var hero = document.querySelector('.p-ducha .heroP');
+    var marco = hero && hero.querySelector('.heroP__marco');
+    var img = marco && marco.querySelector('.heroP__img');
+    if (!marco || !img) return;
+
+    /* precio: cuenta hasta el valor real (sale del propio texto: nunca inventa) */
+    var pb = hero.querySelector('.heroP__precio b');
+    if (pb && !QUIETO) {
+      var fin = pb.textContent, num = parseFloat(fin.replace(/[^\d,]/g, '').replace(',', '.'));
+      if (num > 0) {
+        pb.textContent = '0,00 €';
+        setTimeout(function () {
+          var t0 = Date.now(), dur = 700;
+          var iv = setInterval(function () {
+            var p = Math.min((Date.now() - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+            pb.textContent = (num * e).toFixed(2).replace('.', ',') + ' €';
+            if (p >= 1) { clearInterval(iv); pb.textContent = fin; }
+          }, 30);
+        }, 1800);
+        setTimeout(function () { pb.textContent = fin; }, 2900);   // pase lo que pase, el precio real
+      }
+    }
+    if (QUIETO) return;
+
+    marco.insertAdjacentHTML('beforeend', '<span class="du-onda" aria-hidden="true"></span><span class="du-onda" aria-hidden="true"></span>');
+    /* la foto se abre cuando ya bajó entera, con sus ondas */
+    var abierta = false;
+    function abrir() {
+      if (abierta) return; abierta = true;
+      img.classList.add('du-abre');
+      [].forEach.call(marco.querySelectorAll('.du-onda'), function (o) { o.classList.add('du-va'); });
+      t0 = Date.now();
+    }
+    if (img.complete && img.naturalWidth) setTimeout(abrir, 60);
+    else { img.addEventListener('load', abrir); img.addEventListener('error', abrir); }
+    setTimeout(abrir, 2600);
+
+    /* ---- el chorro ---- */
+    var cv = document.createElement('canvas');
+    cv.className = 'du-chorro'; cv.setAttribute('aria-hidden', 'true');
+    marco.insertBefore(cv, marco.querySelector('.heroP__fundido'));
+    var cx = cv.getContext('2d'), W = 0, H = 0, S = 1, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    function medir() {
+      var r = img.getBoundingClientRect();
+      W = r.width; H = r.height; S = W / 1024;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    medir(); window.addEventListener('resize', medir);
+
+    var gotas = [], vivo = false, visible = true, raf = 0, t0 = Date.now();
+    function nueva() {
+      var u = Math.random();
+      var x = (620 - 120 * u) * S, y = (190 + 240 * u) * S;            // un punto de la cara de las boquillas
+      var ang = (30 + 50 * (u * .7 + Math.random() * .3)) * Math.PI / 180;  // arriba sale más plano, abajo más vertical
+      var v = (9 + Math.random() * 7) * S * 1.6;
+      return { x: x, y: y, vx: Math.cos(ang) * v, vy: Math.sin(ang) * v, r: (.8 + Math.random() * 1.6) * Math.max(S, .5), a: .55 + Math.random() * .4 };
+    }
+    function paso() {
+      raf = 0;
+      if (!vivo || !visible) return;
+      cx.clearRect(0, 0, W, H);
+      /* empieza cuando la foto ya se abrió (0,5 s) */
+      if (Date.now() - t0 > 500) for (var k = 0; k < 5 && gotas.length < 220; k++) gotas.push(nueva());
+      for (var i = gotas.length - 1; i >= 0; i--) {
+        var g = gotas[i];
+        g.vy += .22 * S; g.x += g.vx; g.y += g.vy;
+        if (g.x > W + 10 || g.y > H + 10) { gotas.splice(i, 1); continue; }
+        /* estela: una rayita en la dirección del movimiento, y la gota en la punta */
+        /* sobre el chorro claro de la foto, blanco puro no se veía: la estela
+           lleva un punto de azul y la gota un borde azul fino */
+        cx.strokeStyle = 'rgba(125,211,252,' + (g.a * .6) + ')';
+        cx.lineWidth = g.r * 1.1;
+        cx.beginPath(); cx.moveTo(g.x - g.vx * 2.2, g.y - g.vy * 2.2); cx.lineTo(g.x, g.y); cx.stroke();
+        cx.fillStyle = 'rgba(255,255,255,' + Math.min(1, g.a + .15) + ')';
+        cx.strokeStyle = 'rgba(2,132,199,' + (g.a * .45) + ')';
+        cx.lineWidth = .8;
+        cx.beginPath(); cx.arc(g.x, g.y, g.r * 1.25, 0, 6.283); cx.fill(); cx.stroke();
+      }
+      raf = requestAnimationFrame(paso);
+    }
+    function arranca() { if (!raf && vivo && visible) raf = requestAnimationFrame(paso); }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (vs) { vivo = vs[0].isIntersecting; arranca(); }).observe(marco);
+    } else { vivo = true; arranca(); }
+    document.addEventListener('visibilitychange', function () { visible = !document.hidden; arranca(); });
+
+    /* ---- la foto baja más lento que la página ---- */
+    var pend = false;
+    window.addEventListener('scroll', function () {
+      if (pend) return; pend = true;
+      requestAnimationFrame(function () {
+        pend = false;
+        var y = Math.min(window.scrollY, H);
+        img.style.translate = '0 ' + (y * .22).toFixed(1) + 'px';
+        cv.style.translate = '0 ' + (y * .22).toFixed(1) + 'px';
+      });
+    }, { passive: true });
   }
 
   /* LA GOTA (James, 29-09: "un efecto al leer: una gotita de agua").
@@ -170,7 +283,7 @@
 
   var n = 0;
   (function esperar() {
-    if (montar()) { revelar(); gotas(); return; }
+    if (montar()) { heroVivo(); revelar(); gotas(); return; }
     if (++n > 60) return;
     setTimeout(esperar, 100);
   })();
