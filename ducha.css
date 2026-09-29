@@ -251,6 +251,78 @@ body.p-ducha .du-pico svg { width: 26px; height: 26px; fill: none; stroke: curre
 body.p-ducha .du-paso b { font-family: var(--d-tit); font-weight: 700; font-size: 17px; color: var(--d-texto); }
 body.p-ducha .du-paso p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: var(--d-texto2); }
 
+/* ---------- ¿TU AGUA TIENE CAL? ---------- */
+body.p-ducha .du-cal { background: var(--d-tarj); }
+body.p-ducha .du-cal-sub { font-size: 16px; line-height: 1.6; color: var(--d-texto2); margin: 0 0 16px; }
+body.p-ducha .du-cal-lab { display: block; font: 600 14px var(--d-tit); color: var(--d-texto); margin: 0 0 6px; }
+body.p-ducha .du-cal-sel { position: relative; }
+body.p-ducha .du-cal-sel select {
+  width: 100%; height: 54px; padding: 0 44px 0 16px;
+  font: 600 16px var(--d-cuerpo); color: var(--d-texto);
+  background: var(--d-fondo); border: 2px solid var(--d-borde); border-radius: 14px;
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+}
+body.p-ducha .du-cal-sel select:focus-visible { outline: 3px solid var(--d-pri); outline-offset: 2px; }
+body.p-ducha .du-cal-sel::after {
+  content: ''; position: absolute; right: 18px; top: 50%; width: 10px; height: 10px; margin-top: -7px;
+  border-right: 2.5px solid var(--d-pri2); border-bottom: 2.5px solid var(--d-pri2); transform: rotate(45deg); pointer-events: none;
+}
+body.p-ducha .du-cal-res {
+  margin: 16px 0 6px; padding: 18px 16px;
+  background: var(--d-fondo); border: 1px solid var(--d-borde); border-radius: 18px; box-shadow: var(--d-sombra);
+  animation: duPieza .35s cubic-bezier(.2,.9,.3,1.1) both;
+}
+body.p-ducha .du-cal-cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+body.p-ducha .du-cal-cab b { font: 700 19px var(--d-tit); color: var(--d-texto); }
+body.p-ducha .du-cal-pill { font: 700 12.5px var(--d-tit); padding: 6px 11px; border-radius: 999px; background: var(--d-franja); color: var(--d-pri2); white-space: nowrap; }
+body.p-ducha .du-cal-pill.du-n-muy  { background: #FEE2E2; color: #991B1B; }
+body.p-ducha .du-cal-pill.du-n-dura { background: #FFEDD5; color: #9A3412; }
+body.p-ducha .du-cal-pill.du-n-media { background: #FEF9C3; color: #854D0E; }
+body.p-ducha .du-cal-pill.du-n-blanda { background: #DCFCE7; color: #166534; }
+/* el medidor: se llena de agua hasta la dureza de la ciudad */
+body.p-ducha .du-medidor {
+  position: relative; height: 22px; border-radius: 999px; overflow: hidden;
+  background: linear-gradient(90deg, #DCFCE7 0 24%, #FEF9C3 24% 60%, #FFEDD5 60% 80%, #FEE2E2 80%);
+  box-shadow: inset 0 1px 3px rgba(15,23,42,.12);
+}
+body.p-ducha .du-medidor-agua {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+  background: linear-gradient(90deg, #7DD3FC, #0284C7);
+  border-radius: 999px;
+  transition: width 1.1s cubic-bezier(.2,.8,.2,1);
+  overflow: hidden;
+}
+body.p-ducha .du-medidor-agua.du-n-dura { background: linear-gradient(90deg, #7DD3FC, #0369A1); }
+body.p-ducha .du-medidor-agua.du-n-muy  { background: linear-gradient(90deg, #7DD3FC, #075985); }
+/* reflejo que se mueve dentro del agua */
+body.p-ducha .du-medidor-agua::after {
+  content: ''; position: absolute; top: 3px; left: -30%; width: 30%; height: 6px; border-radius: 999px;
+  background: rgba(255,255,255,.55); animation: duReflejo 2.4s ease-in-out infinite;
+}
+@keyframes duReflejo { 0% { left: -30%; } 100% { left: 110%; } }
+body.p-ducha .du-med-marca {
+  position: absolute; top: 0; bottom: 0; left: var(--p); width: 1px; background: rgba(15,23,42,.18);
+  font-size: 0;   /* la cifra va en la leyenda de abajo: aquí solo la raya */
+}
+body.p-ducha .du-med-leyenda { display: grid; grid-template-columns: 24% 36% 20% 20%; margin-top: 6px; font: 600 11.5px var(--d-cuerpo); color: var(--d-texto2); }
+body.p-ducha #prod .du-cal-num { margin: 12px 0 4px; font: 800 22px var(--d-tit); color: var(--d-texto); font-variant-numeric: tabular-nums; }
+body.p-ducha .du-cal-txt { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--d-texto2); }
+body.p-ducha .du-cal-por { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+body.p-ducha .du-cal-por li {
+  position: relative; padding: 0 0 0 30px; font-size: 15.5px; line-height: 1.5; color: var(--d-texto2);
+}
+body.p-ducha .du-cal-por li::before {   /* una gota en vez de viñeta */
+  content: ''; position: absolute; left: 4px; top: 4px; width: 13px; height: 13px;
+  background: linear-gradient(135deg, var(--d-sec), var(--d-pri));
+  border-radius: 0 50% 50% 50%; transform: rotate(45deg);
+}
+body.p-ducha .du-cal-por b { color: var(--d-texto); }
+body.p-ducha .du-cal-fuente { margin: 16px 0 0; font-size: 12.5px; line-height: 1.5; color: #64748B; }
+@media (prefers-reduced-motion: reduce) {
+  body.p-ducha .du-medidor-agua { transition: none; }
+  body.p-ducha .du-medidor-agua::after { animation: none; display: none; }
+}
+
 /* ---------- el resto de la ficha, en el mismo idioma visual ---------- */
 body.p-ducha #prod section.desc { background: var(--d-fondo); }
 body.p-ducha #prod .promo-sec,

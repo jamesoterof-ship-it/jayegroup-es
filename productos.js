@@ -193,9 +193,9 @@ window.PRODUCTOS = [
     etiquetaOro: true,
 
     /* 29-09: fotos de James (tienda y pelo). Las de Chile se van quedando fuera a medida que llegan las nuevas. */
-    /* 29-09 James: la INFOGRAFÍA en vez de la foto sencilla */
-    foto: 'img/ducha-info.webp?v=1',
-    fotos: ['img/ducha-info.webp?v=1', 'img/ducha-tienda.webp?v=1', 'img/ducha-pelo.webp?v=1', 'img/ducha-3.webp?v=1'],
+    /* la infografía va SOLO en 'Qué trae' (ducha.js). James 29-09: "solo cambia esta, las demás déjalas igual" */
+    foto: 'img/ducha-tienda.webp?v=1',
+    fotos: ['img/ducha-tienda.webp?v=1', 'img/ducha-pelo.webp?v=1', 'img/ducha-3.webp?v=1'],
     video: 'img/ducha-ficha.mp4?v=1',
 
     hero: {
@@ -217,12 +217,12 @@ window.PRODUCTOS = [
     escasez: { hoy: 325, mejorDia: 330, quedan: 5189,
       nota: 'Se despacha desde el almacén de Sevilla por orden de pedido. Pagas cuando lo tienes en la mano.' },
 
-    desc: 'El Cabezal de Ducha Masajeadora Spa concentra el agua en microboquillas, así que sale con más fuerza aunque la tubería sea la misma. Tiene tres modos, lluvia, masaje y mixto, y un filtro dentro que ayuda a retener la cal y el sedimento del agua. Se enrosca a mano en la manguera que ya tienes, con la rosca universal de media pulgada: sin herramientas y sin llamar al fontanero.',
+    desc: 'El Cabezal de Ducha Masajeadora Spa concentra el agua en microboquillas, así que sale con más fuerza aunque la tubería sea la misma. Tiene tres modos, lluvia, masaje y mixto, y un filtro dentro que retiene el cloro y los sedimentos del agua. Si con el tiempo la cal va cerrando los agujeros, se limpia en un momento y la presión vuelve. Se enrosca a mano en la manguera que ya tienes, con la rosca universal de media pulgada: sin herramientas y sin llamar al fontanero.',
 
     puntos: [
       'Más presión con la misma tubería',
       'Tres modos: lluvia, masaje y mixto',
-      'Filtro dentro: ayuda a retener la cal',
+      'Filtro dentro: retiene cloro y sedimentos',
       'Se enrosca a mano, sin fontanero',
     ],
 
@@ -233,21 +233,23 @@ window.PRODUCTOS = [
       ['agua', 'Alta presión', 'Las microboquillas concentran el chorro: más fuerza con el mismo grifo.'],
       ['pluma', 'Masaje relajante', 'Puntas de silicona que masajean el cuero cabelludo, el cuello y la espalda.'],
       ['llave', '3 modos de agua', 'Lluvia, masaje y mixto. Se cambia con una sola mano.'],
-      ['escudo', 'Filtro incorporado', 'Capas de bolitas minerales que ayudan a retener la cal y el sedimento.'],
+      ['escudo', 'Filtro incorporado', 'Capas de bolitas minerales que retienen el cloro y los sedimentos del agua.'],
     ],
 
     comparaTitulo: '¿Por qué este y no otro?',
     compara: [
       'Más fuerza sin cambiar la tubería ni llamar al fontanero.',
       'Tres modos de verdad: lluvia, masaje y mixto.',
-      'Filtro dentro, pensado para el agua con cal de media España.',
+      'Cuando la cal lo tapa, se limpia en un momento: la presión vuelve.',
     ],
 
     preguntas: [
       { q: '¿Sirve para mi ducha?', a: 'Sí. La rosca es la universal de media pulgada, la que traen casi todas las duchas de mano en España. Se enrosca a mano, sin herramientas ni fontanero.' },
       { q: '¿De verdad sube la presión?', a: 'Sí, y te decimos cómo: las microboquillas achican la salida, así que el agua sale con más fuerza aunque llegue igual por la tubería. Lo que no hace es arreglar un problema de presión de toda la casa.' },
       { q: '¿Qué son los 3 modos?', a: 'Lluvia para el día a día, masaje para el cuello y la espalda, y mixto, que junta los dos. Se cambian con una mano.' },
-      { q: '¿El filtro se cambia?', a: 'El filtro va dentro del mango y ayuda a retener la cal y el sedimento. Cuando lo notes cargado, se enjuaga con agua.' },
+      { q: '¿El filtro se cambia?', a: 'El filtro va dentro del mango y retiene el cloro y los sedimentos. Cuando lo notes cargado, se enjuaga con agua.' },
+      /* 29-09 · ángulo de la CAL, contado sin mentir (ver ducha.js, sección "¿Tu agua tiene cal?") */
+      { q: '¿Quita la cal del agua?', a: 'No, y quien te diga que un cabezal quita la cal te engaña: eso solo lo hace un descalcificador. Lo que pasa en las zonas con agua dura es que la cal va tapando los agujeros del cabezal y la ducha pierde fuerza. Con uno nuevo recuperas la presión, y si con los meses se vuelve a tapar, frotas la cara del cabezal o lo dejas un rato en vinagre y queda como el primer día. El filtro retiene el cloro y los sedimentos.' },
       { q: '¿Viene la manguera?', a: 'No. Viene el cabezal, que es lo que se cambia. Se conecta a la manguera que ya tienes en casa.' },
     ],
 

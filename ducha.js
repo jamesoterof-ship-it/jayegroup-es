@@ -48,6 +48,94 @@
       + '</section>';
   }
 
+  /* ============================================================
+     ¿TU AGUA TIENE CAL? (James, 29-09: el ángulo de venta de la cal)
+     El cliente elige su ciudad y ve lo dura que es su agua.
+     DATOS: rangos orientativos de las redes de agua (SINAC, Ministerio de
+     Sanidad, y empresas suministradoras), recogidos en tuaguapotable.com
+     (mayo 2026). Escala de la OCU: <12 ºf blanda · 12-30 media · 30-40 dura
+     · >40 muy dura.
+     🔴 LO QUE SE PROMETE: que la cal tapa el cabezal viejo y por eso pierde
+     fuerza, y que el nuevo devuelve la presión y se limpia fácil. NUNCA que
+     "quita la cal": un filtro de ducha no ablanda el agua (eso es un
+     descalcificador). Quien lo promete (Aquapure: "elimina el 99,9 % de la
+     cal") se come devoluciones.
+     ============================================================ */
+  var CAL = [
+    ['A Coruña', 5, 12], ['Albacete', 22, 32], ['Alcalá de Henares', 16, 23], ['Alicante', 35, 45], ['Almería', 22, 33],
+    ['Ávila', 8, 15], ['Badajoz', 19, 27], ['Badalona', 34, 47], ['Barcelona', 35, 48], ['Benidorm', 32, 43],
+    ['Bilbao', 10, 18], ['Burgos', 15, 22], ['Cáceres', 16, 24], ['Cádiz', 15, 22], ['Cartagena', 30, 42],
+    ['Castellón de la Plana', 27, 38], ['Ciudad Real', 20, 28], ['Córdoba', 18, 26], ['Elche', 32, 43], ['Getafe', 15, 22],
+    ['Gijón', 10, 17], ['Girona', 18, 28], ['Granada', 20, 30], ['Guadalajara', 20, 28], ['Huelva', 15, 23],
+    ['Huesca', 20, 29], ['Ibiza', 28, 42], ['Jaén', 17, 25], ['Jerez de la Frontera', 16, 24], ["L'Hospitalet de Llobregat", 35, 48],
+    ['Las Palmas de Gran Canaria', 30, 50], ['Lleida', 22, 32], ['Logroño', 19, 27], ['Lugo', 5, 11], ['Madrid', 3, 7],
+    ['Málaga', 18, 26], ['Marbella', 20, 30], ['Menorca', 30, 45], ['Mérida', 17, 25], ['Murcia', 32, 42],
+    ['Ourense', 7, 13], ['Oviedo', 11, 18], ['Palencia', 16, 24], ['Palma de Mallorca', 25, 35], ['Pamplona', 15, 23],
+    ['Pontevedra', 4, 9], ['Sabadell', 27, 39], ['Salamanca', 16, 23], ['San Sebastián', 8, 15], ['Santa Cruz de Tenerife', 25, 40],
+    ['Santander', 9, 16], ['Santiago de Compostela', 4, 10], ['Segovia', 14, 21], ['Sevilla', 18, 28], ['Tarragona', 21, 30],
+    ['Terrassa', 28, 40], ['Toledo', 21, 30], ['Torrevieja', 35, 45], ['Valencia', 28, 38], ['Valladolid', 20, 28],
+    ['Vigo', 4, 9], ['Vitoria-Gasteiz', 8, 16], ['Zaragoza', 25, 35],
+  ];
+  function nivelCal(med) {
+    if (med > 40) return ['muy', 'Muy dura', 'Tu agua es muy dura. La cal va cerrando los agujeros del cabezal y por eso la ducha sale floja aunque la tubería esté bien. Con uno nuevo recuperas la presión desde el primer día.'];
+    if (med >= 30) return ['dura', 'Dura', 'Tu agua es dura. Con los meses la cal tapa los agujeros del cabezal y la ducha pierde fuerza. Con uno nuevo la recuperas, y si se vuelve a tapar se limpia en un momento.'];
+    if (med >= 12) return ['media', 'Algo de cal', 'Tu agua tiene algo de cal: los agujeros se van cerrando poco a poco. Con uno nuevo vuelve la presión, y el filtro retiene el cloro y los sedimentos.'];
+    return ['blanda', 'Blanda', 'Tu agua casi no tiene cal. Aquí lo que notas es la presión de las microboquillas y el filtro, que retiene el cloro y los sedimentos.'];
+  }
+  function seccionCal() {
+    return '<section class="bloque du-sec du-cal">'
+      + '<span class="du-rot">La cal</span>'
+      + '<h2 class="du-h2">¿Tu agua tiene cal? <em>Míralo aquí.</em></h2>'
+      + '<p class="du-cal-sub">En media España el agua llega dura: la cal tapa los agujeros de la ducha y por eso sale un hilo de agua. Elige tu ciudad.</p>'
+      + '<label class="du-cal-lab" for="duCiudad">Tu ciudad</label>'
+      + '<div class="du-cal-sel"><select id="duCiudad"><option value="">Elige tu ciudad…</option>'
+      +   CAL.map(function (c, i) { return '<option value="' + i + '">' + c[0] + '</option>'; }).join('')
+      +   '<option value="otra">Otra ciudad</option></select></div>'
+      + '<div class="du-cal-res" id="duCalRes" aria-live="polite" hidden>'
+      +   '<div class="du-cal-cab"><b id="duCalCiudad"></b><span class="du-cal-pill" id="duCalNivel"></span></div>'
+      +   '<div class="du-medidor" role="img" id="duMedidor"><i class="du-medidor-agua" id="duMedAgua"></i>'
+      +     '<span class="du-med-marca" style="--p:24%">12</span><span class="du-med-marca" style="--p:60%">30</span><span class="du-med-marca" style="--p:80%">40</span></div>'
+      +   '<div class="du-med-leyenda"><span>Blanda</span><span>Media</span><span>Dura</span><span>Muy dura</span></div>'
+      +   '<p class="du-cal-num" id="duCalNum"></p>'
+      +   '<p class="du-cal-txt" id="duCalTxt"></p>'
+      + '</div>'
+      + '<ul class="du-cal-por">'
+      +   '<li><b>La cal tapa los agujeros</b> del cabezal viejo: por eso sale menos agua.</li>'
+      +   '<li><b>Uno nuevo devuelve la presión</b>, con la misma tubería.</li>'
+      +   '<li><b>Si se vuelve a tapar,</b> frotas la cara del cabezal o lo dejas un rato en vinagre.</li>'
+      + '</ul>'
+      + '<p class="du-cal-fuente">Datos orientativos de la red de agua de cada ciudad (SINAC, Ministerio de Sanidad, y empresas suministradoras). Pueden variar según el barrio. Escala de la OCU en grados franceses (ºf).</p>'
+      + '</section>';
+  }
+  function activarCal(sec) {
+    var sel = sec.querySelector('#duCiudad'), res = sec.querySelector('#duCalRes');
+    sel.addEventListener('change', function () {
+      var v = sel.value;
+      if (v === '') { res.hidden = true; return; }
+      res.hidden = false;
+      var agua = sec.querySelector('#duMedAgua');
+      if (v === 'otra') {
+        sec.querySelector('#duCalCiudad').textContent = 'Tu ciudad';
+        sec.querySelector('#duCalNivel').textContent = 'Depende de la zona';
+        sec.querySelector('#duCalNivel').className = 'du-cal-pill';
+        sec.querySelector('#duCalNum').textContent = '';
+        sec.querySelector('#duCalTxt').textContent = 'En el Mediterráneo, Cataluña, Aragón y las islas el agua suele pasar de 30 ºf: dura. En Madrid, Galicia y el norte es más blanda. Si tu ducha ha perdido fuerza con el tiempo, casi siempre es la cal tapando los agujeros.';
+        agua.style.width = '0%';
+        return;
+      }
+      var c = CAL[+v], med = (c[1] + c[2]) / 2, n = nivelCal(med);
+      sec.querySelector('#duCalCiudad').textContent = c[0];
+      var pill = sec.querySelector('#duCalNivel'); pill.textContent = n[1]; pill.className = 'du-cal-pill du-n-' + n[0];
+      sec.querySelector('#duCalNum').textContent = 'Entre ' + c[1] + ' y ' + c[2] + ' ºf';
+      sec.querySelector('#duCalTxt').textContent = n[2];
+      sec.querySelector('#duMedidor').setAttribute('aria-label', 'Dureza del agua en ' + c[0] + ': entre ' + c[1] + ' y ' + c[2] + ' grados franceses, ' + n[1].toLowerCase());
+      /* el medidor se llena como agua hasta la media (escala 0-50 ºf) */
+      agua.className = 'du-medidor-agua du-n-' + n[0];
+      agua.style.width = '0%';
+      requestAnimationFrame(function () { requestAnimationFrame(function () { agua.style.width = Math.min(100, med / 50 * 100).toFixed(0) + '%'; }); });
+    });
+  }
+
   function montar() {
     var cont = document.getElementById('prod');
     if (!cont) return false;
@@ -83,7 +171,10 @@
        héroe → ANTES/DESPUÉS → compra corta → qué trae → vídeo → instalación → el producto → oferta… */
     var tras = hero;
     function poner(sec) { if (sec) { tras.insertAdjacentElement('afterend', sec); tras = sec; } }
-    poner(ba); poner(arriba); poner(ctaSuelto); poner(trae); poner(video);
+    poner(ba); poner(arriba); poner(ctaSuelto);
+    /* el problema (la cal) justo antes de la solución (qué trae) */
+    var cal = el(seccionCal()); poner(cal); activarCal(cal);
+    poner(trae); poner(video);
     var inst = el(seccionInstala()); poner(inst);
     poner(desc); poner(promo); poner(esc); poner(cmp);
 
