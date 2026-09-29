@@ -369,7 +369,7 @@
       return '<article class="rsn">'
         + '<div class="quien"><span class="av">' + r.nombre.charAt(0) + '</span>'
         + '<div><div class="nom">' + r.nombre + '</div>'
-        + '<div class="lug">' + r.comuna + '</div></div></div>'
+        + ((r.comuna || r.lugar) ? '<div class="lug">' + (r.comuna || r.lugar) + '</div>' : '') + '</div></div>'   /* 29-09: las opiniones de España no traen lugar ("undefined") */
         + '<div class="est">' + estrellas(r.estrellas) + '</div>'
         + '<p>' + r.texto + '</p>'
         + '<div class="prod">' + r.producto + '</div>'
