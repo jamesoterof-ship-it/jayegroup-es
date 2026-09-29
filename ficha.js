@@ -878,7 +878,7 @@
     /* El correo NO es opcional: el art. 98.7 del TRLGDCU en España (y el
        Decreto-Lei 24/2014 en Portugal) obligan a confirmar el pedido en
        soporte duradero. Sin correo no se puede cumplir. */
-    + '<div class="field"><label for="fCorreo">' + t('lCorreo', 'Correo electrónico') + '</label><input id="fCorreo" required type="email" inputmode="email" autocomplete="email" placeholder="' + t('phCorreo', 'Ej: maria@gmail.com') + '"><div class="err">' + t('eCorreo', 'Escribe un correo válido: ahí te enviamos la confirmación del pedido.') + '</div></div>'
+    + '<div class="field"><label for="fCorreo">' + t('lCorreo', 'Correo electrónico (opcional)') + '</label><input id="fCorreo" type="email" inputmode="email" autocomplete="email" placeholder="' + t('phCorreo', 'Ej: maria@gmail.com') + '"><div class="err">' + t('eCorreo', 'Escribe un correo válido: ahí te enviamos la confirmación del pedido.') + '</div></div>'
     + '<div class="field"><label for="fDir">' + t('lDir', 'Dirección') + '</label><input id="fDir" required autocomplete="street-address" placeholder="' + t('phDir', 'Calle, número, piso y puerta') + '"><div class="err">' + t('eDir', 'Escribe la calle y el número.') + '</div></div>'
     + '<div class="field"><label for="fRef">' + t('lRef', 'Indicaciones para el repartidor') + ' <span class="opc">' + t('opcional', '(opcional)') + '</span></label><input id="fRef" autocomplete="address-line2" placeholder="' + t('phRef', 'Portal, timbre, horario en el que estás en casa…') + '"></div>'
     + '<div class="row2">'
@@ -907,7 +907,7 @@
        la misma pantalla, esa frase es falsa en cuanto el cliente elige pagar
        por adelantado. James lo señalo. */
     + '<button type="submit" class="cta rojo rebota">' + t('btnPedir', 'Comprar · pago al recibir') + '</button>'
-    + '<p class="formnote">' + t('notaCod', 'Pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.') + '</p>'
+    + '<p class="formnote">' + t('notaCod', 'Pagas al repartidor cuando recibes el paquete. Te confirmamos el pedido por WhatsApp.') + '</p>'
     /* Salida para el que se traba llenando el formulario: si algo no le calza
        y no tiene a donde ir, se va y la venta se pierde. En Chile, de 6 que
        llegaban hasta aqui solo 1 lo mandaba; con esta salida se recuperan.
@@ -1247,7 +1247,7 @@
     var nota = document.querySelector('#fPedido .formnote');
     if (nota) nota.textContent = formaPago === 'pre'
       ? t('notaPre', 'Al enviar el pedido te llevamos a la pasarela de pago. Tu pedido sale con entrega prioritaria en 14 h.')
-      : t('notaCod', 'Pagas al repartidor cuando recibes el paquete. Te enviamos la confirmación por correo.');
+      : t('notaCod', 'Pagas al repartidor cuando recibes el paquete. Te confirmamos el pedido por WhatsApp.');
   }
   /* cambiar entre pagar al recibir y pagar ahora */
   document.addEventListener('click', function (ev) {
@@ -1500,7 +1500,8 @@
       falla = (paisCod === CC ? t('eMovil', 'Revisa tu móvil: en España son 9 cifras y empieza por 6 o 7.') : t('eMovilOtro', 'Revisa tu número de móvil.')), $('fTel').classList.add('mal');
     /* El correo es obligatorio: sin el no podemos mandar la confirmacion del
        pedido en soporte duradero, que exige la ley en los dos paises. */
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(g('fCorreo'))) falla = t('eCorreo', 'Escribe un correo válido: ahí te enviamos la confirmación del pedido.'), $('fCorreo').classList.add('mal');
+    /* 29-09 (James): el correo NO es obligatorio. Si lo escribe, que sirva; si no, pasa igual */
+    else if (g('fCorreo') && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(g('fCorreo'))) falla = t('eCorreo', 'Escribe un correo válido: ahí te enviamos la confirmación del pedido.'), $('fCorreo').classList.add('mal');
     else if (!(PAIS === 'PT' ? (window.CP_PT_REGEX || /^\d{4}-\d{3}$/) : /^\d{5}$/).test(cp)) falla = t('eCP', 'El código postal son 5 cifras.'), $('fCP').classList.add('mal');
     else if (sinCob.indexOf(cpDig.slice(0, PAIS === 'PT' ? 1 : 2)) >= 0) falla = t('sinCobertura', 'Todavía no enviamos a Canarias, Ceuta ni Melilla. Sí enviamos a toda la península y a Baleares.'), $('fCP').classList.add('mal');
     else if (g('fCiudad').length < 2) falla = t('eCiudad', 'Escribe tu localidad.'), $('fCiudad').classList.add('mal');

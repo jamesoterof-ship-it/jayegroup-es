@@ -38,7 +38,7 @@ window.TEXTOS = {
   phMovil: '912 345 678',
   eMovil: 'Verifique o seu telemóvel: em Portugal são 9 algarismos e começa por 9.',
   eMovilOtro: 'Verifique o seu número de telemóvel.',
-  lCorreo: 'Correio eletrónico',
+  lCorreo: 'Correio eletrónico (opcional)',
   phCorreo: 'Ex: maria@gmail.com',
   eCorreo: 'Escreva um correio válido: é aí que lhe enviamos a confirmação da encomenda.',
   lDir: 'Morada',
@@ -70,7 +70,7 @@ window.TEXTOS = {
   /* Ja nao diz "nao paga nada agora": com duas formas de pagamento no mesmo
      ecra, essa frase deixa de ser verdade assim que o cliente escolhe pagar
      adiantado. */
-  notaCod: 'Paga ao estafeta quando receber a encomenda. Enviamos-lhe a confirmação por email.',
+  notaCod: 'Paga ao estafeta quando receber a encomenda. Confirmamos a encomenda por WhatsApp.',
   notaPre: 'Ao enviar a encomenda levamo-lo à página de pagamento. A sua encomenda segue com entrega prioritária em 14 h.',
   /* ---- saida por WhatsApp para quem se atrapalha no formulario ----
      Antes apontava para o correio porque nao havia numero. O mesmo numero
