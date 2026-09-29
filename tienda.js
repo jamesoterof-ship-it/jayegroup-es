@@ -365,13 +365,22 @@
       for (var i = 1; i <= 5; i++) s += (i <= k ? '★' : '<i>★</i>');
       return s;
     };
+    /* 29-09 (James: "abrévialas, que no se vean grandes ni largas"): cada tarjeta
+       muestra UNA frase corta y completa de la opinión real (la primera), como las
+       de Chile. Si la frase es larga se corta en una palabra, con puntos. */
+    var corta = function (txt) {
+      var t = String(txt || '').replace(/\s+/g, ' ').trim();
+      var frase = (t.match(/^.+?[.!?](\s|$)/) || [t])[0].trim();
+      if (frase.length > 110) frase = frase.slice(0, 105).replace(/\s+\S*$/, '') + '…';
+      return frase.charAt(0).toUpperCase() + frase.slice(1);
+    };
     var tarjeta = function (r) {
       return '<article class="rsn">'
         + '<div class="quien"><span class="av">' + r.nombre.charAt(0) + '</span>'
         + '<div><div class="nom">' + r.nombre + '</div>'
         + '<div class="lug">' + (r.comuna || r.lugar || 'Compra verificada') + '</div></div></div>'   /* 29-09: las opiniones de España no traen lugar ("undefined"): son de compradores verificados */
         + '<div class="est">' + estrellas(r.estrellas) + '</div>'
-        + '<p>' + r.texto + '</p>'
+        + '<p>' + corta(r.texto) + '</p>'
         + '<div class="prod">' + r.producto + '</div>'
         + '<div class="fec">' + r.fecha + '</div>'
         + '</article>';
@@ -381,6 +390,8 @@
        la máscara solo porque son las primeras de la lista. */
     var porProd = {};
     lista.forEach(function (r) { (porProd[r.producto] = porProd[r.producto] || []).push(r); });
+    /* primero las opiniones más cortas: se leen de un vistazo */
+    Object.keys(porProd).forEach(function (k2) { porProd[k2].sort(function (a, b) { return String(a.texto).length - String(b.texto).length; }); });
     var prods = Object.keys(porProd), turnadas = [], k = 0;
     while (turnadas.length < 25) {
       var alguna = false;
