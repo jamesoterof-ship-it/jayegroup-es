@@ -3,16 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Verificacion del dominio en Meta (negocio Jaye Group, dominio 1082679124366879).
+     TIENE que estar dentro del <head> y en el HTML de verdad: si se inyecta con
+     JavaScript, Meta no la ve y la verificacion falla. NO SE BORRA: sin ella se
+     pierden eventos de iPhone y la atribucion de las ventas. -->
 <meta name="facebook-domain-verification" content="bh17zp72fh5ewf4yle14ommqnjdgcx" />
-<title>Jaye Group España · Producto</title>
-<meta name="description" content="Envío gratis a toda España y pagas cuando lo recibes.">
+<title>Jaye Group España</title>
+<meta name="description" content="Envío gratis en 24-48 h a toda España y pagas cuando lo recibes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@200;300;400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="tienda.css?v=99">
 <!-- Hero de la ficha. Aparte de tienda.css: si algo sale mal, se quita esta linea y la ficha vuelve a como estaba. -->
-<link rel="stylesheet" href="hero.css?v=211">
-<link rel="stylesheet" href="balsamo.css?v=2">
+<link rel="stylesheet" href="hero.css?v=213">
+<script>/* CANDADO DEL HERO. Va aqui, en linea y antes de nada, para que no haya
+   parpadeo: sin esta clase el CSS deja el hero VISIBLE y sin animacion.
+   Si este script no corre -JS desactivado, error de red- el visitante ve el
+   hero entero, que es lo que importa. Con el, ve ademas la entrada.
+   La segunda linea es la red de seguridad: si algo deja la animacion a
+   medias (pestaña en segundo plano al abrir el enlace, movil ahorrando
+   bateria), a los 3 s se descubre igual. Comprobado el 26-09: sin esto, el
+   titular y las letras se quedaban en opacity 0. */
+document.documentElement.classList.add('ba-lista');
+setTimeout(function(){document.documentElement.classList.add('ba-visto');},3000);</script>
+<link rel="stylesheet" href="balsamo.css?v=14">
 <!-- Los CSS de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO existen en este repo: daban cinco 404 en cada carga. -->
 <style>
@@ -997,6 +1011,12 @@ window.jayePixel = (function () {
     .pegado .marq{transition:max-height .28s cubic-bezier(.2,.8,.2,1),padding .28s ease,opacity .22s ease;max-height:60px;overflow:hidden}
     .pegado.bajando .marq{max-height:0;padding-top:0;padding-bottom:0;opacity:0}
     @media (prefers-reduced-motion:reduce){.pegado .marq{transition:none}}
+
+    /* 29-09 · franja "Paga ahora y ahorra" en la cabecera del producto */
+    .heroP__ahorra{display:flex;align-items:center;gap:10px;margin:14px 0 4px;padding:10px 14px;border-radius:12px;
+      background:#fff7e3;border:1px solid #e9cf8f;color:#5b4410;text-decoration:none;font-size:14.5px;line-height:1.35}
+    .heroP__ahorra svg{width:22px;height:22px;flex:0 0 22px;color:#8A6210}
+    .heroP__ahorra b{font-weight:800;color:#3d2c05}
   </style>
 </head>
 <body>
@@ -1010,9 +1030,11 @@ window.jayePixel = (function () {
       <span>Envío gratis a toda España</span><span>·</span>
       <span>Pagas cuando lo recibes</span><span>·</span>
       <span>Entrega en 24-48 h</span><span>·</span>
+      <span>Paga ahora y ahorra 2 €</span><span>·</span>
       <span>Envío gratis a toda España</span><span>·</span>
       <span>Pagas cuando lo recibes</span><span>·</span>
       <span>Entrega en 24-48 h</span><span>·</span>
+      <span>Paga ahora y ahorra 2 €</span><span>·</span>
     </div>
   </div>
 
@@ -1064,8 +1086,10 @@ window.jayePixel = (function () {
         <div class="col contacto">
           <h4>Contacto</h4>
           <p><a href="mailto:soporte@jayegroup.com.es">soporte@jayegroup.com.es</a></p>
-          <!-- El WhatsApp de Chile NO va aqui. Cuando James de el numero español
-               se pone; mientras tanto, el contacto es el correo. -->
+          <!-- Numero español dado por James el 26-09-2026. Antes aqui NO iba el de
+               Chile a proposito: un cliente español escribiendo a un +56, en
+               horario chileno. -->
+          <p><a href="https://wa.me/34672423735">WhatsApp +34 672 42 37 35</a></p>
           <p>Almacén en Sevilla</p>
           <p>Envíos a toda la península y Baleares</p>
         </div>
@@ -1115,22 +1139,27 @@ window.jayePixel = (function () {
     </div>
   </footer>
 
-<script src="productos.js?v=220"></script>
+<script src="productos.js?v=224"></script>
 <!-- ESPAÑA: provincias y codigos postales sin cobertura, en vez de las
      regiones y comunas de Chile. -->
 <script src="provincias-es.js?v=110"></script>
 <script src="resenas.js?v=200"></script>
 <script src="efectos.js?v=4"></script>
-<script src="ficha.js?v=210"></script>
+<script>/* A DONDE VA EL PEDIDO. Sin esto, ficha.js manda al webhook de CHILE
+   (pedido-tienda): un pedido español entraria como chileno, con hora de
+   Santiago y plantilla de WhatsApp chilena. Flujo nuevo en n8n
+   GGeFaB7R2qWLsca2, creado el 27-09-2026 y probado con ROLLBACK. */
+window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-tienda-es';</script>
+<script src="ficha.js?v=221"></script>
 <!-- GSAP, de lib/ y del propio dominio. NO se carga ScrollTrigger: para saber
      cuando algo entra en pantalla ya sirve IntersectionObserver, que viene en
      el navegador y no pesa. Va al final para no frenar la pintura. -->
 <script src="lib/gsap.min.js"></script>
   <script src="lib/ScrollTrigger.min.js"></script>
   <script src="lib/countup.umd.js"></script>
-<script src="efectos-ficha.js?v=210"></script>
+<script src="efectos-ficha.js?v=221"></script>
 <!-- Diseno propio del balsamo: secciones y efectos clonados de la mascara de Chile. -->
-<script src="balsamo.js?v=3"></script>
+<script src="balsamo.js?v=12"></script>
 <!-- Los js de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO van aqui: no existen en este repo y daban 404. -->
 
@@ -1169,9 +1198,14 @@ window.jayePixel = (function () {
 })();
 </script>
 
-<!-- El boton flotante de WhatsApp apuntaba al numero de CHILE (+56 9 6477 5539):
-     un cliente español escribiendo a un numero chileno, en horario chileno.
-     Se quita hasta que James de el numero español. -->
+<!-- Boton flotante de WhatsApp: el molde de Chile (shilajit/producto.html) con
+     el numero español que dio James el 26-09-2026. Antes iba apagado a proposito:
+     apuntaba al +56 y un cliente español acababa escribiendo a Chile. James
+     dijo que si sabiendo que aqui no hay bot: lo que entre por aqui lo atiende
+     una persona. El CSS (.wa) ya estaba en esta pagina. -->
+<a class="wa" href="https://wa.me/34672423735" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 32 32"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2.1 7.8L.3 31.6l8.1-2.1c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.3c-2.4 0-4.7-.6-6.7-1.9l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.4-2.1-2.1-4.6-2.1-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.7 16 28.7zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.2 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg>
+</a>
 
 
 <!-- Aviso de cookies (obligatorio en España, LSSI art. 22.2 + guia AEPD) -->

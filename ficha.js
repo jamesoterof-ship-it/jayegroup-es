@@ -1093,6 +1093,10 @@
             return '<span class="heroP__dato' + (i === 0 ? ' heroP__dato--oro' : '') + '">'
               + (ico[d[0]] || '') + esc(d[1]) + '</span>'; }).join('')
       +   '</div>'
+      /* 29-09 (James): el pago anticipado se promociona en TODA la tienda: aquí,
+         en la cabecera de cada producto, con lo que gana el cliente */
+      +   (p.anticipado ? '<a class="heroP__ahorra" href="#pedir">' + ico.pago + '<span><b>' + t('pagaAhoraAhorra', 'Paga ahora y ahorra ') + String(p.anticipado.descuento).replace('.', ',') + ' €</b> '
+            + t('yPrioritaria', 'y recíbelo con entrega prioritaria en 14 h') + '</span></a>' : '')
       +   '<div class="heroP__pie">'
       +     '<div class="heroP__precio"><span>' + t('desde', 'Desde') + '</span><b>' + pesos(min.precio) + '</b></div>'
       +     '<button type="button" class="heroP__cta" id="heroCta">' + t('ctaGrande', 'Lo quiero, pago al recibir') + '</button>'
@@ -1621,7 +1625,7 @@
       if (window.fbq && !window._compraEnviada) {
         window._compraEnviada = true;
         var _c = {
-          value: k.precio, currency:'EUR',
+          value: _cobra, currency:'EUR',   /* lo que se cobra de verdad (el anticipado va con 2 € menos) */
           content_name: p.nombre, content_ids: [p.id],
           content_type: 'product', num_items: k.cant,
         };
@@ -1632,9 +1636,25 @@
           else fbq('track', 'Purchase', _c);
         } catch (e) { /* que un bloqueador de anuncios no tumbe la confirmacion */ }
       }
-      $('pedir').innerHTML = '<div class="listo"><h3>Pedido recibido</h3>'
-        + '<p>Gracias, ' + esc(g('fNombre').split(' ')[0]) + '. Te escribimos por WhatsApp al ' + esc(indic) + ' ' + esc(tel)
-        + ' para confirmar el despacho.<br>Pagas cuando lo recibes.</p></div>';
+      var _nom1 = esc(g('fNombre').split(' ')[0]);
+      if (formaPago === 'pre') {
+        /* 29-09 (James): el pago anticipado se promociona en toda la tienda, así que
+           aquí tiene que poder PAGARSE: botón de PayPal con el importe exacto (tarjeta
+           o PayPal) y el WhatsApp de España para mandar la captura. El pedido queda
+           "Esperando el pago" en el panel; al llegar la captura, Carmen lo marca pagado. */
+        var _imp = Number(_cobra).toFixed(2);
+        var _wa = 'https://wa.me/34672423735?text=' + encodeURIComponent(t('msgPagado', 'Hola, ya pagué mi pedido de ') + p.nombre + t('msgPagado2', '. Te mando la captura del pago.'));
+        $('pedir').innerHTML = '<div class="listo"><h3>' + t('pedidoPagar', 'Último paso: paga tu pedido') + '</h3>'
+          + '<p>' + t('gracias', 'Gracias, ') + _nom1 + '. ' + t('pagaTxt', 'Paga ahora con tarjeta o PayPal y tu pedido sale con entrega prioritaria.') + '</p>'
+          + '<a class="cta" href="https://paypal.me/jayegroup714/' + _imp + 'EUR" target="_blank" rel="noopener" style="display:block;margin:14px 0 10px">'
+          + t('pagarBtn', 'Pagar ') + String(_imp).replace('.', ',') + ' € ' + t('pagarBtn2', 'con tarjeta o PayPal') + '</a>'
+          + '<p style="font-size:14px">' + t('pagaCaptura', 'Cuando pagues, mándanos la captura del pago por WhatsApp y lo dejamos confirmado.') + '</p>'
+          + '<a class="cta negro" href="' + _wa + '" target="_blank" rel="noopener" style="display:block;margin-top:8px">' + t('mandarCaptura', 'Mandar la captura por WhatsApp') + '</a></div>';
+      } else {
+        $('pedir').innerHTML = '<div class="listo"><h3>' + t('pedidoRecibido', 'Pedido recibido') + '</h3>'
+          + '<p>' + t('gracias', 'Gracias, ') + _nom1 + '. ' + t('teEscribimos', 'Te escribimos por WhatsApp al ') + esc(indic) + ' ' + esc(tel)
+          + t('paraConfirmar', ' para confirmar el despacho.') + '<br>' + t('pagasRecibes', 'Pagas cuando lo recibes.') + '</p></div>';
+      }
       $('pedir').scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     /* VENTANA POST-COMPRA: el Gel Sellador.
@@ -1653,11 +1673,11 @@
        avisaba la compra a Meta: el cliente se quedaba esperando algo que nadie
        iba a despachar. Ahora se le dice la verdad y se le da una salida. */
     function noEntro() {
-      var ay = 'mailto:' + CORREO + '?subject=' + encodeURIComponent(t('asuntoFallo', 'Mi pedido no se confirmó'))
-        + '&body=' + encodeURIComponent(t('cuerpoFallo', 'Hola, hice mi pedido de ') + p.nombre + t('cuerpoFallo2', ' en la página y no me confirmó. Mi nombre es ') + g('fNombre'));
+      /* 29-09: al WhatsApp de España (Carmen), como el aviso del formulario; antes iba al correo */
+      var ay = 'https://wa.me/34672423735?text=' + encodeURIComponent(t('cuerpoFallo', 'Hola, hice mi pedido de ') + p.nombre + t('cuerpoFallo2', ' en la página y no me confirmó. Mi nombre es ') + g('fNombre'));
       $('pedir').innerHTML = '<div class="listo"><h3>' + t('falloTit', 'No pudimos registrar tu pedido') + '</h3>'
         + '<p>' + t('falloTxt', 'Se cayó la conexión justo al enviarlo, y no queremos decirte que quedó si no es cierto.<br>Tus datos quedaron guardados: vuelve a intentarlo en un momento, o escríbenos y lo tomamos nosotros.') + '</p>'
-        + '<a class="cta negro" href="' + ay + '" style="width:auto;display:inline-block;padding:14px 26px;margin-top:6px">' + t('falloBtn', 'Escribir a soporte') + '</a>'
+        + '<a class="cta negro" href="' + ay + '" style="width:auto;display:inline-block;padding:14px 26px;margin-top:6px">' + t('falloBtnWa', 'Escribirnos por WhatsApp') + '</a>'
         + '</div>';
       $('pedir').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
