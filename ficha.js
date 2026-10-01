@@ -1065,6 +1065,7 @@
     }).join('');
   }
 
+  var ICO_WA = '<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg>';
   function seccionHero() {
     var h = p.hero;
     if (!h || !h.img) return '';
@@ -1121,7 +1122,14 @@
       +     '<div class="heroP__precio"><span>' + t('desde', 'Desde') + '</span><b>' + pesos(min.precio) + '</b></div>'
       +     '<button type="button" class="heroP__cta" id="heroCta">' + t('ctaGrande', 'Lo quiero, pago al recibir') + '</button>'
       +   '</div>'
+      /* 01-10 (James): el que duda no tenía a quién preguntar. WhatsApp CON TEXTO, junto
+         al precio: escribe a Carmen (+34), que responde y cierra la venta. */
+      +   '<a class="waBoton heroP__wa" href="' + waPedir() + '" target="_blank" rel="noopener">' + ICO_WA
+      +     '<span>' + t('pideWa', '¿Dudas? Pídelo por WhatsApp') + '</span></a>'
       + '</div></section>';
+  }
+  function waPedir() {
+    return 'https://wa.me/34672423735?text=' + encodeURIComponent(t('msgWaHero', 'Hola, me interesa el ') + p.nombre);
   }
 
   cont.innerHTML = seccionHero()
@@ -1163,11 +1171,17 @@
     sb.id = 'stickycta';
     var bt = document.createElement('button');
     bt.className = 'btn-flota';
-    bt.textContent = 'Pedir ahora — pago contra entrega';
+    bt.textContent = t('flota', 'Pedir ahora');
     bt.addEventListener('click', function () {
       document.getElementById('pedir').scrollIntoView({ behavior: 'smooth' });
     });
     sb.appendChild(bt);
+    /* 01-10: WhatsApp con texto al lado del botón de compra (Carmen) */
+    var wb = document.createElement('a');
+    wb.className = 'waBoton waFlota';
+    wb.href = waPedir(); wb.target = '_blank'; wb.rel = 'noopener';
+    wb.innerHTML = ICO_WA + '<span>WhatsApp</span>';
+    sb.appendChild(wb);
     document.body.appendChild(sb);
   }
 

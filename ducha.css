@@ -113,8 +113,7 @@ body.p-ducha .heroP__cta,
 body.p-ducha #prod .cta.rojo,
 body.p-ducha #prod .du-cta,
 body.p-ducha .btn-flota,
-body.p-ducha #stickycta button,
-body.p-ducha #stickycta a {
+body.p-ducha #stickycta button {
   background: var(--d-cta);
   color: #fff;
   font-family: var(--d-tit);
@@ -142,8 +141,7 @@ body.p-ducha .heroP__cta,
 body.p-ducha #prod .cta,
 body.p-ducha #prod .du-cta,
 body.p-ducha .btn-flota,
-body.p-ducha #stickycta button,
-body.p-ducha #stickycta a {
+body.p-ducha #stickycta button {
   box-sizing: border-box;
   display: flex !important;
   align-items: center;
@@ -529,3 +527,9 @@ body.p-ducha.du-anima .du-rev.du-in { opacity: 1; transform: none; }
 /* la tarjeta "Pagas al recibir" junto a los logos, con la letra del cabezal */
 body.p-ducha #prod .sello .nom { font-family: var(--d-tit); font-weight: 800; font-size: 16px; text-transform: none; letter-spacing: 0; color: var(--d-texto); }
 body.p-ducha #prod .sello img.logoTr { margin: 4px auto 10px; }
+
+/* 01-10: la barra de abajo ahora lleva "Lo quiero" + WhatsApp. El botón naranja ya no
+   ocupa todo el ancho (antes la regla de "todos al 100 %" aplastaba "Lo quiero" a 36 px). */
+body.p-ducha #stickycta .btn-flota { width: auto !important; flex: 1 1 auto; }
+body.p-ducha #stickycta .waFlota { width: auto !important; flex: 0 0 auto; background: #08783A !important; color: #fff !important; font-family: var(--d-tit); }
+body.p-ducha .heroP__wa { font-family: var(--d-tit); }

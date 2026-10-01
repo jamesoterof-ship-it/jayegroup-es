@@ -189,7 +189,7 @@
     /* la barra fija de abajo decía "Pedir ahora — pago contra entrega" en dos
        líneas (76 px): mismo texto que los demás, en una */
     var flota = document.querySelector('.btn-flota');
-    if (flota) flota.textContent = 'Lo quiero, pago al recibir';
+    if (flota) flota.textContent = 'Lo quiero';   /* 01-10: ahora comparte la barra con el botón de WhatsApp */
     if (trae) {
       /* la foto con las medidas encabeza las cuatro tarjetas */
       var sub = trae.querySelector('.sub2') || trae.querySelector('h2');
