@@ -703,7 +703,8 @@
       ['14', 'días para desistir de tu compra'],
       /* 29-09 · antes: ['3', 'años de garantía legal']. James: los 3 años NO se
          anuncian en las páginas de venta (solo en las legales). */
-      ['2', 'formas de pago: al recibir o ahora con tarjeta'],
+      /* 02-10 · solo si el producto tiene "Paga ahora": el sellador sale solo contra reembolso */
+      p.anticipado ? ['2', 'formas de pago: al recibir o ahora con tarjeta'] : ['0 €', 'por adelantado: pagas al recibir'],
     ];
     return '<section class="bloque res-sec" data-rv><span class="eyebrow">' + t('resRotulo', 'Lo que te garantizamos') + '</span>'
       + '<h2 class="tit2">' + t('resTit', 'Sin letra pequeña') + '</h2>'

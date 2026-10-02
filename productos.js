@@ -277,6 +277,98 @@ window.PRODUCTOS = [
       precios: [21.99, 30.99, 39.99],
     },
   },
+
+  /* ============================================================
+     SELLADOR IMPERMEABLE EN SPRAY · 02-10-2026
+     Dropi PRO id 2607 ("Spray impermeabilizante blanco 400ml"), coste 3,69 €.
+     Marca SPSIL (Aspe, Alicante). Usos SOLO los de su ficha oficial (spsil.es):
+     grietas, juntas y fisuras en cemento, metal, PVC, madera y plástico,
+     interior y exterior. 🔴 NO tuberías de agua ni con presión (James 02-10:
+     "no le mintamos a la gente, eso trae devolución y mala fama").
+     Diseño PROPIO (sellador.css / sellador.js), opción B de ui-ux-pro-max:
+     pizarra #334155 + verde #059669, Outfit / Work Sans. Imágenes Nano Banana
+     aprobadas por James 02-10; vídeo = el oficial de SPSIL, solo los cortes
+     con el sellador BLANCO (sin botes de otras marcas).
+     ============================================================ */
+  {
+    id: 'sellador', unidad: 'uno', promo: 4,
+    dropiId: 2607,
+
+    nombre: 'Spray Sellador Impermeable',
+    sub: 'Sella grietas, juntas y fisuras · 400 ml · blanco',
+    categoria: 'Hogar',
+    etiqueta: 'Nuevo en España',
+    etiquetaOro: true,
+
+    foto: 'img/sellador-tienda.webp?v=1',
+    fotos: ['img/sellador-tienda.webp?v=1', 'img/sellador-terraza.webp?v=1', 'img/sellador-ventana.webp?v=1'],
+    video: 'img/sellador-ficha.mp4?v=1',
+
+    hero: {
+      img: 'img/hero-sellador.webp?v=1',
+      kicker: 'Nuevo en España',
+      titulo: 'Grietas selladas,<br><b>casa sin goteras.</b>',
+      sub: 'Spray sellador impermeable de 400 ml. Lo rocías sobre la grieta o la junta y forma una capa blanca que no deja pasar el agua.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Pagas al recibir'],
+      ],
+    },
+    acento: '#047857',
+
+    /* Stock REAL leído en el panel de Dropi PRO el 01-10-2026 (2.999).
+       Ventas diarias de Dropdata 18-09 → 01-10: entre 38 y 157. */
+    escasez: { hoy: 157, mejorDia: 157, quedan: 2999,
+      nota: 'Se despacha desde el almacén de Sevilla por orden de pedido. Pagas cuando lo tienes en la mano.' },
+
+    desc: 'El Spray Sellador Impermeable forma una capa blanca, flexible y resistente al agua sobre grietas, juntas y fisuras. Se aplica en exterior e interior sobre cemento, metal, PVC, madera y plástico: tejados, terrazas, muros, alféizares, canalones y bajantes. Se pulveriza a 20-25 cm, en capas finas, sin goteos, y seca rápido: en menos de una hora puedes dar varias capas.',
+
+    puntos: [
+      'Sella grietas, juntas y fisuras',
+      'Capa blanca que no deja pasar el agua',
+      'Cemento, metal, PVC, madera y plástico',
+      'Interior y exterior · secado rápido',
+    ],
+
+    formulaRotulo: 'Por qué funciona',
+    formulaTitulo: 'Una capa que el agua no atraviesa.',
+    formulaSub: 'Lo que hace el sellador en cuanto lo rocías.',
+    formula: [
+      ['agua', 'Impermeable', 'Forma una barrera blanca sobre la grieta: la lluvia resbala y no entra.'],
+      ['escudo', 'Flexible y duradero', 'Se adhiere bien y aguanta la intemperie sin cuartearse.'],
+      ['rayo', 'Secado rápido', 'Entre capa y capa, 15-20 minutos. Listo en menos de una hora.'],
+      ['casa', 'Sin herramientas', 'Agitas, rocías a 20-25 cm y listo. Sin brocha, sin goteos.'],
+    ],
+
+    comparaTitulo: '¿Por qué un sellador en spray?',
+    compara: [
+      'Llega a juntas y rincones donde la brocha no entra.',
+      'Capas finas y parejas, sin goteos ni manchas.',
+      'Lo haces tú, sin obras ni albañil.',
+    ],
+
+    preguntas: [
+      { q: '¿Dónde se puede usar?', a: 'En grietas, juntas y fisuras de tejados, terrazas, muros, alféizares de ventanas, canalones y bajantes de lluvia. Sobre cemento, metal, PVC, madera y plástico, por dentro y por fuera.' },
+      { q: '¿Para qué NO sirve?', a: 'No es para tuberías de agua ni con presión (la del grifo o la entrada de agua), ni para tubos rotos o agujeros grandes: eso es trabajo de fontanero. Tampoco se aplica sobre una superficie mojada.' },
+      { q: '¿Cómo se aplica?', a: 'Limpia y seca la zona, agita el bote 1-2 minutos y rocía a 20-25 cm en capas finas. Deja secar 15-20 minutos entre capa y capa. Para una grieta normal bastan 2 o 3 capas.' },
+      { q: '¿De qué color queda?', a: 'Blanco. Queda una capa blanca, lisa y algo gomosa sobre la grieta.' },
+      { q: '¿Cuánto rinde un bote?', a: 'Un bote de 400 ml da para varias grietas o juntas de tamaño normal. Para una terraza o un tejado con muchas fisuras, mejor el pack de 2 o de 4.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: 'img/sellador-ba.webp?v=1',
+    antesDespuesSub: 'La misma pared: la grieta por donde entraba el agua y la mancha de humedad, y después sellada y seca.',
+
+    /* PRECIOS aprobados por James el 01-10-2026 (1 € por debajo de FlexSpray:
+       30 / 40 / 60). 'antes' en 0: producto nuevo (Ley 7/1996 art. 20.1). */
+    packs: [
+      { cant: 1, precio: 28.99, antes: 0, texto: '1 bote' },
+      { cant: 2, precio: 38.99, antes: 0, texto: '2 botes' },
+      { cant: 4, precio: 58.99, antes: 0, texto: '4 botes' },
+    ],
+    popular: 1,
+  },
 ];
 
 /* ============================================================
@@ -294,4 +386,6 @@ window.PRODUCTOS = [
    Es el mismo candado de Chile. */
 window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* cabezal de ducha, aprobados 29-09-2026 */
-  23.99, 32.99, 41.99, 21.99, 30.99, 39.99];
+  23.99, 32.99, 41.99, 21.99, 30.99, 39.99,
+  /* sellador impermeable, aprobados 01-10-2026 */
+  28.99, 38.99, 58.99];
