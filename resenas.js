@@ -377,7 +377,7 @@ window.RESENAS = (window.RESENAS || []).concat([
    techos, ventanas o lluvia; fuera las que nombran brocha, tarro, transparente
    o tuberías. El texto NO se toca. Sin fotos: todas enseñaban el tarro de la
    otra marca. La ficha lo declara: "sellador impermeable del mismo tipo"
-   (sellador.js). Se quedan también las de 1 y 3 estrellas.
+   (sellador.js). 02-10 James: solo 4 y 5 estrellas ("no puede salir en 4,3").
    ============================================================ */
 window.RESENAS = (window.RESENAS || []).concat([
   { producto:'Spray Sellador Impermeable', nombre:"Anónimo", estrellas:5, fecha:"2025-10-07", pais:'ES', verificada:true, texto:"Producto fácil de usar y el secado es muy rápido, parece que está haciendo su función que es evitar y repeler el agua en las zonas donde antes entraba" },
@@ -388,14 +388,10 @@ window.RESENAS = (window.RESENAS || []).concat([
   { producto:'Spray Sellador Impermeable', nombre:"Anónimo", estrellas:5, fecha:"2026-02-09", pais:'ES', verificada:true, texto:"ni sé si funciona o no con las lluvias que hay aún no lo he podido usar porque está todo húmedo cuando se seque lo probaré y volveré a dejar una reseña de si funciona o no" },
   { producto:'Spray Sellador Impermeable', nombre:"m***a", estrellas:5, fecha:"2025-12-21", pais:'ES', verificada:true, texto:"calidad que recomiendo" },
   { producto:'Spray Sellador Impermeable', nombre:"Anónimo", estrellas:4, fecha:"2026-02-18", pais:'ES', verificada:true, texto:"producto impermeable para todo tipo de suelo firme. se aplica muy facil" },
-  { producto:'Spray Sellador Impermeable', nombre:"c***s", estrellas:3, fecha:"2026-01-15", pais:'ES', verificada:true, texto:"Me esperaba más por los comentarios. No sé si funcionará donde lo puse..." },
-  { producto:'Spray Sellador Impermeable', nombre:"Anónimo", estrellas:3, fecha:"2026-02-04", pais:'ES', verificada:true, texto:"falta probar para saber si funciona" },
-  { producto:'Spray Sellador Impermeable', nombre:"O***o", estrellas:3, fecha:"2026-03-11", pais:'ES', verificada:true, texto:"Falta saber lo que aguanta" },
   { producto:'Spray Sellador Impermeable', nombre:"Anónimo", estrellas:5, fecha:"2026-05-10", pais:'MX', verificada:true, texto:"Esta es una compra recurrente. Es uno de los mejores productos de sellado que he utilizado en mis 50 años en el sector de la construcción." },
   { producto:'Spray Sellador Impermeable', nombre:"Anónimo", estrellas:5, fecha:"2025-10-10", pais:'ES', verificada:true, texto:"Hace lo que promete, una capa aislante que no pasa el agua." },
   { producto:'Spray Sellador Impermeable', nombre:"Anónimo", estrellas:5, fecha:"2026-03-10", pais:'ES', verificada:true, texto:"es la segunda vez que compro y funciona" },
   { producto:'Spray Sellador Impermeable', nombre:"Anónimo", estrellas:5, fecha:"2026-04-10", pais:'CL', verificada:true, texto:"excelente, lo probaremos hoy en el sello de las ventanas." },
   { producto:'Spray Sellador Impermeable', nombre:"Anónimo", estrellas:4, fecha:"2026-04-27", pais:'ES', verificada:true, texto:"El producto funciona bastante bien." },
   { producto:'Spray Sellador Impermeable', nombre:"J***z", estrellas:5, fecha:"2025-12-22", pais:'ES', verificada:true, texto:"A simple vista todo bien,ahora toca ver que tal funciona" },
-  { producto:'Spray Sellador Impermeable', nombre:"Anónimo", estrellas:1, fecha:"2026-03-30", pais:'ES', verificada:true, texto:"es una estafa no sirve para nada lo he puesto y no se seca total que no hace nada lo puse lo dejé 24 horas pasos el agua se marcha me arrepiento haberlo comprado" },
 ]);
