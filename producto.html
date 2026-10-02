@@ -955,7 +955,8 @@ window._cargarPixel = function () {
   window._pixelPuesto = true;
   !function(f,b,e,v,n,t,s){if(f.fbq&&f.fbq.loaded)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', window.PIXEL_EU);
-  fbq('track','PageView');
+  /* la visita y lo que pasó antes de aceptar salen AHORA, con su event_id, por navegador y por servidor */
+  if (window.jayePixel && window.jayePixel._soltar) window.jayePixel._soltar(); else fbq('track','PageView');
 };
 
 /* ---- LOS DATOS QUE PIDE LA API DE CONVERSIONES ----
@@ -975,6 +976,7 @@ window._cargarPixel = function () {
    Aca solo se RECOGEN y se mandan con el pedido. Quien los usa es el flujo
    del servidor. Si algo de esto falla, se manda vacio y todo sigue igual. */
 window.jayePixel = (function () {
+  var cola = [];
   function galleta(n) {
     try { var m = document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)'); return m ? m.pop() : ''; }
     catch (e) { return ''; }
@@ -995,14 +997,38 @@ window.jayePixel = (function () {
     id: nuevoId,
     fbp: function () { return galleta('_fbp'); },
     fbc: fbc,
-    /* manda el evento con su identificador y lo devuelve, por si hay que
-       repetirlo desde el servidor */
+    /* manda el evento con su identificador y lo devuelve. Antes de aceptar las
+       cookies el fbq de relleno lo tiraba a la basura (Meta no veia ningun
+       ViewContent): ahora ESPERA en la cola y sale cuando el visitante acepta.
+       Si no acepta, no sale nada (LSSI art. 22.2). */
     track: function (ev, obj, idFijo) {
       var e = idFijo || nuevoId();
-      try { if (window.fbq) window.fbq('track', ev, obj || {}, { eventID: e }); } catch (x) {}
+      if (window._pixelPuesto) mandar(ev, obj, e); else cola.push([ev, obj, e]);
       return e;
     },
+    _soltar: function () {
+      mandar('PageView', {}, nuevoId());
+      var c = cola; cola = [];
+      for (var i = 0; i < c.length; i++) mandar(c[i][0], c[i][1], c[i][2]);
+    },
   };
+  /* API DE CONVERSIONES (01-10, Meta: "costo 17,8% mas bajo"): cada evento, ademas
+     del navegador, va al servidor (flujo n8n Ja4hV1ibXS6OzJU4) con el MISMO event_id,
+     y Meta se queda con uno. La COMPRA no: esa la manda el flujo de ventas
+     (Yxsr3rSUnADbtoe7), si no iria dos veces por servidor. */
+  function mandar(ev, obj, e) {
+    try { if (window.fbq) window.fbq('track', ev, obj || {}, { eventID: e }); } catch (x) {}
+    if (ev === 'Purchase') return;
+    var ir = function () {
+      try {
+        var U = 'https://n8n-production-8a42.up.railway.app/webhook/capi-es-evento';
+        var d = JSON.stringify({ event_name: ev, event_id: e, url: location.href, fbp: galleta('_fbp'), fbc: fbc(), ua: navigator.userAgent, datos: obj || {} });
+        if (!(navigator.sendBeacon && navigator.sendBeacon(U, d))) fetch(U, { method: 'POST', body: d, keepalive: true, mode: 'no-cors' });
+      } catch (x) {}
+    };
+    /* la cookie _fbp la crea el pixel al cargar: si aun no esta, se espera un poco */
+    if (galleta('_fbp')) ir(); else setTimeout(ir, 1500);
+  }
 })();
 </script>
   <style>
