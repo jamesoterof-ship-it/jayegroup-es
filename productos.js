@@ -368,6 +368,16 @@ window.PRODUCTOS = [
       { cant: 4, precio: 58.99, antes: 0, texto: '4 botes' },
     ],
     popular: 1,
+
+    /* Pago anticipado aprobado por James el 02-10-2026: 2 € menos y entrega
+       prioritaria, igual que el cabezal. */
+    anticipado: {
+      descuento: 2,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [26.99, 36.99, 56.99],
+    },
   },
 ];
 
@@ -388,4 +398,6 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* cabezal de ducha, aprobados 29-09-2026 */
   23.99, 32.99, 41.99, 21.99, 30.99, 39.99,
   /* sellador impermeable, aprobados 01-10-2026 */
-  28.99, 38.99, 58.99];
+  28.99, 38.99, 58.99,
+  /* sellador, pago anticipado, aprobados 02-10-2026 */
+  26.99, 36.99, 56.99];

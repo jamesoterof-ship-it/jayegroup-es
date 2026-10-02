@@ -150,6 +150,15 @@
       if (tit) tit.insertAdjacentHTML('afterend', '<figure class="se-foto"><img src="img/sellador-promo.webp?v=1" alt="Cuatro botes del sellador sobre el banco de un garaje, con 1 bote a 28,99 €, 2 botes a 38,99 € y 4 botes a 58,99 €" loading="lazy" width="1000" height="1000"></figure>');
     }
     if (cmp) { var us = cmp.querySelector('th.us'); if (us) us.textContent = 'Este'; }
+    /* Las opiniones son de compradores de un sellador impermeable DEL MISMO TIPO
+       (James lo autorizó el 02-10 y pidió no poner aclaración). Así que aquí la
+       ficha tampoco afirma lo contrario: fuera la frase "de este producto". */
+    var rt = cont.querySelector('.rev-title');
+    if (rt && rt.firstChild && rt.firstChild.nodeType === 3) rt.firstChild.textContent = 'Opiniones de compradores ';
+    var rf = cont.querySelector('.rev-fuente');
+    if (rf) rf.remove();
+    var ra = cont.querySelector('.rev-auto-label');
+    if (ra) ra.textContent = 'Más opiniones de compradores';
     return true;
   }
 
