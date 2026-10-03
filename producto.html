@@ -31,6 +31,8 @@ setTimeout(function(){document.documentElement.classList.add('ba-visto');},3000)
 <link rel="stylesheet" href="ducha.css?v=9">
 <!-- Spray sellador: diseño PROPIO (ui-ux-pro-max opción B, 02-10). Solo actúa con ?p=sellador. -->
 <link rel="stylesheet" href="sellador.css?v=2">
+<!-- Spray de arañazos: diseño PROPIO (ui-ux-pro-max Motion-Driven, 02-10). Solo actúa con ?p=aranazos. -->
+<link rel="stylesheet" href="aranazos.css?v=6">
 <!-- Los CSS de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO existen en este repo: daban cinco 404 en cada carga. -->
 <style>
@@ -1173,18 +1175,18 @@ window.jayePixel = (function () {
     </div>
   </footer>
 
-<script src="productos.js?v=232"></script>
+<script src="productos.js?v=234"></script>
 <!-- ESPAÑA: provincias y codigos postales sin cobertura, en vez de las
      regiones y comunas de Chile. -->
 <script src="provincias-es.js?v=110"></script>
-<script src="resenas.js?v=205"></script>
+<script src="resenas.js?v=206"></script>
 <script src="efectos.js?v=4"></script>
 <script>/* A DONDE VA EL PEDIDO. Sin esto, ficha.js manda al webhook de CHILE
    (pedido-tienda): un pedido español entraria como chileno, con hora de
    Santiago y plantilla de WhatsApp chilena. Flujo nuevo en n8n
    GGeFaB7R2qWLsca2, creado el 27-09-2026 y probado con ROLLBACK. */
 window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-tienda-es';</script>
-<script src="ficha.js?v=225"></script>
+<script src="ficha.js?v=227"></script>
 <!-- GSAP, de lib/ y del propio dominio. NO se carga ScrollTrigger: para saber
      cuando algo entra en pantalla ya sirve IntersectionObserver, que viene en
      el navegador y no pesa. Va al final para no frenar la pintura. -->
@@ -1196,6 +1198,7 @@ window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-t
 <script src="balsamo.js?v=12"></script>
 <script src="ducha.js?v=7"></script>
 <script src="sellador.js?v=3"></script>
+<script src="aranazos.js?v=2"></script>
 <!-- Los js de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO van aqui: no existen en este repo y daban 404. -->
 

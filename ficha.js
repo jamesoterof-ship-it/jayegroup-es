@@ -315,7 +315,10 @@
 
   /* ---------- resenas de ESTE producto ---------- */
   var TODAS = window.RESENAS || [];
-  var mias = TODAS.filter(function (r) {
+  /* 02-10: primero las del nombre EXACTO. Por la primera palabra, "Spray Reparador de
+     Arañazos" se llevaba también las del "Spray Sellador Impermeable" (y al revés). */
+  var exactas = TODAS.filter(function (r) { return (r.producto || '').toLowerCase() === p.nombre.toLowerCase(); });
+  var mias = exactas.length ? exactas : TODAS.filter(function (r) {
     var t = (r.producto || '').toLowerCase(), n = p.nombre.toLowerCase();
     return t && (n.indexOf(t.split(' ')[0]) >= 0 || t.indexOf(n.split(' ')[0].toLowerCase()) >= 0);
   });
@@ -858,7 +861,8 @@
         + '</button>'
 
         + '<button type="button" class="pagoOp" data-pago="pre" role="radio" aria-checked="false">'
-        + '<span class="pagoOp__cinta">−' + pesos(p.anticipado.descuento) + '</span>'
+        /* spray 02-10 (James): descuento en % ("pct": 10) en vez de euros fijos */
+        + '<span class="pagoOp__cinta">−' + (p.anticipado.pct ? p.anticipado.pct + ' %' : pesos(p.anticipado.descuento)) + '</span>'
         + '<span class="pagoOp__ico" aria-hidden="true"><svg viewBox="0 0 24 24">'
         + '<path d="M12 3v18"/><path d="M16.5 7.5c-.6-1.4-2.3-2.2-4.5-2.2-2.5 0-4.2 1.1-4.2 2.9 0 1.9 1.8 2.6 4.4 3.2 2.9.6 4.8 1.4 4.8 3.5 0 2-1.9 3.2-4.6 3.2-2.4 0-4.2-.9-4.8-2.4"/>'
         + '</svg></span>'
@@ -1117,7 +1121,7 @@
       +   '</div>'
       /* 29-09 (James): el pago anticipado se promociona en TODA la tienda: aquí,
          en la cabecera de cada producto, con lo que gana el cliente */
-      +   (p.anticipado ? '<a class="heroP__ahorra" href="#pedir">' + ico.pago + '<span><b>' + t('pagaAhoraAhorra', 'Paga ahora y ahorra ') + String(p.anticipado.descuento).replace('.', ',') + ' €</b> '
+      +   (p.anticipado ? '<a class="heroP__ahorra" href="#pedir">' + ico.pago + '<span><b>' + t('pagaAhoraAhorra', 'Paga ahora y ahorra ') + (p.anticipado.pct ? (t('unPct', 'un ') + p.anticipado.pct + ' %') : String(p.anticipado.descuento).replace('.', ',') + ' €') + '</b> '
             + t('yPrioritaria', 'y recíbelo con entrega prioritaria en 14 h') + '</span></a>' : '')
       +   '<div class="heroP__pie">'
       +     '<div class="heroP__precio"><span>' + t('desde', 'Desde') + '</span><b>' + pesos(min.precio) + '</b></div>'

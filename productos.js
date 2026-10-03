@@ -379,6 +379,108 @@ window.PRODUCTOS = [
       precios: [26.99, 36.99, 56.99],
     },
   },
+
+  /* ============================================================
+     SPRAY REPARADOR DE ARAÑAZOS (CAR NANO) · 02-10-2026
+     Dropi PRO id 1378 ("CAR NANO repairing spray 120 ml"), coste 1,99 € (2,41 con IVA).
+     🔴 Solo rayitas SUPERFICIALES de la capa transparente: no arregla rayones que
+     llegan a la imprimación o al metal, ni golpes (James 02-10: no prometer de más).
+     Diseño PROPIO (aranazos.css / aranazos.js), ui-ux-pro-max "Motion-Driven":
+     pizarra #1E293B + rojo #DC2626, Syncopate / Space Mono. Imágenes Nano Banana
+     aprobadas por James 02-10 (persona con el bote EN LA MANO); vídeo = metraje real
+     de clientes, sin la caja ni el bote de la otra marca y sin subtítulos.
+     ============================================================ */
+  {
+    id: 'aranazos', unidad: 'uno', promo: 3,   /* la promoción es el pack de 3 (no hay pack de 4) */
+    dropiId: 1378,
+
+    nombre: 'Spray Reparador de Arañazos',
+    sub: 'Disimula rayitas superficiales y da brillo · 120 ml',
+    categoria: 'Coche',
+    etiqueta: 'Nuevo en España',
+    etiquetaOro: true,
+
+    foto: 'img/aranazos-rocia.webp?v=1',
+    fotos: ['img/aranazos-rocia.webp?v=1', 'img/aranazos-frota.webp?v=1', 'img/aranazos-brillo.webp?v=1'],
+    video: 'img/aranazos-ficha.mp4?v=1',
+
+    hero: {
+      img: 'img/hero-aranazos.webp?v=1',
+      kicker: 'Nuevo en España',
+      titulo: 'Rayitas fuera,<br><b>brillo de vuelta.</b>',
+      sub: 'Spray nano de 120 ml para las rayitas superficiales de la pintura. Rocías, frotas con un paño y la rayita se disimula, con brillo y una capa que repele el agua.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Pagas al recibir'],
+      ],
+    },
+    acento: '#DC2626',
+
+    /* Stock REAL leído en el panel de Dropi PRO el 01-10-2026 (5.846).
+       Dropdata 18-09 → 01-10: 4.880 unidades en 14 días (~330 al día). */
+    escasez: { hoy: 330, mejorDia: 330, quedan: 5846,
+      nota: 'Se despacha desde el almacén de Sevilla por orden de pedido. Pagas cuando lo tienes en la mano.' },
+
+    desc: 'El Spray Reparador de Arañazos es un spray nano para la pintura del coche. Rellena y disimula las rayitas superficiales de la capa transparente (las del lavado, las uñas junto a la manilla, el roce de una rama o de una bolsa), devuelve el brillo a la pintura opaca y deja una capa que repele el agua y el polvo. Se rocía sobre la zona limpia y seca y se extiende con un paño de microfibra en círculos. No arregla rayones profundos que dejan ver la imprimación o el metal, ni golpes.',
+
+    puntos: [
+      'Disimula rayitas superficiales',
+      'Devuelve el brillo a la pintura',
+      'Capa que repele agua y polvo',
+      'Rocías y frotas · sin taller',
+    ],
+
+    formulaRotulo: 'Por qué funciona',
+    formulaTitulo: 'Una capa nano sobre la pintura.',
+    formulaSub: 'Lo que hace el spray en cuanto lo extiendes.',
+    formula: [
+      ['escudo', 'Rellena la rayita', 'Las partículas nano se meten en la rayita fina y la disimulan a la vista.'],
+      ['rayo', 'Brillo al momento', 'La pintura opaca recupera el reflejo, como recién encerada.'],
+      ['agua', 'Repele el agua', 'La lluvia hace gotas y resbala; el polvo se pega menos.'],
+      ['casa', 'En tu garaje', 'Rocías, frotas con un paño y listo. Sin máquina pulidora.'],
+    ],
+
+    comparaTitulo: '¿Por qué un spray y no el taller?',
+    compara: [
+      'Para una rayita superficial, el taller cobra pulido y mano de obra.',
+      'Lo haces tú en 5 minutos, a la sombra y con un paño.',
+      'Un bote rinde para varias aplicaciones.',
+    ],
+
+    preguntas: [
+      { q: '¿Qué arañazos quita?', a: 'Las rayitas superficiales de la capa transparente: marcas del lavado, de las uñas junto a la manilla, roces de ramas o bolsas y la pintura opaca por el sol. Las disimula y devuelve el brillo.' },
+      { q: '¿Para qué NO sirve?', a: 'No arregla rayones profundos que dejan ver la imprimación (la capa gris o blanca) o el metal, ni abolladuras o golpes. Truco: si al pasar la uña se engancha en el rayón, es profundo y necesita taller.' },
+      { q: '¿Cómo se aplica?', a: 'Lava y seca la zona, a la sombra y con la chapa fría. Agita el bote, rocía sobre la rayita y extiende con un paño de microfibra en círculos. Repasa con la cara seca del paño. Si hace falta, repite.' },
+      { q: '¿Sirve para cualquier color?', a: 'Sí. No es pintura: es una capa transparente, así que vale para coches blancos, negros, rojos, grises o de cualquier color.' },
+      { q: '¿Viene con paño?', a: 'No. Se vende el bote de 120 ml. Sirve cualquier paño de microfibra limpio que tengas en casa.' },
+      { q: '¿Cuánto rinde un bote?', a: 'Un bote de 120 ml da para varias zonas con rayitas, o para repasar varias veces el mismo coche. Para dos coches o para tenerlo a mano, mejor el pack de 2 o de 3.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: 'img/aranazos-ba.webp?v=1',
+    antesDespuesSub: 'La misma puerta al sol: con las rayitas finas del lavado, y después con el spray y un paño.',
+
+    /* PRECIOS aprobados por James el 01-10-2026 (~1 € por debajo del más barato con
+       envío: Revine 18,99 + 3,49 envío / 34,98 / 43,47). 'antes' en 0: producto nuevo. */
+    packs: [
+      { cant: 1, precio: 20.99, antes: 0, texto: '1 bote' },
+      { cant: 2, precio: 28.99, antes: 0, texto: '2 botes' },
+      { cant: 3, precio: 41.99, antes: 0, texto: '3 botes' },
+    ],
+    popular: 1,
+
+    /* Pago anticipado aprobado por James el 02-10-2026: 10 % menos ("vamos con el
+       10%": pagar antes ahorra el % de devolución) y entrega prioritaria. */
+    anticipado: {
+      pct: 10,
+      descuento: 2.10,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [18.99, 25.99, 37.79],
+    },
+  },
 ];
 
 /* ============================================================
@@ -400,4 +502,8 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* sellador impermeable, aprobados 01-10-2026 */
   28.99, 38.99, 58.99,
   /* sellador, pago anticipado, aprobados 02-10-2026 */
-  26.99, 36.99, 56.99];
+  26.99, 36.99, 56.99,
+  /* spray de arañazos, aprobados 01-10-2026 (41,99 ya está, la del cabezal) */
+  20.99, 28.99,
+  /* spray de arañazos, pago anticipado (−10 %), aprobados 02-10-2026 */
+  18.99, 25.99, 37.79];

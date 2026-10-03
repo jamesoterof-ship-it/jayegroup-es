@@ -1,0 +1,276 @@
+/* ============================================================
+   SPRAY REPARADOR DE ARAÑAZOS · ESPAÑA · estilos propios (02-10-2026).
+   Solo con <body class="p-aranazos">. ui-ux-pro-max (aprobado por James):
+     · Patrón  Hero-Centric (el héroe manda, un solo CTA principal + CTA fijo)
+     · Estilo  Motion-Driven: entradas animadas, parallax suave, barrido de brillo
+     · Color   pizarra #1E293B / #334155 / #0F172A, fondo #F8FAFC, acción #DC2626
+     · Letra   Syncopate (títulos, ancha, de coche) + Space Mono (datos y rótulos)
+   Contrastes (WCAG): #0F172A sobre #F8FAFC 17,8:1 · blanco sobre #DC2626 4,8:1 ·
+   blanco sobre #1E293B 14,6:1 · #CBD5E1 sobre #1E293B 10,1:1.
+   ============================================================ */
+body.p-aranazos {
+  --a-pizarra:  #1E293B;
+  --a-pizarra2: #334155;
+  --a-noche:    #0F172A;
+  --a-fondo:    #F8FAFC;
+  --a-carta:    #FFFFFF;
+  --a-linea:    #E2E8F0;
+  --a-gris:     #64748B;
+  --a-rojo:     #DC2626;
+  --a-rojo2:    #B91C1C;
+  --a-rojoC:    #FEF2F2;
+  --a-verde:    #15803D;
+  --a-titulo:   'Syncopate', 'Arial Black', system-ui, sans-serif;
+  --a-mono:     'Space Mono', ui-monospace, 'Courier New', monospace;
+  --a-texto:    system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --a-salida:   cubic-bezier(.16,1,.3,1);
+  background: var(--a-fondo);
+}
+body.p-aranazos #prod { background: var(--a-fondo); color: var(--a-noche); font-family: var(--a-texto); }
+body.p-aranazos #prod p { color: #475569; }
+
+/* ---------- títulos anchos, en mayúscula, con la "raya" roja que entra ---------- */
+body.p-aranazos #prod h1, body.p-aranazos #prod h2, body.p-aranazos #prod h3 { font-family: var(--a-titulo); letter-spacing: .01em; }
+body.p-aranazos #prod h2.tit2, body.p-aranazos .ar-h2 {
+  display: block; margin: 8px 0 14px;
+  font-family: var(--a-titulo); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(21px, 6vw, 30px); line-height: 1.15; letter-spacing: .015em;
+  color: var(--a-noche); text-wrap: balance;
+}
+body.p-aranazos #prod h2 em, body.p-aranazos .ar-h2 em { font-style: normal; color: var(--a-rojo); }
+body.p-aranazos #prod .eyebrow, body.p-aranazos .ar-rot {
+  display: inline-flex; align-items: center; gap: 10px; padding: 0; background: none;
+  font-family: var(--a-mono); font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--a-pizarra2);
+}
+body.p-aranazos #prod .eyebrow::before, body.p-aranazos .ar-rot::before {
+  content: ''; width: 26px; height: 2px; background: var(--a-rojo);
+  box-shadow: 8px 5px 0 -0px rgba(220,38,38,.35);
+}
+body.p-aranazos #prod .sub2, body.p-aranazos .ar-lead { font-size: 16px; line-height: 1.6; color: #475569; margin: 0 0 18px; }
+/* la raya de velocidad bajo cada título: entra desde la izquierda al leerlo */
+body.p-aranazos #prod h2.ar-tit { position: relative; padding-bottom: 16px; }
+body.p-aranazos #prod h2.ar-tit::after {
+  content: ''; position: absolute; left: 0; bottom: 0; height: 4px; width: 96px;
+  background: linear-gradient(90deg, var(--a-rojo) 0 62%, transparent 62% 70%, var(--a-rojo) 70% 82%, transparent 82% 88%, var(--a-rojo) 88%);
+  transform: translateX(-30px); opacity: 0;
+}
+body.p-aranazos #prod h2.ar-tit.ar-entra::after { animation: arVeloz .6s var(--a-salida) forwards; }
+@keyframes arVeloz { to { transform: none; opacity: 1; } }
+
+/* ---------- HÉROE: oscuro, la foto a sangre y el texto encima abajo ---------- */
+body.p-aranazos .heroP {
+  --crema: #0F172A; --rosa: #1E293B; --rosaF: #DC2626;
+  --tinta: #F8FAFC; --tinta2: #CBD5E1;
+  --oro: #DC2626; --oroOsc: #B91C1C;
+  background: var(--a-noche);
+}
+body.p-aranazos .heroP__marco, body.p-aranazos .heroP__img { background: #0B1120; }
+body.p-aranazos .heroP__marco { overflow: hidden; position: relative; }
+/* la foto del héroe es 4:5 y trae el titular escrito por Gemini arriba: se muestra ENTERA */
+body.p-aranazos .heroP__img { will-change: transform; aspect-ratio: 1000 / 1242; object-fit: cover; object-position: 50% 0; }
+body.p-aranazos .heroP__fundido { background: linear-gradient(to top, #0F172A 6%, rgba(15,23,42,.55) 38%, rgba(15,23,42,0) 70%); z-index: 2; }
+body.p-aranazos .heroP__luces { display: none; }
+/* el barrido de brillo, como la luz que pasa por la chapa recién encerada */
+body.p-aranazos .ar-brillo {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;
+}
+body.p-aranazos .ar-brillo::before {
+  content: ''; position: absolute; top: -20%; bottom: -20%; left: -60%; width: 38%;
+  background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.28) 45%, rgba(255,255,255,.55) 50%, rgba(255,255,255,.28) 55%, rgba(255,255,255,0) 100%);
+  transform: skewX(-14deg);
+  animation: arBarrido 5.5s cubic-bezier(.45,0,.2,1) 1.4s infinite;
+}
+@keyframes arBarrido { 0% { left: -60%; } 38% { left: 130%; } 100% { left: 130%; } }
+/* la rayita que se dibuja y se borra al pasar el brillo (aranazos.js) */
+body.p-aranazos .ar-raya { position: absolute; inset: 0; z-index: 1; pointer-events: none; width: 100%; height: 100%; }
+body.p-aranazos .ar-raya path { fill: none; stroke: rgba(255,255,255,.75); stroke-width: 1.5; stroke-linecap: round; filter: drop-shadow(0 0 2px rgba(0,0,0,.6)); }
+body.p-aranazos .heroP__txt {
+  position: relative; z-index: 3; margin: -6px 12px 0; padding: 20px 18px 18px;
+  background: rgba(15,23,42,.86); border: 1px solid rgba(148,163,184,.25); border-left: 4px solid var(--a-rojo);
+  border-radius: 14px; box-shadow: 0 24px 50px rgba(0,0,0,.45);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+body.p-aranazos .heroP .heroP__h1 {
+  font-family: var(--a-titulo); font-weight: 700; font-style: normal; text-transform: uppercase;
+  font-size: clamp(25px, 7.4vw, 36px); line-height: 1.12; letter-spacing: .01em; color: #fff;
+}
+body.p-aranazos .heroP .heroP__h1 b, body.p-aranazos .hCas__w.es-oro .hCas__l { color: #F87171; font-weight: 700; font-style: normal; }
+body.p-aranazos #prod .heroP__sub { font-size: 15.5px; line-height: 1.55; color: #CBD5E1; }
+/* la píldora de opiniones: estrellas rojas, número y enlace legibles */
+body.p-aranazos .heroP__nota { background: #fff; color: var(--a-noche); }
+body.p-aranazos .heroP__nota * { color: var(--a-noche); }
+body.p-aranazos .heroP__nota svg, body.p-aranazos .heroP__nota svg * { fill: var(--a-rojo); color: var(--a-rojo); }
+body.p-aranazos .heroP__ahorra b { color: #4ADE80; }
+body.p-aranazos .heroP__kicker { font-family: var(--a-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: rgba(220,38,38,.18); border-color: rgba(248,113,113,.45); }
+body.p-aranazos .heroP__kicker i { background: var(--a-rojo); }
+body.p-aranazos .heroP__nota { font-family: var(--a-mono); color: #E2E8F0; }
+body.p-aranazos .heroP__dato { font-family: var(--a-mono); font-size: 12.5px; font-weight: 700; color: #E2E8F0; background: rgba(51,65,85,.7); border-color: rgba(148,163,184,.3); }
+body.p-aranazos .heroP__dato svg { color: #F87171; }
+body.p-aranazos .heroP__dato--oro { background: rgba(220,38,38,.22); border-color: rgba(248,113,113,.5); }
+body.p-aranazos .heroP__ahorra { background: rgba(21,128,61,.18); border-color: rgba(74,222,128,.45); color: #DCFCE7; }
+body.p-aranazos .heroP__ahorra svg { color: #4ADE80; }
+body.p-aranazos .heroP__precio span { font-family: var(--a-mono); color: #94A3B8; }
+body.p-aranazos .heroP__precio b { font-family: var(--a-mono); font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
+body.p-aranazos .heroP__wa { font-family: var(--a-mono); color: #E2E8F0; }
+
+/* entrada del héroe: la foto llega con zoom hacia atrás y el panel sube */
+html.ba-lista body.p-aranazos .heroP__img { animation: arLlega 1.6s var(--a-salida) both; }
+@keyframes arLlega { from { transform: scale(1.12); filter: brightness(.6) saturate(.7); } to { transform: scale(1); filter: none; } }
+html.ba-lista body.p-aranazos .heroP__txt { animation: arPanel .7s var(--a-salida) .35s both; }
+@keyframes arPanel { from { opacity: 0; transform: translateY(48px); } to { opacity: 1; transform: none; } }
+html.ba-lista body.p-aranazos .hCas__l { animation: arLetra .5s var(--a-salida) both !important; animation-delay: calc(.5s + var(--k) * .02s) !important; }
+@keyframes arLetra { from { opacity: 0; transform: translateX(-.4em) skewX(-12deg); } to { opacity: 1; transform: none; } }
+
+/* ---------- BOTONES: rojo de acción, todos iguales (56 px) ---------- */
+body.p-aranazos .heroP__cta,
+body.p-aranazos #prod .cta,
+body.p-aranazos #prod .ar-cta,
+body.p-aranazos .btn-flota,
+body.p-aranazos #stickycta button {
+  box-sizing: border-box; position: relative; overflow: hidden;
+  display: flex !important; align-items: center; justify-content: center; gap: 10px;
+  width: 100% !important; height: 56px !important; min-height: 56px; padding: 0 18px !important;
+  /* Syncopate es muy ancha: en el teléfono el texto se achica para no salirse del botón */
+  font-family: var(--a-titulo) !important; font-size: clamp(11px, 3.1vw, 14.5px) !important; font-weight: 700 !important; letter-spacing: .02em; text-transform: uppercase;
+  line-height: 1 !important; white-space: nowrap; text-decoration: none;
+  border-radius: 10px !important; border: 0 !important;
+  background: var(--a-rojo) !important; color: #fff !important;
+  box-shadow: 0 12px 26px rgba(220,38,38,.32);
+  cursor: pointer; transition: background .25s ease, transform .2s var(--a-salida), box-shadow .25s ease;
+}
+body.p-aranazos .heroP__cta:hover, body.p-aranazos #prod .cta:hover, body.p-aranazos #prod .ar-cta:hover, body.p-aranazos .btn-flota:hover { background: var(--a-rojo2) !important; box-shadow: 0 16px 30px rgba(185,28,28,.38); }
+body.p-aranazos .heroP__cta:active, body.p-aranazos #prod .cta:active, body.p-aranazos #prod .ar-cta:active { transform: scale(.97); }
+body.p-aranazos .heroP__cta:focus-visible, body.p-aranazos #prod .cta:focus-visible, body.p-aranazos #prod .ar-cta:focus-visible { outline: 3px solid var(--a-pizarra); outline-offset: 3px; }
+body.p-aranazos #prod .cta.azul { background: #fff !important; color: var(--a-pizarra) !important; border: 2px solid var(--a-pizarra) !important; box-shadow: none; }
+/* la flecha del botón avanza sola, como invitando a seguir */
+body.p-aranazos .ar-flecha { display: inline-block; width: 18px; height: 18px; animation: arAvanza 1.6s ease-in-out infinite; }
+body.p-aranazos .ar-flecha svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes arAvanza { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+body.p-aranazos #prod .ar-cta { margin-top: 22px; }
+body.p-aranazos .heroP__pie { flex-wrap: wrap; }
+body.p-aranazos #stickycta .btn-flota { width: auto !important; flex: 1 1 auto; }
+body.p-aranazos #stickycta .waFlota { width: auto !important; flex: 0 0 auto; background: #08783A !important; color: #fff !important; }
+
+/* ---------- ANTES / DESPUÉS ---------- */
+body.p-aranazos #prod .ba-sec { background: var(--a-carta); margin: 0; padding: 32px 16px 28px; border-bottom: 1px solid var(--a-linea); }
+body.p-aranazos #prod .ba-sec .ba-img { border-radius: 12px; overflow: hidden; margin: 8px 0 4px; box-shadow: 0 18px 40px rgba(15,23,42,.18); }
+body.p-aranazos #prod .ba-sec .ba-img img { display: block; width: 100%; height: auto; }
+
+/* ---------- compra corta ---------- */
+body.p-aranazos #prod .arriba2 { background: var(--a-fondo); }
+body.p-aranazos #prod .arriba2 .datos h1 { font-family: var(--a-titulo); font-weight: 700; text-transform: uppercase; font-size: clamp(19px, 5.4vw, 26px); color: var(--a-noche); }
+body.p-aranazos #prod .precioTop { font-family: var(--a-mono); font-variant-numeric: tabular-nums; }
+body.p-aranazos #prod .arriba2 .dscTop, body.p-aranazos #prod .arriba2 .dscTop__ul { display: none; }
+
+/* ---------- ASÍ SE USA: tres fotos en pasos, con número grande ---------- */
+body.p-aranazos .ar-sec { padding: 42px 16px; }
+body.p-aranazos .ar-uso { background: var(--a-noche); color: #fff; }
+body.p-aranazos .ar-uso .ar-h2 { color: #fff; }
+body.p-aranazos .ar-uso .ar-rot { color: #CBD5E1; }
+body.p-aranazos #prod .ar-uso .ar-lead { color: #CBD5E1; }
+body.p-aranazos .ar-pasos { display: grid; gap: 22px; margin-top: 8px; }
+@media (min-width: 768px) { body.p-aranazos .ar-pasos { grid-template-columns: repeat(3, 1fr); } }
+body.p-aranazos .ar-paso { position: relative; margin: 0; border-radius: 16px; overflow: hidden; background: var(--a-pizarra); border: 1px solid var(--a-pizarra2); }
+body.p-aranazos .ar-paso-img { overflow: hidden; aspect-ratio: 4 / 5; }
+body.p-aranazos .ar-paso-img img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 1.4s var(--a-salida); }
+body.p-aranazos .ar-paso.ar-ya .ar-paso-img img { transform: scale(1); }
+body.p-aranazos .ar-paso-n {
+  position: absolute; top: 12px; right: 12px; z-index: 2;   /* a la derecha: a la izquierda tapaba el título de la foto */
+  font: 700 13px/1 var(--a-mono); letter-spacing: .12em; color: #fff;
+  background: var(--a-rojo); padding: 8px 10px; border-radius: 6px;
+}
+body.p-aranazos .ar-paso figcaption { padding: 16px 16px 18px; display: grid; gap: 6px; }
+body.p-aranazos .ar-paso figcaption b { font: 700 16px/1.2 var(--a-titulo); text-transform: uppercase; color: #fff; letter-spacing: .02em; }
+body.p-aranazos #prod .ar-paso figcaption span { font-size: 15px; line-height: 1.5; color: #CBD5E1; }
+
+/* ---------- SÍ / NO + la prueba de la uña ---------- */
+body.p-aranazos .ar-sino { background: var(--a-fondo); }
+body.p-aranazos .ar-sino-grid { display: grid; gap: 14px; margin-top: 6px; }
+@media (min-width: 768px) { body.p-aranazos .ar-sino-grid { grid-template-columns: 1fr 1fr; } }
+body.p-aranazos .ar-caja { background: var(--a-carta); border: 1px solid var(--a-linea); border-radius: 14px; padding: 18px 16px; }
+body.p-aranazos .ar-caja > b { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font: 700 14px var(--a-titulo); text-transform: uppercase; letter-spacing: .03em; }
+body.p-aranazos .ar-caja-si { border-top: 4px solid var(--a-verde); }
+body.p-aranazos .ar-caja-si > b { color: var(--a-verde); }
+body.p-aranazos .ar-caja-no { border-top: 4px solid var(--a-rojo); }
+body.p-aranazos .ar-caja-no > b { color: var(--a-rojo2); }
+body.p-aranazos .ar-caja ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+body.p-aranazos .ar-caja li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; font-size: 15.5px; line-height: 1.45; color: var(--a-noche); }
+body.p-aranazos .ar-caja li svg { width: 22px; height: 22px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+body.p-aranazos .ar-caja-si li svg { stroke: var(--a-verde); }
+body.p-aranazos .ar-caja-no li svg { stroke: var(--a-rojo); }
+body.p-aranazos .ar-una {
+  margin-top: 16px; display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: center;
+  background: var(--a-pizarra); color: #fff; border-radius: 14px; padding: 16px;
+}
+body.p-aranazos .ar-una-ico { width: 44px; height: 44px; border-radius: 10px; background: var(--a-rojo); display: grid; place-items: center; }
+body.p-aranazos .ar-una-ico svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+body.p-aranazos .ar-una b { display: block; font: 700 13px var(--a-mono); letter-spacing: .1em; text-transform: uppercase; color: #FCA5A5; margin-bottom: 4px; }
+body.p-aranazos #prod .ar-una p { margin: 0; font-size: 15px; line-height: 1.5; color: #E2E8F0; }
+
+/* ---------- POR QUÉ FUNCIONA (las 4 tarjetas de la ficha) ---------- */
+body.p-aranazos #prod .form-sec { background: var(--a-carta); padding-top: 42px; padding-bottom: 42px; }
+body.p-aranazos #prod .form-sec :has(> .ing) { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+body.p-aranazos #prod .form-sec .ing {
+  display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 16px 14px;
+  background: var(--a-fondo); border: 1px solid var(--a-linea); border-radius: 12px;
+  transition: transform .3s var(--a-salida), box-shadow .3s ease, border-color .3s ease;
+}
+body.p-aranazos #prod .form-sec .ing:hover { transform: translateY(-3px); border-color: #FCA5A5; box-shadow: 0 12px 26px rgba(15,23,42,.1); }
+body.p-aranazos #prod .form-sec .ing .cir { width: 44px; height: 44px; border-radius: 10px; background: var(--a-pizarra); display: grid; place-items: center; border: 0; }
+body.p-aranazos #prod .form-sec .ing .cir svg { width: 24px; height: 24px; stroke: #F87171; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+body.p-aranazos #prod .form-sec .ing b { font: 700 13.5px var(--a-titulo); text-transform: uppercase; letter-spacing: .02em; color: var(--a-noche); display: block; }
+body.p-aranazos #prod .form-sec .ing p { font-size: 14.5px; line-height: 1.5; margin: 4px 0 0; }
+
+/* ---------- VÍDEO ---------- */
+body.p-aranazos #prod .vid-wrap { background: var(--a-noche); padding-top: 38px; padding-bottom: 30px; }
+body.p-aranazos #prod .ar-cab { padding: 0 16px 16px; }
+body.p-aranazos #prod .ar-cab .ar-h2 { color: #fff; }
+body.p-aranazos #prod .ar-cab .ar-rot { color: #CBD5E1; }
+body.p-aranazos #prod .vid-prod, body.p-aranazos #prod .vid-wrap video { background: #000; border-radius: 14px; box-shadow: 0 0 0 1px rgba(148,163,184,.25), 0 24px 50px rgba(0,0,0,.5); }
+
+/* ---------- el resto de la ficha ---------- */
+body.p-aranazos #prod section.desc { background: var(--a-carta); }
+body.p-aranazos #prod .promo-sec, body.p-aranazos #prod .cmp-sec, body.p-aranazos #prod .gar-sec { background: var(--a-fondo); }
+body.p-aranazos #prod .res-sec { background: #F1F5F9; }
+body.p-aranazos #prod .cmp th.us { color: var(--a-rojo); font-family: var(--a-mono); }
+body.p-aranazos #prod .cmp .si svg { stroke: var(--a-verde); }
+body.p-aranazos #prod .form { background: var(--a-fondo); }
+body.p-aranazos #prod .sello .nom { font: 700 14px var(--a-titulo); text-transform: uppercase; letter-spacing: .02em; color: var(--a-noche); }
+body.p-aranazos .ar-foto { margin: 14px 0 18px; }
+body.p-aranazos .ar-foto img { display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 18px 40px rgba(15,23,42,.16); }
+
+/* ---------- FORMULARIO: los dos pagos lado a lado ---------- */
+body.p-aranazos #prod .pasoRot { display: flex; align-items: center; gap: 9px; margin: 22px 0 10px; font: 700 14px var(--a-mono); color: var(--a-noche); }
+body.p-aranazos #prod .pasoRot:first-of-type { margin-top: 4px; }
+body.p-aranazos #prod .pasoRot b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: var(--a-pizarra); color: #fff; font-size: 12.5px; }
+body.p-aranazos #prod .pagoSel { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 4px; }
+body.p-aranazos #prod .pagoOp {
+  position: relative; display: grid; grid-template-areas: 'ico' 'tit' 'pr' 'sub'; align-content: start; gap: 2px;
+  min-height: 132px; padding: 16px 12px 13px; border: 1.5px solid var(--a-linea); border-radius: 12px;
+  background: #fff; font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease;
+}
+body.p-aranazos #prod .pagoOp:active { transform: scale(.985); }
+body.p-aranazos #prod .pagoOp.sel { border-color: var(--a-rojo); background: var(--a-rojoC); box-shadow: 0 0 0 3px rgba(220,38,38,.14); }
+body.p-aranazos #prod .pagoOp:focus-visible { outline: 2px solid var(--a-pizarra); outline-offset: 3px; }
+body.p-aranazos #prod .pagoOp__ico { grid-area: ico; margin-bottom: 4px; }
+body.p-aranazos #prod .pagoOp__ico svg { width: 26px; height: 26px; fill: none; stroke: var(--a-gris); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+body.p-aranazos #prod .pagoOp.sel .pagoOp__ico svg { stroke: var(--a-rojo); }
+body.p-aranazos #prod .pagoOp__tit { grid-area: tit; font-size: 14px; font-weight: 700; line-height: 1.25; color: var(--a-noche); }
+body.p-aranazos #prod .pagoOp__pr { grid-area: pr; margin-top: 2px; font: 700 20px/1.1 var(--a-mono); font-variant-numeric: tabular-nums; color: var(--a-noche); }
+body.p-aranazos #prod .pagoOp__sub { grid-area: sub; margin-top: 3px; font-size: 12px; line-height: 1.35; color: var(--a-gris); }
+body.p-aranazos #prod .pagoOp__cinta { position: absolute; top: -9px; right: 10px; padding: 3px 9px; border-radius: 5px; background: var(--a-verde); color: #fff; font: 700 11px var(--a-mono); white-space: nowrap; }
+
+/* ---------- entradas al bajar: suben y se enderezan, en cascada ---------- */
+body.p-aranazos.ar-mueve .ar-sube { opacity: 0; transform: translateY(26px) rotate(-1.2deg); transition: opacity .5s var(--a-salida), transform .6s var(--a-salida); transition-delay: calc(var(--i, 0) * 80ms); }
+body.p-aranazos.ar-mueve .ar-sube.ar-ya { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  body.p-aranazos .heroP__img, body.p-aranazos .heroP__txt, body.p-aranazos .hCas__l { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+  body.p-aranazos .ar-brillo, body.p-aranazos .ar-raya { display: none; }
+  body.p-aranazos .ar-flecha { animation: none; }
+  body.p-aranazos .ar-sube { opacity: 1 !important; transform: none !important; transition: none !important; }
+  body.p-aranazos #prod h2.ar-tit::after { opacity: 1; transform: none; }
+  body.p-aranazos .ar-paso-img img { transform: none; transition: none; }
+}
