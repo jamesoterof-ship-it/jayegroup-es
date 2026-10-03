@@ -148,9 +148,9 @@ window.PRODUCTOS = [
        (Directiva Omnibus) exige que el precio tachado sea el mas bajo de los
        ULTIMOS 30 DIAS. Hasta el 24-10-2026 no se puede tachar nada. ---- */
     packs: [
-      { cant: 1, precio: 28.50, antes: 0, texto: '1 unidad' },
-      { cant: 2, precio: 38.50, antes: 0, texto: '2 unidades' },
-      { cant: 3, precio: 48.50, antes: 0, texto: '3 unidades' },
+      { cant: 1, precio: 28.50, antes: 56.99, texto: '1 unidad' },
+      { cant: 2, precio: 38.50, antes: 76.99, texto: '2 unidades' },
+      { cant: 3, precio: 48.50, antes: 96.99, texto: '3 unidades' },
     ],
     /* OJO: 'popular' es el INDICE del pack, no la cantidad. 1 = el segundo de
        la lista = el pack de 2 unidades, que es el que se empuja: el envio es
@@ -263,9 +263,9 @@ window.PRODUCTOS = [
     /* PRECIOS aprobados por James el 29-09-2026 (1 € por debajo de la más barata:
        VELYN 24,99 / 39,99 / 49,99). 'antes' en 0: producto nuevo (Ley 7/1996 art. 20.1). */
     packs: [
-      { cant: 1, precio: 23.99, antes: 0, texto: '1 unidad' },
-      { cant: 2, precio: 32.99, antes: 0, texto: '2 unidades' },
-      { cant: 3, precio: 41.99, antes: 0, texto: '3 unidades' },
+      { cant: 1, precio: 23.99, antes: 47.99, texto: '1 unidad' },
+      { cant: 2, precio: 32.99, antes: 65.99, texto: '2 unidades' },
+      { cant: 3, precio: 41.99, antes: 83.99, texto: '3 unidades' },
     ],
     popular: 1,
 
@@ -363,9 +363,9 @@ window.PRODUCTOS = [
     /* PRECIOS aprobados por James el 01-10-2026 (1 € por debajo de FlexSpray:
        30 / 40 / 60). 'antes' en 0: producto nuevo (Ley 7/1996 art. 20.1). */
     packs: [
-      { cant: 1, precio: 28.99, antes: 0, texto: '1 bote' },
-      { cant: 2, precio: 38.99, antes: 0, texto: '2 botes' },
-      { cant: 4, precio: 58.99, antes: 0, texto: '4 botes' },
+      { cant: 1, precio: 28.99, antes: 57.99, texto: '1 bote' },
+      { cant: 2, precio: 38.99, antes: 77.99, texto: '2 botes' },
+      { cant: 4, precio: 58.99, antes: 117.99, texto: '4 botes' },
     ],
     popular: 1,
 
@@ -464,9 +464,9 @@ window.PRODUCTOS = [
     /* PRECIOS aprobados por James el 01-10-2026 (~1 € por debajo del más barato con
        envío: Revine 18,99 + 3,49 envío / 34,98 / 43,47). 'antes' en 0: producto nuevo. */
     packs: [
-      { cant: 1, precio: 20.99, antes: 0, texto: '1 bote' },
-      { cant: 2, precio: 28.99, antes: 0, texto: '2 botes' },
-      { cant: 3, precio: 41.99, antes: 0, texto: '3 botes' },
+      { cant: 1, precio: 20.99, antes: 41.99, texto: '1 bote' },
+      { cant: 2, precio: 28.99, antes: 57.99, texto: '2 botes' },
+      { cant: 3, precio: 41.99, antes: 83.99, texto: '3 botes' },
     ],
     popular: 1,
 

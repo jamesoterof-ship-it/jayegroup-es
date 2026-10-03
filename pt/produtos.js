@@ -110,9 +110,9 @@ window.PRODUTOS = [
        'antes' a 0: produto novo, não se pode riscar nenhum preço até levar 30
        dias a vender (Decreto-Lei 70/2007, o mesmo critério da diretiva Omnibus). */
     packs: [
-      { cant: 1, precio: 28.50, antes: 0, texto: '1 unidade' },
-      { cant: 2, precio: 38.50, antes: 0, texto: '2 unidades' },
-      { cant: 3, precio: 48.50, antes: 0, texto: '3 unidades' },
+      { cant: 1, precio: 28.50, antes: 56.99, texto: '1 unidade' },
+      { cant: 2, precio: 38.50, antes: 76.99, texto: '2 unidades' },
+      { cant: 3, precio: 48.50, antes: 96.99, texto: '3 unidades' },
     ],
     popular: 1,
 
