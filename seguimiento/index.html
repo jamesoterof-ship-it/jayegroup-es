@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Seguimiento de tu pedido · Jaye Group España</title>
+<meta name="robots" content="noindex">
+<!-- 03-10 (James: "el enlace de la guía no lleva a ningún lado"). El aviso de "pedido enviado" mandaba a una
+     dirección vieja de MRW que, además, MRW bloquea fuera de España. Ahora el aviso trae ESTA página:
+     /seguimiento/?g=<guía>&t=<transportadora>. Siempre abre, muestra la guía en grande, la copia con un toque
+     y lleva a la web de la transportadora para pegarla. -->
+<style>
+  :root{--tinta:#111;--gris:#5b6470;--fondo:#f6f7f9;--oro:#d8a52e;--verde:#0f8a4b}
+  *{box-sizing:border-box} body{margin:0;background:var(--fondo);color:var(--tinta);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+  header{background:#111;padding:14px 16px;text-align:center}
+  .marca{font-weight:900;letter-spacing:.08em;font-size:20px;color:#fff;text-decoration:none}.marca b{color:var(--oro)}
+  main{max-width:520px;margin:0 auto;padding:22px 16px 40px}
+  h1{font-size:24px;margin:6px 0 6px}.sub{color:var(--gris);margin:0 0 18px;line-height:1.5}
+  .tarjeta{background:#fff;border-radius:16px;padding:20px 18px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+  .rot{font-size:13px;color:var(--gris);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+  .guia{font-size:30px;font-weight:900;letter-spacing:.04em;margin:6px 0 4px;word-break:break-all}
+  .trans{font-weight:700;margin-bottom:16px}
+  .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;border:0;cursor:pointer;margin-top:10px;text-align:center;padding:10px 14px;line-height:1.25}
+  .b1{background:#111;color:#fff}.b2{background:var(--verde);color:#fff}
+  ol{padding-left:20px;line-height:1.6;color:#333}
+  .wa{background:#25d366;color:#fff}
+  .ok{color:var(--verde);font-weight:700;min-height:20px;margin-top:6px;font-size:14px}
+</style></head><body>
+<header><a class="marca" href="/">JAYE <b>GROUP</b></a></header>
+<main>
+  <h1>Tu pedido va en camino 🚚</h1>
+  <p class="sub">Este es el número de seguimiento de tu envío. Recuerda: pagas al repartidor cuando lo recibes.</p>
+  <div class="tarjeta">
+    <div class="rot">Número de seguimiento</div>
+    <div class="guia" id="guia">—</div>
+    <div class="trans" id="trans">Transportadora</div>
+    <button class="btn b1" id="copiar" type="button">Copiar número</button>
+    <div class="ok" id="ok"></div>
+    <a class="btn b2" id="ir" href="#" target="_blank" rel="noopener">Ver mi envío en la web de la transportadora</a>
+    <ol>
+      <li>Toca <b>Copiar número</b>.</li>
+      <li>Toca <b>Ver mi envío</b> y pega el número en el buscador de seguimiento.</li>
+    </ol>
+    <a class="btn wa" href="https://wa.me/34672423735" target="_blank" rel="noopener">¿Dudas? Escríbenos por WhatsApp</a>
+  </div>
+</main>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var g = (q.get('g') || '').replace(/[^A-Za-z0-9-]/g, '').slice(0, 40);
+  var t = (q.get('t') || 'MRW').toUpperCase();
+  var WEB = {
+    MRW: ['MRW', 'https://www.mrw.es/'],
+    CTT: ['CTT Express', 'https://www.cttexpress.com/localizador-de-envios/'],
+    CORREOS: ['Correos Express', 'https://www.correosexpress.com/web/correosexpress/home']
+  };
+  var k = t.indexOf('CTT') >= 0 ? 'CTT' : (t.indexOf('CORREOS') >= 0 ? 'CORREOS' : 'MRW');
+  document.getElementById('guia').textContent = g || '—';
+  document.getElementById('trans').textContent = WEB[k][0];
+  document.getElementById('ir').href = WEB[k][1];
+  document.getElementById('copiar').addEventListener('click', function () {
+    var ok = document.getElementById('ok');
+    var listo = function () { ok.textContent = '✓ Número copiado: ahora pégalo en la web de ' + WEB[k][0]; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(g).then(listo, listo); else listo();
+  });
+})();
+</script>
+</body></html>
