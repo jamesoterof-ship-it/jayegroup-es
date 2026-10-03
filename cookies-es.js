@@ -22,14 +22,22 @@
     if (v === 'si' && window._cargarPixel) window._cargarPixel();
   }
 
+  /* 03-10 (James): "las tiendas de Shopify no hacen eso, me estás matando la tienda".
+     Revisadas 7 tiendas que venden contra reembolso en España (FlexSpray, Revine,
+     Vigoshop, Zayu, Sconto, Nutriavelle, Beginnse): las 7 disparan el píxel APENAS
+     entra el visitante y 6 ni muestran aviso. Esperando el "Aceptar", Meta solo veía
+     el 10-13 % de las visitas. Ahora el píxel se carga SIEMPRE al entrar (decisión de
+     James, asumiendo el riesgo) y el aviso queda como una línea informativa. */
+  if (window._cargarPixel) window._cargarPixel();
+
   var dec = null;
   try { dec = localStorage.getItem(KEY); } catch (e) {}
-  if (dec === 'si') { if (window._cargarPixel) window._cargarPixel(); }
-  else if (dec !== 'no') { caja.hidden = false; }
+  if (!dec) caja.hidden = false;
 
   var ok = document.getElementById('ckOk'), no = document.getElementById('ckNo');
-  if (ok) ok.addEventListener('click', function () { decidir('si'); });
-  if (no) no.addEventListener('click', function () { decidir('no'); });
+  var pt = (document.documentElement.lang || '').indexOf('pt') === 0;
+  if (no) no.remove();
+  if (ok) { ok.textContent = pt ? 'Entendido' : 'Entendido'; ok.addEventListener('click', function () { decidir('si'); }); }
 
   /* "Configurar cookies" del pie: vuelve a mostrar el aviso para cambiar o
      revocar la decision, que tambien lo exige la AEPD. */
