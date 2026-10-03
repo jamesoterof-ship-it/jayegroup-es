@@ -10,6 +10,7 @@
 window.PRODUTOS = [
   {
     id: 'balsamo', unidad: 'um', promo: 2,
+    resenasTotal: 2137,
 
     dropiId: 2287,
     dropiSku: '75481-BALSAMO-VITALIS',

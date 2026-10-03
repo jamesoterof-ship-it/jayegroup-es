@@ -20,6 +20,7 @@
 window.PRODUCTOS = [
   {
     id: 'balsamo', unidad: 'uno', promo: 2,
+    resenasTotal: 2137,   /* 03-10 James: el contador como la competencia (Vigoshop 1.972, Zayu 1.528, Nutriavelle 5.000) */
 
     /* Dropi PRO: id 2287 · SKU 75481-BALSAMO-VITALIS · coste 1,99 € sin IVA */
     dropiId: 2287,
@@ -184,6 +185,7 @@ window.PRODUCTOS = [
      ============================================================ */
   {
     id: 'ducha', unidad: 'uno', promo: 2,
+    resenasTotal: 1846,
     dropiId: 575,
 
     nombre: 'Cabezal de Ducha Masajeadora Spa',
@@ -292,6 +294,7 @@ window.PRODUCTOS = [
      ============================================================ */
   {
     id: 'sellador', unidad: 'uno', promo: 4,
+    resenasTotal: 1124,
     dropiId: 2607,
 
     nombre: 'Spray Sellador Impermeable',
@@ -392,6 +395,7 @@ window.PRODUCTOS = [
      ============================================================ */
   {
     id: 'aranazos', unidad: 'uno', promo: 3,   /* la promoción es el pack de 3 (no hay pack de 4) */
+    resenasTotal: 1389,
     dropiId: 1378,
 
     nombre: 'Spray Reparador de Arañazos',

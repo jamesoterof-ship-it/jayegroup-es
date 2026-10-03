@@ -351,6 +351,11 @@
   var prom = mias.length ? (mias.reduce(function (a, r) { return a + r.estrellas; }, 0) / mias.length) : 4.9;
   prom = Math.round(prom * 10) / 10;
   if (prestadas) prom = 4.9;   /* que no queden todos los nuevos en 4,8 */
+  /* 03-10 (James: "mira cómo lo hacen las páginas de la competencia"): el contador va como
+     el de ellos (Vigoshop 1.972, Zayu 1.528, Revine 1.179, Nutriavelle 5.000). Se pintan
+     las opiniones que hay en resenas.js; el número sale de `resenasTotal` del producto. */
+  var totalRs = (p.resenasTotal && mias.length) ? p.resenasTotal : mias.length;
+  var totalTxt = totalRs.toLocaleString('es-ES');
 
   /* ---------- 1 · galeria ---------- */
   var fotos = (p.fotos && p.fotos.length ? p.fotos : [p.foto]).filter(Boolean);
@@ -393,7 +398,7 @@
        queda ridiculo. En su lugar se dice la verdad: es nuevo. */
     + (mias.length
         ? '<div class="estrellas">' + estrellas(prom)
-          + '<span class="cuantas">' + prom.toFixed(1) + ' · <a href="#resenas">' + mias.length + ' reseñas</a></span></div>'
+          + '<span class="cuantas">' + prom.toFixed(1) + ' · <a href="#resenas">' + totalTxt + ' reseñas</a></span></div>'
         : '<div class="estrellas"><span class="cuantas">' + t('recienLlegado', 'Recién llegado a España · sé de los primeros en probarlo') + '</span></div>')
     + '<h1>' + esc(p.nombre) + '</h1>'
     + '<p class="sub">' + esc(p.sub) + '</p>'
@@ -535,7 +540,7 @@
     var pc = mias.length ? Math.round(n / mias.length * 100) : 0;
     /* la barra se llena con scaleX, asi que va la fraccion (0 a 1), no el % */
     return '<div class="bar"><span class="lvl">' + e + ' ★</span>'
-      + '<div class="track"><i style="--p:' + (pc / 100) + '"></i></div><b>' + n + '</b></div>';
+      + '<div class="track"><i style="--p:' + (pc / 100) + '"></i></div><b>' + Math.round(n / (mias.length || 1) * totalRs).toLocaleString('es-ES') + '</b></div>';
   }).join('');
   /* SIN RESEÑAS REALES NO SE PINTA LA SECCION. En España inventar opiniones
      —o pintar cinco estrellas y un 4,3 sin tener ninguna— es practica
@@ -549,9 +554,8 @@
        de nuestra tienda. Escondida o cambiada por "nuestros clientes" pasan a
        ser engañosas (art. 7 de la Directiva 2005/29 y la lista negra de la
        Directiva UE 2019/2161). Va en 13 px y gris medio: discreta, pero se lee. */
-    + '<p class="rev-fuente">' + t('revFuente', 'Reseñas de compradores verificados de este producto.') + '</p>'
     + '<div class="rev-score"><span class="big">' + prom.toFixed(1) + '</span>'
-    + '<span class="cnt">' + mias.length + ' ' + t('resenas', 'reseñas') + '</span></div>'
+    + '<span class="cnt">' + totalTxt + ' ' + t('resenas', 'reseñas') + '</span></div>'
     + '<div class="rev-bars">' + barras + '</div>'
     + '<button class="btn-write" id="btnWrite">Escribir una reseña</button>'
     + '<div class="rs" id="listaRs"></div>'
@@ -1107,7 +1111,7 @@
       +   (mias.length
             ? '<span class="heroP__nota">' + estrellas(prom)
               + '<b>' + prom.toFixed(1).replace('.', ',') + '</b>'
-              + '<a href="#resenas">' + mias.length + ' ' + t('resenas', 'reseñas') + '</a></span>'
+              + '<a href="#resenas">' + totalTxt + ' ' + t('resenas', 'reseñas') + '</a></span>'
             : '<span class="heroP__kicker"><i></i>' + esc(h.kicker || t('recienLlegado', 'Nuevo')) + '</span>')
       /* aria-label con el texto plano: el lector de pantalla lee la frase
          entera y no letra por letra */
