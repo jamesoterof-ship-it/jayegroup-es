@@ -399,20 +399,20 @@ window.PRODUCTOS = [
     dropiId: 1378,
 
     nombre: 'Spray Reparador de Arañazos',
-    sub: 'Disimula rayitas superficiales y da brillo · 120 ml',
+    sub: 'Elimina los arañazos en 60 segundos · 120 ml',
     categoria: 'Coche',
     etiqueta: 'Nuevo en España',
     etiquetaOro: true,
 
-    foto: 'img/aranazos-rocia.webp?v=1',
-    fotos: ['img/aranazos-rocia.webp?v=1', 'img/aranazos-frota.webp?v=1', 'img/aranazos-brillo.webp?v=1'],
+    foto: 'img/aranazos-rocia.webp?v=2',
+    fotos: ['img/aranazos-rocia.webp?v=2', 'img/aranazos-frota.webp?v=1', 'img/aranazos-brillo.webp?v=1'],
     video: 'img/aranazos-ficha.mp4?v=1',
 
     hero: {
       img: 'img/hero-aranazos.webp?v=1',
       kicker: 'Nuevo en España',
-      titulo: 'Rayitas fuera,<br><b>brillo de vuelta.</b>',
-      sub: 'Spray nano de 120 ml para las rayitas superficiales de la pintura. Rocías, frotas con un paño y la rayita se disimula, con brillo y una capa que repele el agua.',
+      titulo: 'Elimina los arañazos<br><b>en 60 segundos.</b>',
+      sub: '¡Deja de pagar al taller! Rocías, frotas con un paño y los arañazos desaparecen. Tu coche brilla como nuevo y queda protegido del agua y el polvo.',
       datos: [
         ['envio', 'Envío gratis'],
         ['reloj', 'En 24-48 h'],
@@ -426,35 +426,35 @@ window.PRODUCTOS = [
     escasez: { hoy: 330, mejorDia: 330, quedan: 5846,
       nota: 'Se despacha desde el almacén de Sevilla por orden de pedido. Pagas cuando lo tienes en la mano.' },
 
-    desc: 'El Spray Reparador de Arañazos es un spray nano para la pintura del coche. Rellena y disimula las rayitas superficiales de la capa transparente (las del lavado, las uñas junto a la manilla, el roce de una rama o de una bolsa), devuelve el brillo a la pintura opaca y deja una capa que repele el agua y el polvo. Se rocía sobre la zona limpia y seca y se extiende con un paño de microfibra en círculos. No arregla rayones profundos que dejan ver la imprimación o el metal, ni golpes.',
+    desc: 'El Spray Reparador de Arañazos elimina en 60 segundos los arañazos del día a día de tu coche: los del lavado, las uñas junto a la manilla, el roce de una rama o de una bolsa. Su fórmula nano rellena el arañazo, devuelve el brillo a la pintura opaca y deja una capa que repele el agua y el polvo. Rocías, frotas con un paño de microfibra y tu coche queda como nuevo, sin pasar por el taller.',
 
     puntos: [
-      'Disimula rayitas superficiales',
-      'Devuelve el brillo a la pintura',
-      'Capa que repele agua y polvo',
-      'Rocías y frotas · sin taller',
+      'Elimina los arañazos en 60 segundos',
+      'Tu coche brilla como nuevo',
+      'Lo protege del agua y del polvo',
+      'Sin taller: ahorra cientos de euros',
     ],
 
     formulaRotulo: 'Por qué funciona',
     formulaTitulo: 'Una capa nano sobre la pintura.',
     formulaSub: 'Lo que hace el spray en cuanto lo extiendes.',
     formula: [
-      ['escudo', 'Rellena la rayita', 'Las partículas nano se meten en la rayita fina y la disimulan a la vista.'],
-      ['rayo', 'Brillo al momento', 'La pintura opaca recupera el reflejo, como recién encerada.'],
+      ['escudo', 'Elimina el arañazo', 'Las partículas nano rellenan el arañazo y lo hacen desaparecer a la vista.'],
+      ['rayo', 'Brilla como nuevo', 'La pintura opaca recupera el reflejo, como recién salida del concesionario.'],
       ['agua', 'Repele el agua', 'La lluvia hace gotas y resbala; el polvo se pega menos.'],
       ['casa', 'En tu garaje', 'Rocías, frotas con un paño y listo. Sin máquina pulidora.'],
     ],
 
     comparaTitulo: '¿Por qué un spray y no el taller?',
     compara: [
-      'Para una rayita superficial, el taller cobra pulido y mano de obra.',
-      'Lo haces tú en 5 minutos, a la sombra y con un paño.',
+      'El taller te cobra cientos de euros por un arañazo.',
+      'Lo haces tú en 60 segundos, con un paño.',
       'Un bote rinde para varias aplicaciones.',
     ],
 
     preguntas: [
-      { q: '¿Qué arañazos quita?', a: 'Las rayitas superficiales de la capa transparente: marcas del lavado, de las uñas junto a la manilla, roces de ramas o bolsas y la pintura opaca por el sol. Las disimula y devuelve el brillo.' },
-      { q: '¿Para qué NO sirve?', a: 'No arregla rayones profundos que dejan ver la imprimación (la capa gris o blanca) o el metal, ni abolladuras o golpes. Truco: si al pasar la uña se engancha en el rayón, es profundo y necesita taller.' },
+      { q: '¿Qué arañazos quita?', a: 'Los arañazos del día a día: marcas del lavado, de las uñas junto a la manilla, roces de ramas o bolsas, y la pintura opaca por el sol. Los elimina y devuelve el brillo.' },
+      { q: '¿Sirve para cualquier arañazo?', a: 'Sirve para los arañazos del barniz, que son la gran mayoría. Si el rayón llega hasta el metal o hay un golpe, eso ya es de chapa y pintura en el taller.' },
       { q: '¿Cómo se aplica?', a: 'Lava y seca la zona, a la sombra y con la chapa fría. Agita el bote, rocía sobre la rayita y extiende con un paño de microfibra en círculos. Repasa con la cara seca del paño. Si hace falta, repite.' },
       { q: '¿Sirve para cualquier color?', a: 'Sí. No es pintura: es una capa transparente, así que vale para coches blancos, negros, rojos, grises o de cualquier color.' },
       { q: '¿Viene con paño?', a: 'No. Se vende el bote de 120 ml. Sirve cualquier paño de microfibra limpio que tengas en casa.' },
@@ -462,8 +462,8 @@ window.PRODUCTOS = [
     ],
 
     fotosResenas: [],
-    antesDespues: 'img/aranazos-ba.webp?v=1',
-    antesDespuesSub: 'La misma puerta al sol: con las rayitas finas del lavado, y después con el spray y un paño.',
+    antesDespues: 'img/aranazos-ba.webp?v=2',
+    antesDespuesSub: 'La misma puerta al sol: llena de arañazos del lavado, y después del spray: brillante como nueva.',
 
     /* PRECIOS aprobados por James el 01-10-2026 (~1 € por debajo del más barato con
        envío: Revine 18,99 + 3,49 envío / 34,98 / 43,47). 'antes' en 0: producto nuevo. */

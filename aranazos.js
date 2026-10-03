@@ -28,14 +28,14 @@
   /* ---- ASÍ SE USA: las tres fotos aprobadas, cada una un paso ---- */
   function seccionUso() {
     var pasos = [
-      ['img/aranazos-rocia.webp?v=1', 'Una mujer rociando el spray sobre una rayita del parachoques de su coche blanco', 'Rocía', 'Con la zona limpia y seca, a la sombra, directo sobre la rayita.'],
-      ['img/aranazos-frota.webp?v=1', 'Un joven frotando la puerta de su coche rojo con un paño de microfibra', 'Frota', 'Con un paño de microfibra, en círculos, hasta que la rayita se disimule.'],
-      ['img/aranazos-brillo.webp?v=1', 'Un señor con el bote en la mano sobre el capó azul mojado, con el agua en gotas', 'Brilla', 'Queda el brillo y una capa que hace que el agua resbale en gotas.'],
+      ['img/aranazos-rocia.webp?v=2', 'Una mujer rociando el spray sobre una rayita del parachoques de su coche blanco', 'Rocía', 'Directo sobre el arañazo, con la zona limpia y seca.'],
+      ['img/aranazos-frota.webp?v=1', 'Un joven frotando la puerta de su coche rojo con un paño de microfibra', 'Frota', 'Con un paño de microfibra, en círculos: el arañazo desaparece.'],
+      ['img/aranazos-brillo.webp?v=1', 'Un señor con el bote en la mano sobre el capó azul mojado, con el agua en gotas', 'Brilla', 'Tu coche brilla como nuevo y el agua resbala en gotas.'],
     ];
     return '<section class="bloque ar-sec ar-uso">'
       + '<span class="ar-rot">Así se usa</span>'
-      + '<h2 class="ar-h2">Tres pasos, <em>cinco minutos.</em></h2>'
-      + '<p class="ar-lead">Sin taller y sin máquina pulidora. Solo el spray y un paño.</p>'
+      + '<h2 class="ar-h2">Tres pasos, <em>60 segundos.</em></h2>'
+      + '<p class="ar-lead">¡Deja de pagar al taller! Solo el spray y un paño.</p>'
       + '<div class="ar-pasos">' + pasos.map(function (p, i) {
           return '<figure class="ar-paso ar-sube" style="--i:' + i + '">'
             + '<span class="ar-paso-n">0' + (i + 1) + '</span>'
@@ -47,18 +47,18 @@
 
   /* ---- SÍ / NO, con la prueba de la uña (James 02-10: no prometer de más) ---- */
   function seccionSiNo() {
-    var si = ['Rayitas del lavado y marcas finas en círculos', 'Las uñas junto a la manilla de la puerta', 'Roces de ramas, bolsas o mochilas', 'Pintura opaca que perdió el brillo'];
+    var si = ['Arañazos del lavado y marcas en círculos', 'Las uñas junto a la manilla de la puerta', 'Roces de ramas, bolsas o mochilas', 'Pintura opaca que perdió el brillo'];
     var no = ['Rayones que dejan ver la capa gris o el metal', 'Abolladuras y golpes', 'Pintura saltada o desconchada'];
     function lista(arr, d) { return '<ul>' + arr.map(function (t) { return '<li>' + icono(d) + '<span>' + t + '</span></li>'; }).join('') + '</ul>'; }
     return '<section class="bloque ar-sec ar-sino">'
-      + '<span class="ar-rot">Antes de comprar</span>'
-      + '<h2 class="ar-h2">Qué rayas quita <em>y cuáles no.</em></h2>'
+      + '<span class="ar-rot">Resultados</span>'
+      + '<h2 class="ar-h2">Arañazos <em>que elimina.</em></h2>'
       + '<div class="ar-sino-grid">'
-      +   '<div class="ar-caja ar-caja-si ar-sube"><b>Sí las disimula</b>' + lista(si, SI) + '</div>'
-      +   '<div class="ar-caja ar-caja-no ar-sube" style="--i:1"><b>No las arregla</b>' + lista(no, NO) + '</div>'
+      +   '<div class="ar-caja ar-caja-si ar-sube"><b>Los elimina</b>' + lista(si, SI) + '</div>'
+      +   '<div class="ar-caja ar-caja-no ar-sube" style="--i:1"><b>Necesitan taller</b>' + lista(no, NO) + '</div>'
       + '</div>'
       + '<div class="ar-una ar-sube" style="--i:2"><span class="ar-una-ico">' + icono('<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11.5V4a1.5 1.5 0 0 1 3 0v7.5"/><path d="M14 11.5V6a1.5 1.5 0 0 1 3 0v8.5a6 6 0 0 1-6 6h-.5a6 6 0 0 1-5-2.7L3.6 15a1.5 1.5 0 0 1 2.4-1.8L8 15"/>') + '</span>'
-      +   '<div><b>La prueba de la uña</b><p>Pasa la uña sobre la raya. Si no se engancha, es superficial y este spray la disimula. Si se engancha, es profunda y necesita taller.</p></div></div>'
+      +   '<div><b>La prueba de la uña</b><p>Pasa la uña sobre el arañazo. Si no se engancha, este spray lo elimina en 60 segundos. Si se engancha hasta el metal, eso ya es de taller.</p></div></div>'
       + '</section>';
   }
 
