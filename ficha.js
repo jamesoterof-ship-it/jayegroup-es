@@ -707,7 +707,7 @@
     var datos = T.resDatos || [
       ['24-48 h', 'de entrega en la península'],
       ['0 €', 'de gastos de envío'],
-      ['14', 'días para desistir de tu compra'],
+      ['30', 'días de garantía de satisfacción'],   /* 03-10 James: opción 2, como la competencia (Vigoshop 90, Sconto 60, Zayu 30) */
       /* 29-09 · antes: ['3', 'años de garantía legal']. James: los 3 años NO se
          anuncian en las páginas de venta (solo en las legales). */
       /* 02-10 · solo si el producto tiene "Paga ahora": el sellador sale solo contra reembolso */
@@ -746,7 +746,7 @@
      Se dicen las dos cosas y no se promete nada que no podamos cumplir. */
   function seccionGarantia() {
     return '<section class="bloque gar-sec">'
-      + '<div class="gseal"><svg viewBox="0 0 220 220" aria-label="14 días para desistir">'
+      + '<div class="gseal"><svg viewBox="0 0 220 220" aria-label="30 días de garantía de satisfacción">'
       + '<defs><radialGradient id="gs" cx="0.34" cy="0.28" r="0.95">'
       + '<stop offset="0" stop-color="#f9ecb8"/><stop offset="0.38" stop-color="#e6c65a"/>'
       + '<stop offset="0.68" stop-color="#c9a227"/><stop offset="1" stop-color="#8f741c"/></radialGradient>'
@@ -755,15 +755,15 @@
       + '<circle cx="110" cy="110" r="92" fill="url(#gs)" stroke="#8f741c" stroke-width="3"/>'
       + '<ellipse cx="86" cy="72" rx="46" ry="26" fill="#fff" opacity="0.28"/>'
       + '<circle cx="110" cy="110" r="84" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-dasharray="1.5 6" stroke-linecap="round"/>'
-      + '<text font-family="Inter,sans-serif" font-weight="700" font-size="14.5" letter-spacing="2.4" fill="#fff"><textPath href="#gt" startOffset="50%" text-anchor="middle">' + t('selloArriba', 'DERECHO DE') + '</textPath></text>'
-      + '<text font-family="Inter,sans-serif" font-weight="700" font-size="12.5" letter-spacing="1.8" fill="#fff"><textPath href="#gb" startOffset="50%" text-anchor="middle">' + t('selloAbajo', 'DESISTIMIENTO') + '</textPath></text>'
-      + '<text x="110" y="105" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="46" fill="#fff">14</text>'
+      + '<text font-family="Inter,sans-serif" font-weight="700" font-size="14.5" letter-spacing="2.4" fill="#fff"><textPath href="#gt" startOffset="50%" text-anchor="middle">' + t('selloArriba', 'GARANTÍA DE') + '</textPath></text>'
+      + '<text font-family="Inter,sans-serif" font-weight="700" font-size="12.5" letter-spacing="1.8" fill="#fff"><textPath href="#gb" startOffset="50%" text-anchor="middle">' + t('selloAbajo', 'SATISFACCIÓN') + '</textPath></text>'
+      + '<text x="110" y="105" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="46" fill="#fff">30</text>'
       + '<text x="110" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="13" letter-spacing="3" fill="#fff">' + t('dias', 'DÍAS') + '</text>'
       + '</svg></div>'
       + '<h2 class="tit2">' + t('garTit', 'Compras sin riesgo') + '</h2>'
-      + '<p class="sub2">' + t('garTxt', 'Tienes <b>14 días naturales</b> desde que recibes el pedido para desistir de la compra sin dar explicaciones. No es un favor nuestro: lo dice la ley española y lo cumplimos.') + '</p>'
-      + '<div class="gar-chips">' + (T.garChips || ['14 días para desistir', 'Envío gratis', 'Pagas al recibir']).map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>'
-      + '<p class="sub2" style="font-size:14px;opacity:.75;margin-top:10px">' + t('garPie', 'Para desistir basta con escribirnos a ') + CORREO + t('garPie2', '. Te devolvemos el importe en un máximo de 14 días.') + '</p>'
+      + '<p class="sub2">' + t('garTxt', 'Pruébalo tranquilo: tienes <b>30 días de garantía de satisfacción</b>. Si no te convence, escríbenos y te devolvemos tu dinero.') + '</p>'
+      + '<div class="gar-chips">' + (T.garChips || ['30 días de garantía', 'Envío gratis', 'Pagas al recibir']).map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>'
+      + '<p class="sub2" style="font-size:14px;opacity:.75;margin-top:10px">' + t('garPie', 'Para usar la garantía basta con escribirnos a ') + CORREO + t('garPie2', ' o por WhatsApp.') + '</p>'
       + (T.livroReclamacoes ? '<p class="sub2" style="font-size:14px;margin-top:10px"><a href="https://www.livroreclamacoes.pt/inicio" target="_blank" rel="noopener">Livro de Reclamações Eletrónico</a></p>' : '')
       + '</section>';
   }

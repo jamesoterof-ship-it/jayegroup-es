@@ -155,7 +155,7 @@ window.TEXTOS = {
   resDatos: [
     ['24-48 h', 'de entrega em Portugal continental'],
     ['0 €', 'de portes de envio'],
-    ['14', 'dias para desistir da compra'],
+    ['30', 'dias de garantia de satisfação'],
     ['2', 'formas de pagamento: na entrega ou já com cartão'],
   ],
 
@@ -163,14 +163,14 @@ window.TEXTOS = {
      Em Portugal o direito de livre resolução são 14 dias (Decreto-Lei 24/2014)
      e a garantia legal são 3 anos (Decreto-Lei 84/2021). E o Livro de
      Reclamações Eletrónico é OBRIGATÓRIO com ligação visível (Lei 144/2015). */
-  selloArriba: 'DIREITO DE',
-  selloAbajo: 'LIVRE RESOLUÇÃO',
+  selloArriba: 'GARANTIA DE',
+  selloAbajo: 'SATISFAÇÃO',
   dias: 'DIAS',
   garTit: 'Compra sem risco',
-  garTxt: 'Tem <b>14 dias</b> desde que recebe a encomenda para desistir da compra sem ter de dar explicações. Não é um favor nosso: é o que a lei portuguesa manda e nós cumprimos.',
-  garChips: ['14 dias para desistir', 'Envio grátis', 'Paga na entrega'],
-  garPie: 'Para desistir basta escrever-nos para ',
-  garPie2: '. Devolvemos-lhe o valor no prazo máximo de 14 dias.',
+  garTxt: 'Experimente com tranquilidade: tem <b>30 dias de garantia de satisfação</b>. Se não o convencer, escreva-nos e devolvemos-lhe o dinheiro.',
+  garChips: ['30 dias de garantia', 'Envio grátis', 'Paga na entrega'],
+  garPie: 'Para usar a garantia basta escrever-nos para ',
+  garPie2: ' ou por WhatsApp.',
   livroReclamacoes: true,
 
   /* ---- saída ---- */
