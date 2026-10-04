@@ -1640,7 +1640,8 @@
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datos),
       }).then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
-        return true;
+        /* 04-10: el webhook devuelve {ok, id}; el id hace falta para cobrar con PayPal */
+        return r.json().catch(function () { return {}; });
       }).catch(function (e) {
         /* tres intentos, separados, por si fue un tropiezo de red */
         if (intento < 3) {
@@ -1651,7 +1652,8 @@
       });
     }
 
-    mandar(_pedido, 1).then(function () {
+    mandar(_pedido, 1).then(function (res) {
+      window._ventaId = (res && res.id) || '';
       gracias();
     }).catch(function () {
       /* el pedido NO entro: se guarda para reintentarlo al volver a abrir la
@@ -1687,12 +1689,72 @@
            "Esperando el pago" en el panel; al llegar la captura, Carmen lo marca pagado. */
         var _imp = Number(_cobra).toFixed(2);
         var _wa = 'https://wa.me/34672423735?text=' + encodeURIComponent(t('msgPagado', 'Hola, ya pagué mi pedido de ') + p.nombre + t('msgPagado2', '. Te mando la captura del pago.'));
-        $('pedir').innerHTML = '<div class="listo"><h3>' + t('pedidoPagar', 'Último paso: paga tu pedido') + '</h3>'
-          + '<p>' + t('gracias', 'Gracias, ') + _nom1 + '. ' + t('pagaTxt', 'Paga ahora con tarjeta o PayPal y tu pedido sale con entrega prioritaria.') + '</p>'
+        /* 04-10 (James: "cómo me dejas eso a medio camino, ármalo ya"): BOTÓN DE PAYPAL INTEGRADO.
+           Antes mandaba a paypal.me y pedía la captura por WhatsApp; el 04-10 un cliente eligió pagar
+           ahora, no pagó y volvió a pedir contra reembolso. Ahora paga aquí mismo (tarjeta o PayPal) y
+           n8n comprueba con PayPal que el cobro es de ESTE pedido y por ESTE importe antes de marcarlo
+           pagado (paypal-orden-es / paypal-captura-es). Si el botón no carga, queda el enlace de antes. */
+        var _ppSandbox = /[?&]pp=sandbox\b/.test(location.search);
+        var _ppId = _ppSandbox ? 'ARl0OqVJgvzKnXBi88HHPnsANVy6psflN_yB0V-EeewfUrAWn1o7C0AVx4Ey0006osewp5ryNr9OSOEX'
+                               : 'BAAc9NmbkqAJ4xLXd_DH4VoURfOABXorMuqMMJoN1M3ron-JlSCnQiaHq3kzTXWZIhuXRYVzPF59hmYx30';
+        var _N8N = 'https://n8n-production-8a42.up.railway.app/webhook/';
+        var _respaldo = '<div id="ppRespaldo" style="display:none">'
           + '<a class="cta" href="https://paypal.me/jayegroup714/' + _imp + 'EUR" target="_blank" rel="noopener" style="display:block;margin:14px 0 10px">'
           + t('pagarBtn', 'Pagar ') + String(_imp).replace('.', ',') + ' € ' + t('pagarBtn2', 'con tarjeta o PayPal') + '</a>'
           + '<p style="font-size:14px">' + t('pagaCaptura', 'Cuando pagues, mándanos la captura del pago por WhatsApp y lo dejamos confirmado.') + '</p>'
           + '<a class="cta negro" href="' + _wa + '" target="_blank" rel="noopener" style="display:block;margin-top:8px">' + t('mandarCaptura', 'Mandar la captura por WhatsApp') + '</a></div>';
+        $('pedir').innerHTML = '<div class="listo"><h3>' + t('pedidoPagar', 'Último paso: paga tu pedido') + '</h3>'
+          + '<p>' + t('gracias', 'Gracias, ') + _nom1 + '. ' + t('pagaTxt', 'Paga ahora con tarjeta o PayPal y tu pedido sale con entrega prioritaria.') + '</p>'
+          + '<p style="font-size:22px;font-weight:800;margin:10px 0 12px">' + t('totalPagar', 'Total a pagar: ') + String(_imp).replace('.', ',') + ' €</p>'
+          + '<div id="ppBotones" style="min-height:120px;margin:4px 0 8px"><p style="font-size:14px;opacity:.75">' + t('ppCargando', 'Cargando el pago seguro…') + '</p></div>'
+          + '<p id="ppEstado" role="status" aria-live="polite" style="font-size:15px;font-weight:700;min-height:22px;margin:6px 0"></p>'
+          + _respaldo + '</div>';
+        var _ppMsg = function (txt, color) { var e = $('ppEstado'); if (e) { e.textContent = txt; e.style.color = color || ''; } };
+        var _ppRespaldo = function () { var r = $('ppRespaldo'); if (r) r.style.display = ''; var b = $('ppBotones'); if (b && !b.querySelector('iframe')) b.style.display = 'none'; };
+        var _ppPost = function (ruta, datos) {
+          return fetch(_N8N + ruta, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datos) })
+            .then(function (r) { return r.json(); });
+        };
+        var _ppPintar = function () {
+          if (!window.paypal || !window.paypal.Buttons || !window._ventaId) return _ppRespaldo();
+          $('ppBotones').innerHTML = '';
+          window.paypal.Buttons({
+            style: { layout: 'vertical', shape: 'rect', label: 'pay', height: 48 },
+            /* 04-10 23h: sin el Secret de PayPal en n8n, la orden la crea y la cobra el navegador (SDK) y luego
+               avisa a n8n (paypal-pagado-es), que deja el pedido 'PAGADO paypal-VERIFICAR' para mirarlo en PayPal. */
+            createOrder: function (data, actions) {
+              _ppMsg('');
+              return actions.order.create({ intent: 'CAPTURE', application_context: { brand_name: 'Jaye Group', shipping_preference: 'NO_SHIPPING', user_action: 'PAY_NOW' },
+                purchase_units: [{ reference_id: 'JG-' + window._ventaId, custom_id: String(window._ventaId), description: (p.nombre + ' x' + k.cant).slice(0, 120),
+                  amount: { currency_code: 'EUR', value: _imp } }] });
+            },
+            onApprove: function (data, actions) {
+              _ppMsg(t('ppComprobando', 'Comprobando el pago…'));
+              return actions.order.capture().then(function (o) {
+                var pu = (o && o.purchase_units && o.purchase_units[0]) || {};
+                var cap = (pu.payments && pu.payments.captures && pu.payments.captures[0]) || {};
+                if (cap.status !== 'COMPLETED' && (o && o.status) !== 'COMPLETED') throw new Error('no completado');
+                _ppPost('paypal-pagado-es', { venta_id: window._ventaId, order_id: data.orderID, capture_id: cap.id || '', monto: _imp, modo: _ppSandbox ? 'sandbox' : 'live' }).catch(function () {});
+                $('pedir').innerHTML = '<div class="listo"><h3>' + t('ppPagadoTit', '¡Pago recibido!') + '</h3><p>'
+                  + t('gracias', 'Gracias, ') + _nom1 + '. ' + t('ppPagadoTxt', 'Tu pedido está pagado y sale con entrega prioritaria. Te escribimos por WhatsApp cuando vaya en camino.') + '</p></div>';
+                $('pedir').scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }).catch(function () {
+                _ppMsg(t('ppNoConfirma', 'No pudimos confirmar el pago. Si se te cobró, escríbenos por WhatsApp y lo revisamos al momento.'), '#b91c1c');
+                _ppRespaldo();
+              });
+            },
+            onCancel: function () { _ppMsg(t('ppCancelado', 'No se completó el pago. Puedes intentarlo de nuevo cuando quieras.')); },
+            onError: function () { _ppMsg(t('ppError', 'El pago no se pudo iniciar. Inténtalo de nuevo o usa la otra opción de abajo.'), '#b91c1c'); _ppRespaldo(); },
+          }).render('#ppBotones').catch(_ppRespaldo);
+        };
+        if (window.paypal && window.paypal.Buttons) _ppPintar();
+        else {
+          var _sdk = document.createElement('script');
+          _sdk.src = 'https://www.paypal.com/sdk/js?client-id=' + _ppId + '&currency=EUR&intent=capture&components=buttons&locale=' + (PAIS === 'PT' ? 'pt_PT' : 'es_ES');
+          _sdk.onload = _ppPintar; _sdk.onerror = _ppRespaldo;
+          document.head.appendChild(_sdk);
+          setTimeout(function () { if (!window.paypal) _ppRespaldo(); }, 12000);
+        }
       } else {
         $('pedir').innerHTML = '<div class="listo"><h3>' + t('pedidoRecibido', 'Pedido recibido') + '</h3>'
           + '<p>' + t('gracias', 'Gracias, ') + _nom1 + '. ' + t('teEscribimos', 'Te escribimos por WhatsApp al ') + esc(indic) + ' ' + esc(tel)
