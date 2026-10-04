@@ -875,7 +875,7 @@
         + '<span class="pagoOp__sub">' + esc(p.anticipado.envio || '') + '</span>'
         /* 05-10 James: logos OFICIALES (PayPal, Visa, Mastercard) donde el cliente elige cómo pagar */
         + '<span class="pagoOp__logos" style="display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:6px">'
-        + '<img src="/img/pago/paypal.svg" alt="PayPal" width="49" height="14"><img src="/img/pago/visa-claro.svg" alt="Visa" width="34" height="20"><img src="/img/pago/mastercard-claro.svg" alt="Mastercard" width="34" height="20">'
+        + '<img src="/img/pago/visa-claro.svg" alt="Visa" width="34" height="20"><img src="/img/pago/mastercard-claro.svg" alt="Mastercard" width="34" height="20"><img src="/img/pago/amex.svg" alt="American Express" width="30" height="18"><img src="/img/pago/paypal-texto.svg" alt="PayPal" width="52" height="16">'
         + '</span>'
         + '</button>'
         + '</div>' : '')
