@@ -1720,21 +1720,18 @@
           $('ppBotones').innerHTML = '';
           window.paypal.Buttons({
             style: { layout: 'vertical', shape: 'rect', label: 'pay', height: 48 },
-            /* 04-10 23h: sin el Secret de PayPal en n8n, la orden la crea y la cobra el navegador (SDK) y luego
-               avisa a n8n (paypal-pagado-es), que deja el pedido 'PAGADO paypal-VERIFICAR' para mirarlo en PayPal. */
-            createOrder: function (data, actions) {
+            /* 05-10: con el Secret ya en n8n, VERIFICACIÓN AUTOMÁTICA (James: "vamos a hacerlo automático"). La orden la
+               crea el servidor con el importe de la base (paypal-orden-es) y el servidor cobra y comprueba con PayPal que
+               el pago es de ESTE pedido y por ESTE importe antes de marcarlo 'PAGADO paypal' (paypal-captura-es). */
+            createOrder: function () {
               _ppMsg('');
-              return actions.order.create({ intent: 'CAPTURE', application_context: { brand_name: 'Jaye Group', shipping_preference: 'NO_SHIPPING', user_action: 'PAY_NOW' },
-                purchase_units: [{ reference_id: 'JG-' + window._ventaId, custom_id: String(window._ventaId), description: (p.nombre + ' x' + k.cant).slice(0, 120),
-                  amount: { currency_code: 'EUR', value: _imp } }] });
+              return _ppPost('paypal-orden-es', { venta_id: window._ventaId, modo: _ppSandbox ? 'sandbox' : 'live' })
+                .then(function (j) { if (!j || !j.ok || !j.id) throw new Error((j && j.motivo) || 'sin orden'); return j.id; });
             },
-            onApprove: function (data, actions) {
+            onApprove: function (data) {
               _ppMsg(t('ppComprobando', 'Comprobando el pago…'));
-              return actions.order.capture().then(function (o) {
-                var pu = (o && o.purchase_units && o.purchase_units[0]) || {};
-                var cap = (pu.payments && pu.payments.captures && pu.payments.captures[0]) || {};
-                if (cap.status !== 'COMPLETED' && (o && o.status) !== 'COMPLETED') throw new Error('no completado');
-                _ppPost('paypal-pagado-es', { venta_id: window._ventaId, order_id: data.orderID, capture_id: cap.id || '', monto: _imp, modo: _ppSandbox ? 'sandbox' : 'live' }).catch(function () {});
+              return _ppPost('paypal-captura-es', { venta_id: window._ventaId, order_id: data.orderID, modo: _ppSandbox ? 'sandbox' : 'live' }).then(function (j) {
+                if (!j || !j.ok) throw new Error((j && j.motivo) || 'no completado');
                 $('pedir').innerHTML = '<div class="listo"><h3>' + t('ppPagadoTit', '¡Pago recibido!') + '</h3><p>'
                   + t('gracias', 'Gracias, ') + _nom1 + '. ' + t('ppPagadoTxt', 'Tu pedido está pagado y sale con entrega prioritaria. Te escribimos por WhatsApp cuando vaya en camino.') + '</p></div>';
                 $('pedir').scrollIntoView({ behavior: 'smooth', block: 'center' });
