@@ -372,14 +372,15 @@ window.PRODUCTOS = [
     ],
     popular: 1,
 
-    /* Pago anticipado aprobado por James el 02-10-2026: 2 € menos y entrega
-       prioritaria, igual que el cabezal. */
+    /* Pago anticipado: 02-10 eran 2 € menos (26,99 / 36,99 / 56,99). 05-10 James: "dale el 10 %",
+       igual que el spray → 25,99 / 34,99 / 52,99, con entrega prioritaria. */
     anticipado: {
-      descuento: 2,
+      pct: 10,
+      descuento: 3,
       envio: 'Entrega prioritaria en 14 h',
       titulo: 'Paga ahora',
       sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
-      precios: [26.99, 36.99, 56.99],
+      precios: [25.99, 34.99, 52.99],
     },
   },
 
@@ -505,8 +506,8 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   23.99, 32.99, 41.99, 21.99, 30.99, 39.99,
   /* sellador impermeable, aprobados 01-10-2026 */
   28.99, 38.99, 58.99,
-  /* sellador, pago anticipado, aprobados 02-10-2026 */
-  26.99, 36.99, 56.99,
+  /* sellador, pago anticipado, aprobados 02-10-2026 (−2 €) y 05-10-2026 (−10 %, "dale el 10 %") */
+  26.99, 36.99, 56.99, 34.99, 52.99,
   /* spray de arañazos, aprobados 01-10-2026 (41,99 ya está, la del cabezal) */
   20.99, 28.99,
   /* spray de arañazos, pago anticipado (−10 %), aprobados 02-10-2026 */
