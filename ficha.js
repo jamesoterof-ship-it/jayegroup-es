@@ -1518,9 +1518,29 @@
     });
   })();
 
+  /* 05-10 ENLACE PERSONAL DE PAGO (Carmen/Sofía lo mandan por WhatsApp, como Camila en Chile):
+     producto.html?p=<producto>&pagar=<id>-<código>. n8n (pago-info-es) comprueba el código y da el importe de la base. */
+  (function enlacePago() {
+    var q = new URLSearchParams(location.search).get('pagar'); if (!q || !$('pedir') || !$('fPedido')) return;
+    var cod = String(q).toLowerCase().split('').filter(function (ch) { return (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'z') || ch === '-'; }).join('');
+    var wa = '<a class="cta negro" href="https://wa.me/34672423735" target="_blank" rel="noopener" style="display:block;margin-top:10px">' + t('escribenosWa', 'Escríbenos por WhatsApp') + '</a>';
+    var aviso = function (tit, txt) { $('pedir').innerHTML = '<div class="listo"><h3>' + tit + '</h3><p>' + txt + '</p>' + wa + '</div>'; };
+    fetch('https://n8n-production-8a42.up.railway.app/webhook/pago-info-es?p=' + encodeURIComponent(cod))
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j && j.ok && j.pagado) return aviso(t('ppPagadoTit', '¡Pago recibido!'), t('ppYaPagado', 'Este pedido ya está pagado. Te escribimos por WhatsApp cuando vaya en camino.'));
+        if (!j || !j.ok || !j.id) return aviso(t('ppEnlaceMal', 'Este enlace de pago no está disponible'), t('ppEnlaceMal2', 'Escríbenos y te ayudamos con tu pedido.'));
+        window._jgEnlace = { id: j.id, monto: Number(j.monto).toFixed(2), nombre1: j.nombre1 || '' };
+        $('fPedido').dispatchEvent(new Event('submit', { cancelable: true }));
+      })
+      .catch(function () { aviso(t('ppEnlaceMal', 'Este enlace de pago no está disponible'), t('ppEnlaceMal3', 'Revisa tu conexión o escríbenos.')); });
+  })();
+
   /* enviar el pedido */
   $('fPedido').addEventListener('submit', function (ev) {
     ev.preventDefault();
+    /* 05-10 ENLACE PERSONAL DE PAGO (?pagar=): no se crea otro pedido; se pinta el botón del pedido que ya existe */
+    if (window._jgEnlace) { window._ventaId = window._jgEnlace.id; formaPago = 'pre'; window._compraEnviada = true; gracias(); return; }
     var g = function (x) { return ($(x) && $(x).value || '').trim(); };
     var err = $('fErr');
     /* que pais eligio: codigo, indicativo y largo esperado */
@@ -1685,13 +1705,13 @@
           else fbq('track', 'Purchase', _c);
         } catch (e) { /* que un bloqueador de anuncios no tumbe la confirmacion */ }
       }
-      var _nom1 = esc(g('fNombre').split(' ')[0]);
+      var _nom1 = window._jgEnlace ? esc(window._jgEnlace.nombre1 || '') : esc(g('fNombre').split(' ')[0]);
       if (formaPago === 'pre') {
         /* 29-09 (James): el pago anticipado se promociona en toda la tienda, así que
            aquí tiene que poder PAGARSE: botón de PayPal con el importe exacto (tarjeta
            o PayPal) y el WhatsApp de España para mandar la captura. El pedido queda
            "Esperando el pago" en el panel; al llegar la captura, Carmen lo marca pagado. */
-        var _imp = Number(_cobra).toFixed(2);
+        var _imp = window._jgEnlace ? window._jgEnlace.monto : Number(_cobra).toFixed(2);
         var _wa = 'https://wa.me/34672423735?text=' + encodeURIComponent(t('msgPagado', 'Hola, ya pagué mi pedido de ') + p.nombre + t('msgPagado2', '. Te mando la captura del pago.'));
         /* 04-10 (James: "cómo me dejas eso a medio camino, ármalo ya"): BOTÓN DE PAYPAL INTEGRADO.
            Antes mandaba a paypal.me y pedía la captura por WhatsApp; el 04-10 un cliente eligió pagar
@@ -1770,7 +1790,7 @@
        misma guia, asi que no paga flete aparte.
        Solo en los productos que tienen upsell; en los demas no se ofrece. */
     var extra = (window.UPSELLS || {})[String(p.id)];
-    if (extra) abrirUpsell(g('fNombre').split(' ')[0], indic + tel, extra);
+    if (extra && !window._jgEnlace) abrirUpsell(g('fNombre').split(' ')[0], indic + tel, extra);
 
       try { localStorage.removeItem('jaye_pedido_pendiente'); } catch (e) {}
     }
