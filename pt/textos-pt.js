@@ -95,6 +95,7 @@ window.TEXTOS = {
   teEscribimos: 'Escrevemos-lhe por WhatsApp para o ',
   paraConfirmar: ' para confirmar o envio.',
   pagasRecibes: 'Paga quando receber.',
+  avisoEntrega: 'A sua encomenda chega em 24-48 h úteis. Como paga ao receber, o estafeta entrega-a em mão: se nesses dias não estiver, avise-nos pelo WhatsApp e indicamos outro dia ou que a deixe a alguém de confiança. Assim chega à primeira 🚚',
   falloBtnWa: 'Escrever-nos por WhatsApp',
   pagaAhoraAhorra: 'Pague agora e poupe ',
   yPrioritaria: 'e receba com entrega prioritária em 14 h',

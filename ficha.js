@@ -1779,7 +1779,9 @@
       } else {
         $('pedir').innerHTML = '<div class="listo"><h3>' + t('pedidoRecibido', 'Pedido recibido') + '</h3>'
           + '<p>' + t('gracias', 'Gracias, ') + _nom1 + '. ' + t('teEscribimos', 'Te escribimos por WhatsApp al ') + esc(indic) + ' ' + esc(tel)
-          + t('paraConfirmar', ' para confirmar el despacho.') + '<br>' + t('pagasRecibes', 'Pagas cuando lo recibes.') + '</p></div>';
+          + t('paraConfirmar', ' para confirmar el despacho.') + '<br>' + t('pagasRecibes', 'Pagas cuando lo recibes.') + '</p>'
+          /* 06-10 (Dropi PRO: "el repartidor no avisa antes"; James aprobó el texto): aviso para que llegue a la primera */
+          + '<p style="font-size:.92em;opacity:.9">' + t('avisoEntrega', 'Tu pedido llega en 24-48 h laborables. Como pagas al recibir, el repartidor te lo entrega en mano: si esos días no vas a estar, avísanos por WhatsApp y le indicamos otro día o que se lo deje a alguien de confianza. Así te llega a la primera 🚚') + '</p></div>';
       }
       $('pedir').scrollIntoView({ behavior: 'smooth', block: 'center' });
 
