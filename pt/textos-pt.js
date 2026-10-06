@@ -95,6 +95,7 @@ window.TEXTOS = {
   teEscribimos: 'Escrevemos-lhe por WhatsApp para o ',
   paraConfirmar: ' para confirmar o envio.',
   pagasRecibes: 'Paga quando receber.',
+  huellaSoloPre: 'Como a sua encomenda anterior não pôde ser entregue, esta fica com pagamento antecipado: com cartão ou PayPal, mais barata e com entrega prioritária. Reveja o total e carregue outra vez no botão.',
   avisoEntrega: 'A sua encomenda chega em 24-48 h úteis. Como paga ao receber, o estafeta entrega-a em mão: se nesses dias não estiver, avise-nos pelo WhatsApp e indicamos outro dia ou que a deixe a alguém de confiança. Assim chega à primeira 🚚',
   falloBtnWa: 'Escrever-nos por WhatsApp',
   pagaAhoraAhorra: 'Pague agora e poupe ',

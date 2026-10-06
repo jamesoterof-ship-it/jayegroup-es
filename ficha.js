@@ -1603,6 +1603,23 @@
       return;
     }
     err.style.display = 'none';
+    /* 06-10 HUELLA (James): quien ya devolvió un pedido nuestro solo puede pagar por adelantado (nada de abono) */
+    var _avisoPre = function () {
+      var pre = document.querySelector('.pagoOp[data-pago="pre"]'); if (pre) pre.click();
+      err.textContent = t('huellaSoloPre', 'Como tu pedido anterior no se pudo entregar, este lo dejamos con pago por adelantado: con tarjeta o PayPal, más barato y con entrega prioritaria. Revisa el total y pulsa otra vez el botón.');
+      err.style.display = 'block'; err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+    if (window._soloPre && formaPago === 'cod') { _avisoPre(); return; }
+    if (formaPago === 'cod' && !window._huellaVista) {
+      var _f = this; window._huellaVista = true;
+      fetch('https://n8n-production-8a42.up.railway.app/webhook/huella-es?t=' + encodeURIComponent(indic.replace('+', '') + tel), { cache: 'no-store' })
+        .then(function (r) { return r.json(); }).catch(function () { return {}; })
+        .then(function (h) {
+          if (h && h.solo_anticipado) { window._soloPre = true; _avisoPre(); }
+          else if (_f.requestSubmit) _f.requestSubmit(); else _f.dispatchEvent(new Event('submit', { cancelable: true }));
+        });
+      return;
+    }
 
     var k = p.packs[elegido];
     var _cobra = precioAhora(elegido);
