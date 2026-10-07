@@ -512,7 +512,7 @@ window.PRODUCTOS = [
     video: 'img/pulsera-ficha.mp4?v=1',
 
     hero: {
-      img: 'img/hero-pulsera.webp?v=1',
+      img: 'img/hero-pulsera.webp?v=3',   /* 07-10 la hizo James en Gemini: pulsera idéntica a la real, imán al centro, sin textos */
       kicker: 'Lanzamiento en España',
       titulo: '¿Otra vez con el cigarro<br><b>en la mano?</b>',
       sub: 'La pulsera magnética de piedra volcánica que llevas en la muñeca y te recuerda tu decisión cada vez que llegan las ganas. Discreta, cómoda, para él y para ella.',
