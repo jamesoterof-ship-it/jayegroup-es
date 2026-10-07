@@ -51,9 +51,9 @@
   /* ---- CAPÍTULO 2 · el gesto que te frena (tres fotos aprobadas) ---- */
   function capituloGesto() {
     var pasos = [
-      ['img/pulsera-palma.webp?v=1', 'La pulsera de piedra volcánica con su imán redondo plateado en la palma de una mano', 'Paso 1', 'Póntela', 'Elástica, se ajusta sola. La llevas todo el día y casi no la notas.'],
-      ['img/pulsera-muneca.webp?v=1', 'Una mujer tranquila con una taza de té y la pulsera en la muñeca', 'Paso 2', 'Cuando lleguen las ganas, tócala', 'Siente la piedra y el imán. Esa pausa de unos segundos es la que frena el impulso.'],
-      ['img/pulsera-pareja.webp?v=1', 'La muñeca de un hombre y la de una mujer, cada una con la misma pulsera', 'Paso 3', 'Recuerda tu decisión', 'Cada vez que la miras te acuerdas de por qué lo dejas. Y si lo dejáis juntos, mejor.'],
+      ['img/pulsera-palma.webp?v=2', 'La pulsera de piedra volcánica con su imán redondo plateado en la palma de una mano', 'Paso 1', 'Póntela', 'Elástica, se ajusta sola. La llevas todo el día y casi no la notas.'],
+      ['img/pulsera-muneca.webp?v=2', 'Una mujer tranquila con una taza de té y la pulsera en la muñeca', 'Paso 2', 'Cuando lleguen las ganas, tócala', 'Siente la piedra y el imán. Esa pausa de unos segundos es la que frena el impulso.'],
+      ['img/pulsera-pareja.webp?v=2', 'La muñeca de un hombre y la de una mujer, cada una con la misma pulsera', 'Paso 3', 'Recuerda tu decisión', 'Cada vez que la miras te acuerdas de por qué lo dejas. Y si lo dejáis juntos, mejor.'],
     ];
     return '<section class="bloque pu-sec pu-gesto">'
       + '<span class="pu-num" aria-hidden="true">02</span>'

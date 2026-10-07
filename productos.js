@@ -507,8 +507,8 @@ window.PRODUCTOS = [
     etiqueta: 'Lanzamiento en España',
     etiquetaOro: true,
 
-    foto: 'img/pulsera-palma.webp?v=1',
-    fotos: ['img/pulsera-palma.webp?v=1', 'img/pulsera-muneca.webp?v=1', 'img/pulsera-pareja.webp?v=1'],
+    foto: 'img/pulsera-palma.webp?v=2',
+    fotos: ['img/pulsera-palma.webp?v=2', 'img/pulsera-muneca.webp?v=2', 'img/pulsera-pareja.webp?v=2'],
     video: 'img/pulsera-ficha.mp4?v=1',
 
     hero: {
