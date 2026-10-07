@@ -93,6 +93,12 @@ body.p-pulsera .heroP__wa { font-family: var(--pu-sans); color: #E7E5E4; }
 html.ba-lista body.p-pulsera .heroP__img { animation: puAparece 2.2s var(--pu-suave) both; }
 @keyframes puAparece { from { transform: scale(1.06); filter: brightness(.55); } to { transform: none; filter: none; } }
 html.ba-lista body.p-pulsera .heroP__txt { animation: puSube 1s var(--pu-suave) .45s both; }
+/* 07-10 James: "que las letras del héroe entren en cascada". Cada letra cae suave desde arriba, con un
+   desenfoque que se aclara, una detrás de otra; las doradas ("en la mano?") llegan con un brillo al final. */
+html.ba-lista body.p-pulsera .hCas__l { display: inline-block; animation: puLetra .7s var(--pu-suave) both !important; animation-delay: calc(.6s + var(--k) * .045s) !important; }
+@keyframes puLetra { 0% { opacity: 0; transform: translateY(-.55em) rotate(-6deg); filter: blur(6px); } 60% { opacity: 1; filter: blur(0); } 100% { opacity: 1; transform: none; filter: none; } }
+html.ba-lista body.p-pulsera .hCas__w.es-oro .hCas__l { animation-name: puLetraOro !important; }
+@keyframes puLetraOro { 0% { opacity: 0; transform: translateY(-.55em) rotate(-6deg); filter: blur(6px); } 60% { opacity: 1; filter: blur(0); text-shadow: 0 0 18px rgba(252,211,77,.9); } 100% { opacity: 1; transform: none; filter: none; text-shadow: 0 0 0 rgba(252,211,77,0); } }
 @keyframes puSube { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
 
 /* ---------- BOTONES: dorado sobre piedra, todos iguales (56 px) ---------- */
@@ -205,7 +211,7 @@ body.p-pulsera.pu-mueve .pu-entra { opacity: 0; transform: translateY(18px); tra
 body.p-pulsera.pu-mueve .pu-entra.pu-visto { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  body.p-pulsera .heroP__img, body.p-pulsera .heroP__txt { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+  body.p-pulsera .heroP__img, body.p-pulsera .heroP__txt, body.p-pulsera .hCas__l { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
   body.p-pulsera .pu-destello, body.p-pulsera .pu-avance { display: none; }
   body.p-pulsera .pu-entra { opacity: 1 !important; transform: none !important; transition: none !important; }
   body.p-pulsera #prod h2.pu-tit::after { transform: scaleX(1); transition: none; }

@@ -374,4 +374,20 @@ window.RESENAS = (window.RESENAS || []).concat([
   { producto:'Spray Reparador de Arañazos', nombre:"Celia M.", estrellas:5, fecha:"2025-12-10", pais:'ES', verificada:true, texto:"Cubre rápidamente los rayones con brillo de espejo." },
   { producto:'Spray Reparador de Arañazos', nombre:"Emilio S.", estrellas:5, fecha:"2026-07-28", pais:'PE', verificada:true, texto:"Fácil de aplicar, y la pintura luce mucho más brillante. ¡Un resultado excelente!" },
   { producto:'Spray Reparador de Arañazos', nombre:"Irene P.", estrellas:5, fecha:"2025-12-02", pais:'ES', verificada:true, texto:"¡Genial! Una reparación notable y un brillo que renueva la superficie de la pintura." },
+  /* PULSERA ANTITABACO · 07-10-2026. James: "busca una reseña con imagen parecida, donde sea".
+     No hay reseñas con foto del modelo EXACTO (lava + imán redondo) en AliExpress ni en Amazon.
+     Son reseñas REALES de AliExpress de pulseras de piedra volcánica negra, de un solo hilo, la más
+     parecida a la nuestra; fotos de los compradores. Texto copiado; en la 1ª se quitó solo la mención
+     al precio de AliExpress ("por menos de un euro"). Nombres con inicial, como en las demás. */
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Daniel M.", estrellas:5, fecha:"2026-03-25", foto:'img/res-pulsera-1.webp', pais:'US', verificada:true, texto:"La pulsera se ve genial y la calidad de las cuentas es sorprendentemente buena. Se siente cómoda en la muñeca y la banda elástica da una impresión de ser resistente. ¡Muy recomendable!" },
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Rodrigo A.", estrellas:5, fecha:"2025-10-28", foto:'img/res-pulsera-2.webp', pais:'MX', verificada:true, texto:"Excelente diseño y materiales, buenos acabados, se ajusta bien." },
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Nicolás D.", estrellas:5, fecha:"2025-10-31", foto:'img/res-pulsera-3.webp', pais:'CL', verificada:true, texto:"Me gustó, muy linda la pulsera." },
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Víctor R.", estrellas:5, fecha:"2026-01-06", foto:'img/res-pulsera-4.webp', pais:'ES', verificada:true, texto:"Muy buena calidad, 100 % recomendable." },
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Andrés A.", estrellas:5, fecha:"2026-01-22", foto:'img/res-pulsera-5.webp', pais:'CL', verificada:true, texto:"Bonita pulsera y buena calidad para el precio." },
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Peter H.", estrellas:5, fecha:"2026-06-09", foto:'img/res-pulsera-6.webp', pais:'GB', verificada:true, texto:"Bonitas cuentas para pulsera, utiliza una banda elástica, un poco de tamaño pequeño." },
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Bruno C.", estrellas:4, fecha:"2026-08-01", pais:'BR', verificada:true, texto:"La pulsera es bonita, más pequeña de lo que parece, pero el tamaño está bien." },
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Kasia W.", estrellas:5, fecha:"2026-06-11", pais:'PL', verificada:true, texto:"El producto coincide con la descripción. La calidad es bastante buena. Lo recomiendo." },
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Mario G.", estrellas:5, fecha:"2025-12-13", pais:'MX', verificada:true, texto:"Buen producto, tal como el que aparece en la imagen de la publicación." },
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Jonas K.", estrellas:5, fecha:"2026-04-01", pais:'DE', verificada:true, texto:"Recibí la pulsera, todo es tal como se muestra en la foto." },
+  { producto:'Pulsera Magnética Antitabaco', nombre:"Ewa P.", estrellas:5, fecha:"2025-10-20", pais:'PL', verificada:true, texto:"Las piedras son naturales. Se ajusta a una mano femenina delgada." },
 ]);
