@@ -486,6 +486,108 @@ window.PRODUCTOS = [
       precios: [18.99, 25.99, 37.79],
     },
   },
+
+  /* ============================================================
+     PULSERA MAGNÉTICA ANTITABACO · 07-10-2026
+     Dropi PRO id 2781 ("Pulsera Magnética Antitabaco de Terapia Avanzada"), 1,65 € + IVA.
+     Modelo EXACTO: cuentas de piedra volcánica negra, mate y porosa, y UN dije redondo
+     plateado con imán. 🔴 NO es un tratamiento: es un recordatorio que acompaña la
+     decisión de dejar el tabaco. Nada de "cura", "elimina la adicción" ni "en X días".
+     Diseño PROPIO (pulsera.css / pulsera.js), ui-ux-pro-max 07-10 (aprobado por James):
+     negro piedra #1C1917 + dorado #A16207, Cormorant / Montserrat, historia por capítulos.
+     Imágenes: OpenAI con la foto real de la ficha de Dropi PRO como referencia.
+     ============================================================ */
+  {
+    id: 'pulsera', unidad: 'una', promo: 2,
+    dropiId: 2781,
+
+    nombre: 'Pulsera Magnética Antitabaco',
+    sub: 'Piedra volcánica natural con imán · para él y para ella',
+    categoria: 'Bienestar',
+    etiqueta: 'Lanzamiento en España',
+    etiquetaOro: true,
+
+    foto: 'img/pulsera-palma.webp?v=1',
+    fotos: ['img/pulsera-palma.webp?v=1', 'img/pulsera-muneca.webp?v=1', 'img/pulsera-pareja.webp?v=1'],
+    video: 'img/pulsera-ficha.mp4?v=1',
+
+    hero: {
+      img: 'img/hero-pulsera.webp?v=1',
+      kicker: 'Lanzamiento en España',
+      titulo: '¿Otra vez con el cigarro<br><b>en la mano?</b>',
+      sub: 'La pulsera magnética de piedra volcánica que llevas en la muñeca y te recuerda tu decisión cada vez que llegan las ganas. Discreta, cómoda, para él y para ella.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Pagas al recibir'],
+      ],
+    },
+    acento: '#A16207',
+
+    /* Stock REAL leído en el panel de Dropi PRO el 07-10-2026: 717 + 12.000 por llegar.
+       Dropdata ES 24-09 → 07-10: 1.925 unidades en 14 días, los 14 días con venta (~150 al día). */
+    escasez: { hoy: 150, mejorDia: 213, quedan: 717,
+      nota: 'Se despacha desde el almacén de Sevilla por orden de pedido. Pagas cuando la tienes en la mano.' },
+
+    desc: 'La Pulsera Magnética Antitabaco está hecha con cuentas de piedra volcánica natural, negra y porosa, y un pequeño imán redondo plateado. Es elástica, se ajusta sola a la muñeca y combina con todo. La idea es sencilla: la llevas puesta todo el día y, cuando llegan las ganas de fumar, la tocas, sientes el imán y recuerdas por qué has decidido dejarlo. Un gesto pequeño que te ayuda a frenar el impulso.',
+
+    puntos: [
+      'Piedra volcánica natural y un imán discreto',
+      'Te recuerda tu decisión cuando llegan las ganas',
+      'Elástica: se ajusta a cualquier muñeca',
+      'Para él y para ella · el pack de 2 es para regalar',
+    ],
+
+    formulaRotulo: 'Por qué ayuda',
+    formulaTitulo: 'Un recordatorio que no se queda en casa.',
+    formulaSub: 'Lo que hace la pulsera cuando la llevas puesta.',
+    formula: [
+      ['escudo', 'Frena el impulso', 'Las ganas llegan de golpe. Tocar la pulsera es la pausa que necesitas para no encender el cigarro.'],
+      ['rayo', 'Siempre contigo', 'En el trabajo, en el coche o con el café: va en la muñeca todo el día.'],
+      ['agua', 'Piedra volcánica', 'Cuentas naturales, ligeras y porosas, con un imán redondo plateado.'],
+      ['casa', 'Discreta', 'Parece una pulsera más. Nadie tiene por qué saber que la llevas por eso.'],
+    ],
+
+    comparaTitulo: '¿Por qué una pulsera?',
+    compara: [
+      'No lleva parches, chicles ni nada que tomar.',
+      'La llevas puesta: está contigo en cada momento difícil.',
+      'Un regalo con intención para alguien que quiere dejarlo.',
+    ],
+
+    preguntas: [
+      { q: '¿Me va a quitar las ganas de fumar?', a: 'No es un medicamento ni un tratamiento. Es un recordatorio que llevas en la muñeca: cuando llegan las ganas, la tocas y te ayuda a pararte un momento y recordar tu decisión. Si quieres apoyo médico para dejar el tabaco, consulta con tu médico o farmacéutico.' },
+      { q: '¿De qué está hecha?', a: 'De cuentas de piedra volcánica natural, negra, mate y porosa, montadas en un hilo elástico, con un dije redondo plateado que lleva un imán.' },
+      { q: '¿Me queda bien la talla?', a: 'Es elástica y se ajusta a la mayoría de muñecas de adulto, de hombre y de mujer.' },
+      { q: '¿Se puede mojar?', a: 'Mejor quitártela para ducharte, nadar o fregar: así el hilo y el imán duran más.' },
+      { q: '¿Quién no debe usarla?', a: 'Por el imán, no la uses si llevas marcapasos u otro dispositivo médico implantado, ni durante el embarazo sin consultar antes a tu médico.' },
+      { q: '¿Por qué el pack de 2?', a: 'Es el más elegido: una para ti y otra para regalar a alguien que también quiere dejarlo, o para tener de repuesto.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: 'img/pulsera-ba.webp?v=1',
+    antesDespuesSub: 'El mismo café de cada día: antes con el paquete en la mano, después con la pulsera en la muñeca.',
+
+    /* PRECIOS aprobados por James el 07-10-2026 ("sal con 25.95 2x37.95 3x47.95").
+       'antes' en 0: producto nuevo, no hay precio anterior (Ley 7/1996 art. 20.1). */
+    packs: [
+      { cant: 1, precio: 25.95, antes: 0, texto: '1 pulsera' },
+      { cant: 2, precio: 37.95, antes: 0, texto: '2 pulseras' },
+      { cant: 3, precio: 47.95, antes: 0, texto: '3 pulseras' },
+    ],
+    popular: 1,
+
+    /* Pago anticipado: James 07-10 pidió el "−10 %" en la imagen aprobada de la campaña.
+       10 % exacto de cada pack, como el spray. */
+    anticipado: {
+      pct: 10,
+      descuento: 2.60,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [23.35, 34.15, 43.15],
+    },
+  },
 ];
 
 /* ============================================================
@@ -511,4 +613,6 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* spray de arañazos, aprobados 01-10-2026 (41,99 ya está, la del cabezal) */
   20.99, 28.99,
   /* spray de arañazos, pago anticipado (−10 %), aprobados 02-10-2026 */
-  18.99, 25.99, 37.79];
+  18.99, 25.99, 37.79,
+  /* pulsera antitabaco, aprobados 07-10-2026, y su pago anticipado −10 % (James 07-10: "pago anticipado con el menos 10 %") */
+  25.95, 37.95, 47.95, 23.35, 34.15, 43.15];
