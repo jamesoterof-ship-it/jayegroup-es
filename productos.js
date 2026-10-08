@@ -417,7 +417,7 @@ window.PRODUCTOS = [
       datos: [
         ['envio', 'Envío gratis'],
         ['reloj', 'En 24-48 h'],
-        ['pago', 'Pagas al recibir'],
+        ['pago', 'Paga ahora o al recibir'],
       ],
     },
     acento: '#DC2626',
