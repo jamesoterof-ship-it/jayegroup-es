@@ -2233,12 +2233,31 @@ function abrirUpsell(nombre, telWA, upsell) {
       fecha: new Date().toLocaleString('es-ES'), estado: 'INCOMPLETO',
     };
   }
+  /* 08-10: el clic del anuncio (fbc/fbp) va aparte, al flujo carrito-clic-es, con el
+     mismo sid y el telefono. Si Carmen recupera este carrito por WhatsApp, el CAPI de
+     ventas (Yxsr3rSUnADbtoe7) lo cruza por telefono y la compra llega a Meta atada al
+     anuncio. Sin esto la venta recuperada entraba como "sin anuncio" (pulsera, venta 4696). */
+  var URL_CLIC = 'https://n8n-production-8a42.up.railway.app/webhook/carrito-clic-es';
+  var EVENT_ID_CARRITO = '', ultimoClic = '';
+  function mandarClic(d) {
+    try {
+      if (!window.jayePixel) return;
+      if (!EVENT_ID_CARRITO) EVENT_ID_CARRITO = window.jayePixel.id();
+      var c = { sid: d.sid, telefono: d.telefono, event_id: EVENT_ID_CARRITO,
+                fbc: window.jayePixel.fbc() || '', fbp: window.jayePixel.fbp() || '', url: location.href };
+      var f = JSON.stringify(c);
+      if (f === ultimoClic || c.telefono.length < 9) return;
+      ultimoClic = f;
+      fetch(URL_CLIC, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: f, keepalive: true }).catch(function () {});
+    } catch (e) {}
+  }
   function mandar() {
     if (yaCompro) return;
     var d = datos(); if (!d) return;
     var firma = JSON.stringify(d).replace(/"fecha":"[^"]*"/, '');
     if (firma === ultimo) return;          /* nada nuevo que contar */
     ultimo = firma;
+    mandarClic(d);
     try {
       var cuerpo = JSON.stringify(d);
       /* OJO, esto tenia el orden al reves y por eso no entraba UN SOLO carrito
