@@ -609,7 +609,7 @@ window.PRODUCTOS = [
 
     foto: 'img/pistola-kit.webp?v=1',
     fotos: ['img/pistola-kit.webp?v=1', 'img/pistola-maletin.webp?v=1', 'img/pistola-contenido-2.webp?v=1'],
-    video: 'img/pistola-ficha-5.mp4?v=1'   /* 09-10 James: el tt_7554 traía la marca @ddc.tecnology en el centro; borrada con delogo (t 0-10 s); 09-10 James: fuera el rótulo grande 48V del arranque (recortado desde 1,15 s; marca JAYE más chica y difuminada, borde inferior recortado por un icono azul del creador) y encima la de JAYE GROUP difuminada */,
+    video: 'img/pistola-ficha-6.mp4?v=1'   /* 09-10 James: el tt_7554 traía la marca @ddc.tecnology en el centro; borrada con delogo (t 0-10 s); 09-10 James: fuera el rótulo grande 48V del arranque (recortado desde 1,15 s; marca JAYE más chica y difuminada, borde inferior recortado por un icono azul del creador; parche con desenfoque suave y bordes difuminados en vez de delogo) y encima la de JAYE GROUP difuminada */,
 
     hero: {
       img: 'img/hero-pistola-v.webp?v=1',   /* 09-10 James: foto GRANDE a pantalla completa con las letras encima, como el foco */

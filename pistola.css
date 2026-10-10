@@ -79,7 +79,24 @@ body.p-pistola .heroP__fundido {
   display: block; position: absolute; inset: 0; height: auto; z-index: 1; pointer-events: none;
   background: linear-gradient(to bottom, rgba(15,23,42,.80) 0%, rgba(15,23,42,.46) 26%, rgba(15,23,42,0) 50%, rgba(15,23,42,0) 80%, rgba(30,41,59,.92) 100%);
 }
-body.p-pistola .heroP__luces { display: none; }
+/* 09-10 James: "en el héroe, donde viene la pistola, unos efectos de agua": gotas que caen sobre la mitad baja de la foto
+   (los 14 <i> que la ficha ya pinta en .heroP__luces) y una neblina de vapor que late junto al chorro */
+body.p-pistola .heroP__luces { display: block; position: absolute; left: 0; right: 0; top: 34%; bottom: 0; overflow: hidden; pointer-events: none; z-index: 2; }
+body.p-pistola #prod .heroP__luces i {
+  position: absolute; left: var(--x); top: -16px; width: calc(var(--s) * 1.5); height: calc(var(--s) * 2.4);
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38% !important;
+  background: radial-gradient(circle at 35% 28%, rgba(255,255,255,.95), rgba(196,226,255,.6) 55%, rgba(120,180,255,0) 100%);
+  opacity: 0; will-change: transform, opacity;
+  animation: piGota var(--t) linear infinite; animation-delay: var(--d);
+}
+@keyframes piGota { 0% { opacity: 0; transform: translateY(0) scale(.6); } 8% { opacity: .9; } 85% { opacity: .65; } 100% { opacity: 0; transform: translateY(72vh) scale(1.05); } }
+body.p-pistola .heroP__marco::after {
+  content: ''; position: absolute; right: -6%; top: 50%; width: 62%; height: 26%; z-index: 2; pointer-events: none;
+  /* sin filter:blur (animado es muy pesado para el móvil y trababa el dibujado): el degradado ya es suave */
+  background: radial-gradient(ellipse at 68% 50%, rgba(255,255,255,.26) 0%, rgba(255,255,255,.14) 30%, rgba(255,255,255,.05) 52%, rgba(255,255,255,0) 72%);
+  will-change: transform, opacity; animation: piNiebla 3.6s ease-in-out infinite alternate;
+}
+@keyframes piNiebla { from { opacity: .45; transform: translateX(-10px) scale(.96); } to { opacity: 1; transform: translateX(14px) scale(1.06); } }
 body.p-pistola .heroP__txt {
   position: absolute; top: 0; left: 0; right: 0; z-index: 3; display: block; min-height: 0;
   margin: 0; padding: 18px 18px 0; background: transparent; border: 0; box-shadow: none; text-align: left;
@@ -410,5 +427,6 @@ body.p-pistola #prod [data-rv].in { transform: none; }
 @media (prefers-reduced-motion: reduce) {
   body.p-pistola .heroP__img, body.p-pistola .heroP__txt, body.p-pistola .heroP__nota, body.p-pistola .hCas__l { animation: none !important; opacity: 1 !important; transform: none !important; }
   body.p-pistola .heroP__cta::after, body.p-pistola #prod .cta::after, body.p-pistola #prod .pi-cta::after, body.p-pistola .btn-flota::after { animation: none !important; display: none; }
+  body.p-pistola .heroP__luces, body.p-pistola .heroP__marco::after { display: none; }
   body.p-pistola .pi-entra, body.p-pistola #prod [data-rv] { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
