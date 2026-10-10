@@ -1,31 +1,30 @@
 /* ============================================================
-   PISTOLA DE ALTA PRESIÓN 48 V · ESPAÑA · estilos propios (09-10-2026).
+   PISTOLA DE ALTA PRESIÓN 48 V · ESPAÑA · estilos propios (09-10-2026, rehecho la misma noche).
    Solo con <body class="p-pistola">. ui-ux-pro-max (aprobado por James 09-10):
-     · Patrón  Héroe + características + compra: héroe con foto grande y botón fijo,
-               propuesta de valor, 3-5 características, bloque de compra, pie.
-     · Estilo  minimalista suizo: limpio, mucho aire, alto contraste, cuadrícula,
-               letras sin remate, movimiento corto (200-250 ms).
-     · Color   #334155 pizarra (principal) · #475569 pizarra clara (secundario)
-               · #DC2626 ROJO del producto (acción; la skill decía verde #059669 y James lo corrigió el 09-10) · #F8FAFC fondo · #0F172A texto
-               · #F2F3F4 apagado · #475569 texto secundario · #E6E8EA bordes · #DC2626 aviso
-     · Letra   Outfit (títulos, geométrica) + Work Sans (texto y datos)
-   Contrastes (WCAG): #0F172A sobre #F8FAFC 17,5:1 · blanco sobre #334155 10,4:1 ·
-   blanco sobre #DC2626 4,8:1 (texto del botón en 700) · #475569 sobre #F8FAFC 7,3:1.
+     · Patrón  Héroe + características + compra. Página CLARA de punta a punta: la foto
+               manda, el texto va DEBAJO (no encima en una tarjeta oscura), cuadrícula con
+               líneas finas, mucho aire, botón de compra fijo arriba y al final.
+     · Estilo  minimalista suizo: geométrico, sin adornos, títulos grandes a la izquierda,
+               números y reglas como ornamento, movimiento corto (200 ms).
+     · Color   #334155 pizarra (títulos y reglas) · #475569 pizarra clara (texto secundario)
+               · #DC2626 ROJO DEL PRODUCTO (acción: cierres, gatillo y batería del kit; James 09-10:
+               "el producto es rojo") · #F8FAFC fondo · #0F172A texto · #F2F3F4 apagado · #E6E8EA bordes
+     · Letra   Outfit (títulos, geométrica, 800) + Work Sans (texto y datos)
+   🔴 James 09-10: "estás haciendo el mismo error de todas las páginas": la 1ª versión era el molde de
+   la pulsera repintado (tarjeta oscura sobre el héroe, capítulos numerados, bloque oscuro). Esta no.
+   Contrastes (WCAG): #0F172A sobre #F8FAFC 17,5:1 · blanco sobre #DC2626 4,8:1 · #475569 sobre #fff 7,6:1.
    ============================================================ */
 body.p-pistola {
   --pi-pizarra:  #334155;
   --pi-pizarra2: #475569;
-  /* 09-10 James: "el producto es rojo, ¿por qué ponen verde?". El acento lo manda el producto: el rojo de los cierres,
-     el gatillo y la batería del kit. El verde de la skill queda fuera; pizarra, fondo, texto y bordes siguen igual. */
-  --pi-verde:    #DC2626;
-  --pi-verde2:   #B91C1C;
-  --pi-verdeC:   #FEF2F2;
+  --pi-rojo:     #DC2626;
+  --pi-rojo2:    #B91C1C;
+  --pi-rojoC:    #FEF2F2;
   --pi-fondo:    #F8FAFC;
   --pi-tinta:    #0F172A;
   --pi-gris:     #475569;
   --pi-apagado:  #F2F3F4;
   --pi-borde:    #E6E8EA;
-  --pi-aviso:    #DC2626;
   --pi-tit:      'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --pi-txt:      'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --pi-rapido:   cubic-bezier(.2, .8, .2, 1);
@@ -34,175 +33,164 @@ body.p-pistola {
 body.p-pistola #prod { background: var(--pi-fondo); color: var(--pi-tinta); font-family: var(--pi-txt); }
 body.p-pistola #prod p { color: var(--pi-gris); }
 
-/* ---------- títulos: Outfit, grandes, sin adornos; una regla corta de pizarra debajo ---------- */
-body.p-pistola #prod h1, body.p-pistola #prod h2, body.p-pistola #prod h3 { font-family: var(--pi-tit); letter-spacing: -.01em; }
+/* ---------- títulos: Outfit 800, grandes, a la izquierda, con una regla roja corta ARRIBA ---------- */
+body.p-pistola #prod h1, body.p-pistola #prod h2, body.p-pistola #prod h3 { font-family: var(--pi-tit); letter-spacing: -.02em; }
 body.p-pistola #prod h2.tit2, body.p-pistola .pi-h2 {
-  display: block; margin: 6px 0 14px; font-family: var(--pi-tit); font-weight: 700;
-  font-size: clamp(28px, 7.6vw, 40px); line-height: 1.08; color: var(--pi-tinta); text-wrap: balance;
+  display: block; margin: 0 0 12px; padding-top: 14px; position: relative;
+  font-family: var(--pi-tit); font-weight: 800; font-size: clamp(30px, 8vw, 46px); line-height: 1; color: var(--pi-tinta); text-wrap: balance;
 }
-body.p-pistola #prod h2 em, body.p-pistola .pi-h2 em { font-style: normal; color: var(--pi-verde); }
+body.p-pistola #prod h2.tit2::before, body.p-pistola .pi-h2::before { content: ''; position: absolute; left: 0; top: 0; width: 40px; height: 4px; background: var(--pi-rojo); }
+body.p-pistola #prod h2 em, body.p-pistola .pi-h2 em { font-style: normal; color: var(--pi-pizarra2); font-weight: 500; }
 body.p-pistola #prod .eyebrow, body.p-pistola .pi-cap {
-  display: inline-flex; align-items: center; gap: 10px; padding: 0; background: none;
-  font: 600 11.5px/1 var(--pi-txt); letter-spacing: .18em; text-transform: uppercase; color: var(--pi-pizarra2);
+  display: inline-block; padding: 0; margin: 0 0 6px; background: none; border: 0;
+  font: 500 12px/1 var(--pi-txt); letter-spacing: .14em; text-transform: uppercase; color: var(--pi-gris);
 }
-body.p-pistola #prod .eyebrow::before, body.p-pistola .pi-cap::before { content: ''; width: 22px; height: 2px; background: var(--pi-verde); }
-body.p-pistola #prod .sub2, body.p-pistola .pi-lead { font-size: 16px; line-height: 1.65; color: var(--pi-gris); margin: 0 0 18px; }
-body.p-pistola #prod h2.pi-tit { position: relative; padding-bottom: 14px; }
-body.p-pistola #prod h2.pi-tit::after { content: ''; position: absolute; left: 0; bottom: 0; width: 48px; height: 3px; background: var(--pi-pizarra); }
+body.p-pistola #prod .eyebrow::before, body.p-pistola .pi-cap::before { display: none; }
+body.p-pistola #prod .sub2, body.p-pistola .pi-lead { font-size: 17px; line-height: 1.6; color: var(--pi-gris); margin: 0 0 22px; max-width: 60ch; }
 
-/* ---------- HÉROE: foto entera, tarjeta de texto pizarra con filo verde ---------- */
+/* ---------- HÉROE: foto limpia a todo el ancho; el texto va DEBAJO, en claro, sobre la cuadrícula ---------- */
 body.p-pistola .heroP {
-  --crema: #334155; --rosa: #1E293B; --rosaF: #DC2626;
-  --tinta: #F8FAFC; --tinta2: #CBD5E1; --oro: #DC2626; --oroOsc: #B91C1C;
-  background: var(--pi-pizarra);
+  --crema: #F8FAFC; --rosa: #FFFFFF; --rosaF: #DC2626;
+  --tinta: #0F172A; --tinta2: #475569; --oro: #DC2626; --oroOsc: #B91C1C;
+  background: var(--pi-fondo);
 }
-body.p-pistola .heroP__marco, body.p-pistola .heroP__img { background: #1E293B; }
+body.p-pistola .heroP__marco, body.p-pistola .heroP__img { background: var(--pi-apagado); }
 body.p-pistola .heroP__marco { overflow: hidden; position: relative; }
-body.p-pistola .heroP__img { aspect-ratio: 1000 / 1242; object-fit: cover; object-position: 50% 40%; }
-body.p-pistola .heroP__fundido { background: linear-gradient(to top, #334155 4%, rgba(51,65,85,.5) 32%, rgba(51,65,85,0) 60%); z-index: 2; }
+body.p-pistola .heroP__img { aspect-ratio: 1000 / 1100; object-fit: cover; object-position: 50% 45%; }
+body.p-pistola .heroP__fundido { display: none; }
 body.p-pistola .heroP__luces { display: none; }
 body.p-pistola .heroP__txt {
-  position: relative; z-index: 3; margin: -10px 14px 0; padding: 22px 20px 20px;
-  background: rgba(51,65,85,.94); border: 1px solid rgba(220,38,38,.5); border-left: 4px solid var(--pi-verde); border-radius: 6px;
-  box-shadow: 0 24px 48px rgba(15,23,42,.35);
+  position: relative; z-index: 3; margin: 0; padding: 26px 18px 22px;
+  background: var(--pi-fondo); border: 0; border-top: 1px solid var(--pi-borde); border-radius: 0; box-shadow: none;
 }
-body.p-pistola .heroP .heroP__h1 { font-family: var(--pi-tit); font-weight: 700; font-style: normal; font-size: clamp(30px, 8.4vw, 44px); line-height: 1.04; color: #F8FAFC; letter-spacing: -.01em; }
-body.p-pistola .heroP .heroP__h1 b, body.p-pistola .hCas__w.es-oro .hCas__l { color: #FCA5A5; font-weight: 700; font-style: normal; }
-body.p-pistola #prod .heroP__sub { font-size: 15.5px; line-height: 1.6; color: #CBD5E1; }
-body.p-pistola .heroP__kicker { font: 600 11px var(--pi-txt); letter-spacing: .18em; text-transform: uppercase; color: #FECACA; background: rgba(220,38,38,.18); border-color: rgba(220,38,38,.55); }
-body.p-pistola .heroP__kicker i { background: var(--pi-verde); }
-body.p-pistola .heroP__nota { background: #F8FAFC; color: var(--pi-tinta); font-family: var(--pi-txt); border-radius: 6px; }
+body.p-pistola .heroP .heroP__h1 { font-family: var(--pi-tit); font-weight: 800; font-style: normal; font-size: clamp(34px, 9.6vw, 54px); line-height: .98; color: var(--pi-tinta); letter-spacing: -.025em; text-align: left; }
+body.p-pistola .heroP .heroP__h1 b, body.p-pistola .hCas__w.es-oro .hCas__l { color: var(--pi-rojo); font-weight: 800; font-style: normal; }
+body.p-pistola #prod .heroP__sub { font-size: 16.5px; line-height: 1.55; color: var(--pi-gris); text-align: left; max-width: 56ch; }
+body.p-pistola .heroP__kicker { font: 600 11.5px var(--pi-txt); letter-spacing: .16em; text-transform: uppercase; color: var(--pi-rojo); background: #fff; border: 1px solid var(--pi-rojo); border-radius: 0; }
+body.p-pistola .heroP__kicker i { background: var(--pi-rojo); }
+body.p-pistola .heroP__nota { background: #fff; color: var(--pi-tinta); font-family: var(--pi-txt); border: 1px solid var(--pi-borde); border-radius: 0; }
 body.p-pistola .heroP__nota * { color: var(--pi-tinta); }
-body.p-pistola .heroP__nota svg, body.p-pistola .heroP__nota svg * { fill: var(--pi-verde); color: var(--pi-verde); }
-body.p-pistola .heroP__dato { font: 600 12px var(--pi-txt); color: #E2E8F0; background: rgba(71,85,105,.75); border-color: rgba(203,213,225,.25); border-radius: 6px; }
-body.p-pistola .heroP__dato svg { color: #FCA5A5; }
-body.p-pistola .heroP__dato--oro { background: rgba(220,38,38,.25); border-color: rgba(220,38,38,.6); }
-body.p-pistola .heroP__ahorra { background: rgba(220,38,38,.18); border-color: rgba(252,165,165,.4); color: #FEE2E2; }
-body.p-pistola .heroP__ahorra b, body.p-pistola .heroP__ahorra svg { color: #FCA5A5; }
-body.p-pistola .heroP__precio span { font-family: var(--pi-txt); color: #94A3B8; }
-body.p-pistola .heroP__precio b { font-family: var(--pi-tit); font-weight: 700; font-size: 1.25em; color: #F8FAFC; font-variant-numeric: tabular-nums; }
-body.p-pistola .heroP__wa { font-family: var(--pi-txt); color: #E2E8F0; }
-html.ba-lista body.p-pistola .heroP__img { animation: piAparece 1s var(--pi-rapido) both; }
-@keyframes piAparece { from { transform: scale(1.03); opacity: .6; } to { transform: none; opacity: 1; } }
-html.ba-lista body.p-pistola .heroP__txt { animation: piSube .6s var(--pi-rapido) .2s both; }
-@keyframes piSube { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-html.ba-lista body.p-pistola .hCas__l { display: inline-block; animation: piLetra .45s var(--pi-rapido) both !important; animation-delay: calc(.3s + var(--k) * .025s) !important; }
-@keyframes piLetra { from { opacity: 0; transform: translateY(.35em); } to { opacity: 1; transform: none; } }
+body.p-pistola .heroP__nota svg, body.p-pistola .heroP__nota svg * { fill: var(--pi-rojo); color: var(--pi-rojo); }
+body.p-pistola .heroP__dato { font: 600 12px var(--pi-txt); color: var(--pi-tinta); background: #fff; border: 1px solid var(--pi-borde); border-radius: 0; }
+body.p-pistola .heroP__dato svg { color: var(--pi-rojo); }
+body.p-pistola .heroP__dato--oro { background: var(--pi-rojoC); border-color: rgba(220,38,38,.35); }
+body.p-pistola .heroP__ahorra { background: var(--pi-rojoC); border: 1px solid rgba(220,38,38,.35); border-radius: 0; color: var(--pi-rojo2); }
+body.p-pistola .heroP__ahorra b, body.p-pistola .heroP__ahorra svg { color: var(--pi-rojo); }
+body.p-pistola .heroP__precio span { font-family: var(--pi-txt); color: var(--pi-gris); }
+body.p-pistola .heroP__precio b { font-family: var(--pi-tit); font-weight: 800; font-size: 1.35em; color: var(--pi-tinta); font-variant-numeric: tabular-nums; }
+body.p-pistola .heroP__wa { font-family: var(--pi-txt); color: var(--pi-tinta); }
+html.ba-lista body.p-pistola .heroP__img { animation: piAparece .8s var(--pi-rapido) both; }
+@keyframes piAparece { from { opacity: 0; } to { opacity: 1; } }
+html.ba-lista body.p-pistola .heroP__txt { animation: piSube .5s var(--pi-rapido) .15s both; }
+@keyframes piSube { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+html.ba-lista body.p-pistola .hCas__l { display: inline-block; animation: piLetra .3s var(--pi-rapido) both !important; animation-delay: calc(.2s + var(--k) * .018s) !important; }
+@keyframes piLetra { from { opacity: 0; } to { opacity: 1; } }
 
-/* ---------- BOTONES: verde sobre pizarra, 56 px, esquinas cortas ---------- */
+/* ---------- BOTONES: rojo del producto, rectos (sin radio), 56 px, todos iguales ---------- */
 body.p-pistola .heroP__cta, body.p-pistola #prod .cta, body.p-pistola #prod .pi-cta, body.p-pistola .btn-flota, body.p-pistola #stickycta button {
   box-sizing: border-box; display: flex !important; align-items: center; justify-content: center; gap: 10px;
   width: 100% !important; height: 56px !important; min-height: 56px; padding: 0 18px !important;
-  font: 700 15px/1 var(--pi-txt) !important; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; text-decoration: none;
-  border-radius: 6px !important; border: 0 !important; background: var(--pi-verde) !important; color: #fff !important;
-  box-shadow: 0 12px 24px rgba(220,38,38,.28); cursor: pointer;
-  transition: background .2s ease, box-shadow .2s ease, transform .15s var(--pi-rapido);
+  font: 700 15px/1 var(--pi-txt) !important; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; text-decoration: none;
+  border-radius: 0 !important; border: 0 !important; background: var(--pi-rojo) !important; color: #fff !important;
+  box-shadow: none; cursor: pointer; transition: background .2s ease, transform .15s var(--pi-rapido);
 }
-body.p-pistola .heroP__cta:hover, body.p-pistola #prod .cta:hover, body.p-pistola #prod .pi-cta:hover, body.p-pistola .btn-flota:hover { background: var(--pi-verde2) !important; box-shadow: 0 16px 28px rgba(185,28,28,.32); }
-body.p-pistola .heroP__cta:active, body.p-pistola #prod .cta:active, body.p-pistola #prod .pi-cta:active { transform: scale(.98); }
-body.p-pistola .heroP__cta:focus-visible, body.p-pistola #prod .cta:focus-visible, body.p-pistola #prod .pi-cta:focus-visible, body.p-pistola .btn-flota:focus-visible { outline: 3px solid var(--pi-pizarra); outline-offset: 3px; }
-body.p-pistola #prod .cta.azul { background: transparent !important; color: var(--pi-pizarra) !important; border: 1.5px solid var(--pi-pizarra) !important; box-shadow: none; }
-body.p-pistola #prod .pi-cta { margin-top: 24px; }
+body.p-pistola .heroP__cta:hover, body.p-pistola #prod .cta:hover, body.p-pistola #prod .pi-cta:hover, body.p-pistola .btn-flota:hover { background: var(--pi-rojo2) !important; }
+body.p-pistola .heroP__cta:active, body.p-pistola #prod .cta:active, body.p-pistola #prod .pi-cta:active { transform: translateY(1px); }
+body.p-pistola .heroP__cta:focus-visible, body.p-pistola #prod .cta:focus-visible, body.p-pistola #prod .pi-cta:focus-visible, body.p-pistola .btn-flota:focus-visible { outline: 3px solid var(--pi-tinta); outline-offset: 3px; }
+body.p-pistola #prod .cta.azul { background: #fff !important; color: var(--pi-tinta) !important; border: 1.5px solid var(--pi-tinta) !important; }
+body.p-pistola #prod .pi-cta { margin-top: 26px; }
 body.p-pistola .pi-cta svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 body.p-pistola #stickycta .btn-flota { width: auto !important; flex: 1 1 auto; }
-body.p-pistola #stickycta .waFlota { width: auto !important; flex: 0 0 auto; background: #08783A !important; color: #fff !important; }
+body.p-pistola #stickycta .waFlota { width: auto !important; flex: 0 0 auto; background: #08783A !important; color: #fff !important; border-radius: 0 !important; }
 body.p-pistola .heroP__pie { flex-wrap: wrap; }
 
-/* ---------- ANTES / DESPUÉS ---------- */
-body.p-pistola #prod .ba-sec { background: #fff; margin: 0; padding: 40px 18px 32px; border-bottom: 1px solid var(--pi-borde); }
-body.p-pistola #prod .ba-sec .ba-img { border-radius: 6px; overflow: hidden; margin: 10px 0 4px; box-shadow: 0 18px 40px rgba(15,23,42,.14); }
+/* ---------- ANTES / DESPUÉS: foto con marco fino, sin sombra ---------- */
+body.p-pistola #prod .ba-sec { background: #fff; margin: 0; padding: 44px 18px 36px; border-top: 1px solid var(--pi-borde); border-bottom: 1px solid var(--pi-borde); }
+body.p-pistola #prod .ba-sec .ba-img { border: 1px solid var(--pi-borde); border-radius: 0; overflow: hidden; margin: 10px 0 4px; box-shadow: none; }
 body.p-pistola #prod .ba-sec .ba-img img { display: block; width: 100%; height: auto; }
 
 /* ---------- compra corta ---------- */
 body.p-pistola #prod .arriba2 { background: var(--pi-fondo); }
-body.p-pistola #prod .arriba2 .datos h1 { font-family: var(--pi-tit); font-weight: 700; font-size: clamp(26px, 7vw, 34px); line-height: 1.08; color: var(--pi-tinta); }
-body.p-pistola #prod .precioTop { font-family: var(--pi-tit); font-weight: 700; font-variant-numeric: tabular-nums; }
+body.p-pistola #prod .arriba2 .datos h1 { font-family: var(--pi-tit); font-weight: 800; font-size: clamp(28px, 7.4vw, 36px); line-height: 1; color: var(--pi-tinta); }
+body.p-pistola #prod .precioTop { font-family: var(--pi-tit); font-weight: 800; font-variant-numeric: tabular-nums; }
 body.p-pistola #prod .arriba2 .dscTop, body.p-pistola #prod .arriba2 .dscTop__ul { display: none; }
 
-/* ---------- secciones propias ---------- */
+/* ---------- secciones propias: claras, con cuadrícula de líneas finas ---------- */
 body.p-pistola .pi-sec { padding: 48px 18px; }
-body.p-pistola .pi-num { display: block; font: 700 56px/1 var(--pi-tit); color: rgba(51,65,85,.14); margin-bottom: -14px; letter-spacing: -.02em; }
-/* 1 · dónde se usa (oscuro pizarra, cuadrícula de usos) */
-body.p-pistola .pi-usos { background: var(--pi-pizarra); color: #fff; }
-body.p-pistola .pi-usos .pi-h2 { color: #F8FAFC; }
-body.p-pistola .pi-usos .pi-cap { color: #FECACA; }
-body.p-pistola .pi-usos .pi-cap::before { background: #FCA5A5; }
-body.p-pistola #prod .pi-usos .pi-lead { color: #CBD5E1; }
-body.p-pistola .pi-grid { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(203,213,225,.2); border-radius: 6px; overflow: hidden; }
+body.p-pistola .pi-num { display: none; }
+/* 1 · dónde la usas: cuadrícula blanca con líneas, icono rojo, sin fondo oscuro */
+body.p-pistola .pi-usos { background: var(--pi-fondo); }
+body.p-pistola .pi-grid { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--pi-borde); border: 1px solid var(--pi-borde); }
 @media (min-width: 768px) { body.p-pistola .pi-grid { grid-template-columns: repeat(3, 1fr); } }
-body.p-pistola .pi-grid li { display: grid; gap: 8px; align-content: start; padding: 16px 14px; background: var(--pi-pizarra); }
-body.p-pistola .pi-grid li svg { width: 26px; height: 26px; fill: none; stroke: #FCA5A5; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-body.p-pistola .pi-grid b { display: block; font: 600 17px/1.2 var(--pi-tit); color: #F8FAFC; }
-body.p-pistola #prod .pi-grid span { font-size: 13.5px; line-height: 1.45; color: #CBD5E1; }
-/* 2 · el kit (tres fotos reales) */
-body.p-pistola .pi-kit { background: #fff; }
-body.p-pistola .pi-pasos { display: grid; gap: 22px; margin-top: 10px; }
+body.p-pistola .pi-grid li { display: grid; gap: 10px; align-content: start; padding: 20px 16px 18px; background: #fff; transition: background .2s ease; }
+body.p-pistola .pi-grid li:hover { background: var(--pi-rojoC); }
+body.p-pistola .pi-grid li svg { width: 28px; height: 28px; fill: none; stroke: var(--pi-rojo); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+body.p-pistola .pi-grid b { display: block; font: 700 18px/1.15 var(--pi-tit); color: var(--pi-tinta); letter-spacing: -.01em; }
+body.p-pistola #prod .pi-grid span { font-size: 14px; line-height: 1.45; color: var(--pi-gris); }
+/* 2 · el kit: tres fotos reales, en fondo apagado, con el pie numerado en rojo */
+body.p-pistola .pi-kit { background: var(--pi-apagado); border-top: 1px solid var(--pi-borde); border-bottom: 1px solid var(--pi-borde); }
+body.p-pistola .pi-pasos { display: grid; gap: 18px; margin-top: 10px; }
 @media (min-width: 768px) { body.p-pistola .pi-pasos { grid-template-columns: repeat(3, 1fr); } }
-body.p-pistola .pi-paso { margin: 0; }
-body.p-pistola .pi-paso-img { overflow: hidden; aspect-ratio: 4 / 5; border-radius: 6px; background: var(--pi-apagado); border: 1px solid var(--pi-borde); }
-body.p-pistola .pi-paso-img img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .25s var(--pi-rapido); }
-body.p-pistola .pi-paso:hover .pi-paso-img img { transform: scale(1.02); }
-body.p-pistola .pi-paso figcaption { padding: 12px 2px 0; display: grid; gap: 3px; }
-body.p-pistola .pi-paso figcaption i { font: 600 11px var(--pi-txt); letter-spacing: .18em; text-transform: uppercase; color: var(--pi-verde); font-style: normal; }
-body.p-pistola .pi-paso figcaption b { font: 600 20px/1.15 var(--pi-tit); color: var(--pi-tinta); }
-body.p-pistola #prod .pi-paso figcaption span { font-size: 14.5px; line-height: 1.55; color: var(--pi-gris); }
-body.p-pistola .pi-aviso { margin-top: 24px; padding: 14px 16px; border-left: 3px solid var(--pi-pizarra); background: var(--pi-fondo); border-radius: 0 6px 6px 0; }
+body.p-pistola .pi-paso { margin: 0; background: #fff; border: 1px solid var(--pi-borde); }
+body.p-pistola .pi-paso-img { overflow: hidden; aspect-ratio: 1 / 1; background: #fff; }
+body.p-pistola .pi-paso-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+body.p-pistola .pi-paso figcaption { padding: 14px 16px 16px; display: grid; gap: 4px; border-top: 1px solid var(--pi-borde); }
+body.p-pistola .pi-paso figcaption i { font: 700 12px var(--pi-tit); letter-spacing: .12em; text-transform: uppercase; color: var(--pi-rojo); font-style: normal; }
+body.p-pistola .pi-paso figcaption b { font: 700 19px/1.15 var(--pi-tit); color: var(--pi-tinta); }
+body.p-pistola #prod .pi-paso figcaption span { font-size: 14.5px; line-height: 1.5; color: var(--pi-gris); }
+body.p-pistola .pi-aviso { margin-top: 22px; padding: 14px 16px; border: 1px solid var(--pi-borde); border-left: 4px solid var(--pi-rojo); background: #fff; }
 body.p-pistola #prod .pi-aviso p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--pi-gris); }
 
-/* ---------- QUÉ TRAE (las 4 tarjetas de la ficha) ---------- */
+/* ---------- QUÉ TRAE (las 4 tarjetas de la ficha): blancas, borde arriba rojo, icono pizarra ---------- */
 body.p-pistola #prod .form-sec { background: var(--pi-fondo); padding-top: 44px; padding-bottom: 44px; }
 body.p-pistola #prod .form-sec :has(> .ing) { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-body.p-pistola #prod .form-sec .ing { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 18px 14px; background: #fff; border: 1px solid var(--pi-borde); border-radius: 6px; transition: border-color .2s ease, box-shadow .2s ease; }
-body.p-pistola #prod .form-sec .ing:hover { border-color: var(--pi-pizarra2); box-shadow: 0 10px 22px rgba(15,23,42,.08); }
-body.p-pistola #prod .form-sec .ing .cir { width: 44px; height: 44px; border-radius: 6px; background: var(--pi-pizarra); display: grid; place-items: center; border: 0; }
-body.p-pistola #prod .form-sec .ing .cir svg { width: 22px; height: 22px; stroke: #FCA5A5; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-body.p-pistola #prod .form-sec .ing b { font: 600 18px/1.15 var(--pi-tit); color: var(--pi-tinta); display: block; }
+body.p-pistola #prod .form-sec .ing { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 18px 14px; background: #fff; border: 1px solid var(--pi-borde); border-top: 3px solid var(--pi-rojo); border-radius: 0; transition: background .2s ease; }
+body.p-pistola #prod .form-sec .ing:hover { background: var(--pi-rojoC); }
+body.p-pistola #prod .form-sec .ing .cir { width: 40px; height: 40px; border-radius: 0; background: var(--pi-apagado); display: grid; place-items: center; border: 0; }
+body.p-pistola #prod .form-sec .ing .cir svg { width: 22px; height: 22px; stroke: var(--pi-pizarra); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+body.p-pistola #prod .form-sec .ing b { font: 700 18px/1.15 var(--pi-tit); color: var(--pi-tinta); display: block; }
 body.p-pistola #prod .form-sec .ing p { font-size: 14px; line-height: 1.5; margin: 4px 0 0; }
 
-/* ---------- VÍDEO ---------- */
-body.p-pistola #prod .vid-wrap { background: var(--pi-pizarra); padding-top: 44px; padding-bottom: 34px; }
+/* ---------- VÍDEO: en claro, marco fino ---------- */
+body.p-pistola #prod .vid-wrap { background: #fff; padding-top: 44px; padding-bottom: 36px; border-top: 1px solid var(--pi-borde); border-bottom: 1px solid var(--pi-borde); }
 body.p-pistola #prod .pi-vcab { padding: 0 18px 18px; }
-body.p-pistola #prod .pi-vcab .pi-h2 { color: #F8FAFC; }
-body.p-pistola #prod .pi-vcab .pi-cap { color: #FECACA; }
-body.p-pistola #prod .pi-vcab .pi-cap::before { background: #FCA5A5; }
-body.p-pistola #prod .vid-prod, body.p-pistola #prod .vid-wrap video { background: #000; border-radius: 6px; box-shadow: 0 0 0 1px rgba(220,38,38,.4), 0 22px 46px rgba(0,0,0,.45); }
+body.p-pistola #prod .vid-prod, body.p-pistola #prod .vid-wrap video { background: var(--pi-apagado); border: 1px solid var(--pi-borde); border-radius: 0; box-shadow: none; }
 
 /* ---------- promoción, stock, comparativa, opiniones, formulario ---------- */
 body.p-pistola #prod section.desc { background: #fff; }
 body.p-pistola #prod .promo-sec, body.p-pistola #prod .cmp-sec, body.p-pistola #prod .gar-sec { background: var(--pi-fondo); }
-body.p-pistola #prod .res-sec { background: var(--pi-apagado); }
-body.p-pistola #prod .cmp th.us { color: var(--pi-verde); font-family: var(--pi-txt); }
-body.p-pistola #prod .cmp .si svg { stroke: var(--pi-verde); }
-body.p-pistola #prod .sello .nom { font: 600 18px var(--pi-tit); color: var(--pi-tinta); }
+body.p-pistola #prod .res-sec, body.p-pistola #prod .rev-sec { background: var(--pi-apagado); }
+body.p-pistola #prod .cmp th.us { color: var(--pi-rojo); font-family: var(--pi-txt); }
+body.p-pistola #prod .cmp .si svg { stroke: var(--pi-rojo); }
+body.p-pistola #prod .sello .nom { font: 700 18px var(--pi-tit); color: var(--pi-tinta); }
 body.p-pistola .pi-foto { margin: 14px 0 20px; }
-body.p-pistola .pi-foto img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--pi-borde); box-shadow: 0 18px 40px rgba(15,23,42,.10); }
+body.p-pistola .pi-foto img { display: block; width: 100%; height: auto; border: 1px solid var(--pi-borde); border-radius: 0; box-shadow: none; }
 body.p-pistola #prod .form { background: var(--pi-fondo); }
 body.p-pistola #prod .pasoRot { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font: 700 14px var(--pi-txt); color: var(--pi-tinta); }
 body.p-pistola #prod .pasoRot:first-of-type { margin-top: 4px; }
-body.p-pistola #prod .pasoRot b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: var(--pi-pizarra); color: #FCA5A5; font-size: 12px; }
+body.p-pistola #prod .pasoRot b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 0; background: var(--pi-rojo); color: #fff; font-size: 12px; }
 body.p-pistola #prod .pagoSel { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 4px; }
 body.p-pistola #prod .pagoOp {
   position: relative; display: grid; grid-template-areas: 'ico' 'tit' 'pr' 'sub'; align-content: start; gap: 2px;
-  min-height: 132px; padding: 16px 12px 13px; border: 1.5px solid var(--pi-borde); border-radius: 6px;
+  min-height: 132px; padding: 16px 12px 13px; border: 1.5px solid var(--pi-borde); border-radius: 0;
   background: #fff; font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent;
-  transition: border-color .2s ease, box-shadow .2s ease;
+  transition: border-color .2s ease, background .2s ease;
 }
-body.p-pistola #prod .pagoOp.sel { border-color: var(--pi-verde); background: var(--pi-verdeC); box-shadow: 0 0 0 3px rgba(220,38,38,.14); }
-body.p-pistola #prod .pagoOp:focus-visible { outline: 2px solid var(--pi-pizarra); outline-offset: 3px; }
+body.p-pistola #prod .pagoOp.sel { border-color: var(--pi-rojo); background: var(--pi-rojoC); }
+body.p-pistola #prod .pagoOp:focus-visible { outline: 2px solid var(--pi-tinta); outline-offset: 3px; }
 body.p-pistola #prod .pagoOp__ico { grid-area: ico; margin-bottom: 4px; }
 body.p-pistola #prod .pagoOp__ico svg { width: 26px; height: 26px; fill: none; stroke: var(--pi-gris); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-body.p-pistola #prod .pagoOp.sel .pagoOp__ico svg { stroke: var(--pi-verde); }
+body.p-pistola #prod .pagoOp.sel .pagoOp__ico svg { stroke: var(--pi-rojo); }
 body.p-pistola #prod .pagoOp__tit { grid-area: tit; font-size: 14px; font-weight: 700; line-height: 1.25; color: var(--pi-tinta); }
-body.p-pistola #prod .pagoOp__pr { grid-area: pr; margin-top: 2px; font: 700 24px/1.1 var(--pi-tit); font-variant-numeric: tabular-nums; color: var(--pi-tinta); }
+body.p-pistola #prod .pagoOp__pr { grid-area: pr; margin-top: 2px; font: 800 24px/1.1 var(--pi-tit); font-variant-numeric: tabular-nums; color: var(--pi-tinta); }
 body.p-pistola #prod .pagoOp__sub { grid-area: sub; margin-top: 3px; font-size: 12px; line-height: 1.35; color: var(--pi-gris); }
-body.p-pistola #prod .pagoOp__cinta { position: absolute; top: -9px; right: 10px; padding: 3px 9px; border-radius: 4px; background: var(--pi-verde); color: #fff; font: 700 11px var(--pi-txt); white-space: nowrap; }
+body.p-pistola #prod .pagoOp__cinta { position: absolute; top: -9px; right: 10px; padding: 3px 9px; border-radius: 0; background: var(--pi-rojo); color: #fff; font: 700 11px var(--pi-txt); white-space: nowrap; }
 
 /* ---------- entradas cortas al bajar ---------- */
-body.p-pistola.pi-mueve .pi-entra { opacity: 0; transform: translateY(12px); transition: opacity .25s var(--pi-rapido), transform .25s var(--pi-rapido); transition-delay: calc(var(--i, 0) * 60ms); }
+body.p-pistola.pi-mueve .pi-entra { opacity: 0; transform: translateY(8px); transition: opacity .2s var(--pi-rapido), transform .2s var(--pi-rapido); transition-delay: calc(var(--i, 0) * 40ms); }
 body.p-pistola.pi-mueve .pi-entra.pi-visto { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   body.p-pistola .heroP__img, body.p-pistola .heroP__txt, body.p-pistola .hCas__l { animation: none !important; opacity: 1 !important; transform: none !important; }
   body.p-pistola .pi-entra { opacity: 1 !important; transform: none !important; transition: none !important; }
-  body.p-pistola .pi-paso-img img { transition: none; }
 }

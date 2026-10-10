@@ -40,9 +40,8 @@
       [svg('<path d="M12 3v3"/><path d="M8 7c0 3 1 5 4 8 3-3 4-5 4-8"/><path d="M6 21c2-3 4-5 6-5s4 2 6 5"/>'), 'El riego', 'Con la boquilla en abanico riega macetas y huerto.'],
     ];
     return '<section class="bloque pi-sec pi-usos">'
-      + '<span class="pi-num" aria-hidden="true">01</span>'
       + '<span class="pi-cap">Dónde la usas</span>'
-      + '<h2 class="pi-h2">Donde está la suciedad, <em>sin enchufe.</em></h2>'
+      + '<h2 class="pi-h2">Donde está la suciedad. <em>Sin enchufe.</em></h2>'
       + '<p class="pi-lead">Una hidrolimpiadora grande necesita toma de agua, enchufe y sitio. Esta va en la mano, coge el agua de un cubo y se guarda en su maletín.</p>'
       + '<ul class="pi-grid">' + u.map(function (x, i) {
           return '<li class="pi-entra" style="--i:' + i + '">' + x[0] + '<b>' + x[1] + '</b><span>' + x[2] + '</span></li>';
@@ -58,7 +57,6 @@
       ['img/pistola-contenido.webp?v=1', 'Todo el contenido del maletín: pistola, dos baterías, cargador, manguera, lanza, boquillas, botella de espuma y adaptador', 'El kit completo', 'Lanza, boquillas y espuma', 'Chorro fino o abanico, y jabón con la botella de espuma.'],
     ];
     return '<section class="bloque pi-sec pi-kit">'
-      + '<span class="pi-num" aria-hidden="true">02</span>'
       + '<span class="pi-cap">El kit</span>'
       + '<h2 class="pi-h2">Lo que hay <em>dentro del maletín.</em></h2>'
       + '<p class="pi-lead">Fotos del producto real, tal como sale del almacén.</p>'
@@ -109,14 +107,14 @@
 
     if (antesDespues) {
       var e1 = antesDespues.querySelector('.eyebrow'); if (e1) e1.textContent = 'Antes y después';
-      var t1 = antesDespues.querySelector('h2'); if (t1) t1.innerHTML = 'El mismo coche, <em>dos minutos después.</em>';
+      var t1 = antesDespues.querySelector('h2'); if (t1) t1.innerHTML = 'El mismo coche. <em>Dos minutos después.</em>';
       var c1 = antesDespues.querySelector('.cta'); if (c1) c1.remove();
     }
     var flota = document.querySelector('.btn-flota');
     if (flota) flota.textContent = 'La quiero';
     if (queTrae) queTrae.appendChild(boton('La quiero, pago al recibir'));
     if (video) {
-      video.insertAdjacentHTML('afterbegin', '<div class="pi-vcab"><span class="pi-cap">En vídeo</span><h2 class="pi-h2">Así <em>limpia.</em></h2></div>');
+      video.insertAdjacentHTML('afterbegin', '<div class="pi-vcab"><span class="pi-cap">En vídeo</span><h2 class="pi-h2">Así limpia. <em>Sin cables.</em></h2></div>');
       var v = video.querySelector('video, .vid-prod');
       if (v) v.setAttribute('poster', 'img/pistola-ficha-poster.webp?v=1');
     }
