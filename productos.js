@@ -588,6 +588,105 @@ window.PRODUCTOS = [
       precios: [23.35, 34.15, 43.15],
     },
   },
+
+  /* ============================================================
+     PISTOLA DE ALTA PRESIÓN 48 V · ESPAÑA (09-10-2026, James: "vamos con la pistola").
+     Dropi PRO 1152 "Pistola Alta Presión Profesional Portátil Doble Batería", 16,49 € + IVA, 2,18 kg.
+     Kit real (fotos del almacén de Dropi PRO): maletín, pistola, 2 baterías 48 V, cargador,
+     manguera de 5 m con filtro, botella de espuma, lanza con boquillas, adaptador de grifo.
+     🔴 Nada de bares, litros ni minutos de batería: el proveedor no los da y no se prometen.
+     Diseño propio: pistola.css / pistola.js (ui-ux-pro-max, pizarra industrial + verde).
+     ============================================================ */
+  {
+    id: 'pistola', unidad: 'una', promo: 2,   /* promo = el pack de 2 (84,95 frente a 95,90 sueltas) */
+    dropiId: 1152,
+
+    nombre: 'Pistola de Alta Presión 48 V',
+    sub: 'Sin cables · 2 baterías · maletín completo',
+    categoria: 'Bricolaje',
+    etiqueta: 'Lanzamiento en España',
+    etiquetaOro: false,
+
+    foto: 'img/pistola-kit.webp?v=1',
+    fotos: ['img/pistola-kit.webp?v=1', 'img/pistola-maletin.webp?v=1', 'img/pistola-contenido.webp?v=1'],
+    video: 'img/pistola-ficha.mp4?v=1',
+
+    hero: {
+      img: 'img/hero-pistola.webp?v=1',
+      kicker: 'Lanzamiento en España',
+      titulo: '¿El coche lleno de barro<br><b>y sin manguera a mano?</b>',
+      sub: 'Pistola de alta presión sin cables, con dos baterías de 48 V. Coge el agua de un cubo, una garrafa o el grifo y limpia el coche, la terraza o la bici donde estés.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Paga ahora o al recibir'],
+      ],
+    },
+    acento: '#059669',
+
+    /* Stock REAL leído en el panel de Dropi PRO el 09-10-2026: 5.445.
+       Dropdata ES: 82 al día la última semana, 21 de 21 días con venta, mejor día 115. */
+    escasez: { hoy: 82, mejorDia: 115, quedan: 5445,
+      nota: 'Se despacha desde el almacén de Sevilla por orden de pedido. Pagas cuando la tienes en la mano.' },
+
+    desc: 'La Pistola de Alta Presión 48 V es una hidrolimpiadora de mano sin cables. Viene en su maletín con dos baterías de litio de 48 V y el cargador, una manguera de 5 metros con filtro para coger agua de un cubo o una garrafa, un adaptador para conectarla al grifo, una lanza metálica con boquillas para elegir el tipo de chorro y una botella para echar jabón o espuma. Sirve para lavar el coche, la moto o la bici, baldear la terraza, el patio o la fachada, limpiar los muebles de jardín, las persianas o las herramientas, y regar. Sin enchufe, sin manguera larga y sin máquina pesada.',
+
+    puntos: [
+      'Sin cables: funciona con batería de 48 V, y trae dos',
+      'Coge el agua de un cubo, una garrafa o el grifo',
+      'Maletín con manguera de 5 m, lanza, boquillas y espuma',
+      'Coche, terraza, bici, muebles de jardín y riego',
+    ],
+
+    formulaRotulo: 'Qué trae el maletín',
+    formulaTitulo: 'Todo lo que hace falta, en una caja.',
+    formulaSub: 'Lo abres y está listo para trabajar.',
+    formula: [
+      ['rayo', 'Dos baterías de 48 V', 'Una puesta y otra cargando. Con el cargador incluido.'],
+      ['agua', 'Manguera de 5 m con filtro', 'La metes en un cubo o una garrafa y la pistola chupa el agua sola. También va al grifo.'],
+      ['escudo', 'Lanza con boquillas', 'Chorro fino para el barro pegado o abanico para aclarar. Con la botella de espuma para el jabón.'],
+      ['casa', 'Maletín rígido', 'Todo recogido y protegido. Cabe en el maletero o en una balda del garaje.'],
+    ],
+
+    comparaTitulo: '¿Por qué esta y no la hidrolimpiadora grande?',
+    compara: [
+      'No necesita enchufe ni toma de agua cerca: la llevas donde está la suciedad.',
+      'Pesa poco más de 2 kilos con la batería puesta: se usa con una mano.',
+      'Dos baterías en vez de una: terminas el coche sin esperar la carga.',
+    ],
+
+    preguntas: [
+      { q: '¿De dónde coge el agua?', a: 'De un cubo, una garrafa o una botella grande, con la manguera de 5 metros que lleva un filtro en la punta. Si tienes grifo cerca, también trae el adaptador para conectarla directamente.' },
+      { q: '¿Qué trae el maletín?', a: 'La pistola, dos baterías de litio de 48 V, el cargador, la manguera de 5 metros con filtro, el adaptador de grifo, la lanza metálica con boquillas y la botella para la espuma. Todo dentro del maletín rígido.' },
+      { q: '¿Para qué sirve?', a: 'Para lavar el coche, la moto o la bici, baldear la terraza, el patio o la fachada, limpiar los muebles de jardín, las persianas o las herramientas, y para regar. Es una hidrolimpiadora de mano: para suciedad del día a día, no para trabajos industriales.' },
+      { q: '¿Necesita enchufe?', a: 'No. Funciona con la batería. Las baterías se cargan en el enchufe de casa con el cargador que viene en el maletín.' },
+      { q: '¿Cuánto pesa?', a: 'Unos 2 kilos con la batería puesta. Se maneja con una sola mano.' },
+      { q: '¿Tiene garantía?', a: 'Tienes 14 días desde que la recibes para devolverla si no te convence, y la garantía legal de conformidad que marca la ley en España. Si llega con algún fallo, nos escribes por WhatsApp y lo resolvemos.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: 'img/pistola-ba.webp?v=1',
+    antesDespuesSub: 'El mismo coche, el mismo patio: antes con el barro del campo, después tras un par de minutos de pistola.',
+
+    /* PRECIOS propuestos el 09-10-2026 (47,95 · 2 × 84,95), James: "Vale, vamos a trabajarle".
+       Competencia contra reembolso en España: Wortek 49,95 · Vivelaespana 59,95 · All Hogar 39 (modelo de 21 V).
+       'antes' en 0: producto nuevo (Ley 7/1996 art. 20.1). */
+    packs: [
+      { cant: 1, precio: 47.95, antes: 0, texto: '1 pistola' },
+      { cant: 2, precio: 84.95, antes: 0, texto: '2 pistolas' },
+    ],
+    popular: 0,
+
+    /* Pago anticipado: −10 % como el resto de España. */
+    anticipado: {
+      pct: 10,
+      descuento: 4.80,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [43.15, 76.45],
+    },
+  },
 ];
 
 /* ============================================================
@@ -604,6 +703,8 @@ window.PRODUCTOS = [
    Si un precio no esta en esta lista, el producto NO se pinta en la tienda.
    Es el mismo candado de Chile. */
 window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
+  /* pistola de alta presión 48 V, 09-10-2026: 47,95 · 2 × 84,95 y anticipado −10 % 43,15 · 76,45 */
+  47.95, 84.95, 43.15, 76.45,
   /* cabezal de ducha, aprobados 29-09-2026 */
   23.99, 32.99, 41.99, 21.99, 30.99, 39.99,
   /* sellador impermeable, aprobados 01-10-2026 */
