@@ -1,7 +1,8 @@
 /* ============================================================
-   PISTOLA DE ALTA PRESIÓN 48 V · ESPAÑA · página propia (09-10-2026).
-   ui-ux-pro-max (aprobado por James 09-10): minimalismo suizo, pizarra industrial
-   #334155 + verde #059669, Outfit / Work Sans. Patrón héroe + características + compra.
+   PISTOLA DE ALTA PRESIÓN 48 V · ESPAÑA · página propia (09-10-2026, 3ª versión).
+   🔴 James 09-10: prohibido que yo diseñe; el diseño sale del script ui-ux-pro-max.
+   Corrida aprobada: BRUTALISMO · oscuro #1E293B/#334155 + rojo #DC2626 · Bebas Neue /
+   Source Sans 3 · patrón Hero-Centric (héroe grande, franja de valor, prueba, cierre).
    Orden: gancho (héroe) → antes y después → compra → 1 "dónde la usas" (cuadrícula) →
    2 "el kit" (3 fotos reales del almacén) → vídeo → qué trae el maletín → descripción →
    promoción → quedan → comparativa → opiniones → formulario. Botón de compra al final
@@ -80,7 +81,7 @@
     if (!document.getElementById('pi-letras')) {
       var l = document.createElement('link');
       l.id = 'pi-letras'; l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@400;600;700&display=swap';
       document.head.appendChild(l);
     }
 
@@ -126,7 +127,7 @@
     return true;
   }
 
-  /* títulos con regla de pizarra y bloques que entran en fundido corto */
+  /* bloques que entran en fundido corto (350 ms, 12 px: preset "Scroll Reveal sutil" del script) */
   function alLeer() {
     var tit = document.querySelectorAll('.p-pistola #prod h2');
     var ent = document.querySelectorAll('.p-pistola .pi-entra');
