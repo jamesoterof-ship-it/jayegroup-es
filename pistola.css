@@ -321,9 +321,14 @@ body.p-pistola #prod .rsc .rfoto { border: 2px solid var(--pi-tinta); }
 body.p-pistola #prod .rev-auto-label { color: var(--pi-tinta); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
 
 /* ---------- garantía ---------- */
-body.p-pistola #prod .gar-sec { background: #fff; border-top: var(--pi-linea); text-align: left; padding-bottom: 40px; }
-body.p-pistola #prod .gar-sec .tit2, body.p-pistola #prod .gar-sec .sub2 { text-align: left; margin-left: 0; }
-body.p-pistola #prod .gseal { margin: 0 0 18px; filter: none; }
+/* 09-10 James: la garantía CENTRADA (sello, título, texto y franjas) */
+body.p-pistola #prod .gar-sec { background: #fff; border-top: var(--pi-linea); text-align: center; padding-bottom: 40px; }
+body.p-pistola #prod .gar-sec .tit2, body.p-pistola #prod .gar-sec .sub2 { text-align: center; margin-left: auto; margin-right: auto; }
+body.p-pistola #prod .gar-sec h2.tit2 { padding-left: 0; padding-bottom: 14px; }
+body.p-pistola #prod .gar-sec h2.tit2::before { left: 50%; top: auto; bottom: 0; width: 64px; height: 6px; transform: translateX(-50%); }
+body.p-pistola #prod .gseal { margin: 0 auto 18px; filter: none; }
+body.p-pistola #prod .gar-chips { max-width: 420px; margin-left: auto; margin-right: auto; }
+body.p-pistola #prod .gar-chips span { text-align: center; }
 body.p-pistola #prod .gar-chips { justify-content: flex-start; perspective: none; gap: 0; border: 2px solid var(--pi-tinta); display: grid; grid-template-columns: 1fr; }
 body.p-pistola #prod .gar-chips span { border: 0; border-bottom: 2px solid var(--pi-tinta); background: #fff; color: var(--pi-tinta); font: 700 14px var(--pi-txt); text-transform: uppercase; letter-spacing: .06em; padding: 12px 14px; box-shadow: none; transform: none !important; transition: none; }
 body.p-pistola #prod .gar-chips span:last-child { border-bottom: 0; }
