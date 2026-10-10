@@ -6,18 +6,20 @@
      · Estilo  minimalista suizo: limpio, mucho aire, alto contraste, cuadrícula,
                letras sin remate, movimiento corto (200-250 ms).
      · Color   #334155 pizarra (principal) · #475569 pizarra clara (secundario)
-               · #059669 verde (acción) · #F8FAFC fondo · #0F172A texto
+               · #DC2626 ROJO del producto (acción; la skill decía verde #059669 y James lo corrigió el 09-10) · #F8FAFC fondo · #0F172A texto
                · #F2F3F4 apagado · #475569 texto secundario · #E6E8EA bordes · #DC2626 aviso
      · Letra   Outfit (títulos, geométrica) + Work Sans (texto y datos)
    Contrastes (WCAG): #0F172A sobre #F8FAFC 17,5:1 · blanco sobre #334155 10,4:1 ·
-   blanco sobre #059669 4,5:1 (texto del botón en 700) · #475569 sobre #F8FAFC 7,3:1.
+   blanco sobre #DC2626 4,8:1 (texto del botón en 700) · #475569 sobre #F8FAFC 7,3:1.
    ============================================================ */
 body.p-pistola {
   --pi-pizarra:  #334155;
   --pi-pizarra2: #475569;
-  --pi-verde:    #059669;
-  --pi-verde2:   #047857;
-  --pi-verdeC:   #ECFDF5;
+  /* 09-10 James: "el producto es rojo, ¿por qué ponen verde?". El acento lo manda el producto: el rojo de los cierres,
+     el gatillo y la batería del kit. El verde de la skill queda fuera; pizarra, fondo, texto y bordes siguen igual. */
+  --pi-verde:    #DC2626;
+  --pi-verde2:   #B91C1C;
+  --pi-verdeC:   #FEF2F2;
   --pi-fondo:    #F8FAFC;
   --pi-tinta:    #0F172A;
   --pi-gris:     #475569;
@@ -50,8 +52,8 @@ body.p-pistola #prod h2.pi-tit::after { content: ''; position: absolute; left: 0
 
 /* ---------- HÉROE: foto entera, tarjeta de texto pizarra con filo verde ---------- */
 body.p-pistola .heroP {
-  --crema: #334155; --rosa: #1E293B; --rosaF: #059669;
-  --tinta: #F8FAFC; --tinta2: #CBD5E1; --oro: #059669; --oroOsc: #047857;
+  --crema: #334155; --rosa: #1E293B; --rosaF: #DC2626;
+  --tinta: #F8FAFC; --tinta2: #CBD5E1; --oro: #DC2626; --oroOsc: #B91C1C;
   background: var(--pi-pizarra);
 }
 body.p-pistola .heroP__marco, body.p-pistola .heroP__img { background: #1E293B; }
@@ -61,22 +63,22 @@ body.p-pistola .heroP__fundido { background: linear-gradient(to top, #334155 4%,
 body.p-pistola .heroP__luces { display: none; }
 body.p-pistola .heroP__txt {
   position: relative; z-index: 3; margin: -10px 14px 0; padding: 22px 20px 20px;
-  background: rgba(51,65,85,.94); border: 1px solid rgba(5,150,105,.5); border-left: 4px solid var(--pi-verde); border-radius: 6px;
+  background: rgba(51,65,85,.94); border: 1px solid rgba(220,38,38,.5); border-left: 4px solid var(--pi-verde); border-radius: 6px;
   box-shadow: 0 24px 48px rgba(15,23,42,.35);
 }
 body.p-pistola .heroP .heroP__h1 { font-family: var(--pi-tit); font-weight: 700; font-style: normal; font-size: clamp(30px, 8.4vw, 44px); line-height: 1.04; color: #F8FAFC; letter-spacing: -.01em; }
-body.p-pistola .heroP .heroP__h1 b, body.p-pistola .hCas__w.es-oro .hCas__l { color: #6EE7B7; font-weight: 700; font-style: normal; }
+body.p-pistola .heroP .heroP__h1 b, body.p-pistola .hCas__w.es-oro .hCas__l { color: #FCA5A5; font-weight: 700; font-style: normal; }
 body.p-pistola #prod .heroP__sub { font-size: 15.5px; line-height: 1.6; color: #CBD5E1; }
-body.p-pistola .heroP__kicker { font: 600 11px var(--pi-txt); letter-spacing: .18em; text-transform: uppercase; color: #A7F3D0; background: rgba(5,150,105,.18); border-color: rgba(5,150,105,.55); }
+body.p-pistola .heroP__kicker { font: 600 11px var(--pi-txt); letter-spacing: .18em; text-transform: uppercase; color: #FECACA; background: rgba(220,38,38,.18); border-color: rgba(220,38,38,.55); }
 body.p-pistola .heroP__kicker i { background: var(--pi-verde); }
 body.p-pistola .heroP__nota { background: #F8FAFC; color: var(--pi-tinta); font-family: var(--pi-txt); border-radius: 6px; }
 body.p-pistola .heroP__nota * { color: var(--pi-tinta); }
 body.p-pistola .heroP__nota svg, body.p-pistola .heroP__nota svg * { fill: var(--pi-verde); color: var(--pi-verde); }
 body.p-pistola .heroP__dato { font: 600 12px var(--pi-txt); color: #E2E8F0; background: rgba(71,85,105,.75); border-color: rgba(203,213,225,.25); border-radius: 6px; }
-body.p-pistola .heroP__dato svg { color: #6EE7B7; }
-body.p-pistola .heroP__dato--oro { background: rgba(5,150,105,.25); border-color: rgba(5,150,105,.6); }
-body.p-pistola .heroP__ahorra { background: rgba(5,150,105,.18); border-color: rgba(110,231,183,.4); color: #D1FAE5; }
-body.p-pistola .heroP__ahorra b, body.p-pistola .heroP__ahorra svg { color: #6EE7B7; }
+body.p-pistola .heroP__dato svg { color: #FCA5A5; }
+body.p-pistola .heroP__dato--oro { background: rgba(220,38,38,.25); border-color: rgba(220,38,38,.6); }
+body.p-pistola .heroP__ahorra { background: rgba(220,38,38,.18); border-color: rgba(252,165,165,.4); color: #FEE2E2; }
+body.p-pistola .heroP__ahorra b, body.p-pistola .heroP__ahorra svg { color: #FCA5A5; }
 body.p-pistola .heroP__precio span { font-family: var(--pi-txt); color: #94A3B8; }
 body.p-pistola .heroP__precio b { font-family: var(--pi-tit); font-weight: 700; font-size: 1.25em; color: #F8FAFC; font-variant-numeric: tabular-nums; }
 body.p-pistola .heroP__wa { font-family: var(--pi-txt); color: #E2E8F0; }
@@ -93,10 +95,10 @@ body.p-pistola .heroP__cta, body.p-pistola #prod .cta, body.p-pistola #prod .pi-
   width: 100% !important; height: 56px !important; min-height: 56px; padding: 0 18px !important;
   font: 700 15px/1 var(--pi-txt) !important; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; text-decoration: none;
   border-radius: 6px !important; border: 0 !important; background: var(--pi-verde) !important; color: #fff !important;
-  box-shadow: 0 12px 24px rgba(5,150,105,.28); cursor: pointer;
+  box-shadow: 0 12px 24px rgba(220,38,38,.28); cursor: pointer;
   transition: background .2s ease, box-shadow .2s ease, transform .15s var(--pi-rapido);
 }
-body.p-pistola .heroP__cta:hover, body.p-pistola #prod .cta:hover, body.p-pistola #prod .pi-cta:hover, body.p-pistola .btn-flota:hover { background: var(--pi-verde2) !important; box-shadow: 0 16px 28px rgba(4,120,87,.32); }
+body.p-pistola .heroP__cta:hover, body.p-pistola #prod .cta:hover, body.p-pistola #prod .pi-cta:hover, body.p-pistola .btn-flota:hover { background: var(--pi-verde2) !important; box-shadow: 0 16px 28px rgba(185,28,28,.32); }
 body.p-pistola .heroP__cta:active, body.p-pistola #prod .cta:active, body.p-pistola #prod .pi-cta:active { transform: scale(.98); }
 body.p-pistola .heroP__cta:focus-visible, body.p-pistola #prod .cta:focus-visible, body.p-pistola #prod .pi-cta:focus-visible, body.p-pistola .btn-flota:focus-visible { outline: 3px solid var(--pi-pizarra); outline-offset: 3px; }
 body.p-pistola #prod .cta.azul { background: transparent !important; color: var(--pi-pizarra) !important; border: 1.5px solid var(--pi-pizarra) !important; box-shadow: none; }
@@ -123,13 +125,13 @@ body.p-pistola .pi-num { display: block; font: 700 56px/1 var(--pi-tit); color: 
 /* 1 · dónde se usa (oscuro pizarra, cuadrícula de usos) */
 body.p-pistola .pi-usos { background: var(--pi-pizarra); color: #fff; }
 body.p-pistola .pi-usos .pi-h2 { color: #F8FAFC; }
-body.p-pistola .pi-usos .pi-cap { color: #A7F3D0; }
-body.p-pistola .pi-usos .pi-cap::before { background: #6EE7B7; }
+body.p-pistola .pi-usos .pi-cap { color: #FECACA; }
+body.p-pistola .pi-usos .pi-cap::before { background: #FCA5A5; }
 body.p-pistola #prod .pi-usos .pi-lead { color: #CBD5E1; }
 body.p-pistola .pi-grid { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(203,213,225,.2); border-radius: 6px; overflow: hidden; }
 @media (min-width: 768px) { body.p-pistola .pi-grid { grid-template-columns: repeat(3, 1fr); } }
 body.p-pistola .pi-grid li { display: grid; gap: 8px; align-content: start; padding: 16px 14px; background: var(--pi-pizarra); }
-body.p-pistola .pi-grid li svg { width: 26px; height: 26px; fill: none; stroke: #6EE7B7; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+body.p-pistola .pi-grid li svg { width: 26px; height: 26px; fill: none; stroke: #FCA5A5; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 body.p-pistola .pi-grid b { display: block; font: 600 17px/1.2 var(--pi-tit); color: #F8FAFC; }
 body.p-pistola #prod .pi-grid span { font-size: 13.5px; line-height: 1.45; color: #CBD5E1; }
 /* 2 · el kit (tres fotos reales) */
@@ -153,7 +155,7 @@ body.p-pistola #prod .form-sec :has(> .ing) { display: grid; grid-template-colum
 body.p-pistola #prod .form-sec .ing { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 18px 14px; background: #fff; border: 1px solid var(--pi-borde); border-radius: 6px; transition: border-color .2s ease, box-shadow .2s ease; }
 body.p-pistola #prod .form-sec .ing:hover { border-color: var(--pi-pizarra2); box-shadow: 0 10px 22px rgba(15,23,42,.08); }
 body.p-pistola #prod .form-sec .ing .cir { width: 44px; height: 44px; border-radius: 6px; background: var(--pi-pizarra); display: grid; place-items: center; border: 0; }
-body.p-pistola #prod .form-sec .ing .cir svg { width: 22px; height: 22px; stroke: #6EE7B7; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+body.p-pistola #prod .form-sec .ing .cir svg { width: 22px; height: 22px; stroke: #FCA5A5; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 body.p-pistola #prod .form-sec .ing b { font: 600 18px/1.15 var(--pi-tit); color: var(--pi-tinta); display: block; }
 body.p-pistola #prod .form-sec .ing p { font-size: 14px; line-height: 1.5; margin: 4px 0 0; }
 
@@ -161,9 +163,9 @@ body.p-pistola #prod .form-sec .ing p { font-size: 14px; line-height: 1.5; margi
 body.p-pistola #prod .vid-wrap { background: var(--pi-pizarra); padding-top: 44px; padding-bottom: 34px; }
 body.p-pistola #prod .pi-vcab { padding: 0 18px 18px; }
 body.p-pistola #prod .pi-vcab .pi-h2 { color: #F8FAFC; }
-body.p-pistola #prod .pi-vcab .pi-cap { color: #A7F3D0; }
-body.p-pistola #prod .pi-vcab .pi-cap::before { background: #6EE7B7; }
-body.p-pistola #prod .vid-prod, body.p-pistola #prod .vid-wrap video { background: #000; border-radius: 6px; box-shadow: 0 0 0 1px rgba(5,150,105,.4), 0 22px 46px rgba(0,0,0,.45); }
+body.p-pistola #prod .pi-vcab .pi-cap { color: #FECACA; }
+body.p-pistola #prod .pi-vcab .pi-cap::before { background: #FCA5A5; }
+body.p-pistola #prod .vid-prod, body.p-pistola #prod .vid-wrap video { background: #000; border-radius: 6px; box-shadow: 0 0 0 1px rgba(220,38,38,.4), 0 22px 46px rgba(0,0,0,.45); }
 
 /* ---------- promoción, stock, comparativa, opiniones, formulario ---------- */
 body.p-pistola #prod section.desc { background: #fff; }
@@ -177,7 +179,7 @@ body.p-pistola .pi-foto img { display: block; width: 100%; height: auto; border-
 body.p-pistola #prod .form { background: var(--pi-fondo); }
 body.p-pistola #prod .pasoRot { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font: 700 14px var(--pi-txt); color: var(--pi-tinta); }
 body.p-pistola #prod .pasoRot:first-of-type { margin-top: 4px; }
-body.p-pistola #prod .pasoRot b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: var(--pi-pizarra); color: #6EE7B7; font-size: 12px; }
+body.p-pistola #prod .pasoRot b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: var(--pi-pizarra); color: #FCA5A5; font-size: 12px; }
 body.p-pistola #prod .pagoSel { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 4px; }
 body.p-pistola #prod .pagoOp {
   position: relative; display: grid; grid-template-areas: 'ico' 'tit' 'pr' 'sub'; align-content: start; gap: 2px;
@@ -185,7 +187,7 @@ body.p-pistola #prod .pagoOp {
   background: #fff; font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent;
   transition: border-color .2s ease, box-shadow .2s ease;
 }
-body.p-pistola #prod .pagoOp.sel { border-color: var(--pi-verde); background: var(--pi-verdeC); box-shadow: 0 0 0 3px rgba(5,150,105,.14); }
+body.p-pistola #prod .pagoOp.sel { border-color: var(--pi-verde); background: var(--pi-verdeC); box-shadow: 0 0 0 3px rgba(220,38,38,.14); }
 body.p-pistola #prod .pagoOp:focus-visible { outline: 2px solid var(--pi-pizarra); outline-offset: 3px; }
 body.p-pistola #prod .pagoOp__ico { grid-area: ico; margin-bottom: 4px; }
 body.p-pistola #prod .pagoOp__ico svg { width: 26px; height: 26px; fill: none; stroke: var(--pi-gris); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }

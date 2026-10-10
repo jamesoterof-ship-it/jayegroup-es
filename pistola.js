@@ -122,7 +122,7 @@
     }
     if (oferta) {
       var ot = oferta.querySelector('h2') || oferta.firstElementChild;
-      if (ot) ot.insertAdjacentHTML('afterend', '<figure class="pi-foto"><img src="img/pistola-promo.webp?v=1" alt="El kit completo de la pistola de alta presión con el cartel de la promoción: 1 pistola 47,95 € y 2 pistolas 84,95 €" loading="lazy" width="1000" height="1500"></figure>');
+      if (ot) ot.insertAdjacentHTML('afterend', '<figure class="pi-foto"><img src="img/pistola-promo.webp?v=2" alt="El kit completo de la pistola de alta presión con el cartel de la promoción: 1 pistola 47,95 € y 2 pistolas 84,95 €" loading="lazy" width="1000" height="1500"></figure>');
     }
     if (compara) { var us = compara.querySelector('th.us'); if (us) us.textContent = 'Pistola 48 V'; }
     return true;

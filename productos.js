@@ -622,7 +622,7 @@ window.PRODUCTOS = [
         ['pago', 'Paga ahora o al recibir'],
       ],
     },
-    acento: '#059669',
+    acento: '#DC2626',   /* 09-10 James: el producto es negro con ROJO (cierres, gatillo, batería): el acento va en rojo, no en verde */
 
     /* Stock REAL leído en el panel de Dropi PRO el 09-10-2026: 5.445.
        Dropdata ES: 82 al día la última semana, 21 de 21 días con venta, mejor día 115. */
