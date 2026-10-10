@@ -45,7 +45,8 @@ body.p-pistola #prod {
 }
 body.p-pistola #prod p { color: var(--pi-gris); font-size: 16px; line-height: 1.55; }
 body.p-pistola #prod * { border-radius: 0 !important; }
-body.p-pistola #prod .cta, body.p-pistola .btn-flota, body.p-pistola .cta.rebota { animation: none !important; }
+/* 09-10 James: "pon efecto a los botones": rebote de la plantilla + subida con sombra al pasar */
+body.p-pistola #prod .pi-cta, body.p-pistola #prod .cta.rojo, body.p-pistola .heroP__cta { animation: rebote 2.6s cubic-bezier(.28,.84,.42,1) infinite; }
 
 /* ---------- TÍTULOS: Bebas Neue, enormes, mayúsculas, con un bloque rojo delante ---------- */
 body.p-pistola #prod h1, body.p-pistola #prod h2, body.p-pistola #prod h3 { font-family: var(--pi-tit); font-weight: 400; letter-spacing: .01em; text-transform: uppercase; }
@@ -85,12 +86,16 @@ body.p-pistola .heroP__txt {
 }
 /* el bloque de datos, precio y botón, DEBAJO de la foto (lo arma pistola.js) */
 body.p-pistola .pi-heroPie { position: relative; z-index: 3; padding: 14px 18px 26px; background: var(--pi-oscuro); }
-body.p-pistola .heroP .heroP__h1 { font-family: var(--pi-tit); font-weight: 400; font-style: normal; font-size: clamp(50px, 14.5vw, 96px); line-height: .9; color: #fff; letter-spacing: .005em; text-transform: uppercase; text-align: left; margin: 0 0 14px; text-shadow: 0 2px 0 rgba(15,23,42,.55), 0 0 28px rgba(15,23,42,.7); }
+/* titular más chico (James 09-10: "reduce las de arriba… no tapes el producto"); el párrafo va DEBAJO de la foto */
+body.p-pistola .heroP .heroP__h1 { font-family: var(--pi-tit); font-weight: 400; font-style: normal; font-size: clamp(40px, 11.5vw, 80px); line-height: .9; color: #fff; letter-spacing: .005em; text-transform: uppercase; text-align: left; margin: 0; text-shadow: 0 2px 0 rgba(15,23,42,.55), 0 0 28px rgba(15,23,42,.7); }
 body.p-pistola .heroP .heroP__h1 b, body.p-pistola .hCas__w.es-oro .hCas__l { color: var(--pi-rojo); font-weight: 400; font-style: normal; }
-body.p-pistola #prod .heroP__sub { font-size: 16.5px; line-height: 1.5; font-weight: 600; color: #F1F5F9; text-align: left; max-width: 40ch; margin: 0 0 20px; text-shadow: 0 1px 0 rgba(15,23,42,.6), 0 0 18px rgba(15,23,42,.8); }
+body.p-pistola #prod .heroP__sub { font-size: 15.5px; line-height: 1.5; font-weight: 500; color: #CBD5E1; text-align: left; max-width: 46ch; margin: 0 0 16px; text-shadow: none; }
 body.p-pistola .heroP__kicker { font: 700 12px var(--pi-txt); letter-spacing: .18em; text-transform: uppercase; color: #fff; background: var(--pi-rojo); border: 2px solid #fff; padding: 8px 12px; margin-bottom: 18px; box-shadow: none; }
 body.p-pistola .heroP__kicker i { background: #fff; border-radius: 0; width: 8px; height: 8px; }
-body.p-pistola .heroP__nota { background: #fff; color: var(--pi-tinta); border: 2px solid #fff; padding: 8px 12px; box-shadow: none; margin-bottom: 18px; }
+body.p-pistola .heroP__nota { background: #fff; color: var(--pi-tinta); border: 2px solid #fff; padding: 6px 10px; box-shadow: none; margin-bottom: 12px; }
+body.p-pistola .heroP__nota .est svg { width: 13px; height: 13px; }
+body.p-pistola .heroP__nota b { font-size: 14px; }
+body.p-pistola .heroP__nota a { font-size: 12.5px; }
 body.p-pistola .heroP__nota b, body.p-pistola .heroP__nota a { color: var(--pi-tinta); font-family: var(--pi-txt); }
 body.p-pistola .heroP__nota svg { fill: var(--pi-rojo); }
 /* la FRANJA DE PROPUESTA DE VALOR del patrón: los tres datos en una sola tira con bordes */
@@ -118,13 +123,14 @@ body.p-pistola .heroP__cta, body.p-pistola #prod .cta, body.p-pistola #prod .pi-
   width: 100% !important; max-width: none; height: 60px !important; min-height: 60px; padding: 0 18px !important; margin-left: 0; margin-right: 0;
   font: 400 24px/1 var(--pi-tit) !important; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; text-decoration: none;
   border: var(--pi-linea) !important; background: var(--pi-rojo) !important; color: #fff !important;
-  box-shadow: 6px 6px 0 var(--pi-tinta); cursor: pointer; transition: none !important; transform: none;
+  box-shadow: 6px 6px 0 var(--pi-tinta); cursor: pointer; transition: transform .15s ease-out, box-shadow .15s ease-out, background .15s ease-out !important;
 }
 body.p-pistola .heroP__cta { border-color: #fff !important; box-shadow: 6px 6px 0 #fff; }
-body.p-pistola .heroP__cta:hover, body.p-pistola #prod .cta:hover, body.p-pistola #prod .pi-cta:hover, body.p-pistola .btn-flota:hover { background: var(--pi-rojo2) !important; transform: none; }
+body.p-pistola .heroP__cta:hover, body.p-pistola #prod .cta:hover, body.p-pistola #prod .pi-cta:hover, body.p-pistola .btn-flota:hover { background: var(--pi-rojo2) !important; animation-play-state: paused; transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--pi-tinta); }
+body.p-pistola .heroP__cta:hover { box-shadow: 9px 9px 0 #fff; }
 body.p-pistola .heroP__cta:active, body.p-pistola #prod .cta:active, body.p-pistola #prod .pi-cta:active, body.p-pistola .btn-flota:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--pi-tinta); }
+body.p-pistola #prod .cta::after { display: block; background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent); }
 body.p-pistola .heroP__cta:focus-visible, body.p-pistola #prod .cta:focus-visible, body.p-pistola #prod .pi-cta:focus-visible, body.p-pistola .btn-flota:focus-visible { outline: 3px solid var(--pi-rojo); outline-offset: 4px; }
-body.p-pistola #prod .cta::after { display: none; }
 body.p-pistola #prod .cta.azul { background: #fff !important; color: var(--pi-tinta) !important; }
 body.p-pistola #prod .pi-cta { margin-top: 28px; }
 body.p-pistola .pi-cta svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: square; }
@@ -167,7 +173,9 @@ body.p-pistola #prod .desc li::after { border-color: #fff; }
 body.p-pistola .pi-sec { padding: 44px 18px 48px; }
 /* 1 · dónde la usas: BLOQUE OSCURO grande, cuadrícula de líneas visibles, icono rojo */
 body.p-pistola .pi-usos { background: var(--pi-oscuro); color: #fff; border-top: 6px solid var(--pi-rojo); }
-body.p-pistola .pi-usos .pi-h2 { color: #fff; }
+/* con #prod delante: la plantilla le pone .tit2 a los h2 y su regla (con #prod) le ganaba a esta; James 09-10: "no se ven las letras" */
+body.p-pistola #prod .pi-usos .pi-h2, body.p-pistola #prod .pi-usos h2, body.p-pistola #prod .pi-usos h2.tit2 { color: #fff; }
+body.p-pistola #prod .pi-usos h2 em { color: var(--pi-rojo); }
 body.p-pistola .pi-usos .pi-cap { background: var(--pi-rojo); }
 body.p-pistola #prod .pi-usos .pi-lead { color: #CBD5E1; }
 body.p-pistola .pi-grid { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 2px solid #fff; }
@@ -191,8 +199,8 @@ body.p-pistola .pi-pasos { display: grid; gap: 26px 18px; margin: 14px 10px 0 0;
 body.p-pistola .pi-paso { margin: 0; background: #fff; border: var(--pi-linea); box-shadow: var(--pi-sombra); }
 body.p-pistola .pi-paso:nth-child(2) { box-shadow: var(--pi-sombraR); }
 /* la foto se ve ENTERA (James 09-10: "esa imagen no se ve"): proporción real 1000x1242, sin recorte */
-body.p-pistola .pi-paso-img { overflow: hidden; aspect-ratio: 1000 / 1242; background: #fff; border-bottom: var(--pi-linea); }
-body.p-pistola .pi-paso-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+body.p-pistola .pi-paso-img { overflow: hidden; aspect-ratio: auto; background: #fff; border-bottom: var(--pi-linea); }
+body.p-pistola .pi-paso-img img { display: block; width: 100%; height: auto; object-fit: contain; }
 body.p-pistola .pi-paso figcaption { padding: 14px 16px 16px; display: grid; gap: 4px; }
 body.p-pistola .pi-paso figcaption i { justify-self: start; font: 700 11.5px var(--pi-txt); letter-spacing: .16em; text-transform: uppercase; color: #fff; background: var(--pi-rojo); padding: 4px 7px; font-style: normal; }
 body.p-pistola .pi-paso figcaption b { font: 400 26px/1 var(--pi-tit); color: var(--pi-tinta); text-transform: uppercase; }
@@ -373,8 +381,8 @@ body.p-pistola #prod [data-rv].in { transform: none; }
   body.p-pistola .heroP__img { aspect-ratio: auto; height: 100%; object-position: 50% 70%; }
   body.p-pistola .heroP__fundido { inset: 0; width: auto; height: auto; background: linear-gradient(to right, rgba(15,23,42,.86) 0%, rgba(15,23,42,.6) 40%, rgba(15,23,42,.05) 68%, rgba(15,23,42,0) 100%), linear-gradient(to bottom, rgba(15,23,42,0) 80%, rgba(30,41,59,.92) 100%); }
   body.p-pistola .heroP__txt { position: absolute; top: 0; left: 0; right: 0; width: 100%; max-width: 1080px; margin: 0 auto; min-height: 0; padding: 56px 40px 0; }
-  body.p-pistola .heroP .heroP__h1 { font-size: clamp(72px, 7.5vw, 120px); max-width: 11ch; }
-  body.p-pistola #prod .heroP__sub { max-width: 44ch; }
+  body.p-pistola .heroP .heroP__h1 { font-size: clamp(64px, 6.5vw, 104px); max-width: 11ch; }
+  body.p-pistola #prod .heroP__sub { max-width: 60ch; grid-column: 1 / -1; margin: 0; }
   body.p-pistola .pi-heroPie { max-width: 1080px; margin: 0 auto; padding: 18px 40px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; align-items: center; }
   body.p-pistola .heroP__datos { margin: 0; }
   body.p-pistola .heroP__ahorra { margin: 0; }

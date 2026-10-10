@@ -608,7 +608,7 @@ window.PRODUCTOS = [
     etiquetaOro: false,
 
     foto: 'img/pistola-kit.webp?v=1',
-    fotos: ['img/pistola-kit.webp?v=1', 'img/pistola-maletin.webp?v=1', 'img/pistola-contenido.webp?v=1'],
+    fotos: ['img/pistola-kit.webp?v=1', 'img/pistola-maletin.webp?v=1', 'img/pistola-contenido-2.webp?v=1'],
     video: 'img/pistola-ficha.mp4?v=1',
 
     hero: {

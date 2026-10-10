@@ -55,7 +55,8 @@
     var pasos = [
       ['img/pistola-maletin.webp?v=1', 'El maletín negro abierto con la pistola, una batería, la manguera gris enrollada y la botella de espuma', 'Así llega', 'En su maletín', 'Todo protegido y ordenado. Lo abres y está listo.'],
       ['img/pistola-kit.webp?v=1', 'La pistola de alta presión de pie junto a sus dos baterías de 48 V y el cargador', 'Dos baterías', 'Una puesta, otra cargando', 'Terminas el coche entero sin esperar a que cargue.'],
-      ['img/pistola-contenido.webp?v=1', 'Todo el contenido del maletín: pistola, dos baterías, cargador, manguera, lanza, boquillas, botella de espuma y adaptador', 'El kit completo', 'Lanza, boquillas y espuma', 'Chorro fino o abanico, y jabón con la botella de espuma.'],
+      /* 09-10 James: la foto del almacén salía recortada; esta es el kit entero, pieza por pieza, hecha con la real de referencia */
+      ['img/pistola-contenido-2.webp?v=1', 'Todo el contenido del maletín: pistola, dos baterías, cargador, manguera, lanza, boquillas, botella de espuma y adaptador', 'El kit completo', 'Lanza, boquillas y espuma', 'Chorro fino o abanico, y jabón con la botella de espuma.'],
     ];
     return '<section class="bloque pi-sec pi-kit">'
       + '<span class="pi-cap">El kit</span>'
@@ -89,7 +90,8 @@
        pasan a un bloque propio DEBAJO de la foto, para que no tapen la pistola. */
     if (!hero.querySelector('.pi-heroPie')) {
       var pieH = document.createElement('div'); pieH.className = 'pi-heroPie';
-      ['.heroP__datos', '.heroP__ahorra', '.heroP__pie', '.heroP__wa'].forEach(function (s) { var e = hero.querySelector(s); if (e) pieH.appendChild(e); });
+      /* 09-10 James: "las letras no tapan el producto": el párrafo también baja; sobre la foto queda solo la nota y el titular */
+      ['.heroP__sub', '.heroP__datos', '.heroP__ahorra', '.heroP__pie', '.heroP__wa'].forEach(function (s) { var e = hero.querySelector(s); if (e) pieH.appendChild(e); });
       hero.appendChild(pieH);
     }
 
