@@ -64,36 +64,48 @@ body.p-pistola #prod .eyebrow, body.p-pistola .pi-cap {
 body.p-pistola #prod .eyebrow::before, body.p-pistola .pi-cap::before { display: none; }
 body.p-pistola #prod .sub2, body.p-pistola .pi-lead { font-size: 17px; line-height: 1.5; color: var(--pi-gris); margin: 6px 0 22px; max-width: 58ch; }
 
-/* ---------- HÉROE a pantalla completa: bloque OSCURO, foto con marco y sombra dura roja ---------- */
+/* ---------- HÉROE: la FOTO a pantalla completa y las LETRAS directamente encima (James 09-10: "como el foco") ----------
+   Titular arriba sobre la parte tranquila de la foto; datos, precio y botón abajo. Sin tarjeta. Foto vertical hero-pistola-v.webp. */
 body.p-pistola .heroP {
   --crema: #1E293B; --rosa: #334155; --rosaF: #DC2626; --tinta: #FFFFFF; --tinta2: #CBD5E1; --oro: #DC2626; --oroOsc: #B91C1C;
-  background: var(--pi-oscuro); color: #fff; padding: 18px 18px 30px; border-bottom: 6px solid var(--pi-rojo); min-height: 92svh;
+  position: relative; display: block; isolation: isolate; overflow: hidden;
+  background: var(--pi-oscuro); color: #fff; padding: 0; min-height: 0; border-bottom: 6px solid var(--pi-rojo);
 }
-body.p-pistola .heroP__marco { margin: 0 14px 0 0; background: transparent; overflow: visible; position: relative; }
-body.p-pistola .heroP__img { aspect-ratio: 1000 / 1000; object-fit: cover; object-position: 50% 42%; border: var(--pi-linea); box-shadow: var(--pi-sombraR); background: var(--pi-oscuro2); }
-body.p-pistola .heroP__fundido, body.p-pistola .heroP__luces { display: none; }
-body.p-pistola .heroP__txt { position: relative; z-index: 3; margin: 0; padding: 30px 0 0; background: transparent; border: 0; box-shadow: none; text-align: left; }
-body.p-pistola .heroP .heroP__h1 { font-family: var(--pi-tit); font-weight: 400; font-style: normal; font-size: clamp(56px, 17vw, 110px); line-height: .88; color: #fff; letter-spacing: .005em; text-transform: uppercase; text-align: left; margin: 0 0 16px; }
+/* la foto ocupa la pantalla (menos la cabecera) anclada abajo, así la pistola queda a la vista y el titular cae sobre la pared y el cielo */
+body.p-pistola .heroP__marco { position: relative; inset: auto; margin: 0; z-index: 0; overflow: hidden; background: var(--pi-oscuro); height: calc(100svh - 112px); min-height: 540px; max-height: 780px; }
+body.p-pistola .heroP__img { width: 100%; height: 100%; aspect-ratio: auto; max-height: none; object-fit: cover; object-position: 58% 100%; border: 0; box-shadow: none; }
+body.p-pistola .heroP__fundido {
+  display: block; position: absolute; inset: 0; height: auto; z-index: 1; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(15,23,42,.80) 0%, rgba(15,23,42,.46) 26%, rgba(15,23,42,0) 50%, rgba(15,23,42,0) 80%, rgba(30,41,59,.92) 100%);
+}
+body.p-pistola .heroP__luces { display: none; }
+body.p-pistola .heroP__txt {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 3; display: block; min-height: 0;
+  margin: 0; padding: 18px 18px 0; background: transparent; border: 0; box-shadow: none; text-align: left;
+}
+/* el bloque de datos, precio y botón, DEBAJO de la foto (lo arma pistola.js) */
+body.p-pistola .pi-heroPie { position: relative; z-index: 3; padding: 14px 18px 26px; background: var(--pi-oscuro); }
+body.p-pistola .heroP .heroP__h1 { font-family: var(--pi-tit); font-weight: 400; font-style: normal; font-size: clamp(50px, 14.5vw, 96px); line-height: .9; color: #fff; letter-spacing: .005em; text-transform: uppercase; text-align: left; margin: 0 0 14px; text-shadow: 0 2px 0 rgba(15,23,42,.55), 0 0 28px rgba(15,23,42,.7); }
 body.p-pistola .heroP .heroP__h1 b, body.p-pistola .hCas__w.es-oro .hCas__l { color: var(--pi-rojo); font-weight: 400; font-style: normal; }
-body.p-pistola #prod .heroP__sub { font-size: 17px; line-height: 1.5; color: #CBD5E1; text-align: left; max-width: 46ch; margin: 0 0 20px; }
+body.p-pistola #prod .heroP__sub { font-size: 16.5px; line-height: 1.5; font-weight: 600; color: #F1F5F9; text-align: left; max-width: 40ch; margin: 0 0 20px; text-shadow: 0 1px 0 rgba(15,23,42,.6), 0 0 18px rgba(15,23,42,.8); }
 body.p-pistola .heroP__kicker { font: 700 12px var(--pi-txt); letter-spacing: .18em; text-transform: uppercase; color: #fff; background: var(--pi-rojo); border: 2px solid #fff; padding: 8px 12px; margin-bottom: 18px; box-shadow: none; }
 body.p-pistola .heroP__kicker i { background: #fff; border-radius: 0; width: 8px; height: 8px; }
 body.p-pistola .heroP__nota { background: #fff; color: var(--pi-tinta); border: 2px solid #fff; padding: 8px 12px; box-shadow: none; margin-bottom: 18px; }
 body.p-pistola .heroP__nota b, body.p-pistola .heroP__nota a { color: var(--pi-tinta); font-family: var(--pi-txt); }
 body.p-pistola .heroP__nota svg { fill: var(--pi-rojo); }
 /* la FRANJA DE PROPUESTA DE VALOR del patrón: los tres datos en una sola tira con bordes */
-body.p-pistola .heroP__datos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 0 0 20px; border: 2px solid #fff; }
+body.p-pistola .heroP__datos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 0 0 16px; border: 2px solid #fff; background: transparent; }
 body.p-pistola .heroP__dato { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 10px; white-space: normal; font: 700 12.5px/1.2 var(--pi-txt); text-transform: uppercase; letter-spacing: .04em; color: #fff; background: transparent; border: 0; border-right: 2px solid #fff; }
 body.p-pistola .heroP__dato:last-child { border-right: 0; }
 body.p-pistola .heroP__dato svg { width: 20px; height: 20px; color: var(--pi-rojo); }
 body.p-pistola .heroP__dato--oro { background: var(--pi-rojo); }
 body.p-pistola .heroP__dato--oro svg { color: #fff; }
-body.p-pistola .heroP__ahorra { background: transparent; border: 2px solid var(--pi-rojo); color: #fff; padding: 10px 12px; margin-bottom: 18px; }
+body.p-pistola .heroP__ahorra { background: transparent; border: 2px solid var(--pi-rojo); color: #fff; padding: 10px 12px; margin-bottom: 16px; }
 body.p-pistola .heroP__ahorra b, body.p-pistola .heroP__ahorra svg { color: #fff; }
 body.p-pistola .heroP__pie { flex-direction: column; align-items: stretch; gap: 14px; }
 body.p-pistola .heroP__precio { display: flex; align-items: baseline; gap: 10px; }
 body.p-pistola .heroP__precio span { display: inline; font: 700 12px var(--pi-txt); letter-spacing: .16em; color: #CBD5E1; }
-body.p-pistola .heroP__precio b { font: 400 54px/1 var(--pi-tit); color: #fff; font-variant-numeric: tabular-nums; }
+body.p-pistola .heroP__precio b { font: 400 54px/1 var(--pi-tit); color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
 body.p-pistola .heroP__wa { color: #fff; font-family: var(--pi-txt); font-weight: 700; justify-content: flex-start; }
 html.ba-lista body.p-pistola .heroP__img { animation: piAparece .35s linear both; }
 @keyframes piAparece { from { opacity: 0; } to { opacity: 1; } }
@@ -178,7 +190,8 @@ body.p-pistola .pi-pasos { display: grid; gap: 26px 18px; margin: 14px 10px 0 0;
 @media (min-width: 768px) { body.p-pistola .pi-pasos { grid-template-columns: repeat(3, 1fr); } }
 body.p-pistola .pi-paso { margin: 0; background: #fff; border: var(--pi-linea); box-shadow: var(--pi-sombra); }
 body.p-pistola .pi-paso:nth-child(2) { box-shadow: var(--pi-sombraR); }
-body.p-pistola .pi-paso-img { overflow: hidden; aspect-ratio: 1 / 1; background: #fff; border-bottom: var(--pi-linea); }
+/* la foto se ve ENTERA (James 09-10: "esa imagen no se ve"): proporción real 1000x1242, sin recorte */
+body.p-pistola .pi-paso-img { overflow: hidden; aspect-ratio: 1000 / 1242; background: #fff; border-bottom: var(--pi-linea); }
 body.p-pistola .pi-paso-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
 body.p-pistola .pi-paso figcaption { padding: 14px 16px 16px; display: grid; gap: 4px; }
 body.p-pistola .pi-paso figcaption i { justify-self: start; font: 700 11.5px var(--pi-txt); letter-spacing: .16em; text-transform: uppercase; color: #fff; background: var(--pi-rojo); padding: 4px 7px; font-style: normal; }
@@ -355,11 +368,16 @@ body.p-pistola #prod [data-rv].in { transform: none; }
 
 /* ---------- escritorio: el héroe se parte en dos, asimétrico ---------- */
 @media (min-width: 900px) {
-  body.p-pistola .heroP { grid-template-columns: 1fr 1.1fr; gap: 56px; padding: 40px 56px 56px 40px; min-height: 680px; }
-  body.p-pistola .heroP__marco { margin: 0; height: auto; }
-  body.p-pistola .heroP__img { aspect-ratio: 1000 / 1000; height: auto; max-height: none; }
-  body.p-pistola .heroP__txt { padding: 0; }
-  body.p-pistola .heroP .heroP__h1 { font-size: clamp(80px, 8vw, 128px); }
+  body.p-pistola .heroP { display: block; grid-template-columns: none; gap: 0; padding: 0; min-height: 0; }
+  body.p-pistola .heroP__marco { position: relative; inset: auto; margin: 0; height: 720px; max-height: 720px; }
+  body.p-pistola .heroP__img { aspect-ratio: auto; height: 100%; object-position: 50% 70%; }
+  body.p-pistola .heroP__fundido { inset: 0; width: auto; height: auto; background: linear-gradient(to right, rgba(15,23,42,.86) 0%, rgba(15,23,42,.6) 40%, rgba(15,23,42,.05) 68%, rgba(15,23,42,0) 100%), linear-gradient(to bottom, rgba(15,23,42,0) 80%, rgba(30,41,59,.92) 100%); }
+  body.p-pistola .heroP__txt { position: absolute; top: 0; left: 0; right: 0; width: 100%; max-width: 1080px; margin: 0 auto; min-height: 0; padding: 56px 40px 0; }
+  body.p-pistola .heroP .heroP__h1 { font-size: clamp(72px, 7.5vw, 120px); max-width: 11ch; }
+  body.p-pistola #prod .heroP__sub { max-width: 44ch; }
+  body.p-pistola .pi-heroPie { max-width: 1080px; margin: 0 auto; padding: 18px 40px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; align-items: center; }
+  body.p-pistola .heroP__datos { margin: 0; }
+  body.p-pistola .heroP__ahorra { margin: 0; }
   body.p-pistola .heroP__pie { flex-direction: row; align-items: center; gap: 28px; }
   body.p-pistola .heroP__cta { width: auto !important; flex: 1; min-width: 300px; }
   body.p-pistola #prod .formcard { max-width: 960px; margin: 0 auto; }

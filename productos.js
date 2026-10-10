@@ -612,7 +612,7 @@ window.PRODUCTOS = [
     video: 'img/pistola-ficha.mp4?v=1',
 
     hero: {
-      img: 'img/hero-pistola.webp?v=1',
+      img: 'img/hero-pistola-v.webp?v=1',   /* 09-10 James: foto GRANDE a pantalla completa con las letras encima, como el foco */
       kicker: 'Lanzamiento en España',
       titulo: '¿El coche lleno de barro<br><b>y sin manguera a mano?</b>',
       sub: 'Pistola de alta presión sin cables, con dos baterías de 48 V. Coge el agua de un cubo, una garrafa o el grifo y limpia el coche, la terraza o la bici donde estés.',

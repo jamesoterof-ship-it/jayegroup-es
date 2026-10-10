@@ -85,6 +85,14 @@
       document.head.appendChild(l);
     }
 
+    /* HÉROE como el foco (James 09-10): la foto a pantalla completa con el titular ENCIMA; los datos, el precio y el botón
+       pasan a un bloque propio DEBAJO de la foto, para que no tapen la pistola. */
+    if (!hero.querySelector('.pi-heroPie')) {
+      var pieH = document.createElement('div'); pieH.className = 'pi-heroPie';
+      ['.heroP__datos', '.heroP__ahorra', '.heroP__pie', '.heroP__wa'].forEach(function (s) { var e = hero.querySelector(s); if (e) pieH.appendChild(e); });
+      hero.appendChild(pieH);
+    }
+
     var hijos = [].slice.call(prod.children);
     var antesDespues = prod.querySelector('section.bloque.ba-sec');
     var queTrae = prod.querySelector('.form-sec');
