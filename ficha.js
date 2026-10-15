@@ -225,6 +225,33 @@
             sombra: '29,90,140' },
     opciones: [{ cant: 1, precio: 9500 }, { cant: 2, precio: 17500 }] };
   var UPSELLS = {
+    /* 15-10 ESPAÑA · Spray de arañazos -> Aspirador de coche portátil 3 en 1 (Dropi PRO 408, pack en promoción PACKREC-86,
+       3,15 € + IVA = 3,81 €). Precio de James: costo con IVA + 7,50 € = 11,31 €. Va en la MISMA caja (Dropi PRO cobra un solo
+       envío por pedido). Diseño de la skill ui-ux-pro-max (15-10): tarjeta oscura #1E293B/#334155, botón verde #22C55E,
+       Plus Jakarta Sans; marco del verde Wadeo del propio aspirador. Un solo producto (James: "solamente sería un producto"). */
+    aranazos: { nombre: 'Aspirador de coche 3 en 1',
+      webhook: 'https://n8n-production-8a42.up.railway.app/webhook/upsell-aspirador-es',
+      foto: 'img/upsell-aspirador.webp?v=2',
+      anuncio: { titulo: 'Deja el interior como nuevo',
+        puntos: ['Aspira migas, polvo y pelos', 'Sopla el polvo del salpicadero', 'Infla colchonetas y flotadores', 'Inalámbrico, cabe en la guantera'] },
+      tema: { osc: '#1E293B', med: '#334155', btnA: '#15803D', btnB: '#22C55E',
+              texto: '#0F172A', borde: '#E2E8F0', suave: '#F8FAFC', foto: '#ffffff',
+              sombra: '21,128,61', marco: '#1E5B3E', fuente: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fuenteUrl: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap' },
+      opciones: [{ cant: 1, precio: 11.31 }] },
+    /* 15-10 ESPAÑA · Pulsera antitabaco -> Blanqueador dental V34 Jaysuing (Dropi PRO 598, pack PACKREC-37, 1,19 € + IVA = 1,44 €).
+       Precio de James: costo con IVA + 7,50 € = 8,94 €. Es un CORRECTOR DE COLOR: se dice "más blancos al instante", nunca que
+       elimina manchas ni que blanquea para siempre. Skill 15-10: #334155/#475569, botón índigo #4338CA, Figtree; marco morado del frasco. */
+    pulsera: { nombre: 'Blanqueador dental V34',
+      webhook: 'https://n8n-production-8a42.up.railway.app/webhook/upsell-v34-es',
+      foto: 'img/upsell-v34.webp?v=1',
+      anuncio: { titulo: 'Recupera tu sonrisa',
+        puntos: ['Dientes más blancos al instante', 'Disimula el tono amarillento', 'Se usa como tu pasta de siempre', 'Frasco con dosificador, 30 ml'] },
+      tema: { osc: '#334155', med: '#475569', btnA: '#3730A3', btnB: '#4338CA',
+              texto: '#0F172A', borde: '#E2E8F0', suave: '#F8FAFC', foto: '#ffffff',
+              sombra: '67,56,202', marco: '#6D28D9', fuente: "'Figtree', system-ui, sans-serif",
+              fuenteUrl: 'https://fonts.googleapis.com/css2?family=Figtree:wght@500;700;800&display=swap' },
+      opciones: [{ cant: 1, precio: 8.94 }] },
     /* Cabezal de ducha -> Gel Sellador (Dropi 144587) */
     ducha: { nombre: 'Gel Sellador Invisible 300g',
       webhook: 'https://n8n-production-8a42.up.railway.app/webhook/upsell-sellador',
@@ -1809,7 +1836,9 @@
        misma guia, asi que no paga flete aparte.
        Solo en los productos que tienen upsell; en los demas no se ofrece. */
     var extra = (window.UPSELLS || {})[String(p.id)];
-    if (extra && !window._jgEnlace) abrirUpsell(g('fNombre').split(' ')[0], indic + tel, extra);
+    /* 15-10 James: "que eso no trabe ventas". Al que eligió PAGAR AHORA no se le abre: taparía el botón de PayPal y el
+       importe que cobra PayPal no llevaría el extra. Solo contra reembolso, y siempre DESPUÉS de que el pedido entró. */
+    if (extra && !window._jgEnlace && formaPago !== 'pre' && PAIS !== 'PT') abrirUpsell(g('fNombre').split(' ')[0], indic + tel, extra);
 
       try { localStorage.removeItem('jaye_pedido_pendiente'); } catch (e) {}
     }
@@ -2059,8 +2088,17 @@ function abrirUpsell(nombre, telWA, upsell) {
                       texto: '#10265A', borde: '#cfdcf2', suave: '#f6f9ff', foto: '#0a1020',
                       sombra: '18,48,110' };
 
+  /* 15-10: letra propia del upsell (si la trae) */
+  if (T.fuenteUrl && !document.querySelector('link[data-upfont]')) {
+    var lf = document.createElement('link'); lf.rel = 'stylesheet'; lf.href = T.fuenteUrl; lf.setAttribute('data-upfont', '1'); document.head.appendChild(lf);
+  }
   var st = document.createElement('style');
   st.textContent =
+    /* 15-10 James: "que tenga borde con el color del producto". Marco grueso del color del producto + letra de la skill */
+    (T.marco ? '.upcard{border:4px solid ' + T.marco + ';box-shadow:0 0 0 6px rgba(255,255,255,.08),0 30px 80px rgba(4,10,24,.55) !important}' : '')
+  + (T.fuente ? '.upcard,.upcard button{font-family:' + T.fuente + '}' : '')
+  + '.upcard .cab{border-bottom:3px solid ' + (T.marco || 'transparent') + '}'
+  +
     '@keyframes upIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}'
   + '@keyframes upFade{from{opacity:0}to{opacity:1}}'
   + '.upov{position:fixed;inset:0;background:rgba(4,10,24,.74);z-index:99999;display:flex;'
@@ -2146,7 +2184,8 @@ function abrirUpsell(nombre, telWA, upsell) {
   + '.upsi,.updos{transition:none}}';
   document.head.appendChild(st);
 
-  var uno = U.opciones[0].precio, dos = U.opciones[1].precio;
+  /* 15-10: un upsell puede traer UNA sola opción (España): sin el botón "dos" */
+  var uno = U.opciones[0].precio, dos = U.opciones[1] ? U.opciones[1].precio : 0;
   var ov = document.createElement('div'); ov.className = 'upov';
   ov.innerHTML = '<div class="upcard' + (U.anuncio ? ' upcon' : '') + '">'
     + '<button class="upx" id="upX" aria-label="Cerrar">&times;</button>'
@@ -2166,9 +2205,10 @@ function abrirUpsell(nombre, telWA, upsell) {
     +   '<small>lo pagas al recibir, junto con tu pedido</small></div>'
     + '<div class="upbtns">'
     +   '<button class="upsi" id="upSi">S\u00cd, AGREGARLO A MI PEDIDO</button>'
-    +   '<button class="updos" id="upDos">Mejor dos por ' + money(dos)
-    +     '<span class="ah">ahorra ' + money(uno * 2 - dos) + '</span></button>'
-    +   '<button class="upno" id="upNo">No gracias, solo mi pedido</button>'
+    +   (dos ? '<button class="updos" id="upDos">Mejor dos por ' + money(dos)
+    +     '<span class="ah">ahorra ' + money(uno * 2 - dos) + '</span></button>' : '')
+    /* 15-10: nada de "No gracias" (James 06-10); la salida queda como seguir con el pedido */
+    +   '<button class="upno" id="upNo">Seguir solo con mi pedido</button>'
     + '</div>'
     + '</div>';
   document.body.appendChild(ov);
@@ -2181,7 +2221,8 @@ function abrirUpsell(nombre, telWA, upsell) {
       body: JSON.stringify({ telefono: telWA, cantidad: String(cant) }) })
       .catch(function () { /* si falla el aviso, el pedido base ya esta a salvo */ })
       .then(function () {
-        fb('Purchase', { content_name: U.nombre, value: precio, currency:'EUR' });
+        /* 15-10 (igual que Chile 24-09): el extra se AGREGA al mismo pedido; Purchase contaba una compra que no existe */
+        fb('AddToCart', { content_name: U.nombre, value: precio, currency:'EUR' });
         ov.querySelector('.upcard').innerHTML =
           '<div class="cab"><h3>\u00a1Agregado a tu pedido!</h3></div>'
           + '<p class="sub">Tu ' + U.nombre + ' va en el mismo env\u00edo. '
@@ -2194,7 +2235,7 @@ function abrirUpsell(nombre, telWA, upsell) {
   ov.querySelector('#upX').addEventListener('click', cerrar);
   ov.addEventListener('click', function (e) { if (e.target === ov) cerrar(); });
   ov.querySelector('#upSi').addEventListener('click', function () { agregar(1, uno, this); });
-  ov.querySelector('#upDos').addEventListener('click', function () { agregar(2, dos, this); });
+  if (ov.querySelector('#upDos')) ov.querySelector('#upDos').addEventListener('click', function () { agregar(2, dos, this); });
 }
 
 /* ====== CARRITO ABANDONADO ======
