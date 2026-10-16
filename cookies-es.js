@@ -32,10 +32,12 @@
 
   var dec = null;
   try { dec = localStorage.getItem(KEY); } catch (e) {}
-  if (!dec) caja.hidden = false;
-
   var ok = document.getElementById('ckOk'), no = document.getElementById('ckNo');
   var pt = (document.documentElement.lang || '').indexOf('pt') === 0;
+  /* 16-10 James: "esa vaina de cookies siempre enreda a la gente": en España el aviso
+     ya NO sale al entrar (el píxel se sigue cargando arriba, igual que antes).
+     Portugal queda como estaba (James 15-10: "la de Portugal déjala quieta"). */
+  if (!dec && pt) caja.hidden = false;
   if (no) no.remove();
   if (ok) { ok.textContent = pt ? 'Entendido' : 'Entendido'; ok.addEventListener('click', function () { decidir('si'); }); }
 

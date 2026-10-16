@@ -255,9 +255,140 @@
     setTimeout(function () { els.forEach(function (e) { e.classList.add('se-ya'); }); }, 4000);
   }
 
+  /* ============================================================
+     RULETA DE REGALO (James 16-10, como la del desengrasante de Chile):
+     al entrar gira y SIEMPRE cae en la cinta. Todas las casillas son cosas
+     que el cliente igual recibe. La cinta (sellado 5 cm × 3 m, una por
+     pedido) la agrega el montador: aquí solo se cuenta. Nunca tapa la compra:
+     se cierra sola a los 5 s, con un toque o con Escape.
+     ============================================================ */
+  var FOTO_CINTA = 'img/sellador-regalo-cinta.webp?v=1';
+  /* James 16-10: UNA sola casilla de regalo (la de arriba, donde siempre cae); el resto, lo que igual recibe */
+  var CASILLAS = ['Cinta de regalo', 'Envío gratis', 'Pago al recibir', 'Entrega a domicilio', 'Llega en 24-48 h', 'Ayuda por WhatsApp'];
+  function guarda(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function lee(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  function rueda() {
+    var n = CASILLAS.length, paso = 360 / n, out = '';
+    CASILLAS.forEach(function (t, i) {
+      var a0 = (i * paso - 90 - paso / 2) * Math.PI / 180, a1 = ((i + 1) * paso - 90 - paso / 2) * Math.PI / 180;
+      var x0 = 130 + 120 * Math.cos(a0), y0 = 130 + 120 * Math.sin(a0), x1 = 130 + 120 * Math.cos(a1), y1 = 130 + 120 * Math.sin(a1);
+      var regalo = t === 'Cinta de regalo', oro = !regalo && i % 2 === 1;
+      out += '<path d="M130 130L' + x0.toFixed(1) + ' ' + y0.toFixed(1) + 'A120 120 0 0 1 ' + x1.toFixed(1) + ' ' + y1.toFixed(1) + 'Z" class="' + (regalo ? 'se-r-gana' : (oro ? 'se-r-a' : 'se-r-b')) + '"/>';
+      var p = t.split(' '), med = Math.ceil(p.length / 2);
+      out += '<g transform="rotate(' + (i * paso) + ' 130 130)"><text x="130" y="52" text-anchor="middle" class="se-r-txt' + (regalo ? ' se-r-txt-gana' : '') + (oro ? ' se-r-txt-osc' : '') + '">'
+        + '<tspan x="130" dy="0">' + p.slice(0, med).join(' ') + '</tspan><tspan x="130" dy="15">' + p.slice(med).join(' ') + '</tspan></text></g>';
+    });
+    return '<svg class="se-r-rueda" viewBox="0 0 260 260" role="img" aria-label="Ruleta de regalo">' + out
+      + '<circle cx="130" cy="130" r="22" class="se-r-eje"/></svg>';
+  }
+
+  /* James 16-10, "como el desengrasante": al tocar donde sea el regalo desaparece ENSEGUIDA, la primera vez
+     el cliente queda arriba en el héroe (no se le manda a comprar) y queda el circulito "¡Ganaste tu regalo!" */
+  var caja = null, cierre = 0, primera = false, festejo = 0;
+  function cerrar() {
+    clearTimeout(cierre); clearInterval(festejo);
+    if (!caja) return;
+    caja.classList.remove('se-r-abierta');
+    caja.hidden = true;
+    document.removeEventListener('keydown', teclas);
+    insignia();
+    if (primera) { primera = false; window.scrollTo({ top: 0, behavior: CALMA ? 'auto' : 'smooth' }); }
+  }
+  /* burbujas de festejo que salen volando del centro cuando gana */
+  function burbujas(cuantas) {
+    if (CALMA) return;
+    for (var i = 0; i < cuantas; i++) {
+      var s = document.createElement('span'), an = Math.random() * 6.28, d = 120 + Math.random() * 200, t = 8 + Math.random() * 16;
+      s.className = 'se-r-pop';
+      s.style.cssText = 'left:50%;top:45%;width:' + t + 'px;height:' + t + 'px;--x:' + (Math.cos(an) * d).toFixed(0) + 'px;--y:' + (Math.sin(an) * d).toFixed(0) + 'px;animation-delay:' + (Math.random() * .2).toFixed(2) + 's';
+      document.body.appendChild(s);
+      setTimeout(function (el) { el.remove(); }, 1700, s);
+    }
+  }
+  function teclas(ev) { if (ev.key === 'Escape') cerrar(); }
+  function abrir(modo) {
+    if (!document.getElementById('se-r-letra')) {
+      /* letras de la ventana: las que propuso ui-ux-pro-max para la ruleta (16-10) */
+      var lr = document.createElement('link');
+      lr.id = 'se-r-letra'; lr.rel = 'stylesheet';
+      lr.href = 'https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Raleway:wght@500;600;700&display=swap';
+      document.head.appendChild(lr);
+    }
+    if (!caja) {
+      caja = document.createElement('div');
+      caja.className = 'se-r'; caja.setAttribute('role', 'dialog'); caja.setAttribute('aria-modal', 'true'); caja.setAttribute('aria-label', 'Tu regalo');
+      caja.addEventListener('click', function (e) {
+        if (e.target.closest('.se-r-x')) { cerrar(); return; }
+        if (caja.dataset.modo === 'ruleta') girar(); else cerrar();
+      });
+      document.body.appendChild(caja);
+    }
+    caja.dataset.modo = modo;
+    if (modo === 'ruleta') {
+      caja.innerHTML = '<div class="se-r-tarjeta"><button type="button" class="se-r-x" aria-label="Cerrar">×</button><span class="se-r-rot">Solo por entrar</span>'
+        + '<h3>Gira y descubre tu regalo</h3><p>Todas las casillas ganan. Toca en cualquier parte.</p>'
+        + '<div class="se-r-marco"><span class="se-r-flecha" aria-hidden="true"></span>' + rueda() + '</div>'
+        + '<button type="button" class="cta se-r-btn">Girar</button></div>';
+    } else {
+      caja.innerHTML = '<div class="se-r-tarjeta se-r-premio"><button type="button" class="se-r-x" aria-label="Cerrar">×</button><span class="se-r-rot">¡Ganaste!</span>'
+        + '<h3>Una cinta impermeable de regalo</h3>'
+        + '<img src="' + FOTO_CINTA + '" alt="Rollo de cinta impermeable autoadhesiva plateada" width="600" height="600">'
+        + '<p>Cinta autoadhesiva de 5 cm × 3 m para tapar grietas y juntas antes de rociar el sellador. Va gratis con tu pedido.</p>'
+        + '<p class="se-r-nota">Toca en cualquier parte para seguir.</p></div>';
+      cierre = setTimeout(cerrar, 5000);
+      burbujas(26); clearInterval(festejo); if (!CALMA) festejo = setInterval(function () { burbujas(7); }, 900);
+    }
+    caja.hidden = false;
+    requestAnimationFrame(function () { caja.classList.add('se-r-abierta'); });
+    document.addEventListener('keydown', teclas);
+  }
+  function girar() {
+    var r = caja && caja.querySelector('.se-r-rueda');
+    if (!r || r.dataset.gira) return;
+    r.dataset.gira = '1';
+    var bt = caja.querySelector('.se-r-btn'); if (bt) { bt.disabled = true; bt.textContent = 'Girando…'; }
+    /* cae en la casilla 0 ("Cinta de regalo"), que está arriba, bajo la flecha */
+    var vueltas = CALMA ? 0 : 5;
+    r.style.transition = CALMA ? 'none' : 'transform 3.2s cubic-bezier(.17,.67,.21,1)';
+    r.style.transform = 'rotate(' + (vueltas * 360) + 'deg)';
+    setTimeout(function () { guarda('se_gano_cinta', '1'); primera = true; abrir('premio'); insignia(); }, CALMA ? 200 : 3400);
+  }
+
+  /* circulito flotante con el icono del regalo (como el desengrasante): vuelve a mostrar el premio */
+  var bd = null, pedido = false;
+  function insignia() {
+    if (!lee('se_gano_cinta') || pedido) return;
+    if (!bd) {
+      bd = document.createElement('button');
+      bd.type = 'button'; bd.className = 'se-r-insignia'; bd.setAttribute('aria-label', 'Ver tu regalo');
+      bd.innerHTML = '<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>Tu regalo</span>';
+      bd.addEventListener('click', function () { abrir('premio'); });
+      document.body.appendChild(bd);
+    }
+    bd.hidden = false;
+  }
+
+  /* al completar el pedido: "Tu cinta va con tu pedido" */
+  function avisoPedido() {
+    var pd = document.getElementById('pedir'); if (!pd || !('MutationObserver' in window)) return;
+    new MutationObserver(function () {
+      var ok = pd.querySelector('.listo'); if (!ok || ok.querySelector('.se-r-ok')) return;
+      ok.insertAdjacentHTML('beforeend', '<div class="se-r-ok"><img src="' + FOTO_CINTA + '" alt="" width="72" height="72"><div><b>Tu cinta de regalo va con tu pedido</b><span>Cinta impermeable de 5 cm × 3 m, gratis.</span></div></div>');
+      pedido = true; if (bd) bd.hidden = true;
+    }).observe(pd, { childList: true, subtree: true });
+  }
+
+  function ruleta() {
+    avisoPedido();
+    if (/[?&](sinruleta=1|pagar=)/.test(location.search)) return;
+    if (lee('se_gano_cinta')) { insignia(); return; }
+    setTimeout(function () { abrir('ruleta'); }, 1400);
+  }
+
   var n = 0;
   (function espera() {
-    if (montar()) { heroLluvia(); lineas(); suben(); return; }
+    if (montar()) { heroLluvia(); lineas(); suben(); ruleta(); return; }
     if (++n > 60) return;
     setTimeout(espera, 100);
   })();
