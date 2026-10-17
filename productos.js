@@ -170,6 +170,18 @@ window.PRODUCTOS = [
       sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
       precios: [26.50, 36.50, 46.50],
     },
+
+    /* ---- REGALO con ruleta (regalo.js), 17-10 James: crema de contorno de ojos,
+       una por pedido. La agrega el montador ES (pack PACKREC-76, 0,99 €). ---- */
+    regalo: {
+      casilla: 'Crema de regalo',
+      titulo: 'Una crema de contorno de ojos de regalo',
+      texto: 'Crema para el contorno de los ojos, en tubo de 15 g. Va gratis con tu pedido: una por pedido.',
+      foto: 'img/balsamo-regalo-crema.webp?v=1',
+      alt: 'Tubo y caja de la crema para el contorno de los ojos',
+      okTitulo: 'Tu crema de regalo va con tu pedido',
+      okSub: 'Crema para el contorno de los ojos, gratis.',
+    },
   },
 
   /* ============================================================
