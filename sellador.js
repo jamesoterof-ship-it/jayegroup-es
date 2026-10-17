@@ -382,6 +382,8 @@
   function ruleta() {
     avisoPedido();
     if (/[?&](sinruleta=1|pagar=)/.test(location.search)) return;
+    /* ?ruleta=1: para revisarla aunque ese teléfono ya haya ganado (James 16-10 "no aparece") */
+    if (/[?&]ruleta=1/.test(location.search)) { try { localStorage.removeItem('se_gano_cinta'); } catch (e) {} }
     if (lee('se_gano_cinta')) { insignia(); return; }
     setTimeout(function () { abrir('ruleta'); }, 1400);
   }
