@@ -1274,22 +1274,5 @@ window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-t
   <div class="ck-btns"><button type="button" class="ck-no" id="ckNo">Rechazar</button><button type="button" class="ck-ok" id="ckOk">Aceptar</button></div>
 </div>
 <script src="cookies-es.js?v=4"></script>
-<script>/* 17-10 James: "esos links largos no los quiero". Cuando la ficha ya cargó (todos
-   los scripts leyeron ?p=), la barra muestra la dirección corta /<producto>/ y se
-   conservan los demás datos del enlace (cmp, fbclid…). Recargar /<producto>/ vuelve aquí. */
-(function () {
-  var CORTAS = ['balsamo', 'ducha', 'sellador', 'aranazos', 'pulsera', 'pistola'];
-  function acorta() {
-    try {
-      var q = new URLSearchParams(location.search), id = q.get('p');
-      if (CORTAS.indexOf(id) < 0) return;
-      q.delete('p');
-      var resto = q.toString();
-      history.replaceState(history.state, '', '/' + id + '/' + (resto ? '?' + resto : '') + location.hash);
-    } catch (e) {}
-  }
-  if (document.readyState === 'complete') setTimeout(acorta, 1500);
-  else window.addEventListener('load', function () { setTimeout(acorta, 1500); });
-})();</script>
 </body>
 </html>
