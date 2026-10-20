@@ -40,11 +40,30 @@ body.p-gafas #prod .eyebrow::before, body.p-gafas .gm-rot::before {
   content: ''; width: 22px; height: 2px; background: var(--gm-terra2); border-radius: 2px;
 }
 
-/* ---------- héroe ---------- */
-body.p-gafas .heroP .heroP__h1 { color: var(--gm-tinta); font-weight: 700; font-style: normal; }
-body.p-gafas .heroP .heroP__h1 .hCas__l { font-style: normal; }
-body.p-gafas .heroP .heroP__h1 .hCas__w.es-oro .hCas__l,
-html.ba-lista body.p-gafas .hCas__w.es-oro .hCas__l { color: var(--gm-terra); -webkit-text-fill-color: var(--gm-terra); font-weight: 800; }
+/* ---------- héroe: titular ENCIMA de la foto, con la cascada de letras (James 20-10) ---------- */
+body.p-gafas .heroP__marco { position: relative; }
+body.p-gafas .gm-heroSombra {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(15, 23, 42, .82) 0%, rgba(15, 23, 42, .55) 24%, rgba(15, 23, 42, 0) 46%);
+}
+body.p-gafas .gm-heroTit {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+  padding: 20px 16px 0; text-align: center;
+}
+body.p-gafas .gm-heroTit .heroP__nota, body.p-gafas .gm-heroTit .heroP__kicker { margin: 0 auto 12px; }
+body.p-gafas .gm-heroTit .heroP__h1 {
+  margin: 0; color: var(--gm-blanco); font-weight: 800; font-style: normal;
+  font-size: clamp(34px, 9.6vw, 62px); line-height: 1.04; letter-spacing: -0.02em;
+  text-shadow: 0 2px 18px rgba(15, 23, 42, .55);
+}
+body.p-gafas .gm-heroTit .hCas__l { font-style: normal; color: var(--gm-blanco); -webkit-text-fill-color: var(--gm-blanco); }
+body.p-gafas .gm-heroTit .hCas__w.es-oro {
+  background: var(--gm-terra2); border-radius: 8px; padding: 0 .14em; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  text-shadow: none;
+}
+body.p-gafas .gm-heroTit .hCas__w.es-oro .hCas__l,
+html.ba-lista body.p-gafas .gm-heroTit .hCas__w.es-oro .hCas__l { color: var(--gm-blanco); -webkit-text-fill-color: var(--gm-blanco); }
+@media (min-width: 768px) { body.p-gafas .gm-heroTit { padding-top: 36px; } }
 body.p-gafas .heroP__kicker { font-family: 'Outfit', sans-serif; letter-spacing: .12em; }
 body.p-gafas .heroP__kicker i { background: var(--gm-verde); }
 body.p-gafas .heroP__dato { font-family: 'Work Sans', sans-serif; }
@@ -176,6 +195,30 @@ body.p-gafas .gm-promo { margin: 18px auto 6px; max-width: 460px; }
 body.p-gafas .gm-promo img { width: 100%; height: auto; display: block; border-radius: 20px; border: 1px solid var(--gm-linea); }
 body.p-gafas #prod .precioTop { color: var(--gm-terra); font-family: 'Outfit', sans-serif; }
 body.p-gafas #prod .arriba2 .datos h1 { font-weight: 700; }
+
+/* ---------- formulario: pasos y forma de pago (cada página trae los suyos; sin esto los iconos salían gigantes) ---------- */
+body.p-gafas #prod .form { background: var(--gm-suave); }
+body.p-gafas #prod .pasoRot { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font: 700 15px 'Outfit', sans-serif; color: var(--gm-tinta); }
+body.p-gafas #prod .pasoRot:first-of-type { margin-top: 4px; }
+body.p-gafas #prod .pasoRot b { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--gm-terra); color: var(--gm-blanco); font-size: 13px; }
+body.p-gafas #prod .pagoSel { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 4px; }
+body.p-gafas #prod .pagoOp {
+  position: relative; display: grid; grid-template-areas: 'ico' 'tit' 'pr' 'sub' 'logos'; align-content: start; gap: 2px;
+  min-height: 132px; padding: 16px 12px 13px; border: 2px solid var(--gm-linea); border-radius: 16px;
+  background: var(--gm-blanco); font: inherit; color: var(--gm-tinta); text-align: left; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; transition: border-color .2s ease, box-shadow .2s ease;
+}
+body.p-gafas #prod .pagoOp.sel { border-color: var(--gm-verde); background: var(--gm-crema); box-shadow: 0 0 0 3px rgba(5, 150, 105, .16); }
+body.p-gafas #prod .pagoOp:focus-visible { outline: 3px solid var(--gm-terra); outline-offset: 3px; }
+body.p-gafas #prod .pagoOp__ico { grid-area: ico; margin-bottom: 4px; }
+body.p-gafas #prod .pagoOp__ico svg { width: 26px; height: 26px; fill: none; stroke: var(--gm-gris); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+body.p-gafas #prod .pagoOp.sel .pagoOp__ico svg { stroke: var(--gm-verde); }
+body.p-gafas #prod .pagoOp__tit { grid-area: tit; font: 700 14px/1.25 'Outfit', sans-serif; color: var(--gm-tinta); }
+body.p-gafas #prod .pagoOp__pr { grid-area: pr; margin-top: 2px; font: 800 24px/1.1 'Outfit', sans-serif; font-variant-numeric: tabular-nums; color: var(--gm-tinta); }
+body.p-gafas #prod .pagoOp__sub { grid-area: sub; margin-top: 3px; font-size: 12px; line-height: 1.35; color: var(--gm-gris); }
+body.p-gafas #prod .pagoOp__logos { grid-area: logos; }
+body.p-gafas #prod .pagoOp__logos img { height: 14px; width: auto; }
+body.p-gafas #prod .pagoOp__cinta { position: absolute; top: -10px; right: 10px; padding: 3px 9px; border-radius: 999px; background: var(--gm-verde); color: #000000; font: 700 11px 'Outfit', sans-serif; white-space: nowrap; }
 
 /* ---------- entradas en fundido ---------- */
 body.p-gafas.gm-mueve .gm-entra { opacity: 0; transform: translateY(14px); transition: opacity .3s ease-out, transform .3s ease-out; transition-delay: calc(var(--i, 0) * 50ms); }

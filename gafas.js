@@ -153,6 +153,21 @@
       document.head.appendChild(l);
     }
 
+    /* James 20-10: el titular va ENCIMA de la foto del héroe, con su efecto de cascada (las letras de .hCas caen al
+       volver a entrar en la página). Arriba la foto es azul oscuro y vacía: ahí caben las estrellas y el titular. */
+    var marco = hero.querySelector('.heroP__marco'), h1 = hero.querySelector('.heroP__h1');
+    if (marco && h1 && !marco.querySelector('.gm-heroTit')) {
+      var tit = document.createElement('div');
+      tit.className = 'gm-heroTit';
+      var arribaH = hero.querySelector('.heroP__nota') || hero.querySelector('.heroP__kicker');
+      if (arribaH) tit.appendChild(arribaH);
+      tit.appendChild(h1);
+      var sombra = document.createElement('div');
+      sombra.className = 'gm-heroSombra'; sombra.setAttribute('aria-hidden', 'true');
+      marco.appendChild(sombra);
+      marco.appendChild(tit);
+    }
+
     var hijos = [].slice.call(prod.children);
     var antesDespues = prod.querySelector('section.bloque.ba-sec');
     var ventajas = prod.querySelector('.form-sec');
