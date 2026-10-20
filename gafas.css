@@ -59,6 +59,11 @@ body.p-gafas #prod :is(.btn-write, .masRs) { background: transparent; color: var
 body.p-gafas #prod .ini { background: var(--gm-apagado); color: var(--gm-texto); }
 body.p-gafas #prod :is(.promo-precio, .free, .precioTop) { color: var(--gm-azul); font-family: var(--gm-mono); }
 body.p-gafas #prod .cuenta > div { border-color: var(--gm-azul); }
+/* 20-10 James "arregla esto urgente": las etiquetas de la garantía salían blancas con letra blanca */
+body.p-gafas #prod .gar-chips span {
+  background: var(--gm-tarjeta) !important; color: var(--gm-texto) !important; border: 1px solid var(--gm-azul) !important;
+  box-shadow: var(--gm-glow) !important; font-family: var(--gm-mono); text-shadow: none;
+}
 body.p-gafas #prod :is(.cuenta b, .res b) { color: var(--gm-azul); font-family: var(--gm-mono); text-shadow: var(--gm-glow); }
 body.p-gafas #prod :is(.cuenta span, .res span) { color: var(--gm-texto2); }
 body.p-gafas #prod .cod-badge { background: var(--gm-apagado); color: var(--gm-texto); border: var(--gm-linea); }
