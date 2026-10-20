@@ -435,7 +435,7 @@
     /* El precio grande es el del PACK DE 2. Hay que decirlo debajo o el cliente
        cree que ese valor es por una sola unidad. Se muestra tambien cuanto le
        sale cada una, que es el argumento que cierra el pack. */
-    + (kPop.cant > 1 ? '<p class="packDe" id="pcPack">' + esc(kPop.texto) + ' · ' + pesos(Math.round(kPop.precio / kPop.cant)) + ' cada ' + (p.unidad || 'una') + '</p>' : '<div style="height:10px"></div>')
+    + (kPop.cant > 1 ? '<p class="packDe" id="pcPack">' + esc(kPop.texto) + ' · ' + pesos(Math.round(kPop.precio / kPop.cant * 100) / 100) + ' cada ' + (p.unidad || 'una') + '</p>' : '<div style="height:10px"></div>')
     /* LA DESCRIPCIÓN, aquí mismo (James, 25-09: "donde pusiste la estrella
        abajo, ponle la descripción del producto"). Antes vivía mucho más abajo
        y el cliente llegaba al precio sin saber todavía qué es esto.
@@ -497,7 +497,7 @@
       + '<span class="promo-antes">' + pesos(antes) + '</span>'
       + '<span class="promo-precio">' + pesos(k.precio) + '</span>'
       + '<span class="promo-off">-' + off + '%</span></div>'
-      + '<p class="promo-uni">' + pesos(Math.round(k.precio / k.cant)) + ' cada ' + (p.unidad || 'una')
+      + '<p class="promo-uni">' + pesos(Math.round(k.precio / k.cant * 100) / 100) + ' cada ' + (p.unidad || 'una')
       + ' · <b>ahorras ' + pesos(ahorra) + '</b></p>'
       + '<div class="cuenta"><div><b id="cH">--</b><span>horas</span></div>'
       + '<div><b id="cM">--</b><span>min</span></div>'

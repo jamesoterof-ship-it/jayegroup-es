@@ -699,6 +699,104 @@ window.PRODUCTOS = [
       precios: [43.15, 76.45],
     },
   },
+
+  /* ============================================================
+     GAFAS MULTIFOCALES CON FILTRO AZUL · ESPAÑA (19-10-2026, James: "vamos activar los lentes").
+     Dropi PRO 2816 "Gafas antirayos azules multifocales autograduable mas funda", 1,79 € + IVA.
+     Modelo EXACTO: sin marco (lente al aire), patas negras, cristal transparente con reflejo azul,
+     funda blanda marrón. 🔴 NO es el de Colombia (TR90 por graduación, estuche rígido): aquí no se
+     elige graduación y no hay estuche rígido ni paño.
+     🔴 Nada de "corrige la vista", "cura" ni plazos: son gafas de lectura multifocales.
+     Concepto de la página de Colombia (cinta de frases + lupa sobre la letra, cifras, cerca y lejos),
+     diseño propio: gafas.css / gafas.js (ui-ux-pro-max 19-10, aprobado por James: terracota
+     #9A3412 / #C2410C, verde #059669, crema #FFFBEB, Outfit / Work Sans).
+     ============================================================ */
+  {
+    id: 'gafas', unidad: 'par', promo: 2,
+    dropiId: 2816,
+
+    nombre: 'Gafas Multifocales con Filtro Azul',
+    sub: 'Sin marco · de cerca y de lejos · con funda',
+    categoria: 'Salud y cuidado',
+    etiqueta: 'Lanzamiento en España',
+    etiquetaOro: false,
+
+    foto: 'img/gafas-letra.webp?v=1',
+    fotos: ['img/gafas-letra.webp?v=1', 'img/gafas-pantalla.webp?v=1', 'img/gafas-terraza.webp?v=1'],
+
+    hero: {
+      img: 'img/hero-gafas.webp?v=1',
+      kicker: 'Lanzamiento en España',
+      titulo: 'Vuelve a leer de cerca,<br><b>sin alejar el papel.</b>',
+      sub: 'Gafas multifocales sin marco: miras por abajo para leer y por arriba para ver de lejos, sin quitártelas. Con filtro de luz azul para el móvil y el ordenador.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Paga ahora o al recibir'],
+      ],
+    },
+    acento: '#059669',
+
+    desc: 'Las Gafas Multifocales con Filtro Azul son gafas de lectura sin marco: el cristal va al aire, sujeto solo por el puente y las patas, y por eso casi no pesan. El cristal es multifocal: la parte de abajo es para leer de cerca y la de arriba para mirar más lejos, así no tienes que quitártelas y ponértelas cada vez que levantas la vista. Llevan filtro de luz azul, más cómodo delante del móvil, la tablet o el ordenador. Cada par viene con su funda blanda.',
+
+    puntos: [
+      'Multifocales: de cerca por abajo, de lejos por arriba',
+      'Filtro de luz azul para el móvil y el ordenador',
+      'Sin marco: ligeras, casi no se notan',
+      'Cada par con su funda · el pack de 2 es el más pedido',
+    ],
+
+    formulaRotulo: 'Lo que tienen',
+    formulaTitulo: 'Pensadas para llevarlas todo el día.',
+    formulaSub: 'Ligeras, cómodas y sin quitártelas a cada rato.',
+    formula: [
+      ['libro', 'Leer de cerca', 'El periódico, el móvil, la receta o el precio de la etiqueta, mirando por la parte de abajo.'],
+      ['ojo', 'Mirar de lejos', 'Levantas la vista por la parte de arriba y sigues viendo la tele o la calle.'],
+      ['rayo', 'Filtro de luz azul', 'Más cómodas delante del móvil, la tablet y el ordenador.'],
+      ['pluma', 'Sin marco', 'El cristal va al aire: pesan muy poco y combinan con todo.'],
+    ],
+
+    comparaTitulo: '¿Por qué estas y no unas cualquiera?',
+    compara: [
+      'Multifocales: no hay que quitárselas para mirar lejos.',
+      'Sin marco: mucho más ligeras que unas de pasta.',
+      'Filtro de luz azul para las pantallas.',
+      'Cada par con su funda para llevarlas en el bolso.',
+    ],
+
+    preguntas: [
+      { q: '¿Tengo que elegir graduación?', a: 'No. Es un solo modelo multifocal para lectura: miras por la parte de abajo para leer de cerca y por la de arriba para ver más lejos. Si tienes una graduación alta o algún problema de vista, consulta con tu óptico.' },
+      { q: '¿Me sirven para el móvil y el ordenador?', a: 'Sí. Llevan filtro de luz azul, más cómodo cuando pasas rato delante de pantallas.' },
+      { q: '¿Qué viene en la caja?', a: 'Las gafas y una funda blanda para guardarlas. En el pack de 2 o de 3, cada par con su funda.' },
+      { q: '¿Cuesta acostumbrarse?', a: 'Como todas las multifocales, los primeros días hay que acostumbrarse a mirar por abajo para leer y por arriba para lo lejano. Después se usan sin pensar.' },
+      { q: '¿Por qué el pack de 2?', a: 'Es el más elegido: unas para casa y otras para el bolso o el coche, o un par para ti y otro para tu pareja.' },
+      { q: '¿Y si no me convencen?', a: 'Tienes 14 días desde que las recibes para devolverlas. Si llegan con algún fallo, nos escribes por WhatsApp y lo resolvemos.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: 'img/gafas-ba.webp?v=1',
+    antesDespuesSub: 'La misma carta del restaurante: antes borrosa, después con las gafas puestas.',
+
+    /* PRECIOS aprobados por James (opción A, 17-10-2026): 19,95 · 28,95 · 37,95.
+       Competencia contra reembolso en España: Avunora, tiendacontraentrega.es, tiendadcb a 29,95 el 2x1.
+       'antes' en 0: producto nuevo (Ley 7/1996 art. 20.1). */
+    packs: [
+      { cant: 1, precio: 19.95, antes: 0, texto: '1 par' },
+      { cant: 2, precio: 28.95, antes: 0, texto: '2 pares' },
+      { cant: 3, precio: 37.95, antes: 0, texto: '3 pares' },
+    ],
+    popular: 1,
+
+    /* Pago anticipado: −10 % como el resto de España. */
+    anticipado: {
+      pct: 10,
+      descuento: 2.00,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [17.95, 26.05, 34.15],
+    },
+  },
 ];
 
 /* ============================================================
@@ -728,4 +826,6 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* spray de arañazos, pago anticipado (−10 %), aprobados 02-10-2026 */
   18.99, 25.99, 37.79,
   /* pulsera antitabaco, aprobados 07-10-2026, y su pago anticipado −10 % (James 07-10: "pago anticipado con el menos 10 %") */
-  25.95, 37.95, 47.95, 23.35, 34.15, 43.15];
+  25.95, 37.95, 47.95, 23.35, 34.15, 43.15,
+  /* gafas multifocales 2816, aprobados 17-10-2026 (opción A) y su pago anticipado −10 % (37,95 y 34,15 ya están) */
+  19.95, 28.95, 17.95, 26.05];

@@ -1,0 +1,188 @@
+/* ============================================================
+   GAFAS MULTIFOCALES · ESPAÑA · estilos propios (19-10-2026)
+   ui-ux-pro-max corrida #21, aprobada por James ("dale"): Minimalism & Swiss Style.
+   Terracota #9A3412 / #C2410C · verde #059669 (botones) · crema #FFFBEB ·
+   tinta #0F172A · gris #475569 · Outfit (títulos) / Work Sans (texto).
+   Solo con body.p-gafas (lo pone gafas.js con ?p=gafas).
+   ============================================================ */
+body.p-gafas {
+  --gm-terra: #9A3412;
+  --gm-terra2: #C2410C;
+  --gm-verde: #059669;
+  --gm-crema: #FFFBEB;
+  --gm-tinta: #0F172A;
+  --gm-gris: #475569;
+  --gm-suave: #F8F2F0;
+  --gm-linea: #F2E6E2;
+  --gm-blanco: #FFFFFF;
+  background: var(--gm-crema);
+  color: var(--gm-tinta);
+  font-family: 'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+body.p-gafas #prod { background: var(--gm-crema); }
+body.p-gafas #prod p { font-family: 'Work Sans', system-ui, sans-serif; line-height: 1.6; }
+body.p-gafas #prod h1, body.p-gafas #prod h2, body.p-gafas #prod h3,
+body.p-gafas .gm-h2, body.p-gafas .heroP .heroP__h1 {
+  font-family: 'Outfit', system-ui, sans-serif;
+  letter-spacing: -0.01em;
+  color: var(--gm-tinta);
+}
+body.p-gafas #prod h2 em, body.p-gafas .gm-h2 em { font-style: normal; color: var(--gm-terra); }
+/* la plantilla pone los h2 en mayúsculas, en fila y con una rayita delante: aquí van en frase normal */
+body.p-gafas #prod h2 { display: block; text-transform: none; font-weight: 700; line-height: 1.12; }
+body.p-gafas #prod h2::before { content: none; display: none; }
+body.p-gafas #prod .eyebrow, body.p-gafas .gm-rot {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 12px/1 'Outfit', sans-serif; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--gm-terra2);
+}
+body.p-gafas #prod .eyebrow::before, body.p-gafas .gm-rot::before {
+  content: ''; width: 22px; height: 2px; background: var(--gm-terra2); border-radius: 2px;
+}
+
+/* ---------- héroe ---------- */
+body.p-gafas .heroP .heroP__h1 { color: var(--gm-tinta); font-weight: 700; font-style: normal; }
+body.p-gafas .heroP .heroP__h1 .hCas__l { font-style: normal; }
+body.p-gafas .heroP .heroP__h1 .hCas__w.es-oro .hCas__l,
+html.ba-lista body.p-gafas .hCas__w.es-oro .hCas__l { color: var(--gm-terra); -webkit-text-fill-color: var(--gm-terra); font-weight: 800; }
+body.p-gafas .heroP__kicker { font-family: 'Outfit', sans-serif; letter-spacing: .12em; }
+body.p-gafas .heroP__kicker i { background: var(--gm-verde); }
+body.p-gafas .heroP__dato { font-family: 'Work Sans', sans-serif; }
+
+/* ---------- botones: verde, texto oscuro (contraste 5,9:1) ---------- */
+body.p-gafas .heroP__cta, body.p-gafas #prod .cta, body.p-gafas #prod .gm-cta,
+body.p-gafas .btn-flota, body.p-gafas #stickycta button {
+  background: var(--gm-verde); color: #000000; border: 0;
+  font: 700 17px/1.2 'Outfit', sans-serif; letter-spacing: .01em;
+  border-radius: 14px; min-height: 52px;
+  box-shadow: 0 6px 0 -2px #000000;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  cursor: pointer; touch-action: manipulation;
+}
+body.p-gafas .heroP__cta:hover, body.p-gafas #prod .cta:hover, body.p-gafas #prod .gm-cta:hover,
+body.p-gafas .btn-flota:hover { filter: brightness(1.06); transform: translateY(-1px); }
+body.p-gafas .heroP__cta:active, body.p-gafas #prod .cta:active, body.p-gafas #prod .gm-cta:active {
+  transform: translateY(2px); box-shadow: 0 3px 0 -2px #000000;
+}
+body.p-gafas .heroP__cta:focus-visible, body.p-gafas #prod .cta:focus-visible, body.p-gafas #prod .gm-cta:focus-visible {
+  outline: 3px solid var(--gm-terra); outline-offset: 3px;
+}
+body.p-gafas #prod .gm-cta {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; max-width: 440px; margin: 26px auto 0; padding: 14px 22px;
+}
+body.p-gafas .gm-cta svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- 1 · la lectura: cinta + lupa + cifras ---------- */
+body.p-gafas .gm-lectura { background: var(--gm-blanco); border-bottom: 1px solid var(--gm-linea); padding: 0 0 26px; }
+body.p-gafas .gm-cinta { overflow: hidden; background: var(--gm-terra); color: var(--gm-crema); padding: 11px 0; }
+body.p-gafas .gm-cinta__va { display: flex; width: max-content; animation: gm-corre 48s linear infinite; }
+body.p-gafas .gm-cinta__va span { white-space: nowrap; padding-right: 6px; font: 500 14px/1 'Outfit', sans-serif; letter-spacing: .02em; }
+@keyframes gm-corre { to { transform: translateX(-50%); } }
+
+body.p-gafas .gm-lupa {
+  --gm-x: 50%; --gm-y: 50%; --gm-r: 56px;
+  position: relative; height: 150px; margin: 22px 16px 0; overflow: hidden;
+  border-radius: 18px; background: var(--gm-suave); border: 1px solid var(--gm-linea);
+  cursor: crosshair; touch-action: pan-y;
+}
+body.p-gafas .gm-letra {
+  position: absolute; inset: 0; margin: 0; padding: 14px 16px;
+  font: 400 13px/1.75 'Work Sans', sans-serif; color: var(--gm-tinta);
+  text-align: justify; user-select: none;
+}
+body.p-gafas #prod .gm-letra { font-size: 13px; line-height: 1.75; }
+body.p-gafas .gm-letra b { color: var(--gm-terra); font-weight: 600; }
+body.p-gafas .gm-letra--borrosa { filter: blur(2.6px); opacity: .7; }
+body.p-gafas .gm-letra--clara {
+  background: var(--gm-blanco);
+  font-size: 15.5px; letter-spacing: .01em;
+  clip-path: circle(var(--gm-r) at var(--gm-x) var(--gm-y));
+}
+body.p-gafas #prod .gm-letra--clara { font-size: 15.5px; }
+body.p-gafas .gm-lente {
+  position: absolute; left: var(--gm-x); top: var(--gm-y);
+  width: calc(var(--gm-r) * 2); height: calc(var(--gm-r) * 2);
+  transform: translate(-50%, -50%); border-radius: 50%;
+  border: 3px solid var(--gm-tinta);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, .85), 0 10px 24px rgba(15, 23, 42, .22);
+  pointer-events: none;
+}
+body.p-gafas .gm-lente::after {
+  content: ''; position: absolute; right: -26px; bottom: -14px; width: 34px; height: 7px;
+  background: var(--gm-tinta); border-radius: 4px; transform: rotate(38deg);
+}
+body.p-gafas #prod .gm-lupa__dice {
+  margin: 12px 16px 0; text-align: center; font-size: 15px; color: var(--gm-gris);
+}
+body.p-gafas .gm-lupa__dice b { color: var(--gm-tinta); }
+
+body.p-gafas .gm-cifras {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 22px 16px 0;
+}
+body.p-gafas .gm-cifras div {
+  background: var(--gm-crema); border: 1px solid var(--gm-linea); border-radius: 16px;
+  padding: 14px 10px; text-align: center;
+}
+body.p-gafas .gm-cifras b {
+  display: block; font: 800 42px/1 'Outfit', sans-serif; color: var(--gm-terra);
+}
+body.p-gafas .gm-cifras span { display: block; margin-top: 6px; font: 500 12.5px/1.35 'Work Sans', sans-serif; color: var(--gm-gris); }
+
+/* ---------- secciones propias ---------- */
+body.p-gafas .gm-sec { padding: 46px 16px; text-align: center; }
+body.p-gafas .gm-h2 { font-size: clamp(28px, 7vw, 40px); line-height: 1.1; font-weight: 700; margin: 12px 0 10px; }
+body.p-gafas #prod .gm-lead { max-width: 560px; margin: 0 auto; font-size: 17px; color: var(--gm-gris); }
+
+body.p-gafas .gm-cl { background: var(--gm-blanco); }
+body.p-gafas .gm-zonas {
+  max-width: 520px; margin: 26px auto 0; border-radius: 22px; overflow: hidden;
+  border: 2px solid var(--gm-tinta); text-align: left;
+}
+body.p-gafas .gm-zona { padding: 20px 20px 22px; display: grid; gap: 4px; }
+body.p-gafas .gm-zona--arriba { background: var(--gm-suave); border-bottom: 2px dashed var(--gm-terra2); }
+body.p-gafas .gm-zona--abajo { background: var(--gm-crema); }
+body.p-gafas .gm-zona i { font: 600 12px/1 'Outfit', sans-serif; font-style: normal; letter-spacing: .14em; text-transform: uppercase; color: var(--gm-terra2); }
+body.p-gafas .gm-zona b { font: 700 22px/1.2 'Outfit', sans-serif; color: var(--gm-tinta); }
+body.p-gafas #prod .gm-zona span { font-size: 16px; color: var(--gm-gris); }
+body.p-gafas #prod .gm-nota { max-width: 520px; margin: 16px auto 0; font-size: 13.5px; color: var(--gm-gris); }
+
+body.p-gafas .gm-usos { background: var(--gm-crema); }
+body.p-gafas .gm-fotos { display: grid; gap: 18px; max-width: 980px; margin: 26px auto 0; text-align: left; }
+body.p-gafas .gm-foto { margin: 0; background: var(--gm-blanco); border: 1px solid var(--gm-linea); border-radius: 20px; overflow: hidden; }
+body.p-gafas .gm-foto__img { aspect-ratio: 4 / 3; overflow: hidden; }
+body.p-gafas .gm-foto__img img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+body.p-gafas .gm-foto figcaption { padding: 16px 18px 20px; display: grid; gap: 4px; }
+body.p-gafas .gm-foto figcaption i { font: 600 12px/1 'Outfit', sans-serif; font-style: normal; letter-spacing: .14em; text-transform: uppercase; color: var(--gm-terra2); }
+body.p-gafas .gm-foto figcaption b { font: 700 21px/1.2 'Outfit', sans-serif; color: var(--gm-tinta); }
+body.p-gafas #prod .gm-foto figcaption span { font-size: 15.5px; color: var(--gm-gris); line-height: 1.5; }
+@media (min-width: 768px) {
+  body.p-gafas .gm-fotos { grid-template-columns: repeat(3, 1fr); }
+  body.p-gafas .gm-lupa { height: 170px; max-width: 980px; margin-left: auto; margin-right: auto; }
+  body.p-gafas .gm-cifras { max-width: 980px; margin-left: auto; margin-right: auto; }
+}
+
+/* ---------- secciones de la plantilla, con la paleta ---------- */
+body.p-gafas #prod .ba-sec, body.p-gafas #prod .cmp-sec { background: var(--gm-blanco); }
+body.p-gafas #prod .promo-sec, body.p-gafas #prod .form-sec { background: var(--gm-suave); }
+body.p-gafas #prod section.desc { background: var(--gm-crema); }
+body.p-gafas #prod .form-sec .ing { background: var(--gm-blanco); border: 1px solid var(--gm-linea); border-radius: 18px; }
+body.p-gafas #prod .form-sec .ing .cir { background: var(--gm-crema); border: 1px solid var(--gm-linea); }
+body.p-gafas #prod .form-sec .ing .cir svg { stroke: var(--gm-terra); }
+body.p-gafas #prod .form-sec .ing b { font-family: 'Outfit', sans-serif; color: var(--gm-tinta); }
+body.p-gafas #prod .cmp th.us { background: var(--gm-terra); color: var(--gm-blanco); font-family: 'Outfit', sans-serif; }
+body.p-gafas #prod .cmp .si svg { stroke: var(--gm-verde); }
+body.p-gafas .gm-promo { margin: 18px auto 6px; max-width: 460px; }
+body.p-gafas .gm-promo img { width: 100%; height: auto; display: block; border-radius: 20px; border: 1px solid var(--gm-linea); }
+body.p-gafas #prod .precioTop { color: var(--gm-terra); font-family: 'Outfit', sans-serif; }
+body.p-gafas #prod .arriba2 .datos h1 { font-weight: 700; }
+
+/* ---------- entradas en fundido ---------- */
+body.p-gafas.gm-mueve .gm-entra { opacity: 0; transform: translateY(14px); transition: opacity .3s ease-out, transform .3s ease-out; transition-delay: calc(var(--i, 0) * 50ms); }
+body.p-gafas.gm-mueve .gm-entra.gm-visto { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  body.p-gafas .gm-cinta__va { animation: none; }
+  body.p-gafas .gm-entra { opacity: 1 !important; transform: none !important; transition: none !important; }
+  body.p-gafas .heroP__cta, body.p-gafas #prod .cta, body.p-gafas #prod .gm-cta { transition: none; }
+}
