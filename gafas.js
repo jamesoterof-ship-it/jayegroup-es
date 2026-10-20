@@ -174,6 +174,7 @@
     var descripcion = prod.querySelector('section.desc');
     var oferta = prod.querySelector('.promo-sec');
     var compara = prod.querySelector('.cmp-sec');
+    var video = prod.querySelector('.vid-wrap');
     var tras = hijos[hijos.indexOf(arriba) + 1];
     if (tras && (tras.className || '').trim() !== 'bloque') tras = null;
 
@@ -187,6 +188,14 @@
     pon(antesDespues);
     var cl = nodo(bloqueCercaLejos()); pon(cl); cl.appendChild(botonPedir('Las quiero, pago al recibir'));
     var usos = nodo(bloqueUsos()); pon(usos); usos.appendChild(botonPedir('Pedir mis gafas'));
+    if (video) {
+      video.classList.add('gm-sec', 'gm-video');
+      video.insertAdjacentHTML('afterbegin', '<span class="gm-rot">En vídeo</span><h2 class="gm-h2">Así son <em>de cerca.</em></h2>'
+        + '<p class="gm-lead">Sin montura, con la zona de lectura abajo y el filtro que frena la luz azul.</p>');
+      var v = video.querySelector('video');
+      if (v) v.setAttribute('poster', 'img/gafas-ficha-poster.webp?v=1');
+      pon(video);
+    }
     pon(oferta); pon(ventajas); pon(compara); pon(descripcion);
 
     if (antesDespues) {

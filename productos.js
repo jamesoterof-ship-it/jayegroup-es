@@ -723,6 +723,8 @@ window.PRODUCTOS = [
 
     foto: 'img/gafas-letra.webp?v=1',
     fotos: ['img/gafas-letra.webp?v=1', 'img/gafas-pantalla.webp?v=1', 'img/gafas-terraza.webp?v=1'],
+    video: 'img/gafas-ficha.mp4?v=1',   /* 20-10 James "video": video del anuncio de AliExpress del MISMO modelo (1005006995827757),
+                                           horizontal; recortada la franja de arriba con el rótulo "Blue light test card". Sin sonido. */
 
     hero: {
       img: 'img/hero-gafas.webp?v=1',
