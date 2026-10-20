@@ -3,9 +3,8 @@
    Concepto de la página de Colombia (James 19-10: "el mismo concepto, diseño nuevo"):
    franja de letra pequeña que se lee nítida bajo la lupa, tres cifras grandes,
    "para qué sirven" con fotos, promoción, ventajas y comparativa.
-   Diseño ui-ux-pro-max 19-10, corrida #21 (aprobado por James "dale"): limpio y luminoso,
-   terracota #9A3412 / #C2410C, verde #059669 en los botones, crema #FFFBEB,
-   Outfit (títulos) / Work Sans (texto).
+   Diseño ui-ux-pro-max 20-10, corrida #25 (James: "DAEL"): HUD / Sci-Fi FUI, fondo #0B0B10, tarjeta #1E1E23,
+   texto #F8FAFC, acento azul #3B82F6, Exo / Roboto Mono. Nada de verde. Estilos en gafas.css.
    🔴 Producto Dropi PRO 2816: sin graduación para elegir, funda blanda. Nada de estuche
    rígido ni paño (eso era el de Colombia).
    Solo actúa con ?p=gafas. Si este archivo falla, la ficha se ve igual.
@@ -149,7 +148,7 @@
     if (!document.getElementById('gm-letras')) {
       var l = document.createElement('link');
       l.id = 'gm-letras'; l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap';
+      l.href = 'https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap';
       document.head.appendChild(l);
     }
 
@@ -166,6 +165,9 @@
       sombra.className = 'gm-heroSombra'; sombra.setAttribute('aria-hidden', 'true');
       marco.appendChild(sombra);
       marco.appendChild(tit);
+      /* la línea que escanea (HUD) recorre el alto real de la foto */
+      var alto = function () { marco.style.setProperty('--gm-alto', marco.clientHeight + 'px'); };
+      alto(); window.addEventListener('resize', alto);
     }
 
     var hijos = [].slice.call(prod.children);
@@ -193,7 +195,7 @@
       video.insertAdjacentHTML('afterbegin', '<span class="gm-rot">En vídeo</span><h2 class="gm-h2">Así son <em>de cerca.</em></h2>'
         + '<p class="gm-lead">Sin montura, con la zona de lectura abajo y el filtro que frena la luz azul.</p>');
       var v = video.querySelector('video');
-      if (v) v.setAttribute('poster', 'img/gafas-ficha-poster.webp?v=1');
+      if (v) v.setAttribute('poster', 'img/gafas-ficha-h-poster.webp?v=1');
       pon(video);
     }
     pon(oferta); pon(ventajas); pon(compara); pon(descripcion);

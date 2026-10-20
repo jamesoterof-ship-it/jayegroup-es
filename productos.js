@@ -708,8 +708,8 @@ window.PRODUCTOS = [
      elige graduación y no hay estuche rígido ni paño.
      🔴 Nada de "corrige la vista", "cura" ni plazos: son gafas de lectura multifocales.
      Concepto de la página de Colombia (cinta de frases + lupa sobre la letra, cifras, cerca y lejos),
-     diseño propio: gafas.css / gafas.js (ui-ux-pro-max 19-10, aprobado por James: terracota
-     #9A3412 / #C2410C, verde #059669, crema #FFFBEB, Outfit / Work Sans).
+     diseño propio: gafas.css / gafas.js (ui-ux-pro-max corrida #25, James 20-10 "DAEL": HUD oscuro,
+     #0B0B10 / #1E1E23, texto #F8FAFC, azul #3B82F6, Exo / Roboto Mono).
      ============================================================ */
   {
     id: 'gafas', unidad: 'par', promo: 2,
@@ -723,8 +723,9 @@ window.PRODUCTOS = [
 
     foto: 'img/gafas-letra.webp?v=1',
     fotos: ['img/gafas-letra.webp?v=1', 'img/gafas-pantalla.webp?v=1', 'img/gafas-terraza.webp?v=1'],
-    video: 'img/gafas-ficha.mp4?v=1',   /* 20-10 James "video": video del anuncio de AliExpress del MISMO modelo (1005006995827757),
-                                           horizontal; recortada la franja de arriba con el rótulo "Blue light test card". Sin sonido. */
+    video: 'img/gafas-ficha-h.mp4?v=1',   /* 20-10 James "video": video del anuncio de AliExpress del MISMO modelo (1005006995827757).
+                                           Horizontal, ancho completo y a su resolución (1280 px): solo se quitó la franja de arriba
+                                           con el rótulo "Blue light test card". El recorte 9:16 lo deformaba ("así no vale"). Sin sonido. */
 
     hero: {
       img: 'img/hero-gafas.webp?v=1',
@@ -737,7 +738,7 @@ window.PRODUCTOS = [
         ['pago', 'Paga ahora o al recibir'],
       ],
     },
-    acento: '#059669',
+    acento: '#3B82F6',   /* 20-10 propuesta A de la skill (corrida #25, James "DAEL"): azul, nada de verde */
 
     desc: 'Las Gafas Multifocales con Filtro Azul son gafas de lectura sin marco: el cristal va al aire, sujeto solo por el puente y las patas, y por eso casi no pesan. El cristal es multifocal: la parte de abajo es para leer de cerca y la de arriba para mirar más lejos, así no tienes que quitártelas y ponértelas cada vez que levantas la vista. Llevan filtro de luz azul, más cómodo delante del móvil, la tablet o el ordenador. Cada par viene con su funda blanda.',
 
