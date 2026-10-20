@@ -57,10 +57,7 @@ body.p-gafas .gm-heroTit .heroP__h1 {
   text-shadow: 0 2px 18px rgba(15, 23, 42, .55);
 }
 body.p-gafas .gm-heroTit .hCas__l { font-style: normal; color: var(--gm-blanco); -webkit-text-fill-color: var(--gm-blanco); }
-body.p-gafas .gm-heroTit .hCas__w.es-oro {
-  background: var(--gm-terra2); border-radius: 8px; padding: 0 .14em; box-decoration-break: clone; -webkit-box-decoration-break: clone;
-  text-shadow: none;
-}
+/* 20-10 James: fuera los recuadros naranjas detrás de las palabras (los puse yo, no la skill): titular limpio en blanco */
 body.p-gafas .gm-heroTit .hCas__w.es-oro .hCas__l,
 html.ba-lista body.p-gafas .gm-heroTit .hCas__w.es-oro .hCas__l { color: var(--gm-blanco); -webkit-text-fill-color: var(--gm-blanco); }
 @media (min-width: 768px) { body.p-gafas .gm-heroTit { padding-top: 36px; } }
