@@ -70,8 +70,10 @@
        Se hace con un enlace estirado por encima (.tapa): asi el area que
        responde es la tarjeta entera y el boton sigue siendo un boton de
        verdad para el lector de pantalla. */
+    /* p.enlace: la tienda de Portugal (/pt/) usa sus direcciones cortas (/pt/selante/) */
+    var ir = p.enlace ? p.enlace + '/' : 'producto.html?p=' + p.id;
     return '<article class="ficha" data-cat="' + p.categoria + '" data-rv>'
-      + '<a class="tapa" href="producto.html?p=' + p.id + '" aria-label="Ver ' + p.nombre + '"></a>'
+      + '<a class="tapa" href="' + ir + '" aria-label="Ver ' + p.nombre + '"></a>'
       + '<span class="im">' + et + img + '</span>'
       + '<div class="cuerpo">'
       + '<h3>' + p.nombre + '</h3>'
@@ -82,7 +84,7 @@
       + '<div class="precio"><b>' + pesos(barato.precio) + '</b>'
       + (barato.antes ? '<s>' + pesos(barato.antes) + '</s>' : '') + '</div>'
       + '</div>'
-      + '<a class="btn" href="producto.html?p=' + p.id + '">Lo quiero</a>'
+      + '<a class="btn" href="' + ir + '">Lo quiero</a>'
       + '</article>';
   }
 

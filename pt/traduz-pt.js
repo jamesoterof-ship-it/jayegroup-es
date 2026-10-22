@@ -146,8 +146,14 @@
     T['Quero o meu'] = 'Quero a minha';
     T['Encomende o seu'] = 'Encomende a sua';
   }
-  /* bocados dentro de frases maiores (ficha) */
-  var PEDACOS = [[/^Ahorra (\d+%)$/, 'Poupa $1'], [/^ahorras /, 'poupa '], [/ un (\d+ ?%)/, ' $1']];
+  /* a PORTADA da loja (/pt/): o botão de cada cartão serve para os três produtos */
+  if (!prod && /\/pt\/(index\.html)?$/.test(location.pathname)) {
+    T['Lo quiero'] = 'Quero já';
+    T['Listo. Te avisamos cuando haya novedades.'] = 'Pronto. Avisamos quando houver novidades.';
+  }
+  /* bocados dentro de frases maiores (ficha e portada) */
+  var PEDACOS = [[/^Ahorra (\d+%)$/, 'Poupa $1'], [/^ahorras /, 'poupa '], [/ un (\d+ ?%)/, ' $1'],
+    [/^([\d.]+) reseñas$/, '$1 avaliações'], [/^(\d+) productos$/, '$1 produtos'], [/^1 producto$/, '1 produto']];
 
   /* fotos com texto: versão em português; o resto só muda de pasta */
   var FOTOS = {
