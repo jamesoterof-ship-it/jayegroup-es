@@ -14,6 +14,8 @@ window.TEXTOS = {
   _pais: 'PT',
   locale: 'pt-PT',
   marca: 'Jaye Group Portugal',
+  /* 22-10: o botão verde do herói saía em espanhol ("¿Dudas? Pídelo por WhatsApp") */
+  pideWa: 'Dúvidas? Encomende pelo WhatsApp',
   correo: 'apoio@jayegroup.com.es',
 
   /* ---- indicativos: Portugal primeiro ---- */

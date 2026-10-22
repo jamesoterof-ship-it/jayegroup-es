@@ -22,6 +22,10 @@
 document.documentElement.classList.add('ba-lista');
 setTimeout(function(){document.documentElement.classList.add('ba-visto');},3000);</script>
 <link rel="stylesheet" href="../balsamo.css?v=14">
+<!-- 22-10 James: selante e pulseira = o MESMO desenho de Espanha, só traduzido. Estilos de Espanha tal qual
+     (só atuam com body.p-sellador / body.p-pulsera); os textos troca-os traduz-pt.js. -->
+<link rel="stylesheet" href="../sellador.css?v=13">
+<link rel="stylesheet" href="../pulsera.css?v=2">
 <!-- Los CSS de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO existen en este repo: daban cinco 404 en cada carga. -->
 <style>
@@ -1173,12 +1177,12 @@ window.jayePixel = (function () {
     </div>
   </footer>
 
-<script src="produtos.js?v=225"></script>
+<script src="produtos.js?v=226"></script>
 <!-- PORTUGAL: distritos y codigos postales sin cobertura (Acores y Madeira), en vez de las
      regiones y comunas de Chile. -->
 <script src="distritos-pt.js?v=110"></script>
-<script src="textos-pt.js?v=211"></script>
-<script src="resenas-pt.js?v=200"></script>
+<script src="textos-pt.js?v=212"></script>
+<script src="resenas-pt.js?v=201"></script>
 <script src="../efectos.js?v=4"></script>
 <script>/* A DONDE VA EL PEDIDO. Sin esto, ficha.js manda al webhook de CHILE
    (pedido-tienda): un pedido español entraria como chileno, con hora de
@@ -1195,6 +1199,11 @@ window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-t
   <script src="../lib/countup.umd.js"></script>
 <script src="../efectos-ficha.js?v=223"></script>
 <script src="../balsamo.js?v=12"></script>
+<!-- 22-10 James: selante e pulseira = a página de Espanha traduzida. traduz-pt.js troca textos e fotos;
+     sellador.js / pulsera.js são os de Espanha tal qual (só atuam com ?p=sellador / ?p=pulsera). -->
+<script src="traduz-pt.js?v=3"></script>
+<script src="../sellador.js?v=9"></script>
+<script src="../pulsera.js?v=2"></script>
 <!-- Los js de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO van aqui: no existen en este repo y daban 404. -->
 

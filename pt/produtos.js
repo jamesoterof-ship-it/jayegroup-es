@@ -125,10 +125,200 @@ window.PRODUTOS = [
       precios: [26.50, 36.50, 46.50],
     },
   },
+
+  /* ============================================================
+     SPRAY SELANTE IMPERMEÁVEL · PORTUGAL (22-10-2026)
+     Dropi PRO id 2607 (branco). Mesmo produto e mesmos preços de Espanha (James 22-10).
+     🔴 James 22-10: "lo único que tienes que cambiar era traducirla". O DESENHO é o de Espanha
+     (../sellador.css + ../sellador.js, sem tocar); traduz-pt.js só troca textos e fotos.
+     Fotos com textos em português (OpenAI).
+     🔴 Não é para canos de água nem com pressão (como em Espanha: não prometer de mais).
+     ============================================================ */
+  {
+    id: 'sellador', unidad: 'uma', promo: 4,
+    resenasTotal: 1124,
+    dropiId: 2607,
+
+    nombre: 'Spray Selante Impermeável',
+    sub: 'Sela fissuras, juntas e frestas · 400 ml · branco',
+    categoria: 'Casa',
+    etiqueta: 'Novo em Portugal',
+    etiquetaOro: true,
+
+    foto: '../img/sellador-tienda.webp?v=1',
+    fotos: ['../img/sellador-tienda.webp?v=1', '../img/sellador-terraza-pt.webp?v=1', '../img/sellador-ventana-pt.webp?v=1'],
+    video: '../img/sellador-ficha.mp4?v=1',
+
+    hero: {
+      img: '../img/hero-sellador.webp?v=1',
+      kicker: 'Novo em Portugal',
+      titulo: 'Fissuras seladas,<br><b>casa sem goteiras.</b>',
+      sub: 'Spray selante impermeável de 400 ml. Pulveriza sobre a fissura ou a junta e forma uma camada branca que não deixa passar a água.',
+      datos: [
+        ['envio', 'Portes grátis'],
+        ['reloj', 'Em 24-48 h'],
+        ['pago', 'Paga na entrega'],
+      ],
+    },
+    acento: '#047857',   /* o mesmo de Espanha */
+
+    desc: 'O Spray Selante Impermeável forma uma camada branca, flexível e resistente à água sobre fissuras, juntas e frestas. Aplica-se no exterior e no interior sobre cimento, metal, PVC, madeira e plástico: telhados, terraços, muros, parapeitos, caleiras e tubos de queda. Pulveriza-se a 20-25 cm, em camadas finas, sem escorrer, e seca depressa: em menos de uma hora pode dar várias camadas.',
+
+    puntos: [
+      'Sela fissuras, juntas e frestas',
+      'Camada branca que não deixa passar a água',
+      'Cimento, metal, PVC, madeira e plástico',
+      'Interior e exterior · secagem rápida',
+    ],
+
+    formulaRotulo: 'Porque funciona',
+    formulaTitulo: 'Uma camada que a água não atravessa.',
+    formulaSub: 'O que o selante faz assim que o pulveriza.',
+    formula: [
+      ['agua', 'Impermeável', 'Forma uma barreira branca sobre a fissura: a chuva escorre e não entra.'],
+      ['escudo', 'Flexível e resistente', 'Agarra bem e aguenta o tempo sem estalar.'],
+      ['rayo', 'Secagem rápida', 'Entre camadas, 15-20 minutos. Pronto em menos de uma hora.'],
+      ['casa', 'Sem ferramentas', 'Agita, pulveriza a 20-25 cm e está feito. Sem pincel nem pingos.'],
+    ],
+
+    comparaTitulo: 'Porquê um selante em spray?',
+    compara: [
+      'Chega a juntas e cantos onde o pincel não entra.',
+      'Camadas finas e uniformes, sem escorrer nem manchar.',
+      'Faz-se sozinho, sem obras nem pedreiro.',
+    ],
+
+    preguntas: [
+      { q: 'Onde é que se pode usar?', a: 'Em fissuras, juntas e frestas de telhados, terraços, muros, parapeitos de janelas, caleiras e tubos de queda. Sobre cimento, metal, PVC, madeira e plástico, por dentro e por fora.' },
+      { q: 'Para que é que NÃO serve?', a: 'Não é para canos de água nem com pressão (o da torneira ou a entrada de água), nem para tubos partidos ou buracos grandes: isso é trabalho de canalizador. Também não se aplica sobre uma superfície molhada.' },
+      { q: 'Como se aplica?', a: 'Limpe e seque a zona, agite a lata 1-2 minutos e pulverize a 20-25 cm em camadas finas. Deixe secar 15-20 minutos entre camadas. Para uma fissura normal chegam 2 ou 3 camadas.' },
+      { q: 'De que cor fica?', a: 'Branco. Fica uma camada branca, lisa e um pouco borrachosa sobre a fissura.' },
+      { q: 'Quanto rende uma lata?', a: 'Uma lata de 400 ml dá para várias fissuras ou juntas de tamanho normal. Para um terraço ou um telhado com muitas fissuras, é melhor o pack de 2 ou de 4.' },
+      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária em 14 h.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: '../img/sellador-ba-pt.webp?v=1',
+    antesDespuesSub: 'A mesma parede: a fissura por onde entrava a água e a mancha de humidade, e depois selada e seca.',
+
+    /* PREÇOS · os mesmos de Espanha (James 22-10: "los mesmos precios de España").
+       O envio para Portugal custa 7,39 € em vez de 6,59 €. */
+    packs: [
+      { cant: 1, precio: 28.99, antes: 57.99, texto: '1 lata' },
+      { cant: 2, precio: 38.99, antes: 77.99, texto: '2 latas' },
+      { cant: 4, precio: 58.99, antes: 117.99, texto: '4 latas' },
+    ],
+    popular: 1,
+
+    anticipado: {
+      pct: 10,
+      descuento: 3,
+      envio: 'Entrega prioritária em 14 h',
+      titulo: 'Pague agora',
+      sub: 'Com entrega prioritária em 14 h, sem custo. Paga-se com cartão ou PayPal.',
+      precios: [25.99, 34.99, 52.99],
+    },
+  },
+
+  /* ============================================================
+     PULSEIRA MAGNÉTICA ANTITABACO · PORTUGAL (22-10-2026)
+     Dropi PRO id 2781. Mesmos preços de Espanha (James 22-10).
+     🔴 O DESENHO é o de Espanha (../pulsera.css + ../pulsera.js, sem tocar); traduz-pt.js só
+     troca textos e fotos. Por isso o id é 'pulsera' (o pulsera.js de Espanha só atua com ?p=pulsera).
+     🔴 NÃO é um tratamento: é um lembrete que acompanha a decisão de deixar o tabaco.
+     Nada de "cura", "elimina o vício" nem "em X dias".
+     ============================================================ */
+  {
+    id: 'pulsera', unidad: 'uma', promo: 2,
+    dropiId: 2781,
+
+    nombre: 'Pulseira Magnética Antitabaco',
+    sub: 'Pedra vulcânica natural com íman · para ele e para ela',
+    categoria: 'Bem-estar',
+    etiqueta: 'Lançamento em Portugal',
+    etiquetaOro: true,
+
+    foto: '../img/pulseira-palma-pt.webp?v=1',
+    fotos: ['../img/pulseira-palma-pt.webp?v=1', '../img/pulseira-muneca-pt.webp?v=1', '../img/pulseira-pareja-pt.webp?v=1'],
+    video: '../img/pulsera-ficha.mp4?v=1',
+
+    hero: {
+      img: '../img/hero-pulsera.webp?v=3',
+      kicker: 'Lançamento em Portugal',
+      titulo: 'Outra vez com o cigarro<br><b>na mão?</b>',
+      sub: 'A pulseira magnética de pedra vulcânica que leva no pulso e lhe lembra a sua decisão sempre que a vontade chega. Discreta, confortável, para ele e para ela.',
+      datos: [
+        ['envio', 'Portes grátis'],
+        ['reloj', 'Em 24-48 h'],
+        ['pago', 'Paga na entrega'],
+      ],
+    },
+    acento: '#A16207',   /* o mesmo de Espanha */
+
+    desc: 'A Pulseira Magnética Antitabaco é feita com contas de pedra vulcânica natural, preta e porosa, e um pequeno íman redondo prateado. É elástica, ajusta-se sozinha ao pulso e combina com tudo. A ideia é simples: usa-a o dia todo e, quando a vontade de fumar chega, toca-lhe, sente o íman e lembra-se de porque decidiu deixar. Um gesto pequeno que o ajuda a travar o impulso.',
+
+    puntos: [
+      'Pedra vulcânica natural e um íman discreto',
+      'Lembra-lhe a sua decisão quando a vontade chega',
+      'Elástica: ajusta-se a qualquer pulso',
+      'Para ele e para ela · o pack de 2 é para oferecer',
+    ],
+
+    formulaRotulo: 'Porque ajuda',
+    formulaTitulo: 'Um lembrete que não fica em casa.',
+    formulaSub: 'O que a pulseira faz quando a usa.',
+    formula: [
+      ['escudo', 'Trava o impulso', 'A vontade chega de repente. Tocar na pulseira é a pausa de que precisa para não acender o cigarro.'],
+      ['rayo', 'Sempre consigo', 'No trabalho, no carro ou com o café: vai no pulso o dia todo.'],
+      ['agua', 'Pedra vulcânica', 'Contas naturais, leves e porosas, com um íman redondo prateado.'],
+      ['casa', 'Discreta', 'Parece mais uma pulseira. Ninguém tem de saber porque a usa.'],
+    ],
+
+    comparaTitulo: 'Porquê uma pulseira?',
+    compara: [
+      'Não leva adesivos, pastilhas nem nada para tomar.',
+      'Está no seu pulso: acompanha-o em cada momento difícil.',
+      'Um presente com intenção para quem quer deixar de fumar.',
+    ],
+
+    preguntas: [
+      { q: 'Vai tirar-me a vontade de fumar?', a: 'Não é um medicamento nem um tratamento. É um lembrete que leva no pulso: quando a vontade chega, toca-lhe e ajuda-o a parar um momento e a lembrar-se da sua decisão. Se quer apoio médico para deixar o tabaco, fale com o seu médico ou farmacêutico.' },
+      { q: 'De que é feita?', a: 'De contas de pedra vulcânica natural, preta, mate e porosa, montadas num fio elástico, com um pendente redondo prateado que leva um íman.' },
+      { q: 'O tamanho serve-me?', a: 'É elástica e ajusta-se à maioria dos pulsos de adulto, de homem e de mulher.' },
+      { q: 'Pode molhar-se?', a: 'É melhor tirá-la para tomar banho, nadar ou lavar a loiça: assim o fio e o íman duram mais.' },
+      { q: 'Quem não a deve usar?', a: 'Por causa do íman, não a use se tiver pacemaker ou outro dispositivo médico implantado, nem durante a gravidez sem perguntar antes ao seu médico.' },
+      { q: 'Porquê o pack de 2?', a: 'É o mais escolhido: uma para si e outra para oferecer a alguém que também quer deixar de fumar, ou para ter de reserva.' },
+      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária em 14 h.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: '../img/pulseira-ba-pt.webp?v=1',
+    antesDespuesSub: 'O mesmo café de todos os dias: antes com o maço na mão, depois com a pulseira no pulso.',
+
+    /* PREÇOS · os mesmos de Espanha (James 22-10). 'antes' a 0: produto novo. */
+    packs: [
+      { cant: 1, precio: 25.95, antes: 0, texto: '1 pulseira' },
+      { cant: 2, precio: 37.95, antes: 0, texto: '2 pulseiras' },
+      { cant: 3, precio: 47.95, antes: 0, texto: '3 pulseiras' },
+    ],
+    popular: 1,
+
+    anticipado: {
+      pct: 10,
+      descuento: 2.60,
+      envio: 'Entrega prioritária em 14 h',
+      titulo: 'Pague agora',
+      sub: 'Com entrega prioritária em 14 h, sem custo. Paga-se com cartão ou PayPal.',
+      precios: [23.35, 34.15, 43.15],
+    },
+  },
 ];
 
 /* ficha.js procura window.PRODUCTOS. Em Portugal o catálogo chama-se PRODUTOS,
    por isso aponta-se aqui: é o mesmo objeto, não uma cópia. */
 window.PRODUCTOS = window.PRODUTOS;
 
-window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50];
+window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
+  /* 22-10 James: selante e pulseira com os mesmos preços de Espanha (com e sem pagamento antecipado) */
+  28.99, 38.99, 58.99, 25.99, 34.99, 52.99,
+  25.95, 37.95, 47.95, 23.35, 34.15, 43.15];
