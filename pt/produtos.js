@@ -9,7 +9,7 @@
    ============================================================ */
 window.PRODUTOS = [
   {
-    id: 'balsamo', unidad: 'um', promo: 2,
+    id: 'balsamo', enlace: 'balsamo', unidad: 'um', promo: 2,
     resenasTotal: 2137,
 
     dropiId: 2287,
@@ -135,7 +135,7 @@ window.PRODUTOS = [
      🔴 Não é para canos de água nem com pressão (como em Espanha: não prometer de mais).
      ============================================================ */
   {
-    id: 'sellador', unidad: 'uma', promo: 4,
+    id: 'sellador', enlace: 'selante', unidad: 'uma', promo: 4,
     resenasTotal: 1124,
     dropiId: 2607,
 
@@ -229,7 +229,7 @@ window.PRODUTOS = [
      Nada de "cura", "elimina o vício" nem "em X dias".
      ============================================================ */
   {
-    id: 'pulsera', unidad: 'uma', promo: 2,
+    id: 'pulsera', enlace: 'pulseira', unidad: 'uma', promo: 2,
     dropiId: 2781,
 
     nombre: 'Pulseira Magnética Antitabaco',
@@ -317,6 +317,9 @@ window.PRODUTOS = [
 /* ficha.js procura window.PRODUCTOS. Em Portugal o catálogo chama-se PRODUTOS,
    por isso aponta-se aqui: é o mesmo objeto, não uma cópia. */
 window.PRODUCTOS = window.PRODUTOS;
+/* A loja de Portugal vive em /pt/: o logótipo e os "outros produtos" ficam dentro dela (/pt/selante/),
+   nunca mandam para a loja de Espanha. */
+window.BASE_TIENDA = '/pt/';
 
 window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* 22-10 James: selante e pulseira com os mesmos preços de Espanha (com e sem pagamento antecipado) */

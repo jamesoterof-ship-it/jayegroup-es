@@ -137,6 +137,7 @@
   if (prod === 'pulsera') {
     T['Quero o meu, pago na entrega'] = 'Quero a minha, pago na entrega';
     T['Quero o meu'] = 'Quero a minha';
+    T['Encomende o seu'] = 'Encomende a sua';
   }
   /* bocados dentro de frases maiores (ficha) */
   var PEDACOS = [[/^Ahorra (\d+%)$/, 'Poupa $1'], [/^ahorras /, 'poupa '], [/ un (\d+ ?%)/, ' $1']];

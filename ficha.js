@@ -91,7 +91,7 @@
   if (!p) {
     cont.innerHTML = '<div class="datos"><h1>Producto no encontrado</h1>'
       + '<p class="sub">Puede que ya no esté disponible.</p>'
-      + '<a class="cta negro" href="/" style="width:auto;display:inline-block;padding:14px 26px">Volver al inicio</a></div>';
+      + '<a class="cta negro" href="' + (window.BASE_TIENDA || '/') + '" style="width:auto;display:inline-block;padding:14px 26px">Volver al inicio</a></div>';
     return;
   }
 
@@ -100,7 +100,7 @@
   if (!ok) {
     cont.innerHTML = '<div class="datos"><h1>' + esc(p.nombre) + '</h1>'
       + '<p class="sub">Este producto no está disponible por ahora.</p>'
-      + '<a class="cta negro" href="/" style="width:auto;display:inline-block;padding:14px 26px">Ver la tienda</a></div>';
+      + '<a class="cta negro" href="' + (window.BASE_TIENDA || '/') + '" style="width:auto;display:inline-block;padding:14px 26px">Ver la tienda</a></div>';
     return;
   }
 
@@ -425,7 +425,7 @@
        queda ridiculo. En su lugar se dice la verdad: es nuevo. */
     + (mias.length
         ? '<div class="estrellas">' + estrellas(prom)
-          + '<span class="cuantas">' + prom.toFixed(1) + ' · <a href="#resenas">' + totalTxt + ' reseñas</a></span></div>'
+          + '<span class="cuantas">' + prom.toFixed(1) + ' · <a href="#resenas">' + totalTxt + ' ' + t('resenas', 'reseñas') + '</a></span></div>'
         : '<div class="estrellas"><span class="cuantas">' + t('recienLlegado', 'Recién llegado a España · sé de los primeros en probarlo') + '</span></div>')
     + '<h1>' + esc(p.nombre) + '</h1>'
     + '<p class="sub">' + esc(p.sub) + '</p>'
@@ -667,10 +667,12 @@
       if (otros.length < 4 && x.id !== p.id && MAS_VENDIDOS.indexOf(x.id) < 0) otros.push(x);
     });
   }
-  var interesar = otros.length ? '<section class="bloque"><h2>También te puede interesar</h2><div class="otros">'
+  /* BASE_TIENDA y x.enlace: la tienda de Portugal vive en /pt/ con sus propias direcciones
+     (/pt/selante/). Sin eso los "otros productos" mandaban a la tienda de España. */
+  var interesar = otros.length ? '<section class="bloque"><h2>' + t('interesar', 'También te puede interesar') + '</h2><div class="otros">'
     + otros.map(function (x) {
         var min = x.packs.reduce(function (a, b) { return b.precio < a ? b.precio : a; }, Infinity);
-        return '<a class="oc" href="/' + esc(x.id) + '/">'
+        return '<a class="oc" href="' + (window.BASE_TIENDA || '/') + esc(x.enlace || x.id) + '/">'
           + '<div class="im">' + (x.foto
               /* lazy + link corto: estas seis fotos de OTROS productos pesaban
                  550 KB que se bajaban al abrir, sin que el cliente llegara nunca
@@ -678,7 +680,7 @@
               ? '<img src="' + esc(x.foto) + '" alt="' + esc(x.nombre) + '" loading="lazy" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{textContent:\'' + esc(x.nombre.charAt(0)) + '\'}))">'
               : '<span>' + esc(x.nombre.charAt(0)) + '</span>') + '</div>'
           + '<div class="tx"><div class="n">' + esc(x.nombre) + '</div>'
-          + '<div class="p">desde ' + pesos(min) + '</div></div></a>';
+          + '<div class="p">' + t('desdeOtros', 'desde ') + pesos(min) + '</div></div></a>';
       }).join('') + '</div></section>' : '';
 
 

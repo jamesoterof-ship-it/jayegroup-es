@@ -80,6 +80,10 @@ window.TEXTOS = {
      pre-preenchida com o produto, como no Chile. */
   dudas: 'Complica-se preencher? ',
   msgWa: 'Olá, quero encomendar ',
+  msgWaHero: 'Olá, tenho interesse em: ',
+  interesar: 'Também lhe pode interessar',
+  desdeOtros: 'desde ',
+  conQuien: 'Com quem enviamos',
   msgWa2: ' e o formulário está a complicar-se',
   ayudaWa: 'Escreva-nos por WhatsApp',
   yTeAyudamos: ' e tratamos nós.',
