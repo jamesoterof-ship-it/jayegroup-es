@@ -130,6 +130,13 @@
     'Seguir mi pedido': 'Seguir a minha encomenda',
     'Cambios y devoluciones': 'Trocas e devoluções',
     'Términos y condiciones': 'Termos e condições',
+    'termina hoy': 'termina hoje',
+    'Por qué lo quieres': 'Porque vale a pena',
+    'Pago 100% seguro contra entrega': 'Pagamento 100% seguro na entrega',
+    'salieron hoy': 'saíram hoje',
+    'Pedir ahora': 'Encomendar agora',
+    'Leer más': 'Ler mais',
+    'Leer menos': 'Ler menos',
   };
   /* a pulseira é feminina: o botão do herói (textos-pt.js) vem com "Quero o meu" */
   var prod = '';
