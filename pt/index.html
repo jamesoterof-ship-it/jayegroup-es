@@ -445,6 +445,37 @@ try{ if(!sessionStorage.getItem('jaye_vis_portada_pt')){ sessionStorage.setItem(
 <script src="resenas-pt.js?v=203"></script>
 <script src="traduz-pt.js?v=7"></script>
 <script src="../tienda.js?v=58"></script>
+<script>
+/* 22-10 James: as fichas de opiniões também CORREM sozinhas, como a fita de fotos (antes só se mexiam com as setas).
+   Só na loja de Portugal: tienda.js (partilhado com Espanha) não se toca. Param quando o cliente lhes toca ou passa
+   o rato por cima e voltam a andar sozinhas. As fichas duplicam-se para o ciclo não ter costura. */
+document.addEventListener('DOMContentLoaded', function () {
+  var p = document.getElementById('resePista');
+  if (!p || !p.children.length) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  p.style.scrollSnapType = 'none';
+  p.style.scrollBehavior = 'auto';
+  var orig = [].slice.call(p.children);
+  orig.forEach(function (c) { var k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); p.appendChild(k); });
+  var x = p.scrollLeft, quieto = 0, VEL = 0.5;   /* px por quadro: ~30 px por segundo */
+  function parar() { quieto = Date.now() + 3500; }
+  ['touchstart', 'pointerdown', 'wheel'].forEach(function (ev) { p.addEventListener(ev, parar, { passive: true }); });
+  p.addEventListener('mouseenter', function () { quieto = Infinity; });
+  p.addEventListener('mouseleave', function () { quieto = Date.now() + 800; });
+  ['reseIzq', 'reseDer'].forEach(function (id) { var b = document.getElementById(id); if (b) b.addEventListener('click', parar); });
+  function passo() {
+    if (!document.hidden && Date.now() >= quieto) {
+      if (Math.abs(p.scrollLeft - x) > 2) x = p.scrollLeft;   /* o cliente arrastou: segue dali */
+      var volta = p.children[orig.length].offsetLeft - p.children[0].offsetLeft;
+      x += VEL;
+      if (x >= volta) x -= volta;
+      p.scrollLeft = x;
+    }
+    requestAnimationFrame(passo);
+  }
+  requestAnimationFrame(passo);
+});
+</script>
 
 <!-- Aviso de cookies (obrigatório em Portugal: Lei 41/2004 art. 5 + RGPD) -->
 <div class="cookies" id="cookies" hidden>
