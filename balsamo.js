@@ -104,7 +104,8 @@
     return lineas.map(function (l) {
       var txt = l[0], acento = l[1];
       var html = txt.split(' ').map(function (w) {
-        return '<span class="ba-pal">' + w.split('').map(function (ch) {
+        /* translate="no": el traductor de Chrome traducía cada letra suelta */
+        return '<span class="ba-pal" translate="no">' + w.split('').map(function (ch) {
           return '<span class="ba-le" style="--d:' + (ini + paso * n++).toFixed(3) + 's">' + esc(ch) + '</span>';
         }).join('') + '</span>';
       }).join(' ');

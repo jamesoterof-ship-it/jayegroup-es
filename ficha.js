@@ -1097,7 +1097,8 @@
         if (!limpio) return '';
         return limpio.split(' ').map(function (palabra) {
           if (!palabra) return '';
-          return '<span class="hCas__w' + (oro ? ' es-oro' : '') + '">'
+          /* translate="no": el traductor de Chrome traducía cada LETRA suelta y el título salía en jerigonza */
+          return '<span class="hCas__w' + (oro ? ' es-oro' : '') + '" translate="no">'
             + palabra.split('').map(function (ch) {
                 return '<span class="hCas__l" style="--k:' + (k++) + '">' + esc(ch) + '</span>';
               }).join('')

@@ -261,7 +261,8 @@
           return '<span class="ltr" style="animation-delay:' + d + 's">' + ch + '</span>';
         }).join('');
         n += 1.6;   // un respiro mas largo entre palabras
-        return '<span class="pal">' + letras + '</span>';
+        /* translate="no": el traductor de Chrome traducía cada letra suelta ("YNORTEWELMETR") */
+        return '<span class="pal" translate="no">' + letras + '</span>';
       }).join(' ') + '</span>';
     }).join('');
     h.dataset.listo = '1';
