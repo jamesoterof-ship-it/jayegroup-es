@@ -320,6 +320,9 @@ window.PRODUCTOS = window.PRODUTOS;
 /* A loja de Portugal vive em /pt/: o logótipo e os "outros produtos" ficam dentro dela (/pt/selante/),
    nunca mandam para a loja de Espanha. */
 window.BASE_TIENDA = '/pt/';
+/* 23-10-2026: Portugal já tem o seu próprio WhatsApp (+351 918 470 538), dado por James.
+   ficha.js usa (window.WA_NUM || '34672423735'), por isso Espanha fica como estava. */
+window.WA_NUM = '351918470538';
 
 window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* 22-10 James: selante e pulseira com os mesmos preços de Espanha (com e sem pagamento antecipado) */
