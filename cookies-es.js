@@ -30,14 +30,13 @@
      James, asumiendo el riesgo) y el aviso queda como una línea informativa. */
   if (window._cargarPixel) window._cargarPixel();
 
-  var dec = null;
-  try { dec = localStorage.getItem(KEY); } catch (e) {}
   var ok = document.getElementById('ckOk'), no = document.getElementById('ckNo');
   var pt = (document.documentElement.lang || '').indexOf('pt') === 0;
   /* 16-10 James: "esa vaina de cookies siempre enreda a la gente": en España el aviso
      ya NO sale al entrar (el píxel se sigue cargando arriba, igual que antes).
-     Portugal queda como estaba (James 15-10: "la de Portugal déjala quieta"). */
-  if (!dec && pt) caja.hidden = false;
+     24-10 James: "quita eso de cookies" — Portugal igual que España: el aviso tampoco
+     sale al entrar. Sigue estando el enlace "Configurar cookies" del pie, que lo abre.
+     El píxel no depende de esto: se carga arriba en las dos tiendas. */
   if (no) no.remove();
   if (ok) { ok.textContent = pt ? 'Entendido' : 'Entendido'; ok.addEventListener('click', function () { decidir('si'); }); }
 

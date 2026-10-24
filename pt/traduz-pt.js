@@ -85,6 +85,39 @@
     'Cinta de': 'Fita de', 'regalo': 'oferta', 'Envío': 'Portes', 'gratis': 'grátis', 'Pago al': 'Paga na',
     'recibir': 'entrega', 'Entrega a': 'Entrega ao', 'domicilio': 'domicílio', 'Llega en': 'Chega em', 'Ayuda por': 'Ajuda pelo',
 
+    /* ---- riscos (aranazos.js) · 23-10-2026 ---- */
+    'De rayada': 'De riscada',
+    'Rocía': 'Pulveriza',
+    'Frota': 'Esfrega',
+    'Brilla': 'Brilha',
+    'Arañazos del lavado y marcas en círculos': 'Riscos da lavagem e marcas em círculos',
+    'Así se usa': 'Como se usa',
+    'Tres pasos,': 'Três passos,',
+    '¡Deja de pagar al taller! Solo el spray y un paño.': 'Deixe de pagar à oficina! Só o spray e um pano.',
+    'Arañazos': 'Riscos',
+    'Los elimina': 'Elimina estes',
+    'Necesitan taller': 'Precisam de oficina',
+    'La prueba de la uña': 'O teste da unha',
+    'Pasa la uña sobre el arañazo. Si no se engancha, este spray lo elimina en 60 segundos. Si se engancha hasta el metal, eso ya es de taller.': 'Passe a unha sobre o risco. Se não prender, este spray elimina-o em 60 segundos. Se prender até ao metal, isso já é trabalho de oficina.',
+    'a brillante.': 'a brilhante.',
+    'En vídeo, sin trucos': 'Em vídeo, sem truques',
+    'Rocía, frota': 'Pulveriza, esfrega',
+    'y mira.': 'e veja.',
+    /* o que elimina / o que não elimina */
+    'Las uñas junto a la manilla de la puerta': 'As unhas junto ao puxador da porta',
+    'Roces de ramas, bolsas o mochilas': 'Roçadelas de ramos, sacos ou mochilas',
+    'Pintura opaca que perdió el brillo': 'Pintura baça que perdeu o brilho',
+    'Rayones que dejan ver la capa gris o el metal': 'Riscos que deixam ver a camada cinzenta ou o metal',
+    'Abolladuras y golpes': 'Amolgadelas e pancadas',
+    'Pintura saltada o desconchada': 'Tinta saltada ou lascada',
+    /* textos alternativos das fotos (os três passos) */
+    'Una mujer rociando el spray sobre una rayita del parachoques de su coche blanco': 'Uma mulher a pulverizar o spray sobre um risco do para-choques do seu carro branco',
+    'Directo sobre el arañazo, con la zona limpia y seca.': 'Direto sobre o risco, com a zona limpa e seca.',
+    'Un joven frotando la puerta de su coche rojo con un paño de microfibra': 'Um jovem a esfregar a porta do seu carro vermelho com um pano de microfibra',
+    'Con un paño de microfibra, en círculos: el arañazo desaparece.': 'Com um pano de microfibra, em círculos: o risco desaparece.',
+    'Un señor con el bote en la mano sobre el capó azul mojado, con el agua en gotas': 'Um senhor com o frasco na mão sobre o capô azul molhado, com a água em gotas',
+    'Tu coche brilla como nuevo y el agua resbala en gotas.': 'O seu carro brilha como novo e a água escorre em gotas.',
+
     /* ---- pulseira (pulsera.js) ---- */
     'Las ganas': 'A vontade',
     'Llegan': 'Chega',
@@ -131,6 +164,8 @@
     'Cambios y devoluciones': 'Trocas e devoluções',
     'Términos y condiciones': 'Termos e condições',
     'termina hoy': 'termina hoje',
+    'Promoción': 'Promoção',
+    'Otros': 'Outros',
     'Por qué lo quieres': 'Porque vale a pena',
     'Pago 100% seguro contra entrega': 'Pagamento 100% seguro na entrega',
     'salieron hoy': 'saíram hoje',
@@ -161,6 +196,8 @@
     'sellador-ventana.webp': 'sellador-ventana-pt.webp', 'sellador-promo.webp': 'sellador-promo-pt.webp',
     'pulsera-palma.webp': 'pulseira-palma-pt.webp', 'pulsera-muneca.webp': 'pulseira-muneca-pt.webp',
     'pulsera-pareja.webp': 'pulseira-pareja-pt.webp', 'pulsera-promo.webp': 'pulseira-promo-pt.webp',
+    'aranazos-promo.webp': 'aranazos-promo-pt.webp', 'aranazos-rocia.webp': 'aranazos-rocia-pt.webp',
+    'aranazos-frota.webp': 'aranazos-frota-pt.webp', 'aranazos-brillo.webp': 'aranazos-brillo-pt.webp',
   };
   function foto(u) {
     if (!u || u.indexOf('img/') !== 0) return null;

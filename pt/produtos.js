@@ -8,6 +8,105 @@
    "elimina rugas", "rejuvenesce" o cualquier promesa medica.
    ============================================================ */
 window.PRODUTOS = [
+
+  /* ============================================================
+     SPRAY REPARADOR DE RISCOS · PORTUGAL (23-10-2026)
+     Dropi PRO id 1378, 1,99 € sem IVA. Mesmo produto e MESMOS PREÇOS de Espanha
+     (James 23-10: "dale", 20,99 / 28,99 / 41,99). Em packs já somos os mais baratos
+     de Portugal: 2 un. = 14,50 €/un. contra os 16,99 da Vigoshop; 3 un. = 14,00 contra 15,99.
+     🔴 O DESENHO é o de Espanha (../aranazos.css + ../aranazos.js, sem tocar);
+     traduz-pt.js só troca textos e fotos.
+     🔴 Só riscos do verniz (os do dia a dia). Se o risco chega ao metal, isso é chapa e pintura.
+     ============================================================ */
+  {
+    id: 'aranazos', enlace: 'riscos', unidad: 'um', promo: 3,
+    resenasTotal: 1389,
+    dropiId: 1378,
+
+    nombre: 'Spray Reparador de Riscos',
+    sub: 'Elimina os riscos em 60 segundos · 120 ml',
+    categoria: 'Carro',
+    etiqueta: 'Novo em Portugal',
+    etiquetaOro: true,
+
+    foto: '../img/aranazos-rocia-pt.webp?v=2',
+    fotos: ['../img/aranazos-rocia-pt.webp?v=2', '../img/aranazos-frota-pt.webp?v=2', '../img/aranazos-brillo-pt.webp?v=2'],
+    video: '../img/aranazos-ficha.mp4?v=1',
+
+    hero: {
+      img: '../img/hero-aranazos-pt.webp?v=2',
+      kicker: 'Novo em Portugal',
+      titulo: 'Elimina os riscos<br><b>em 60 segundos.</b>',
+      sub: 'Deixe de pagar à oficina! Pulveriza, esfrega com um pano e os riscos desaparecem. O seu carro brilha como novo e fica protegido da água e do pó.',
+      datos: [
+        ['envio', 'Portes grátis'],
+        ['reloj', 'Em 24-48 h'],
+        ['pago', 'Pague agora ou na entrega'],
+      ],
+    },
+    acento: '#DC2626',
+
+    escasez: { hoy: 330, mejorDia: 330, quedan: 3207,
+      nota: 'Sai do nosso armazém em Sevilha por ordem de encomenda. Paga quando já o tem na mão.' },
+
+    desc: 'O Spray Reparador de Riscos elimina em 60 segundos os riscos do dia a dia do seu carro: os da lavagem, as unhas junto ao puxador, o roçar de um ramo ou de um saco. A fórmula nano preenche o risco, devolve o brilho à pintura baça e deixa uma camada que repele a água e o pó. Pulveriza, esfrega com um pano de microfibra e o carro fica como novo, sem passar pela oficina.',
+
+    puntos: [
+      'Elimina os riscos em 60 segundos',
+      'O seu carro brilha como novo',
+      'Protege-o da água e do pó',
+      'Sem oficina: poupa centenas de euros',
+    ],
+
+    formulaRotulo: 'Porque funciona',
+    formulaTitulo: 'Uma camada nano sobre a pintura.',
+    formulaSub: 'O que o spray faz assim que o espalha.',
+    formula: [
+      ['escudo', 'Elimina o risco', 'As partículas nano preenchem o risco e fazem-no desaparecer à vista.'],
+      ['rayo', 'Brilha como novo', 'A pintura baça recupera o reflexo, como acabado de sair do stand.'],
+      ['agua', 'Repele a água', 'A chuva faz gotas e escorre; o pó agarra-se menos.'],
+      ['casa', 'Na sua garagem', 'Pulveriza, esfrega com um pano e está feito. Sem máquina de polir.'],
+    ],
+
+    comparaTitulo: 'Porquê um spray e não a oficina?',
+    compara: [
+      'A oficina cobra centenas de euros por um risco.',
+      'Faz você mesmo em 60 segundos, com um pano.',
+      'Uma lata dá para várias aplicações.',
+    ],
+
+    preguntas: [
+      { q: 'Que riscos é que tira?', a: 'Os riscos do dia a dia: marcas da lavagem, das unhas junto ao puxador, roçadelas de ramos ou sacos, e a pintura baça por causa do sol. Elimina-os e devolve o brilho.' },
+      { q: 'Serve para qualquer risco?', a: 'Serve para os riscos do verniz, que são a grande maioria. Se o risco chega ao metal ou se houve um amolgamento, isso já é chapa e pintura na oficina.' },
+      { q: 'Como se aplica?', a: 'Lave e seque a zona, à sombra e com a chapa fria. Agite a lata, pulverize sobre o risco e espalhe com um pano de microfibra em círculos. Repasse com a face seca do pano. Se for preciso, repita.' },
+      { q: 'Serve para qualquer cor?', a: 'Sim. Não é tinta: é uma camada transparente, por isso serve para carros brancos, pretos, vermelhos, cinzentos ou de qualquer cor.' },
+      { q: 'Vem com pano?', a: 'Não. Vende-se a lata de 120 ml. Serve qualquer pano de microfibra limpo que tenha em casa.' },
+      { q: 'Quanto rende uma lata?', a: 'Uma lata de 120 ml dá para várias zonas com riscos, ou para repassar várias vezes o mesmo carro. Para dois carros ou para ter à mão, é melhor o pack de 2 ou de 3.' },
+      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária em 14 h.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: '../img/aranazos-ba-pt.webp?v=1',
+    antesDespuesSub: 'A mesma porta ao sol: cheia de riscos da lavagem, e depois do spray: brilhante como nova.',
+
+    /* PREÇOS · os mesmos de Espanha (James 23-10). O envio para Portugal custa 7,39 €. */
+    packs: [
+      { cant: 1, precio: 20.99, antes: 41.99, texto: '1 frasco' },
+      { cant: 2, precio: 28.99, antes: 57.99, texto: '2 frascos' },
+      { cant: 3, precio: 41.99, antes: 83.99, texto: '3 frascos' },
+    ],
+    popular: 1,
+
+    anticipado: {
+      pct: 10,
+      descuento: 2.10,
+      envio: 'Entrega prioritária em 14 h',
+      titulo: 'Pague agora',
+      sub: 'Com entrega prioritária em 14 h, sem custo. Paga-se com cartão ou PayPal.',
+      precios: [18.99, 25.99, 37.79],
+    },
+  },
+
   {
     id: 'balsamo', enlace: 'balsamo', unidad: 'um', promo: 2,
     resenasTotal: 2137,
@@ -327,4 +426,6 @@ window.WA_NUM = '351918470538';
 window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* 22-10 James: selante e pulseira com os mesmos preços de Espanha (com e sem pagamento antecipado) */
   28.99, 38.99, 58.99, 25.99, 34.99, 52.99,
-  25.95, 37.95, 47.95, 23.35, 34.15, 43.15];
+  25.95, 37.95, 47.95, 23.35, 34.15, 43.15,
+  /* 23-10 James "dale": spray reparador de riscos com os mesmos preços de Espanha */
+  20.99, 28.99, 41.99, 18.99, 25.99, 37.79];
