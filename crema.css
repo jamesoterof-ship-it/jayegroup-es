@@ -87,16 +87,15 @@ body.p-crema .cr-paso__h2 { font-family: var(--cr-tit); font-weight: 700; font-s
 body.p-crema .cr-paso__lead { font-size: 18px; line-height: 1.6; margin: 0 auto var(--space-xl); }
 body.p-crema .cr-paso__nota { text-align: center; font-size: 15px; color: var(--color-muted-foreground); margin-top: var(--space-md); }
 
-/* paso 1, el problema: bloque rojo */
-body.p-crema .cr-paso--1 { background: var(--color-primary); color: var(--color-on-primary); }
-body.p-crema .cr-paso--1 :is(.cr-paso__num, .cr-paso__h2, .cr-paso__lead) { color: var(--color-on-primary); }
-body.p-crema .cr-senales { list-style: none; padding: 0; margin: 0 auto var(--space-xl); display: grid; gap: var(--space-sm); }
-body.p-crema .cr-senales li {
-  display: flex; align-items: baseline; gap: var(--space-md); background: var(--color-card); color: var(--color-foreground);
-  border-radius: 12px; padding: var(--space-md) var(--space-lg); box-shadow: var(--shadow-md);
-}
-body.p-crema .cr-senales b { font-family: var(--cr-tit); font-size: 26px; color: var(--color-primary); min-width: 4.4em; }
-body.p-crema .cr-senales span { font-size: 16px; color: var(--color-muted-foreground); }
+/* paso 1, el problema (James 25-10, opción 3): fondo claro, tres fotos redondas con el nombre en dorado, sin cajas */
+body.p-crema .cr-paso--1 { background: var(--color-background); color: var(--color-foreground); text-align: center; }
+body.p-crema .cr-paso--1 .cr-paso__num { color: var(--color-primary); }
+body.p-crema .cr-paso--1 .cr-paso__h2 em { font-style: italic; color: var(--color-primary); }
+body.p-crema .cr-senales { list-style: none; padding: 0; margin: 0 auto var(--space-xl); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+body.p-crema .cr-senales li { display: grid; justify-items: center; gap: var(--space-xs); }
+body.p-crema #prod .cr-senales img { width: 100% !important; max-width: 180px; height: auto !important; aspect-ratio: 1 / 1 !important; object-fit: cover; border-radius: 50%; border: 3px solid var(--color-secondary); box-shadow: var(--shadow-lg); margin-bottom: var(--space-sm); }
+body.p-crema .cr-senales b { font-family: var(--cr-tit); font-size: 22px; color: var(--color-secondary); }
+body.p-crema .cr-senales span { font-size: 14px; line-height: 1.4; color: var(--color-muted-foreground); }
 
 /* paso 2, la solución: fondo claro, número dorado, fotos */
 body.p-crema .cr-paso--2 { background: var(--color-background); }
@@ -117,6 +116,9 @@ body.p-crema .cr-ritual span { font-size: 16px; line-height: 1.5; color: var(--c
 body.p-crema .cr-paso--3 { background: var(--color-card); }
 body.p-crema .cr-paso--3 .cr-paso__num { color: var(--color-accent); }
 body.p-crema .cr-paso--3 .cr-foto img { aspect-ratio: 4 / 3; }
+body.p-crema .cr-foto--promo img { aspect-ratio: 2 / 3; }
+/* la promoción es la sección de la plantilla (.promo-sec), dentro del paso 3: sin margen propio */
+body.p-crema #prod .cr-paso--3 .promo-sec { padding: 0 0 var(--space-lg); background: transparent; }
 body.p-crema .cr-packs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
 body.p-crema .cr-pack {
   position: relative; display: grid; gap: var(--space-xs); justify-items: start; text-align: left; padding: var(--space-xl) var(--space-md) var(--space-md);
@@ -145,13 +147,12 @@ body.p-crema .cr-btn2 {
   font: 700 16px var(--cr-txt); transition: all 200ms ease; cursor: pointer;   /* James 25-10: todos los botones dorados */
 }
 body.p-crema .cr-btn2:hover { background: var(--color-primary); color: var(--color-on-primary); }
-body.p-crema .cr-paso--1 .cr-btn2:hover { background: var(--color-card); color: var(--color-primary); }
 body.p-crema .cr-btn2 svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 body.p-crema :is(a, button, input, select, textarea):focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; }
 
 /* ---------- el resto de la ficha (pruebas, reseñas, garantía, preguntas, formulario) con los colores del plano ---------- */
 body.p-crema #prod :is(.bloque, section) { background: var(--color-background); color: var(--color-foreground); }
-body.p-crema #prod .cr-paso--1 { background: var(--color-primary); color: var(--color-on-primary); }
+body.p-crema #prod .cr-paso--1 { background: var(--color-background); color: var(--color-foreground); }
 body.p-crema #prod .cr-paso--3 { background: var(--color-card); }
 body.p-crema #prod :is(h2, h3) { display: block; font-family: var(--cr-tit); color: inherit; text-transform: none; letter-spacing: -.01em; }
 body.p-crema #prod :is(.bloque, #pedir) h2 { font-size: clamp(32px, 8.4vw, 46px); line-height: 1.08; }

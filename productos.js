@@ -808,7 +808,8 @@ window.PRODUCTOS = [
        Diseño: skill ui-ux-pro-max corrida #38 (Soft UI Evolution, rosa #EC4899 + lavanda #8B5CF6, Playfair Display / Inter),
        James "Vale… lo quiero con aspecto imponente" (25-10). Estilos en crema.css, bloques propios en crema.js.
        OJO alegaciones (Reglamento UE 655/2013): solo la APARIENCIA de la piel, nada de "elimina arrugas" ni "rejuvenece". */
-    id: 'crema', unidad: 'crema', promo: 4,
+    id: 'crema', unidad: 'crema', promo: 4, promoRef: true,   /* promoción de la plantilla con el pack de 2 como referencia (ficha.js) */
+    resenasTotal: 141,   /* 25-10: valoraciones REALES de la crema EELHOE Dragon Blood en AliExpress (141; 117 de 4-5 estrellas); escritas solo ~20 */
     dropiId: 1568,
     dropiSku: 'CREMA-DRAGON',
 

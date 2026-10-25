@@ -483,6 +483,9 @@
        Cualquiera puede comprobarlo. Y el descuento sigue siendo bueno: 32%
        en el pack de 2 y 43% en el de 3. */
     var unidad = p.packs[0] && p.packs[0].cant === 1 ? p.packs[0].precio : 0;
+    /* 25-10 crema: no se vende suelta (arranca en 2). Con `promoRef: true` la referencia es el pack de entrada vigente
+       (2 cremas a 28,95 €): 4 cremas = dos packs de 2 = 57,90 €, un precio que se aplica HOY en esta misma página. */
+    if (!unidad && p.promoRef && p.packs[0]) unidad = p.packs[0].precio / p.packs[0].cant;
     var antes = unidad ? +(unidad * k.cant).toFixed(2) : 0;
     if (!antes || antes <= k.precio) return '';   // sin referencia real, no se tacha nada
     var off = Math.round((1 - k.precio / antes) * 100);

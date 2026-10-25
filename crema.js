@@ -61,15 +61,20 @@
       + '</nav>';
   }
 
+  /* James 25-10: nada de bloque rojo ni cajas blancas → opción 3: tres fotos redondas, una por señal, con el nombre en dorado */
   function paso1() {
+    var s = function (n, img, alt, tit, txt) {
+      return '<li><img src="img/crema-senal-' + img + '.webp?v=1" width="500" height="500" loading="lazy" alt="' + alt + '">'
+        + '<b>' + tit + '</b><span>' + txt + '</span></li>';
+    };
     return '<section class="cr-paso cr-paso--1" id="cr-p1" aria-labelledby="crP1t">'
       + '<span class="cr-paso__num">Paso 1 · Lo que notas</span>'
-      + '<h2 class="cr-paso__h2" id="crP1t">La piel cambia. Tu cuidado también.</h2>'
+      + '<h2 class="cr-paso__h2" id="crP1t">La piel cambia. <em>Tu cuidado también.</em></h2>'
       + '<p class="cr-paso__lead">El frío, la calefacción, las pantallas y los años: la piel se ve más seca, apagada y con más líneas.</p>'
       + '<ul class="cr-senales">'
-      +   '<li><b>Tirante</b><span>Piel seca que pide crema a media mañana</span></li>'
-      +   '<li><b>Apagada</b><span>Tono cansado, sin la luz de antes</span></li>'
-      +   '<li><b>Líneas</b><span>Más marcadas en la frente y los ojos</span></li>'
+      +   s(1, 1, 'Dedos sobre la mejilla con la piel seca y tirante', 'Tirante', 'Piel seca que pide crema a media mañana')
+      +   s(2, 2, 'Rostro con la piel apagada y cansada', 'Apagada', 'Tono cansado, sin la luz de antes')
+      +   s(3, 3, 'Líneas finas en el rabillo del ojo', 'Líneas', 'Más marcadas en la frente y los ojos')
       + '</ul>'
       + '</section>';
   }
@@ -103,11 +108,14 @@
         + '<span class="cr-pack__ir">Elegir ' + FLECHA + '</span>'
         + '</button>';
     };
+    /* PROMOCIÓN (James 25-10: "la sección de promoción como aparece en las otras… y ponen la imagen"): es la MISMA sección de la
+       plantilla (.promo-sec de ficha.js, con promoRef: el tachado es 2 packs de 2 a 28,95 € = 57,90 €). armar() la mete aquí,
+       después del título, y debajo va la imagen con los precios, como en las demás fichas. */
     return '<section class="cr-paso cr-paso--3" id="cr-p3" aria-labelledby="crP3t">'
       + '<span class="cr-paso__num">Paso 3 · Tu pedido</span>'
       + '<h2 class="cr-paso__h2" id="crP3t">Elige tu pack. Pagas al recibir.</h2>'
-      + '<figure class="cr-foto cr-foto--ancha"><img src="img/crema-caja.webp?v=1" width="1000" height="1500" loading="lazy"'
-      +   ' alt="Dos cajas rojas y dos tarros abiertos de la crema EELHOE Dragon Blood sobre seda rosada"></figure>'
+      + '<figure class="cr-foto cr-foto--promo"><img src="img/crema-promo.webp?v=1" width="1000" height="1500" loading="lazy"'
+      +   ' alt="Cuatro cajas rojas y cuatro tarros de la crema EELHOE Dragon Blood con los precios: 2 cremas 28,95 € y 4 cremas 48,95 €, envío gratis y pago al recibir"></figure>'
       + '<div class="cr-packs">' + k.map(card).join('') + '</div>'
       + '<p class="cr-paso__nota">Envío gratis en 24-48 h · Pagas en efectivo o con tarjeta al recibir</p>'
       + '</section>';
@@ -147,7 +155,11 @@
     var p3 = nodo(paso3(P)); p2.insertAdjacentElement('afterend', p3);
     var pagoAnt = prod.querySelector('.pagoAntES'); if (pagoAnt) p3.appendChild(pagoAnt);
 
-    /* los packs del paso 3 eligen el mismo pack en el formulario y bajan a él */
+    /* la sección de promoción de la plantilla va en el paso 3, después del título y antes de la imagen con los precios */
+    var promoSec = prod.querySelector('.promo-sec');
+    if (promoSec) p3.querySelector('.cr-paso__h2').insertAdjacentElement('afterend', promoSec);
+
+    /* los packs del paso 3 eligen ese pack en el formulario y bajan a él */
     [].forEach.call(p3.querySelectorAll('.cr-pack'), function (b) {
       b.addEventListener('click', function () {
         var en = document.querySelector('#pedir .pack[data-i="' + b.getAttribute('data-i') + '"]');
