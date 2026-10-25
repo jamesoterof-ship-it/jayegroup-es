@@ -337,7 +337,13 @@
      Arriba una tira de FOTOS redondas que corre sola y siempre se ve.
      Abajo, tarjetas chicas con lo que escribieron. */
   function resenas() {
-    var lista = window.RESENAS || [];
+    /* 25-10 James: en Rumania solo opiniones de lo que se vende aqui (los productos con
+       precio aprobado en lei); el balsamo y la pistola de 48 V no salen. */
+    var seVenden = {};
+    (window.PRODUCTOS || []).forEach(function (p) {
+      if ((p.packs || []).some(function (k) { return k.precio != null; })) seVenden[p.nombre] = 1;
+    });
+    var lista = (window.RESENAS || []).filter(function (r) { return seVenden[r.producto]; });
     var sec = document.getElementById('resenas');
     if (!sec || !lista.length) { if (sec) sec.hidden = true; return; }
 
@@ -434,6 +440,29 @@
     var a = document.getElementById('reseIzq'), b = document.getElementById('reseDer');
     if (a) a.addEventListener('click', function () { mover(-1); });
     if (b) b.addEventListener('click', function () { mover(1); });
+
+    /* 25-10 James: "tiene que tener movimiento horizontal". La tira avanza sola de a una
+       tarjeta cada 3 s y vuelve al principio al llegar al final. Se frena 8 s si la persona
+       la toca, la arrastra o pasa el mouse, y no corre si pide menos movimiento. */
+    if (!pista) return;
+    try { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) {}
+    var quieta = 0;
+    function frenar() { quieta = Date.now() + 8000; }
+    ['pointerdown', 'touchstart', 'wheel', 'mouseenter'].forEach(function (ev) {
+      pista.addEventListener(ev, frenar, { passive: true });
+    });
+    if (a) a.addEventListener('click', frenar);
+    if (b) b.addEventListener('click', frenar);
+    setInterval(function () {
+      if (Date.now() < quieta || document.hidden) return;
+      var t = pista.querySelector('.rsn');
+      var paso = (t ? t.offsetWidth : 190) + 10;
+      var max = pista.scrollWidth - pista.clientWidth;
+      if (max <= 0) return;
+      var destino = pista.scrollLeft + paso;
+      if (destino > max - 4) destino = 0;
+      pista.scrollTo({ left: destino, behavior: 'smooth' });
+    }, 3000);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
