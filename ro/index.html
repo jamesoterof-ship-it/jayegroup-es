@@ -1381,10 +1381,10 @@ window.jayePixel = (function () {
     </div>
   </footer>
 
-<script src="produse.js?v=10"></script>
+<script src="produse.js?v=11"></script>
 <!-- RUMANIA: județe y codigo postal de 6 cifras, en vez de los distritos de Portugal. -->
 <script src="judete-ro.js?v=1"></script>
-<script src="textos-ro.js?v=9"></script>
+<script src="textos-ro.js?v=10"></script>
 <!-- Las opiniones reales de cada producto (las de España), traducidas al rumano. -->
 <script src="resenas-ro.js?v=6"></script>
 <script>/* 25-10 · TIENDA o FICHA (ver MODO_RO en <head>). La tienda carga lo mismo que la
@@ -1407,6 +1407,12 @@ else window._cargaRO(['efectos.js?v=1']);</script>
    aprobados la ficha no deja pedir. Cuando exista el flujo de Rumania
    (bot "Página RO", pais RO, llave ro:) se pone en URL_PEDIDO_RO. */
 window.URL_PEDIDO_RO = null;
+/* 25-10 PAGO ANTICIPADO RUMANIA (James: 10 % menos, lei en la pagina, cobro en EUR al cambio del dia).
+   Client ID de la app de PayPal PROPIA de Rumania (publico). Mientras sea null la ficha no ofrece
+   pagar ahora: solo plata la livrare. Flujos propios (apagados hasta prender los pedidos RO). */
+window.PAYPAL_RO_ID = null;
+window.PAYPAL_RO_ORDEN = 'paypal-orden-ro-07bd3959f1';
+window.PAYPAL_RO_CAPTURA = 'paypal-captura-ro-28efe44bcd';
 window.URL_PEDIDO = window.URL_PEDIDO_RO || 'about:blank#pedido-rumania-sin-conectar';</script>
 <!-- La ficha: lo mismo que producto.html de España, con GSAP al final para no frenar la
      pintura. Cada <producto>.js es el de España tal cual (solo actúa con su ?p=). -->
@@ -1417,7 +1423,7 @@ window.URL_PEDIDO = window.URL_PEDIDO_RO || 'about:blank#pedido-rumania-sin-cone
      los <producto>.js de diseño son COPIAS PROPIAS de /ro/. Los .css de producto siguen
      siendo los de España: el candado de paleta no deja crearlos (falta autorizacion). -->
 <script>if (window.MODO_RO === 'ficha') window._cargaRO([
-  'ficha.js?v=3',
+  'ficha.js?v=4',
   '../lib/gsap.min.js', '../lib/ScrollTrigger.min.js', '../lib/countup.umd.js',
   'efectos-ficha.js?v=1',
   'sellador.js?v=1', 'aranazos.js?v=1',

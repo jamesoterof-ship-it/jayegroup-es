@@ -119,9 +119,10 @@
     return;
   }
 
-  /* RUMANIA: sin pago adelantado (no esta decidido en lei y el cobro era el PayPal de
-     España). Aunque un producto lo traiga, aqui se apaga: solo plata la livrare. */
-  p.anticipado = null;
+  /* RUMANIA 25-10 (James): pago anticipado con 10 % menos, precios en lei (produse.js) y cobro
+     en EUR por PayPal con la app y los flujos PROPIOS de Rumania (paypal-orden-ro / paypal-captura-ro).
+     Mientras no haya Client ID de la app de Rumania (window.PAYPAL_RO_ID), se apaga: solo plata la livrare. */
+  if (!window.PAYPAL_RO_ID) p.anticipado = null;
 
   window.PRODUCTO_ACTUAL = p;
 
@@ -1766,9 +1767,67 @@
         } catch (e) { /* que un bloqueador de anuncios no tumbe la confirmacion */ }
       }
       var _nom1 = window._jgEnlace ? esc(window._jgEnlace.nombre1 || '') : esc(g('fNombre').split(' ')[0]);
-      /* RUMANIA: solo plata la livrare. El boton de PayPal de España (euros, flujos
-         paypal-orden-es / paypal-captura-es) NO esta en esta copia. */
-      {
+      if (formaPago === 'pre' && window.PAYPAL_RO_ID) {
+        /* RUMANIA 25-10 (James: pago anticipado "así como en Chile"): boton de PayPal DENTRO de la pagina.
+           La pagina muestra lei; la orden la crea el servidor en EUR al cambio del dia del Banco Central
+           Europeo (paypal-orden-ro) y el servidor cobra y comprueba que el pago es de ESTE pedido y por
+           ESTE importe antes de marcarlo 'PAGADO paypal' (paypal-captura-ro). App de PayPal propia de Rumania. */
+        var _lei = window._jgEnlace ? window._jgEnlace.monto : Number(_cobra).toFixed(2);
+        var _wa = 'https://wa.me/' + (window.WA_NUM || '34661729824') + '?text=' + encodeURIComponent('Bună ziua, vreau să plătesc comanda de ' + p.nombre + ' și nu reușesc.');
+        var _N8N = 'https://n8n-production-8a42.up.railway.app/webhook/';
+        $('pedir').innerHTML = '<div class="listo"><h3>Ultimul pas: plătiți comanda</h3>'
+          + '<p>Mulțumim, ' + _nom1 + '. Plătiți acum cu cardul sau prin PayPal.</p>'
+          + '<p style="font-size:22px;font-weight:800;margin:10px 0 4px">Total: ' + String(_lei).replace('.', ',') + ' lei</p>'
+          + '<p id="ppEur" style="font-size:14px;opacity:.8;margin:0 0 12px">Plata se face în euro, la cursul zilei (Banca Centrală Europeană).</p>'
+          + '<div id="ppBotones" style="min-height:120px;margin:4px 0 8px"><p style="font-size:14px;opacity:.75">Se încarcă plata securizată…</p></div>'
+          + '<p id="ppEstado" role="status" aria-live="polite" style="font-size:15px;font-weight:700;min-height:22px;margin:6px 0"></p>'
+          + '<div id="ppRespaldo" style="display:none"><p style="font-size:14px">Dacă plata nu merge, scrieți-ne pe WhatsApp și vă ajutăm imediat.</p>'
+          + '<a class="cta negro" href="' + _wa + '" target="_blank" rel="noopener" style="display:block;margin-top:8px">Scrieți-ne pe WhatsApp</a></div></div>';
+        var _ppMsg = function (txt, color) { var e = $('ppEstado'); if (e) { e.textContent = txt; e.style.color = color || ''; } };
+        var _ppRespaldo = function () { var r = $('ppRespaldo'); if (r) r.style.display = ''; var b = $('ppBotones'); if (b && !b.querySelector('iframe')) b.style.display = 'none'; };
+        var _ppPost = function (ruta, datos) {
+          return fetch(_N8N + ruta, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datos) })
+            .then(function (r) { return r.json(); });
+        };
+        var _ppPintar = function () {
+          if (!window.paypal || !window.paypal.Buttons || !window._ventaId) return _ppRespaldo();
+          $('ppBotones').innerHTML = '';
+          window.paypal.Buttons({
+            style: { layout: 'vertical', shape: 'rect', label: 'pay', height: 48 },
+            createOrder: function () {
+              _ppMsg('');
+              return _ppPost(window.PAYPAL_RO_ORDEN, { venta_id: window._ventaId })
+                .then(function (j) {
+                  if (!j || !j.ok || !j.id) throw new Error((j && j.motivo) || 'sin orden');
+                  var e = $('ppEur'); if (e && j.eur) e.textContent = 'Se încasează ' + String(j.eur).replace('.', ',') + ' € (' + String(_lei).replace('.', ',') + ' lei la cursul zilei).';
+                  return j.id;
+                });
+            },
+            onApprove: function (data) {
+              _ppMsg('Verificăm plata…');
+              return _ppPost(window.PAYPAL_RO_CAPTURA, { venta_id: window._ventaId, order_id: data.orderID }).then(function (j) {
+                if (!j || !j.ok) throw new Error((j && j.motivo) || 'neconfirmat');
+                $('pedir').innerHTML = '<div class="listo"><h3>Plata a fost primită!</h3><p>Mulțumim, ' + _nom1
+                  + '. Comanda dumneavoastră este plătită. Vă scriem pe WhatsApp când pleacă spre dumneavoastră.</p></div>';
+                $('pedir').scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }).catch(function () {
+                _ppMsg('Nu am putut confirma plata. Dacă vi s-au luat banii, scrieți-ne pe WhatsApp și verificăm imediat.', '#b91c1c');
+                _ppRespaldo();
+              });
+            },
+            onCancel: function () { _ppMsg('Plata nu s-a finalizat. Puteți încerca din nou oricând.'); },
+            onError: function () { _ppMsg('Plata nu a putut porni. Încercați din nou sau scrieți-ne pe WhatsApp.', '#b91c1c'); _ppRespaldo(); },
+          }).render('#ppBotones').catch(_ppRespaldo);
+        };
+        if (window.paypal && window.paypal.Buttons) _ppPintar();
+        else {
+          var _sdk = document.createElement('script');
+          _sdk.src = 'https://www.paypal.com/sdk/js?client-id=' + window.PAYPAL_RO_ID + '&currency=EUR&intent=capture&components=buttons&locale=ro_RO';
+          _sdk.onload = _ppPintar; _sdk.onerror = _ppRespaldo;
+          document.head.appendChild(_sdk);
+          setTimeout(function () { if (!window.paypal) _ppRespaldo(); }, 12000);
+        }
+      } else {
         $('pedir').innerHTML = '<div class="listo"><h3>' + t('pedidoRecibido', 'Pedido recibido') + '</h3>'
           + '<p>' + t('gracias', 'Gracias, ') + _nom1 + '. ' + t('teEscribimos', 'Te escribimos por WhatsApp al ') + esc(indic) + ' ' + esc(tel)
           + t('paraConfirmar', ' para confirmar el despacho.') + '<br>' + t('pagasRecibes', 'Pagas cuando lo recibes.') + '</p>'

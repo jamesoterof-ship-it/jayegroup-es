@@ -37,6 +37,13 @@ window.PRECIOS_RO_POR_APROBAR = {
   gafas:    [69.99, 89.99, 109.99],    /* 1 · 2 · 3 perechi */
 };
 var _PR = window.PRECIOS_RO_POR_APROBAR;
+/* 25-10 James APROBO el pago anticipado: "10 % menos, precios en lei como los propones y cobro
+   en euros al cambio del día". La pagina muestra lei; PayPal cobra EUR (paypal-orden-ro calcula
+   el cambio del Banco Central Europeo en el momento). Los mismos precios valida el flujo de pedidos RO. */
+function _ANT_RO(precios) {
+  return { pct: 10, precios: precios, titulo: 'Plătiți acum', envio: 'Cu cardul sau PayPal',
+    sub: 'Plătiți acum cu cardul sau prin PayPal și aveți 10 % reducere. Plata se face în euro, la cursul zilei.' };
+}
 
 window.PRODUSE = [
   {
@@ -118,6 +125,7 @@ window.PRODUSE = [
     antesDespuesSub: 'Aceeași ușă în soare: plină de zgârieturi fine de la spălare, și după spray: strălucitoare ca nouă.',
 
     /* PRECIOS: ninguno hasta que James apruebe la escalera en lei (ver arriba). */
+    anticipado: _ANT_RO([71.99, 116.99, 152.99]),
     packs: [
       { cant: 1, precio: _PR.aranazos[0], antes: 0, texto: '1 flacon' },
       { cant: 2, precio: _PR.aranazos[1], antes: 0, texto: '2 flacoane' },
@@ -302,6 +310,7 @@ window.PRODUSE = [
     antesDespues: 'img/sellador-ba.webp?v=1',
     antesDespuesSub: 'Același perete: fisura pe unde intra apa și pata de umezeală, și după aceea etanșată și uscată.',
 
+    anticipado: _ANT_RO([62.99, 89.99, 116.99]),
     packs: [
       { cant: 1, precio: _PR.sellador[0], antes: 0, texto: '1 tub' },
       { cant: 2, precio: _PR.sellador[1], antes: 0, texto: '2 tuburi' },
@@ -384,6 +393,7 @@ window.PRODUSE = [
     antesDespues: 'img/pulsera-ba.webp?v=1',
     antesDespuesSub: 'Aceeași cafea de fiecare zi: înainte cu pachetul de țigări în mână, după cu brățara la încheietură.',
 
+    anticipado: _ANT_RO([66.99, 93.99, 116.99]),
     packs: [
       { cant: 1, precio: _PR.pulsera[0], antes: 0, texto: '1 brățară' },
       { cant: 2, precio: _PR.pulsera[1], antes: 0, texto: '2 brățări' },
@@ -469,6 +479,7 @@ window.PRODUSE = [
     antesDespues: 'img/pistol-apa-ba.webp?v=1',
     antesDespuesSub: 'Aceeași roată: înainte cu noroiul de la țară, după câteva minute de jet.',
 
+    anticipado: _ANT_RO([80.99, 134.99]),
     packs: [
       { cant: 1, precio: _PR.pistola[0], antes: 0, texto: '1 pistol' },
       { cant: 2, precio: _PR.pistola[1], antes: 0, texto: '2 pistoale' },
@@ -551,6 +562,7 @@ window.PRODUSE = [
     antesDespues: 'img/gafas-ba.webp?v=1',
     antesDespuesSub: 'Același meniu de restaurant: înainte neclar, după cu ochelarii puși.',
 
+    anticipado: _ANT_RO([62.99, 80.99, 98.99]),
     packs: [
       { cant: 1, precio: _PR.gafas[0], antes: 0, texto: '1 pereche' },
       { cant: 2, precio: _PR.gafas[1], antes: 0, texto: '2 perechi' },

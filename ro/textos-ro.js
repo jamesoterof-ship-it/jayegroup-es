@@ -185,8 +185,8 @@ window.TEXTOS = {
   interesar: 'V-ar putea interesa și',
   desdeOtros: 'de la ',
   pagaAhoraAhorra: 'Plătiți acum și economisiți ',
-  unPct: '',
-  yPrioritaria: ' și primiți comanda cu livrare prioritară',
+  unPct: ' ',   /* vacio no vale: t() pone el 'un ' de España ("economisiți un 10 %") */
+  yPrioritaria: ' cu cardul sau prin PayPal',   /* 25-10: en Rumania no se promete entrega prioritaria (no esta verificada) */
   pideWa: 'Aveți întrebări? Comandați pe WhatsApp',
   msgWaHero: 'Bună ziua, mă interesează ',
   flota: 'Comandă acum',
