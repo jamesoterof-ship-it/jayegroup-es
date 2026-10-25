@@ -231,6 +231,8 @@
        Plus Jakarta Sans; marco del verde Wadeo del propio aspirador. Un solo producto (James: "solamente sería un producto"). */
     aranazos: { nombre: 'Aspirador de coche 3 en 1',
       webhook: 'https://n8n-production-8a42.up.railway.app/webhook/upsell-aspirador-es',
+      /* 25-10 James: "activa la aspiradora como upsell en Portugal a 11,31 €, igual que España" → su propio flujo (venta PT) */
+      webhookPT: 'https://n8n-production-8a42.up.railway.app/webhook/upsell-aspirador-pt',
       foto: 'img/upsell-aspirador.webp?v=2',
       anuncio: { titulo: 'Deja el interior como nuevo',
         puntos: ['Aspira migas, polvo y pelos', 'Sopla el polvo del salpicadero', 'Infla colchonetas y flotadores', 'Inalámbrico, cabe en la guantera'] },
@@ -1844,7 +1846,7 @@
     var extra = (window.UPSELLS || {})[String(p.id)];
     /* 15-10 James: "que eso no trabe ventas". Al que eligió PAGAR AHORA no se le abre: taparía el botón de PayPal y el
        importe que cobra PayPal no llevaría el extra. Solo contra reembolso, y siempre DESPUÉS de que el pedido entró. */
-    if (extra && !window._jgEnlace && formaPago !== 'pre' && PAIS !== 'PT') abrirUpsell(g('fNombre').split(' ')[0], indic + tel, extra);
+    if (extra && !window._jgEnlace && formaPago !== 'pre' && (PAIS !== 'PT' || extra.webhookPT)) abrirUpsell(g('fNombre').split(' ')[0], indic + tel, extra);
 
       try { localStorage.removeItem('jaye_pedido_pendiente'); } catch (e) {}
     }
@@ -2223,7 +2225,9 @@ function abrirUpsell(nombre, telWA, upsell) {
   function cerrar() { if (ov.parentNode) ov.parentNode.removeChild(ov); }
   function agregar(cant, precio, boton) {
     boton.disabled = true; boton.textContent = 'Agregando\u2026';
-    fetch(U.webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    /* Portugal: la venta es PT, la suma su propio flujo (el de España solo busca ventas de España) */
+    var _url = (window.TEXTOS && window.TEXTOS._pais === 'PT' && U.webhookPT) || U.webhook;
+    fetch(_url, { method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ telefono: telWA, cantidad: String(cant) }) })
       .catch(function () { /* si falla el aviso, el pedido base ya esta a salvo */ })
       .then(function () {
