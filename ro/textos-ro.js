@@ -536,7 +536,7 @@ window.TEXTOS = {
     'sellador-ba', 'sellador-terraza', 'sellador-ventana', 'sellador-tejado',
     'pulsera-palma', 'pulsera-muneca', 'pulsera-pareja', 'pulsera-ba', 'gafas-ba',
     /* 25-10 pistola de agua (Dropi 56) */
-    'hero-pistol-apa', 'pistol-apa-produs', 'pistol-apa-terasa', 'pistol-apa-gradina', 'pistol-apa-ba'];
+    'hero-pistol-apa', 'pistol-apa-produs', 'pistol-apa-terasa', 'pistol-apa-gradina', 'pistol-apa-ba', 'pistol-apa-tarjeta'];
   window.FOTO_RO = function (u) {
     var m = String(u || '').match(/(?:^|\/)img\/([a-z0-9-]+)\.webp/);
     return m && FOTOS_RO.indexOf(m[1]) !== -1 ? 'img/' + m[1] + '.webp?v=1' : null;

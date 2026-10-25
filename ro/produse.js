@@ -413,8 +413,9 @@ window.PRODUSE = [
     etiqueta: 'Lansare în România',
     etiquetaOro: false,
 
-    foto: 'img/pistol-apa-produs.webp?v=1',
-    fotos: ['img/pistol-apa-produs.webp?v=1', 'img/pistol-apa-terasa.webp?v=1', 'img/pistol-apa-gradina.webp?v=1'],
+    /* 25-10 James: la foto en blanco "no se ve bien" como principal → foto de uso */
+    foto: 'img/pistol-apa-tarjeta.webp?v=1',
+    fotos: ['img/pistol-apa-tarjeta.webp?v=1', 'img/pistol-apa-terasa.webp?v=1', 'img/pistol-apa-gradina.webp?v=1', 'img/pistol-apa-produs.webp?v=1'],
     video: null,
 
     hero: {
