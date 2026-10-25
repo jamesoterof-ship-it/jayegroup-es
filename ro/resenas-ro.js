@@ -141,6 +141,49 @@
       ['Ricardo V.', 4, '2026-09-16', '', 'Produs bun, deși a durat ceva mai mult decât mă așteptam să ajungă. Mulțumesc.'],
       ['Larissa M.', 5, '2026-03-24', '', 'Brățară foarte frumoasă. Se potrivește bine cu celelalte pe care le am. O recomand.'],
     ],
+    /* 25-10 James ("busca las reseñas donde sea"): la PISTOLA DE AGUA para manguera (Dropi RO 56) no tiene
+       reseñas propias. Son RESEÑAS REALES de compradores de AliExpress de ESTA MISMA lanza (azul, palanca, punta
+       de latón, caja "Water Jet"): publicaciones 1005012649949916, 1005009998627145 y 1005005997695686, leídas el
+       25-10 de su API de opiniones. Nombre, estrellas y fecha tal cual (AliExpress tapa los nombres con ***);
+       el texto pasado al rumano; el nombre lleva "(AliExpress)" para que se vea de dónde salen. Van también las
+       de 3 y 4 estrellas. Fuera solo las que hablaban del vendedor de AliExpress, de precios en dólares o sin
+       sentido. Las 4 fotos son de esos compradores (img/res-pistol-apa-ro-*.webp). */
+    'Pistol de apă cu presiune pentru furtun': [
+      ['M***y (AliExpress)', 5, '2025-12-18', '', 'Calitate excepțională, recomand cu toată încrederea, foarte mulțumit, livrare rapidă!'],
+      ['Anonim (AliExpress)', 5, '2026-03-16', '', 'Ambalajul a ajuns destul de lovit, dar produsul a ajuns bine. Funcționează bine, dar nu e ca o mașină de spălat cu presiune.'],
+      ['Anonim (AliExpress)', 5, '2026-02-13', '', 'Îmbunătățește jetul de apă, foarte practic, perfect pentru udatul grădinii.'],
+      ['Anonim (AliExpress)', 5, '2026-05-25', 'res-pistol-apa-ro-1', 'Livrare rapidă. Funcționează exact cum este descris. Este al treilea pe care îl cumpăr.'],
+      ['6***r (AliExpress)', 4, '2025-11-03', '', 'Materialele par de calitate bună; singurul lucru e că nu are capătul care reglează lățimea jetului.'],
+      ['Anonim (AliExpress)', 5, '2026-04-28', '', 'Cum mă așteptam, produsul e corect și funcționează bine. 👍'],
+      ['a***r (AliExpress)', 5, '2026-03-17', '', 'Produs și preț excelente.'],
+      ['M***y (AliExpress)', 5, '2026-07-09', '', 'Livrare rapidă, bine ambalat.'],
+      ['Anonim (AliExpress)', 5, '2026-08-04', '', 'Totul în regulă, mulțumesc.'],
+      ['M***y (AliExpress)', 5, '2026-08-05', '', 'Calitate superioară! Recomand!'],
+      ['Anonim (AliExpress)', 5, '2025-11-11', '', 'Îmi place mult acest pulverizator.'],
+      ['m***n (AliExpress)', 5, '2026-01-03', '', 'Nu înlocuiește un aparat Granik, dar este excelent.'],
+      ['Anonim (AliExpress)', 5, '2026-06-09', '', 'Totul bine, totul corect.'],
+      ['Anonim (AliExpress)', 5, '2026-08-14', '', 'Funcționează de minune.'],
+      ['w***a (AliExpress)', 5, '2026-05-09', 'res-pistol-apa-ro-2', 'Produsul este exact cum e descris, îmi place mult. Livrarea a fost foarte rapidă, a ajuns în aproximativ o săptămână. Merită lăudat pentru calitate.'],
+      ['M***y (AliExpress)', 5, '2026-10-02', '', 'Calitate bună la un preț accesibil.'],
+      ['M***y (AliExpress)', 5, '2026-10-19', '', 'Mulțumit de cumpărătură. 😊'],
+      ['Anonim (AliExpress)', 4, '2026-03-14', '', 'E mai bun decât credeam. Jetul de apă iese subțire și uniform.'],
+      ['Anonim (AliExpress)', 5, '2026-08-11', '', 'Un înlocuitor excelent pentru cel care mi-a fost furat. Mulțumesc.'],
+      ['R***a (AliExpress)', 5, '2026-01-03', '', 'Pare de calitate bună, în curând îl încercăm.'],
+      ['a***r (AliExpress)', 4, '2025-11-16', '', 'Totul bine, comanda a ajuns la timp și produsul este eficient.'],
+      ['Anonim (AliExpress)', 3, '2026-05-09', '', 'E bun de folosit. Presiunea apei e mică pentru că alimentarea cu apă e slabă, dar spălatul mașinii merge fără probleme. Livrare rapidă.'],
+      ['Anonim (AliExpress)', 4, '2026-08-12', '', 'A ajuns în siguranță. Sper ca garniturile din mijloc să țină mult timp fără probleme.'],
+      ['s***m (AliExpress)', 3, '2026-04-30', '', 'Nu este atât de rezistent cum e descris, iar legătura cu furtunul pierde apă.'],
+      ['Anonim (AliExpress)', 4, '2026-05-18', '', 'Presiunea depinde de apa care vine direct de la robinet. Mai bine nu vă așteptați la presiunea din reclamă.'],
+      ['Anonim (AliExpress)', 5, '2026-10-15', '', 'Vecinul meu a fost atât de impresionat când i l-am împrumutat, încât m-a rugat să-i comand și lui unul. Acum curăță tot ce prinde.'],
+      ['R***s (AliExpress)', 5, '2026-04-14', 'res-pistol-apa-ro-3', 'Este al doilea pe care îl cumpăr. Raport calitate-preț bun.'],
+      ['a***r (AliExpress)', 5, '2026-05-11', '', 'Chiar îl recomand: cu duza crește presiunea apei, funcționează.'],
+      ['V***A (AliExpress)', 5, '2026-03-18', '', 'Totul bine, mulțumesc mult.'],
+      ['H***i (AliExpress)', 5, '2026-10-08', '', 'Un produs minunat, dar sper să întărească îmbinările.'],
+      ['Anonim (AliExpress)', 4, '2026-04-29', 'res-pistol-apa-ro-4', 'Totul conform descrierii, raport calitate-preț acceptabil.'],
+      ['Anonim (AliExpress)', 4, '2026-05-29', '', 'Nu se potrivește la furtunul meu.'],
+      ['Anonim (AliExpress)', 3, '2026-06-25', '', 'Nu e rău deloc; nu e un Karcher, dar pentru treburi mici e bun.'],
+      ['G***n (AliExpress)', 3, '2026-06-06', '', 'Nu crește cu adevărat debitul, doar îl concentrează.'],
+    ],
     /* 25-10: son de la pistola 48 V de España, que en Rumania NO se vende. Rumania vende la
        pistola de agua para manguera (otro producto): el nombre empieza distinto a proposito
        para que ficha.js (empareja por la primera palabra) no se las ponga. */
