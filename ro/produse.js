@@ -459,7 +459,7 @@ window.PRODUSE = [
       { q: 'La ce folosește?', a: 'La spălatul mașinii, al motocicletei sau al bicicletei, al terasei, al curții sau al fațadei, la curățatul mobilierului de grădină, al jaluzelelor sau al uneltelor, și la udat. Este o mașină de spălat cu presiune de mână: pentru murdăria de zi cu zi, nu pentru lucrări industriale.' },
       { q: 'Are nevoie de priză?', a: 'Nu. Merge cu baterie. Bateriile se încarcă la priza de acasă, cu încărcătorul din valiză.' },
       { q: 'Cât cântărește?', a: 'Aproximativ 2 kilograme cu bateria montată. Se folosește cu o singură mână.' },
-      { q: 'Are garanție?', a: 'Aveți 14 zile de la primire ca să îl returnați dacă nu vă convinge, plus garanția legală de conformitate. Dacă ajunge cu vreun defect, ne scrieți pe WhatsApp și rezolvăm.' },
+      { q: 'Are garanție?', a: 'Da: 30 de zile garanție. Dacă ajunge deteriorat sau cu vreun defect, ne scrieți pe WhatsApp în primele 3 zile de la primire, cu o fotografie, și vi-l schimbăm.' },
     ],
 
     fotosResenas: [],
@@ -541,7 +541,7 @@ window.PRODUSE = [
       { q: 'Ce vine în cutie?', a: 'Ochelarii și o husă moale în care să îi păstrați. În pachetul de 2 sau de 3, fiecare pereche are husa ei.' },
       { q: 'Te obișnuiești greu cu ei?', a: 'Ca la toți ochelarii multifocali, în primele zile trebuie să vă obișnuiți să priviți prin partea de jos pentru citit și prin cea de sus pentru ce e departe. După aceea îi folosiți fără să vă gândiți.' },
       { q: 'De ce pachetul de 2?', a: 'Este cel mai ales: o pereche pentru acasă și alta pentru geantă sau mașină, sau o pereche pentru dumneavoastră și alta pentru partener.' },
-      { q: 'Și dacă nu mă conving?', a: 'Aveți 14 zile de la primire ca să îi returnați. Dacă ajung cu vreun defect, ne scrieți pe WhatsApp și rezolvăm.' },
+      { q: 'Și dacă nu mă conving?', a: 'Aveți 30 de zile garanție. Dacă ajung deteriorați sau cu vreun defect, ne scrieți pe WhatsApp în primele 3 zile de la primire, cu o fotografie, și vi-i schimbăm.' },
     ],
 
     fotosResenas: [],
