@@ -681,12 +681,15 @@
   var MAS_VENDIDOS = ['organizador', 'lentes', 'foco', 'cargador'];
   var otros = TODOS
     .filter(function (x) { return x.id !== p.id && MAS_VENDIDOS.indexOf(x.id) >= 0; })
+    /* 25-10 Rumania: solo lo que se vende (con precio en lei); el balsamo salia "de la 0,00 lei" */
+    .filter(function (x) { return (x.packs || []).some(function (k) { return k.precio != null; }); })
     .sort(function (a, b) { return MAS_VENDIDOS.indexOf(a.id) - MAS_VENDIDOS.indexOf(b.id); })
     .slice(0, 4);
   /* si el producto que se ve ES uno de los 4, se completa con el siguiente que mas vende */
   if (otros.length < 4) {
     TODOS.forEach(function (x) {
-      if (otros.length < 4 && x.id !== p.id && MAS_VENDIDOS.indexOf(x.id) < 0) otros.push(x);
+      if (otros.length < 4 && x.id !== p.id && MAS_VENDIDOS.indexOf(x.id) < 0
+          && (x.packs || []).some(function (k) { return k.precio != null; })) otros.push(x);
     });
   }
   /* BASE_TIENDA y x.enlace: la tienda de Portugal vive en /pt/ con sus propias direcciones

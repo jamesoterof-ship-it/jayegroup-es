@@ -33,7 +33,7 @@ window.PRECIOS_RO_POR_APROBAR = {
   balsamo:  [null, null, null],        /* 1 · 2 · 3 bucăți */
   sellador: [69.99, 99.99, 129.99],    /* 1 · 2 · 3 tuburi */
   pulsera:  [74.99, 104.99, 129.99],   /* 1 · 2 · 3 brățări */
-  pistola:  [null, null],              /* 1 · 2 pistoale */
+  pistola:  [89.99, 149.99],           /* 1 · 2 pistoale de apă (Dropi 56, aprobado 25-10) */
   gafas:    [69.99, 89.99, 109.99],    /* 1 · 2 · 3 perechi */
 };
 var _PR = window.PRECIOS_RO_POR_APROBAR;
@@ -393,32 +393,35 @@ window.PRODUSE = [
   },
 
   /* ============================================================
-     PISTOL DE ÎNALTĂ PRESIUNE 48 V · la de España ('pistola'), traducida.
-     Dropi PRO Rumania id 79 ("Pistola alta presión profesional portátil doble
-     bateria": el MISMO kit de batería que España, no la lanza de manguera 56).
-     🔴 Nada de bares, litros ni minutos de batería: el proveedor no los da.
+     PISTOL DE APĂ CU PRESIUNE PENTRU FURTUN · Dropi PRO Rumania id 56
+     ("Pistola de Agua Presion", SKU WATERGUN-23003, 0,25 kg, 4 x 6 x 44 cm).
+     25-10 James: Rumania sale con el SPRAY y esta PISTOLA DE AGUA. Usa el diseño de
+     la ficha 'pistola' de España (pistola.css + copia propia ro/pistola.js con los
+     textos cambiados); la de España es OTRO producto (48 V con batería).
+     🔴 Es una lanza para la manguera: SIN motor, batería ni enchufe. Nada de bares,
+     litros ni caudal: el proveedor no los da. Fotos: IA desde la foto del proveedor.
      ============================================================ */
   {
     id: 'pistola', enlace: '?p=pistola&', unidad: 'buc.', promo: 2,
 
-    dropiId: 79,
-    dropiSku: '',
+    dropiId: 56,
+    dropiSku: 'WATERGUN-23003',
 
-    nombre: 'Pistol de înaltă presiune 48 V',
-    sub: 'Fără fir · 2 baterii · valiză completă',
-    categoria: 'Bricolaj',
+    nombre: 'Pistol de apă cu presiune pentru furtun',
+    sub: 'Lance metalică de 44 cm · se pune pe furtunul de grădină',
+    categoria: 'Casă',
     etiqueta: 'Lansare în România',
     etiquetaOro: false,
 
-    foto: '../img/pistola-kit.webp?v=1',
-    fotos: ['../img/pistola-kit.webp?v=1', '../img/pistola-maletin.webp?v=1', '../img/pistola-contenido-2.webp?v=1'],
-    video: '../img/pistola-ficha-6.mp4?v=1',
+    foto: 'img/pistol-apa-produs.webp?v=1',
+    fotos: ['img/pistol-apa-produs.webp?v=1', 'img/pistol-apa-terasa.webp?v=1', 'img/pistol-apa-gradina.webp?v=1'],
+    video: null,
 
     hero: {
-      img: '../img/hero-pistola-v2.webp?v=1',
+      img: 'img/hero-pistol-apa.webp?v=1',
       kicker: 'Lansare în România',
-      titulo: 'Mașina plină de noroi<br><b>și niciun furtun la îndemână?</b>',
-      sub: 'Pistol de înaltă presiune fără fir, cu două baterii de 48 V. Ia apa dintr-o găleată, un bidon sau de la robinet și curățați mașina, terasa sau bicicleta oriunde v-ați afla.',
+      titulo: 'Mașina plină de noroi?<br><b>Puneți-o pe furtun și gata.</b>',
+      sub: 'O lance metalică pe care o puneți pe furtunul de grădină: concentrează jetul de apă ca să curățați mașina, curtea sau terasa. Fără curent și fără baterie.',
       datos: [
         ['envio', 'Transport gratuit'],
         ['reloj', 'Livrare rapidă'],
@@ -427,44 +430,43 @@ window.PRODUSE = [
     },
     acento: '#DC2626',
 
-    desc: 'Pistolul de înaltă presiune 48 V este o mașină de spălat cu presiune de mână, fără fir. Vine în valiza lui, cu două baterii de litiu de 48 V și încărcătorul, un furtun de 5 metri cu filtru pentru a lua apa dintr-o găleată sau un bidon, un adaptor pentru robinet, o lance metalică cu duze pentru a alege tipul de jet și o sticlă pentru săpun sau spumă. Este bun pentru spălatul mașinii, al motocicletei sau al bicicletei, al terasei, al curții sau al fațadei, pentru mobilierul de grădină, jaluzele sau unelte, și pentru udat. Fără priză, fără furtun lung și fără aparat greu.',
+    desc: 'Pistolul de apă cu presiune este o lance metalică de aproximativ 44 cm, cu mâner albastru și duză de alamă, care se montează la furtunul de grădină. Concentrează jetul de apă de la robinet ca să curățați mai ușor mașina, roțile, curtea, terasa, gardul sau mobilierul de grădină, și se folosește și la udat. Nu are motor, baterie sau priză: presiunea vine de la apa din furtun. Cântărește aproximativ 250 de grame.',
 
     puntos: [
-      'Fără fir: merge cu baterie de 48 V și vine cu două',
-      'Ia apa dintr-o găleată, un bidon sau de la robinet',
-      'Valiză cu furtun de 5 m, lance, duze și spumă',
-      'Mașină, terasă, bicicletă, mobilier de grădină și udat',
+      'Se pune pe furtunul de grădină de acasă',
+      'Lance metalică de 44 cm, mâner albastru, duză de alamă',
+      'Fără curent, fără baterie: merge cu apa de la robinet',
+      'Mașină, curte, terasă, gard și udat',
     ],
 
-    formulaRotulo: 'Ce conține valiza',
-    formulaTitulo: 'Tot ce trebuie, într-o singură cutie.',
-    formulaSub: 'O deschideți și este gata de lucru.',
+    formulaRotulo: 'Cum funcționează',
+    formulaTitulo: 'Simplu: furtun, lance și apă.',
+    formulaSub: 'O puneți și este gata de lucru.',
     formula: [
-      ['rayo', 'Două baterii de 48 V', 'Una montată și cealaltă la încărcat. Cu încărcătorul inclus.'],
-      ['agua', 'Furtun de 5 m cu filtru', 'Îl puneți într-o găleată sau un bidon și pistolul trage singur apa. Se poate conecta și la robinet.'],
-      ['escudo', 'Lance cu duze', 'Jet subțire pentru noroiul lipit sau evantai pentru clătit. Cu sticla de spumă pentru săpun.'],
-      ['casa', 'Valiză rigidă', 'Totul strâns și protejat. Încape în portbagaj sau pe un raft din garaj.'],
+      ['agua', 'Pe furtun', 'Se montează la capătul furtunului de grădină.'],
+      ['rayo', 'Jet concentrat', 'Apa de la robinet iese printr-o duză îngustă și lovește murdăria cu mai multă forță.'],
+      ['escudo', 'Metal și alamă', 'Lancea este din metal, iar duza din alamă.'],
+      ['casa', 'Ușoară', 'Aproximativ 250 de grame: se folosește ușor, cu o mână sau cu două.'],
     ],
 
-    comparaTitulo: 'De ce acesta și nu o mașină de spălat mare?',
+    comparaTitulo: 'De ce aceasta și nu o mașină de spălat cu presiune?',
     compara: [
-      'Nu are nevoie de priză sau de robinet aproape: îl duceți acolo unde este murdăria.',
-      'Cântărește puțin peste 2 kilograme cu bateria montată: se folosește cu o mână.',
-      'Două baterii în loc de una: terminați mașina fără să așteptați încărcarea.',
+      'Nu are nevoie de priză: merge doar cu apa din furtun.',
+      'Nu are motor sau baterie care să se strice sau să trebuiască încărcată.',
+      'Este mică și ușoară: se ține într-un sertar sau în garaj.',
     ],
 
     preguntas: [
-      { q: 'De unde ia apa?', a: 'Dintr-o găleată, un bidon sau o sticlă mare, cu furtunul de 5 metri care are un filtru la capăt. Dacă aveți robinet aproape, vine și cu adaptorul ca să îl conectați direct.' },
-      { q: 'Ce conține valiza?', a: 'Pistolul, două baterii de litiu de 48 V, încărcătorul, furtunul de 5 metri cu filtru, adaptorul de robinet, lancea metalică cu duze și sticla pentru spumă. Totul în valiza rigidă.' },
-      { q: 'La ce folosește?', a: 'La spălatul mașinii, al motocicletei sau al bicicletei, al terasei, al curții sau al fațadei, la curățatul mobilierului de grădină, al jaluzelelor sau al uneltelor, și la udat. Este o mașină de spălat cu presiune de mână: pentru murdăria de zi cu zi, nu pentru lucrări industriale.' },
-      { q: 'Are nevoie de priză?', a: 'Nu. Merge cu baterie. Bateriile se încarcă la priza de acasă, cu încărcătorul din valiză.' },
-      { q: 'Cât cântărește?', a: 'Aproximativ 2 kilograme cu bateria montată. Se folosește cu o singură mână.' },
+      { q: 'Are nevoie de curent sau baterie?', a: 'Nu. Este o lance care se pune pe furtunul de grădină. Presiunea vine de la apa de la robinet. Nu este o mașină de spălat cu presiune electrică.' },
+      { q: 'Cât de lungă este?', a: 'Aproximativ 44 cm. Cântărește în jur de 250 de grame.' },
+      { q: 'La ce folosește?', a: 'La spălatul mașinii, al roților, al curții, al terasei, al gardului sau al mobilierului de grădină, și la udat. Este pentru murdăria de zi cu zi.' },
+      { q: 'Se potrivește la furtunul meu?', a: 'Se montează la capătul furtunului de grădină. Dacă aveți un furtun special și nu sunteți sigur, scrieți-ne pe WhatsApp înainte de comandă și vă spunem.' },
       { q: 'Are garanție?', a: 'Da: 30 de zile garanție. Dacă ajunge deteriorat sau cu vreun defect, ne scrieți pe WhatsApp în primele 3 zile de la primire, cu o fotografie, și vi-l schimbăm.' },
     ],
 
     fotosResenas: [],
-    antesDespues: '../img/pistola-ba.webp?v=1',
-    antesDespuesSub: 'Aceeași mașină, aceeași curte: înainte cu noroiul de la țară, după câteva minute de pistol.',
+    antesDespues: 'img/pistol-apa-ba.webp?v=1',
+    antesDespuesSub: 'Aceeași roată: înainte cu noroiul de la țară, după câteva minute de jet.',
 
     packs: [
       { cant: 1, precio: _PR.pistola[0], antes: 0, texto: '1 pistol' },

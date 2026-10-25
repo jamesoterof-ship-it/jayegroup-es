@@ -1381,12 +1381,12 @@ window.jayePixel = (function () {
     </div>
   </footer>
 
-<script src="produse.js?v=8"></script>
+<script src="produse.js?v=9"></script>
 <!-- RUMANIA: județe y codigo postal de 6 cifras, en vez de los distritos de Portugal. -->
 <script src="judete-ro.js?v=1"></script>
-<script src="textos-ro.js?v=7"></script>
+<script src="textos-ro.js?v=8"></script>
 <!-- Las opiniones reales de cada producto (las de España), traducidas al rumano. -->
-<script src="resenas-ro.js?v=5"></script>
+<script src="resenas-ro.js?v=6"></script>
 <script>/* 25-10 · TIENDA o FICHA (ver MODO_RO en <head>). La tienda carga lo mismo que la
    portada de España y Portugal (../tienda.js); la ficha, lo mismo que producto.html.
    No se cargan las dos: ficha.js sin ?p= abriria un producto en vez de la tienda. */
@@ -1417,11 +1417,13 @@ window.URL_PEDIDO = window.URL_PEDIDO_RO || 'about:blank#pedido-rumania-sin-cone
      los <producto>.js de diseño son COPIAS PROPIAS de /ro/. Los .css de producto siguen
      siendo los de España: el candado de paleta no deja crearlos (falta autorizacion). -->
 <script>if (window.MODO_RO === 'ficha') window._cargaRO([
-  'ficha.js?v=1',
+  'ficha.js?v=3',
   '../lib/gsap.min.js', '../lib/ScrollTrigger.min.js', '../lib/countup.umd.js',
   'efectos-ficha.js?v=1',
   'sellador.js?v=1', 'aranazos.js?v=1',
-  'pulsera.js?v=1', 'gafas.js?v=1'
+  'pulsera.js?v=1', 'gafas.js?v=1',
+  /* 25-10: la pistola de agua de Rumania (Dropi 56) usa el diseño de la ficha 'pistola' de España con sus textos */
+  'pistola.js?v=2'
 ]);</script>
 
 <script>

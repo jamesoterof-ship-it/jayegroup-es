@@ -534,7 +534,9 @@ window.TEXTOS = {
      esas se toman de aqui; el resto sigue saliendo de la carpeta de España. */
   var FOTOS_RO = ['hero-aranazos', 'aranazos-rocia', 'aranazos-frota', 'aranazos-brillo', 'aranazos-ba',
     'sellador-ba', 'sellador-terraza', 'sellador-ventana', 'sellador-tejado',
-    'pulsera-palma', 'pulsera-muneca', 'pulsera-pareja', 'pulsera-ba', 'gafas-ba'];
+    'pulsera-palma', 'pulsera-muneca', 'pulsera-pareja', 'pulsera-ba', 'gafas-ba',
+    /* 25-10 pistola de agua (Dropi 56) */
+    'hero-pistol-apa', 'pistol-apa-produs', 'pistol-apa-terasa', 'pistol-apa-gradina', 'pistol-apa-ba'];
   window.FOTO_RO = function (u) {
     var m = String(u || '').match(/(?:^|\/)img\/([a-z0-9-]+)\.webp/);
     return m && FOTOS_RO.indexOf(m[1]) !== -1 ? 'img/' + m[1] + '.webp?v=1' : null;

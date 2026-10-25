@@ -141,7 +141,10 @@
       ['Ricardo V.', 4, '2026-09-16', '', 'Produs bun, deși a durat ceva mai mult decât mă așteptam să ajungă. Mulțumesc.'],
       ['Larissa M.', 5, '2026-03-24', '', 'Brățară foarte frumoasă. Se potrivește bine cu celelalte pe care le am. O recomand.'],
     ],
-    'Pistol de înaltă presiune 48 V': [
+    /* 25-10: son de la pistola 48 V de España, que en Rumania NO se vende. Rumania vende la
+       pistola de agua para manguera (otro producto): el nombre empieza distinto a proposito
+       para que ficha.js (empareja por la primera palabra) no se las ponga. */
+    'Mașină 48 V din Spania (nu se vinde în RO)': [
       ['Enrique Grimaldi', 5, '2026-06-19', 'res-pistola-8', 'Este o mașină de spălat cu presiune foarte practică, fiind complet portabilă: o poți conecta la o sticlă sau poți umple o găleată cu apă, pui filtrul și o folosești. Sigur aș cumpăra-o din nou.'],
       ['Karen B.', 5, '2024-08-19', 'res-pistola-9', 'Mi-a plăcut, bateria ține destul de mult în funcționare continuă. Nu cântărește mult, așa că nu obosești folosind-o, iar duzele permit ca apa să iasă în evantai sau în jet.'],
       ['Omar Gutiérrez', 5, '2024-08-10', 'res-pistola-10', 'Mi-a plăcut mult produsul, este o opțiune excelentă când nu ai conexiuni aproape. Este destul de puternic, bateria ține mult și materialele sunt foarte rezistente. O cumpărătură excelentă.'],
