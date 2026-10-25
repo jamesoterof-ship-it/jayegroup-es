@@ -233,7 +233,7 @@
       webhook: 'https://n8n-production-8a42.up.railway.app/webhook/upsell-aspirador-es',
       /* 25-10 James: "activa la aspiradora como upsell en Portugal a 11,31 €, igual que España" → su propio flujo (venta PT) */
       webhookPT: 'https://n8n-production-8a42.up.railway.app/webhook/upsell-aspirador-pt',
-      foto: 'img/upsell-aspirador.webp?v=2',
+      foto: '/img/upsell-aspirador.webp?v=2',   /* 25-10: con / delante: en /pt/ la ruta relativa daba 404 y el onerror borraba la foto antes de que la tradujeran */
       anuncio: { titulo: 'Deja el interior como nuevo',
         puntos: ['Aspira migas, polvo y pelos', 'Sopla el polvo del salpicadero', 'Infla colchonetas y flotadores', 'Inalámbrico, cabe en la guantera'] },
       tema: { osc: '#1E293B', med: '#334155', btnA: '#15803D', btnB: '#22C55E',
