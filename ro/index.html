@@ -1414,6 +1414,9 @@ window.URL_PEDIDO_RO = 'https://n8n-production-8a42.up.railway.app/webhook/pedid
 /* 25-10 James: "PayPal ya está creado" -> la app LIVE de España (como Portugal); flujos propios de Rumania */
 window.PAYPAL_RO_ID = 'BAAc9NmbkqAJ4xLXd_DH4VoURfOABXorMuqMMJoN1M3ron-JlSCnQiaHq3kzTXWZIhuXRYVzPF59hmYx30';
 window.PAYPAL_RO_ORDEN = 'paypal-orden-ro-07bd3959f1';
+/* 25-10 carritos abandonados PROPIOS de Rumania (flujo gKNurLWil2gFIWE9 → fin_abandonados pagina 'web-ro';
+   el aviso ro_recuperare_comanda sale a los 10 min por el +34 661). Nunca el 'abandonado' de España. */
+window.URL_ABANDONADO_RO = 'https://n8n-production-8a42.up.railway.app/webhook/abandonado-ro';
 window.PAYPAL_RO_CAPTURA = 'paypal-captura-ro-28efe44bcd';
 window.URL_PEDIDO = window.URL_PEDIDO_RO || 'about:blank#pedido-rumania-sin-conectar';</script>
 <!-- La ficha: lo mismo que producto.html de España, con GSAP al final para no frenar la
