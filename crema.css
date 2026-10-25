@@ -1,0 +1,186 @@
+/* ============================================================
+   CREMA SANGRE DE DRAGÓN · ESPAÑA · estilos (25-10-2026, 3ª versión)
+   1ª (rosa + lavanda) y 2ª (fondo negro) rechazadas por James: "fondo negro para un cosmético no", "esos colores no tienen
+   nada que ver con el producto", "busca un diseño diferente… ¿cómo está la de Chile?".
+   Ahora: skill ui-ux-pro-max corrida #44 ("gift wishlist red gold surprise pink…"): los colores del propio producto.
+   · estilo Vibrant & Block-based: bloques grandes (48 px o más entre secciones), letra grande (32 px o más), alto contraste,
+     hover con cambio de color, 200-300 ms; nada apagado ni de poca energía
+   · patrón Funnel en 3 pasos: hero → el problema → la solución → la acción, botón en cada paso y uno final
+   · colores: fondo #FFF1F2 · texto #0F172A · tarjeta #FFFFFF · apagado #FCF1F1 · texto 2 #475569 · borde #FAE4E4 ·
+     rojo #DC2626 (la caja) con letra #FFFFFF · dorado #D97706 (la tapa) con letra #000000 · rosa #EC4899 (el gel, botón) con letra #000000
+   · letras: Playfair Display (títulos) / Inter (texto)
+   Héroe: escena con la clienta usando la crema (como los héroes de Chile), titular con el beneficio encima.
+   Solo con body.p-crema (lo pone crema.js con ?p=crema).
+   ============================================================ */
+body.p-crema {
+  --cr-fondo: #FFF1F2;
+  --cr-texto: #0F172A;
+  --cr-texto2: #475569;
+  --cr-tarjeta: #FFFFFF;
+  --cr-apagado: #FCF1F1;
+  --cr-borde: #FAE4E4;
+  --cr-rojo: #DC2626;
+  --cr-sobre-rojo: #FFFFFF;
+  --cr-oro: #D97706;
+  --cr-sobre-oro: #000000;
+  --cr-rosa: #EC4899;
+  --cr-sobre-rosa: #000000;
+  --cr-tit: 'Playfair Display', Georgia, serif;
+  --cr-txt: 'Inter', system-ui, sans-serif;
+  background: var(--cr-fondo);
+  color: var(--cr-texto);
+  font-family: var(--cr-txt);
+  font-size: 16px;
+}
+
+/* ---------- fondo, texto y títulos ---------- */
+body.p-crema #prod, body.p-crema #prod .bloque, body.p-crema #prod section, body.p-crema #prod .form { background: var(--cr-fondo); color: var(--cr-texto); }
+body.p-crema #prod :is(h1, h2, h3, h4, p, li, span, b, strong, em, i, label, td, th, small, a, summary, div) { color: inherit; }
+body.p-crema #prod p, body.p-crema #prod li { font-size: 16px; line-height: 1.6; }
+body.p-crema #prod :is(.sub, .sub2, .ctaSub, .formnote, .promo-uni, .verif, .small, small, .cl, .heroP__sub, .baj, .cr-lead) { color: var(--cr-texto2); }
+body.p-crema #prod :is(h1, h2, h3) { font-family: var(--cr-tit); color: var(--cr-texto); font-weight: 800; letter-spacing: -.015em; }
+body.p-crema #prod h2 { display: block; font-size: clamp(32px, 8.4vw, 48px); line-height: 1.06; text-transform: none; }
+body.p-crema #prod h2::before { content: none; display: none; }
+body.p-crema #prod h2 em, body.p-crema .cr-h2 em { font-style: italic; color: var(--cr-rojo); }
+body.p-crema #prod a { color: var(--cr-rojo); }
+body.p-crema #prod .bloque { padding-top: 52px; padding-bottom: 52px; }
+
+/* rótulos: bloque rojo lleno, letra blanca */
+body.p-crema #prod .eyebrow, body.p-crema .cr-rot {
+  display: inline-block; font: 800 13px/1.2 var(--cr-txt); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--cr-sobre-rojo); background: var(--cr-rojo); padding: 7px 12px; border-radius: 4px;
+}
+
+/* ---------- bloques: blancos, borde rosado, esquinas firmes ---------- */
+body.p-crema #prod :is(.promo-card, .ing, .cmp, .rsc, .sello, .formcard, .pack, .summary, .cuenta > div, .res, .oc, .masRs) {
+  background: var(--cr-tarjeta); color: var(--cr-texto); border: 2px solid var(--cr-borde); border-radius: 12px;
+  transition: border-color .2s ease;
+}
+body.p-crema #prod .pack:hover { border-color: var(--cr-rosa); }
+body.p-crema #prod .cmp th, body.p-crema #prod .cmp td { background: var(--cr-tarjeta); color: var(--cr-texto); border-color: var(--cr-borde); }
+body.p-crema #prod .cmp th.us { background: var(--cr-rojo); color: var(--cr-sobre-rojo); }
+body.p-crema #prod .cmp .si svg { stroke: var(--cr-rojo); }
+body.p-crema #prod .cmp .no svg { stroke: var(--cr-texto2); }
+body.p-crema #prod .ing .cir, body.p-crema #prod .im { background: var(--cr-rojo); border: 0; }
+body.p-crema #prod .ing .cir svg { stroke: var(--cr-sobre-rojo); }
+body.p-crema #prod .ing b { font-family: var(--cr-tit); font-size: 21px; color: var(--cr-texto); }
+body.p-crema #prod .track { background: var(--cr-apagado); }
+body.p-crema #prod :is(.btn-write, .masRs) { background: var(--cr-tarjeta); color: var(--cr-texto); border: 2px solid var(--cr-texto); }
+body.p-crema #prod .ini { background: var(--cr-oro); color: var(--cr-sobre-oro); }
+body.p-crema #prod :is(.promo-precio, .free, .precioTop) { color: var(--cr-rojo); font-family: var(--cr-tit); }
+body.p-crema #prod .cuenta > div { border-color: var(--cr-rojo); }
+body.p-crema #prod :is(.cuenta b, .res b) { color: var(--cr-rojo); font-family: var(--cr-tit); }
+body.p-crema #prod :is(.cuenta span, .res span) { color: var(--cr-texto2); }
+body.p-crema #prod .cod-badge { background: var(--cr-apagado); color: var(--cr-texto); border: 2px solid var(--cr-borde); }
+body.p-crema #prod .gar-chips span {
+  background: var(--cr-tarjeta) !important; color: var(--cr-texto) !important; border: 2px solid var(--cr-oro) !important; text-shadow: none;
+}
+body.p-crema #prod .ba-img img, body.p-crema #prod .vid-wrap video { border-radius: 12px; border: 4px solid var(--cr-tarjeta); }
+
+/* ---------- botón de compra: rosa del gel con letra negra; al pasar, rojo con letra blanca ---------- */
+body.p-crema :is(.cta, .btn-flota, #pedir button[type="submit"]) {
+  background: var(--cr-rosa) !important; color: var(--cr-sobre-rosa) !important; border: 0 !important;
+  border-radius: 10px; font-family: var(--cr-txt); font-weight: 800; letter-spacing: .03em; text-transform: uppercase;
+  transition: background-color .2s ease, color .2s ease; cursor: pointer;
+}
+body.p-crema :is(.cta, .btn-flota, #pedir button[type="submit"]):hover { background: var(--cr-rojo) !important; color: var(--cr-sobre-rojo) !important; }
+body.p-crema :is(.cta, .btn-flota, #pedir button[type="submit"]) svg { stroke: currentColor; }
+body.p-crema a:focus-visible, body.p-crema button:focus-visible, body.p-crema input:focus-visible, body.p-crema select:focus-visible {
+  outline: 3px solid var(--cr-texto); outline-offset: 3px;
+}
+
+/* ---------- HÉROE: la clienta con la crema a todo lo ancho, el titular grande arriba ---------- */
+body.p-crema .heroP__marco { position: relative; background: var(--cr-fondo); }
+body.p-crema .heroP__fundido { background: linear-gradient(to top, #FFF1F2 10%, transparent 100%); }
+body.p-crema .cr-heroTit { position: absolute; top: 0; left: 0; right: 0; z-index: 3; padding: 22px 18px 0; text-align: left; }
+body.p-crema .cr-heroTit :is(.heroP__nota, .heroP__kicker) { color: var(--cr-texto); margin-bottom: 10px; }
+body.p-crema .heroP__nota { background: var(--cr-tarjeta); border: 2px solid var(--cr-borde); box-shadow: none; }
+body.p-crema .heroP__nota b { color: var(--cr-texto); }
+body.p-crema .heroP__nota a { color: var(--cr-texto2); }
+body.p-crema .cr-heroTit .heroP__h1 {
+  font-family: var(--cr-tit); font-weight: 800; color: var(--cr-texto); font-size: clamp(32px, 8.6vw, 64px); line-height: 1; margin: 4px 0 0;
+  text-transform: none; letter-spacing: -.025em;
+}
+body.p-crema .cr-heroTit .hCas__l { color: var(--cr-texto); -webkit-text-fill-color: var(--cr-texto); }
+body.p-crema .cr-heroTit .heroP__h1 b, body.p-crema .cr-heroTit .hCas__w.es-oro .hCas__l,
+html.ba-lista body.p-crema .cr-heroTit .hCas__w.es-oro .hCas__l {
+  font-style: italic; color: var(--cr-rojo); -webkit-text-fill-color: var(--cr-rojo);
+}
+body.p-crema .heroP__txt { background: var(--cr-fondo); color: var(--cr-texto); }
+body.p-crema #prod .heroP__sub { font-size: 17px; color: var(--cr-texto2); }
+body.p-crema .heroP__dato, body.p-crema .heroP__ahorra { background: var(--cr-tarjeta); border: 2px solid var(--cr-borde); border-radius: 8px; color: var(--cr-texto); }
+body.p-crema .heroP__dato svg, body.p-crema .heroP__ahorra svg { stroke: var(--cr-rojo); color: var(--cr-rojo); }
+body.p-crema .heroP__precio b { color: var(--cr-texto); font-family: var(--cr-tit); }
+body.p-crema .heroP__precio span { color: var(--cr-texto2); }
+body.p-crema .heroP__kicker { background: var(--cr-rojo); color: var(--cr-sobre-rojo); border: 0; box-shadow: none; border-radius: 4px; }
+body.p-crema .heroP__kicker i { background: var(--cr-oro); }
+@media (min-width: 768px) { body.p-crema .cr-heroTit { padding: 46px 40px 0; } }
+
+/* el recuadro de "Paga con tarjeta y gana" (pago-anticipado.js lo pinta con estilos en línea) */
+body.p-crema .pagoAntES > div { border: 2px solid var(--cr-borde) !important; border-top: 6px solid var(--cr-oro) !important; box-shadow: none !important; border-radius: 12px !important; }
+body.p-crema .pagoAntES p span { background: var(--cr-oro) !important; color: var(--cr-sobre-oro) !important; }
+body.p-crema .pagoAntES #btnPagoAnt { background: var(--cr-oro) !important; color: var(--cr-sobre-oro) !important; }
+
+/* ---------- el problema y la solución (crema.js): bloques grandes ---------- */
+body.p-crema .cr-sec { padding: 60px 18px; text-align: left; max-width: 760px; margin: 0 auto; }
+body.p-crema #prod section.cr-sec--rojo, body.p-crema .cr-sec--rojo { background: var(--cr-rojo); color: var(--cr-sobre-rojo); max-width: none; }
+body.p-crema .cr-sec--rojo > * { max-width: 724px; margin-left: auto; margin-right: auto; }
+body.p-crema #prod .cr-sec--rojo :is(.cr-h2, .cr-lead) { color: var(--cr-sobre-rojo); }
+body.p-crema #prod .cr-sec--rojo .cr-senal { color: var(--cr-texto); }
+body.p-crema #prod .cr-sec--rojo .cr-senal b { color: var(--cr-rojo); }
+body.p-crema #prod .cr-sec--rojo .cr-senal span { color: var(--cr-texto2); }
+body.p-crema #prod .cr-sec--rojo .cr-rot { background: var(--cr-tarjeta); color: var(--cr-rojo); }
+body.p-crema #prod .cr-sec--rojo .cr-h2 em, body.p-crema .cr-sec--rojo .cr-h2 em { color: var(--cr-sobre-rojo); text-decoration: underline; text-decoration-color: var(--cr-oro); text-decoration-thickness: 4px; text-underline-offset: 6px; }
+body.p-crema .cr-sec--rojo .cr-rot { background: var(--cr-tarjeta); color: var(--cr-rojo); }
+body.p-crema .cr-h2 { font-family: var(--cr-tit); font-weight: 800; color: var(--cr-texto); font-size: clamp(34px, 9vw, 52px); line-height: 1.04; margin: 16px 0 14px; letter-spacing: -.015em; }
+body.p-crema .cr-lead { color: var(--cr-texto2); font-size: 18px; line-height: 1.6; margin: 0 0 28px; max-width: 600px; }
+body.p-crema .cr-senales { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 0; }
+body.p-crema .cr-senal { display: flex; align-items: baseline; gap: 14px; background: var(--cr-tarjeta); color: var(--cr-texto); border-radius: 12px; padding: 18px 18px; }
+body.p-crema .cr-senal b { font-family: var(--cr-tit); font-size: 26px; color: var(--cr-rojo); min-width: 4.3em; }
+body.p-crema .cr-senal span { font-size: 16px; line-height: 1.45; color: var(--cr-texto2); }
+body.p-crema .cr-ritual { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 12px; counter-reset: paso; }
+body.p-crema .cr-ritual li {
+  counter-increment: paso; background: var(--cr-tarjeta); border: 2px solid var(--cr-borde); border-radius: 12px;
+  padding: 18px 18px 18px 78px; position: relative; color: var(--cr-texto);
+}
+body.p-crema .cr-ritual li::before {
+  content: counter(paso); position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px; border-radius: 8px; background: var(--cr-oro); color: var(--cr-sobre-oro);
+  font: 800 24px/46px var(--cr-tit); text-align: center;
+}
+body.p-crema .cr-ritual b { display: block; font-family: var(--cr-tit); font-size: 22px; }
+body.p-crema .cr-ritual span { color: var(--cr-texto2); font-size: 16px; }
+body.p-crema .cr-cta { width: 100%; max-width: 440px; min-height: 56px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; }
+body.p-crema .cr-cta svg { width: 20px; height: 20px; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- formulario de pedido: pasos, packs y "¿cómo quieres pagar?" ---------- */
+body.p-crema #prod .err { color: var(--cr-rojo); }
+body.p-crema #prod .pasoRot { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font: 800 20px var(--cr-tit); color: var(--cr-texto); }
+body.p-crema #prod .pasoRot:first-of-type { margin-top: 4px; }
+body.p-crema #prod .pasoRot b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 6px; background: var(--cr-rojo); color: var(--cr-sobre-rojo); font: 800 16px var(--cr-txt); }
+body.p-crema #prod .pack.sel, body.p-crema #prod .pack[aria-checked="true"] { border-color: var(--cr-rojo); }
+body.p-crema #prod .pagoSel { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 4px; }
+body.p-crema #prod .pagoOp {
+  position: relative; display: grid; grid-template-areas: 'ico' 'tit' 'pr' 'sub' 'logos'; align-content: start; gap: 2px;
+  min-height: 132px; padding: 16px 12px 13px; border: 2px solid var(--cr-borde); border-radius: 12px;
+  background: var(--cr-tarjeta); font: inherit; color: var(--cr-texto); text-align: left; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; transition: border-color .2s ease;
+}
+body.p-crema #prod .pagoOp.sel { border-color: var(--cr-rojo); }
+body.p-crema #prod .pagoOp__ico { grid-area: ico; margin-bottom: 4px; }
+body.p-crema #prod .pagoOp__ico svg { width: 26px; height: 26px; fill: none; stroke: var(--cr-texto2); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+body.p-crema #prod .pagoOp.sel .pagoOp__ico svg { stroke: var(--cr-rojo); }
+body.p-crema #prod .pagoOp__tit { grid-area: tit; font: 700 15px/1.25 var(--cr-txt); color: var(--cr-texto); }
+body.p-crema #prod .pagoOp__pr { grid-area: pr; margin-top: 2px; font: 800 24px/1.1 var(--cr-tit); color: var(--cr-texto); }
+body.p-crema #prod .pagoOp__sub { grid-area: sub; margin-top: 3px; font-size: 14px; line-height: 1.35; color: var(--cr-texto2); }
+body.p-crema #prod .pagoOp__logos { grid-area: logos; }
+body.p-crema #prod .pagoOp__logos img { height: 14px; width: auto; }
+body.p-crema #prod .pagoOp__cinta { position: absolute; top: -11px; right: 10px; padding: 3px 10px; border-radius: 4px; background: var(--cr-oro); color: var(--cr-sobre-oro); font: 800 13px var(--cr-txt); white-space: nowrap; }
+
+/* entrada de los bloques (300 ms); todo quieto con "reducir movimiento" */
+body.p-crema.cr-mueve .cr-entra { opacity: 0; transform: translateY(16px); transition: opacity .3s ease-out, transform .3s ease-out; }
+body.p-crema.cr-mueve .cr-entra.cr-visto { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  body.p-crema .cr-entra { opacity: 1 !important; transform: none !important; transition: none !important; }
+  body.p-crema :is(.cta, .btn-flota, .pack) { transition: none !important; }
+}

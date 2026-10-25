@@ -627,3 +627,28 @@ window.RESENAS = (window.RESENAS || []).concat([
   { producto:'Gafas Multifocales con Filtro Azul', nombre:"Carlos A.", estrellas:5, fecha:"2026-03-17", pais:'CL', verificada:true, texto:"excelente , livianitoos y muy buenos y está empresa si llega gracias" },
   { producto:'Gafas Multifocales con Filtro Azul', nombre:"Rocío G.", estrellas:4, fecha:"2026-04-21", foto:'img/res-gafas-10.webp', pais:'ES', verificada:true, texto:"Recibidas, gracias. Son muy ligeras." },
 ]);
+
+/* 25-10-2026 · CREMA SANGRE DE DRAGÓN (EELHOE, Dropi PRO 1568). Reseñas REALES de AliExpress de la MISMA crema EELHOE Dragon Blood
+   de 50 g (anuncios 1005007137354736, 1005006968965045, 1005008032670179 y 1005010153238796), traducidas al español por AliExpress.
+   Se dejaron fuera las de otras cremas (manchas, blanqueadoras, marca wiyun), las del sérum en gotero, las de envíos que no llegaron
+   y las de 3 estrellas o menos. Una reseña por comprador. Nombres en español (James 19-10: "en español y con su nombre");
+   el país y la fecha son los del comprador. Fotos: las del propio comprador, solo las que muestran el frasco o la caja EELHOE. */
+window.RESENAS = (window.RESENAS || []).concat([
+  { producto:'Crema Sangre de Dragón', nombre:"Pilar M.", estrellas:5, fecha:"2026-01-08", pais:'ES', verificada:true, texto:"Llevo unos días usándola y me ha gustado, se absorbe rápido y deja suave la piel" },
+  { producto:'Crema Sangre de Dragón', nombre:"Elena R.", estrellas:4, fecha:"2025-10-27", foto:'img/res-crema-1.webp', pais:'ES', verificada:true, texto:"Me encanta. Olor perfecto y muy suave. Compraré más" },
+  { producto:'Crema Sangre de Dragón', nombre:"Andrea R.", estrellas:5, fecha:"2026-02-25", pais:'US', verificada:true, texto:"La he estado usando porque en invierno mi piel se reseca muchísimo, y las lociones suelen irritarme la cara cuando está tan seca. Esta hidrata sin dejar sensación grasa ni de ardor, y deja la piel súper suave. Me gusta mucho, sobre todo porque hidrata." },
+  { producto:'Crema Sangre de Dragón', nombre:"Alba Z.", estrellas:5, fecha:"2026-01-05", pais:'ES', verificada:true, texto:"La crema es increíble, y el chico que me la ha traído también es súper amable y cuidadoso con el paquete. ¡Gracias!" },
+  { producto:'Crema Sangre de Dragón', nombre:"Rosario P.", estrellas:5, fecha:"2025-11-28", foto:'img/res-crema-2.webp', pais:'ES', verificada:true, texto:"El producto es bueno. El embalaje llegó golpeado, aunque no afectó al producto." },
+  { producto:'Crema Sangre de Dragón', nombre:"Lourdes L.", estrellas:5, fecha:"2025-11-18", pais:'ES', verificada:true, texto:"Me encanta, me deja la piel muy bien, hace su función" },
+  { producto:'Crema Sangre de Dragón', nombre:"Karen A.", estrellas:5, fecha:"2026-05-08", pais:'AU', verificada:true, texto:"¡Vendedor fantástico! Me encanta la sangre de dragón, se siente preciosa en la piel. ¡Gracias! 😊" },
+  { producto:'Crema Sangre de Dragón', nombre:"Natalia N.", estrellas:5, fecha:"2025-12-14", pais:'ES', verificada:true, texto:"Buen producto, no queda nada grasa, absorbe bastante bien y deja la piel suave" },
+  { producto:'Crema Sangre de Dragón', nombre:"Concha S.", estrellas:5, fecha:"2026-01-03", pais:'ES', verificada:true, texto:"Muy buena, ya la he utilizado varias veces" },
+  { producto:'Crema Sangre de Dragón', nombre:"Dana K.", estrellas:5, fecha:"2026-02-15", pais:'KZ', verificada:true, texto:"La he probado y me gusta, es muy suave y con los días lo notas más" },
+  { producto:'Crema Sangre de Dragón', nombre:"Teresa V.", estrellas:5, fecha:"2026-01-27", foto:'img/res-crema-3.webp', pais:'ES', verificada:true, texto:"Excelente, como siempre." },
+  { producto:'Crema Sangre de Dragón', nombre:"Beatriz O.", estrellas:5, fecha:"2025-10-28", pais:'ES', verificada:true, texto:"Excelente producto y llegó súper rápido" },
+  { producto:'Crema Sangre de Dragón', nombre:"Mónica F.", estrellas:5, fecha:"2026-02-20", pais:'ES', verificada:true, texto:"Perfecto, me encanta" },
+  { producto:'Crema Sangre de Dragón', nombre:"Ana T.", estrellas:5, fecha:"2025-10-30", pais:'ES', verificada:true, texto:"Muy buena calidad" },
+  { producto:'Crema Sangre de Dragón', nombre:"Noa L.", estrellas:5, fecha:"2026-08-24", pais:'IL', verificada:true, texto:"Se siente muy bien en la piel. No es grasa ni pegajosa. Hidrata y nutre, y el aroma es muy agradable, no demasiado fuerte." },
+  { producto:'Crema Sangre de Dragón', nombre:"Tamar D.", estrellas:5, fecha:"2026-08-25", foto:'img/res-crema-4.webp', pais:'IL', verificada:true, texto:"La crema es un poco líquida, algo más espesa que un sérum. El aroma es agradable y la piel se siente más suave." },
+  { producto:'Crema Sangre de Dragón', nombre:"Marta G.", estrellas:4, fecha:"2025-12-24", foto:'img/res-crema-5.webp', pais:'ES', verificada:true, texto:"Es una crema hidratante; no sé qué efecto tendrá a largo plazo, de momento como cualquier otra crema. Espero seguir utilizándola y ver cómo funciona." },
+]);

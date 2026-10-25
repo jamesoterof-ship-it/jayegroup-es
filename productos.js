@@ -800,6 +800,103 @@ window.PRODUCTOS = [
       precios: [17.95, 26.05, 34.15],
     },
   },
+
+  {
+    /* 25-10-2026 · CREMA SANGRE DE DRAGÓN (EELHOE "Dragon Blood Anti-aging Face Cream", 50 g).
+       Dropi PRO 1568 · SKU CREMA-DRAGON · coste 2,89 € · 11.031 u. el 24-10. En Dropi figura como "placenta de dragón",
+       pero la caja y el frasco dicen DRAGON BLOOD: se vende como Sangre de Dragón (lo que el cliente ve en el envase).
+       Diseño: skill ui-ux-pro-max corrida #38 (Soft UI Evolution, rosa #EC4899 + lavanda #8B5CF6, Playfair Display / Inter),
+       James "Vale… lo quiero con aspecto imponente" (25-10). Estilos en crema.css, bloques propios en crema.js.
+       OJO alegaciones (Reglamento UE 655/2013): solo la APARIENCIA de la piel, nada de "elimina arrugas" ni "rejuvenece". */
+    id: 'crema', unidad: 'crema', promo: 4,
+    dropiId: 1568,
+    dropiSku: 'CREMA-DRAGON',
+
+    nombre: 'Crema Sangre de Dragón',
+    sub: 'Crema facial en gel · 50 g · rostro y cuello',
+    categoria: 'Belleza',
+    etiqueta: 'Nuevo en España',
+    etiquetaOro: false,
+
+    foto: 'img/crema-caja.webp?v=1',
+    fotos: ['img/crema-mano.webp?v=1', 'img/crema-noche.webp?v=1', 'img/crema-caja.webp?v=1'],
+    video: 'img/crema-ficha.mp4?v=1',   /* 25-10: video del anuncio de AliExpress de la MISMA crema EELHOE (1005007137354736),
+                                           720 x 728: se recortó por abajo la franja de subtítulos en inglés. Sin sonido. */
+
+    hero: {
+      img: 'img/crema-hero3.webp?v=1',   /* 25-10 James "busca un diseño diferente… ¿cómo está la de Chile?": escena con la clienta
+                                            usando la crema, como los héroes de Chile (Neocell, máscara), no el frasco en un pedestal */
+      kicker: 'Sangre de Dragón · EELHOE',
+      titulo: 'Despierta tu piel<br><b>en un minuto al día.</b>',
+      sub: 'Crema facial en gel con partículas doradas: hidrata, deja la piel suave y luminosa, y ayuda a suavizar la apariencia de las líneas de expresión.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Paga ahora o al recibir'],
+      ],
+    },
+    acento: '#DC2626',   /* 25-10 skill "Gift red + gold + surprise pink": los colores de la caja, la tapa y el gel (James: fondo negro no) */
+
+    desc: 'La Crema Sangre de Dragón de EELHOE es una crema facial en gel, rosada y con pequeñas partículas doradas, que se extiende fácil y se absorbe rápido sin dejar la piel grasa. Hidrata el rostro y el cuello, deja la piel más suave y con un aspecto más luminoso y uniforme, y ayuda a suavizar la apariencia de las líneas de expresión con el uso diario. Viene en tarro de cristal de 50 g con tapa dorada, en su caja.',
+
+    puntos: [
+      'Hidrata y deja la piel suave, sin sensación grasa',
+      'Piel con aspecto más luminoso y uniforme',
+      'Ayuda a suavizar la apariencia de las líneas de expresión',
+      'Tarro de 50 g · el pack de 2 es el más pedido',
+    ],
+
+    formulaRotulo: 'Cómo es',
+    formulaTitulo: 'Un gel que tu piel bebe.',
+    formulaSub: 'Ligera, rápida de absorber y agradable de usar cada día.',
+    formula: [
+      ['agua', 'Hidratación', 'Textura de gel que se absorbe rápido y deja la piel jugosa, no grasa.'],
+      ['sol', 'Luminosidad', 'Piel con un aspecto más luminoso y un tono más uniforme.'],
+      ['pluma', 'Suavidad', 'Deja el rostro y el cuello suaves al tacto desde la primera aplicación.'],
+      ['escudo', 'Para cada día', 'Por la mañana y por la noche, sobre la piel limpia.'],
+    ],
+
+    comparaTitulo: '¿Por qué esta y no otra crema?',
+    compara: [
+      'Textura de gel: se absorbe rápido y no deja la piel grasa.',
+      'Rostro y cuello con una sola crema.',
+      'Tarro de cristal de 50 g, en su caja.',
+      'El pack de 2: una para ti y otra para regalar, o para no quedarte sin ella.',
+    ],
+
+    preguntas: [
+      { q: '¿Cómo se usa?', a: 'Sobre la piel limpia del rostro y el cuello, por la mañana y por la noche. Toma un poco con la yema de los dedos y extiéndela con un masaje suave hasta que se absorba.' },
+      { q: '¿Deja la piel grasa?', a: 'No. Es una crema en gel: se absorbe rápido y deja la piel suave, sin sensación grasa ni pegajosa.' },
+      { q: '¿Cuánto dura un tarro?', a: 'Depende de cuánto uses, pero con un uso diario normal, en rostro y cuello, un tarro de 50 g suele dar para varias semanas.' },
+      { q: '¿Sirve para mi tipo de piel?', a: 'Es una crema hidratante para el día a día. Si tienes la piel muy sensible, pruébala primero en una zona pequeña. No la apliques sobre heridas ni cerca de los ojos.' },
+      { q: '¿Por qué el pack de 2?', a: 'Es el más elegido: una para ti y otra para regalar, o dos para no quedarte sin ella a mitad del tratamiento.' },
+      { q: '¿Y si no me convence?', a: 'Tienes 14 días desde que la recibes para devolverla sin abrir. Si llega con algún fallo, nos escribes por WhatsApp y lo resolvemos.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: 'img/crema-ba.webp?v=1',
+    antesDespuesSub: 'Imagen ilustrativa: el aspecto de la piel con el uso diario de la crema. Los resultados varían de una persona a otra.',
+
+    /* PRECIOS aprobados por James 25-10-2026 ("dale"): 2 cremas 28,95 € · 4 cremas 48,95 €.
+       Competencia contra reembolso en España (Biblioteca de Meta, 25-10): Verabelleza 29,90 € (1+1, el más barato),
+       Zenovix 29,99 € (2) y 49,99 € (4), Esencia Divina 29,99 € (2 + sérum). Nadie la vende suelta.
+       'antes' en 0: producto nuevo (Ley 7/1996 art. 20.1). */
+    packs: [
+      { cant: 2, precio: 28.95, antes: 0, texto: '2 cremas' },
+      { cant: 4, precio: 48.95, antes: 0, texto: '4 cremas' },
+    ],
+    popular: 0,
+
+    /* Pago anticipado: −10 % como el resto de España (26,05 ya aprobado para las gafas; 44,05 = 48,95 − 10 %). */
+    anticipado: {
+      pct: 10,
+      descuento: 2.00,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [26.05, 44.05],
+    },
+  },
 ];
 
 /* ============================================================
@@ -831,4 +928,6 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* pulsera antitabaco, aprobados 07-10-2026, y su pago anticipado −10 % (James 07-10: "pago anticipado con el menos 10 %") */
   25.95, 37.95, 47.95, 23.35, 34.15, 43.15,
   /* gafas multifocales 2816, aprobados 17-10-2026 (opción A) y su pago anticipado −10 % (37,95 y 34,15 ya están) */
-  19.95, 28.95, 17.95, 26.05];
+  19.95, 28.95, 17.95, 26.05,
+  /* crema sangre de dragón 1568, aprobados 25-10-2026 (2 cremas 28,95 ya está) y su pago anticipado −10 % (26,05 ya está) */
+  48.95, 44.05];
