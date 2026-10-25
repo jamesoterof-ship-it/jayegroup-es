@@ -2266,9 +2266,14 @@ function abrirUpsell(nombre, telWA, upsell) {
     var hayCorreo = cor.indexOf('@') > 0 && cor.indexOf('.') > cor.indexOf('@');
     if (tel.length < 8 && !hayCorreo) return null;
     var pack = (window.PACK_ELEGIDO || {});
+    /* 25-10: en Portugal 'fCod' no existe y el carrito se guardaba con +34: salia en el panel
+       de España y el flujo de carritos PT (+351) nunca lo veia. El indicativo sale de fPais
+       (PT|+351|9). España queda exactamente igual. */
+    var ind = val('fCod') || '+34';
+    if (window.TEXTOS && window.TEXTOS._pais === 'PT') ind = val('fPais').split('|')[1] || '+351';
     /* los nombres van completos: son los que lee el flujo Abandonado -> PG */
     return {
-      sid: SID, telefono: tel, indicativo: val('fCod') || '+34',
+      sid: SID, telefono: tel, indicativo: ind,
       nombre: val('fNombre'), producto: (window.PRODUCTO_NOMBRE || document.title || ''),
       cantidad: String(pack.cant || ''), total: String(pack.precio || ''),
       direccion: val('fDir'), ciudad: val('fCiudad'), provincia: val('fProvincia'), cp: val('fCP'),
