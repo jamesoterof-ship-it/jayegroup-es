@@ -48,6 +48,9 @@ body.p-crema .cr-heroe__h1 {
   font-size: clamp(30px, 8vw, 60px); line-height: 1.05; letter-spacing: -.01em;
 }
 body.p-crema .cr-heroe__h1 em { font-style: italic; color: var(--color-primary); }
+/* James 25-10: las estrellas de calificación SIEMPRE doradas (portada, título de opiniones, barras y cada reseña) */
+body.p-crema .cr-est, body.p-crema #prod :is(.stars, .bar .lvl) { color: var(--color-secondary) !important; }
+body.p-crema #prod .est svg, body.p-crema .est svg { fill: var(--color-secondary) !important; color: var(--color-secondary) !important; }
 body.p-crema .cr-cae__w { display: inline-block; white-space: nowrap; }
 body.p-crema .cr-cae { display: inline-block; animation: cr-cae 300ms ease-out both; animation-delay: calc(var(--k) * 35ms); }
 @keyframes cr-cae { from { opacity: 0; transform: translateY(-0.8em); } to { opacity: 1; transform: none; } }
@@ -116,7 +119,8 @@ body.p-crema .cr-ritual span { font-size: 16px; line-height: 1.5; color: var(--c
 body.p-crema .cr-paso--3 { background: var(--color-card); }
 body.p-crema .cr-paso--3 .cr-paso__num { color: var(--color-accent); }
 body.p-crema .cr-paso--3 .cr-foto img { aspect-ratio: 4 / 3; }
-body.p-crema .cr-foto--promo img { aspect-ratio: 2 / 3; }
+/* James 25-10: la imagen de la promoción "se ve cortada" → completa, en su forma real (2:3), sin recortar */
+body.p-crema .cr-paso--3 .cr-foto--promo img { aspect-ratio: auto !important; height: auto !important; object-fit: contain; }
 /* la promoción es la sección de la plantilla (.promo-sec), dentro del paso 3: sin margen propio */
 body.p-crema #prod .cr-paso--3 .promo-sec { padding: 0 0 var(--space-lg); background: transparent; }
 body.p-crema .cr-packs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }

@@ -138,7 +138,8 @@
 
     var P = (window.PRODUCTOS || []).filter(function (x) { return x.id === 'crema'; })[0];
     var notaEl = hero.querySelector('.heroP__nota');
-    var nota = notaEl ? '★★★★★ ' + notaEl.innerText.replace(/\s+/g, ' ').replace(/★/g, '').trim() : '';
+    /* James 25-10: "las estrellas de calificación siempre de color dorado" */
+    var nota = notaEl ? '<span class="cr-est" aria-hidden="true">★★★★★</span> ' + notaEl.innerText.replace(/\s+/g, ' ').replace(/★/g, '').trim() : '';
 
     /* fuera la portada de la plantilla y la segunda presentación del producto (James: "presentas el producto dos veces") */
     var hijos = [].slice.call(prod.children);
@@ -158,6 +159,11 @@
     /* la sección de promoción de la plantilla va en el paso 3, después del título y antes de la imagen con los precios */
     var promoSec = prod.querySelector('.promo-sec');
     if (promoSec) p3.querySelector('.cr-paso__h2').insertAdjacentElement('afterend', promoSec);
+    /* James 25-10: la imagen con los precios va PEGADA a la promoción (no más abajo); después, pagar con tarjeta y los packs */
+    /* va DENTRO de la sección de promoción, debajo de su tarjeta (como en gafas): pago-anticipado.js se coloca solo después de
+       .promo-sec, así que fuera de ella la imagen quedaba separada por el recuadro de "Paga con tarjeta" */
+    var fotoPromo = p3.querySelector('.cr-foto--promo');
+    if (fotoPromo && promoSec) promoSec.appendChild(fotoPromo);
 
     /* los packs del paso 3 eligen ese pack en el formulario y bajan a él */
     [].forEach.call(p3.querySelectorAll('.cr-pack'), function (b) {
