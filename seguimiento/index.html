@@ -50,9 +50,10 @@
   var WEB = {
     MRW: ['MRW', 'https://www.mrw.es/'],
     CTT: ['CTT Express', 'https://www.cttexpress.com/localizador-de-envios/'],
-    CORREOS: ['Correos Express', 'https://www.correosexpress.com/web/correosexpress/home']
+    CORREOS: ['Correos Express', 'https://www.correosexpress.com/web/correosexpress/home'],
+    GLS: ['GLS', 'https://mygls.gls-spain.es/']   /* 25-10: Dropi PRO también despacha con GLS ("GLS - 19h") */
   };
-  var k = t.indexOf('CTT') >= 0 ? 'CTT' : (t.indexOf('CORREOS') >= 0 ? 'CORREOS' : 'MRW');
+  var k = t.indexOf('CTT') >= 0 ? 'CTT' : (t.indexOf('CORREOS') >= 0 ? 'CORREOS' : (t.indexOf('GLS') >= 0 ? 'GLS' : 'MRW'));
   document.getElementById('guia').textContent = g || '—';
   document.getElementById('trans').textContent = WEB[k][0];
   document.getElementById('ir').href = WEB[k][1];
