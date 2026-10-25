@@ -391,6 +391,7 @@
   var textos = {};
   mias = mias.filter(function (r) {
     var k = String(r.texto || '').trim().toLowerCase();
+    if (!k) return true;   /* 25-10: calificación sin comentario (5★ reales de AliExpress): no es repetida */
     if (textos[k]) return false;
     textos[k] = 1; return true;
   });          // si no calzan, se usan las generales
@@ -561,6 +562,8 @@
   }
   /* las que llevan foto, delante: son las que dan confianza */
   mias = mias.filter(function (r) { return r.foto; }).concat(mias.filter(function (r) { return !r.foto; }));
+  /* 25-10 James: "primero las de Rumanía adelante y de último las de España" (origen 'ro' en resenas-ro.js) */
+  mias = mias.filter(function (r) { return r.origen === 'ro'; }).concat(mias.filter(function (r) { return r.origen !== 'ro'; }));
   window.RESENAS_MIAS = mias;
   /* La fecha llega como 2026-02-17 y se muestra como 17/02/2026, que es como
      se escribe en España y en Portugal. */

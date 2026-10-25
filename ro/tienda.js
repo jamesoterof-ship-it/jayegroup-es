@@ -30,6 +30,7 @@
     var vistos = {};
     mias = mias.filter(function (r) {
       var k = String(r.texto || '').trim().toLowerCase();
+      if (!k) return true;   /* 25-10: calificación sin comentario (5★ reales de AliExpress): no es repetida */
       if (vistos[k]) return false;
       vistos[k] = 1; return true;
     });

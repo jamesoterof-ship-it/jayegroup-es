@@ -1381,12 +1381,12 @@ window.jayePixel = (function () {
     </div>
   </footer>
 
-<script src="produse.js?v=11"></script>
+<script src="produse.js?v=12"></script>
 <!-- RUMANIA: județe y codigo postal de 6 cifras, en vez de los distritos de Portugal. -->
 <script src="judete-ro.js?v=1"></script>
 <script src="textos-ro.js?v=10"></script>
 <!-- Las opiniones reales de cada producto (las de España), traducidas al rumano. -->
-<script src="resenas-ro.js?v=7"></script>
+<script src="resenas-ro.js?v=9"></script>
 <script>/* 25-10 · TIENDA o FICHA (ver MODO_RO en <head>). La tienda carga lo mismo que la
    portada de España y Portugal (../tienda.js); la ficha, lo mismo que producto.html.
    No se cargan las dos: ficha.js sin ?p= abriria un producto en vez de la tienda. */
@@ -1396,7 +1396,7 @@ window._cargaRO = function (lista) {
 /* 25-10 (James: "esta tienda tiene que ser independiente"): tienda.js, efectos.js,
    ficha.js, efectos-ficha.js y cookies-es.js son COPIAS PROPIAS de /ro/ (lei, +40,
    CP de 6 cifras, județe, sin PayPal). Un cambio en los de España no llega aqui. */
-if (window.MODO_RO === 'tienda') window._cargaRO(['tienda.js?v=2']);
+if (window.MODO_RO === 'tienda') window._cargaRO(['tienda.js?v=3']);
 else window._cargaRO(['efectos.js?v=1']);</script>
 <script>/* A DONDE VA EL PEDIDO · RUMANIA TODAVIA NO TIENE FLUJO.
    OJO: si window.URL_PEDIDO queda vacio, ficha.js manda al webhook de CHILE
@@ -1428,7 +1428,7 @@ window.URL_PEDIDO = window.URL_PEDIDO_RO || 'about:blank#pedido-rumania-sin-cone
      los <producto>.js de diseño son COPIAS PROPIAS de /ro/. Los .css de producto siguen
      siendo los de España: el candado de paleta no deja crearlos (falta autorizacion). -->
 <script>if (window.MODO_RO === 'ficha') window._cargaRO([
-  'ficha.js?v=4',
+  'ficha.js?v=6',
   '../lib/gsap.min.js', '../lib/ScrollTrigger.min.js', '../lib/countup.umd.js',
   'efectos-ficha.js?v=1',
   'sellador.js?v=1', 'aranazos.js?v=1',

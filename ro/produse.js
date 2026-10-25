@@ -52,7 +52,7 @@ window.PRODUSE = [
        skill), asi que el enlace es la propia ficha: /ro/?p=aranazos&/ (el '&/' sobra
        y no molesta). Igual en los demas productos. */
     id: 'aranazos', enlace: '?p=aranazos&', unidad: 'buc.', promo: 3,
-    resenasTotal: 1389,
+    /* 25-10: sin resenasTotal (era el total de España): la ficha muestra las reseñas reales que hay */
 
     dropiId: 83,
     dropiSku: '',   /* el SKU de Rumania se mira en el panel antes de montar */
@@ -144,7 +144,7 @@ window.PRODUSE = [
      ============================================================ */
   {
     id: 'balsamo', enlace: '?p=balsamo&', unidad: 'buc.', promo: 2,
-    resenasTotal: 2137,
+    /* 25-10: sin resenasTotal (era el total de España) */
 
     dropiId: 388,
     dropiSku: '',
@@ -241,7 +241,7 @@ window.PRODUSE = [
      ============================================================ */
   {
     id: 'sellador', enlace: '?p=sellador&', unidad: 'buc.', promo: 3,   /* 25-10: escalera RO 1·2·3 (James) */
-    resenasTotal: 1124,
+    /* 25-10: sin resenasTotal (era el total de España) */
 
     dropiId: 84,
     dropiSku: '',
