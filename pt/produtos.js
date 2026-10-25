@@ -82,7 +82,7 @@ window.PRODUTOS = [
       { q: 'Serve para qualquer cor?', a: 'Sim. Não é tinta: é uma camada transparente, por isso serve para carros brancos, pretos, vermelhos, cinzentos ou de qualquer cor.' },
       { q: 'Vem com pano?', a: 'Não. Vende-se a lata de 120 ml. Serve qualquer pano de microfibra limpo que tenha em casa.' },
       { q: 'Quanto rende uma lata?', a: 'Uma lata de 120 ml dá para várias zonas com riscos, ou para repassar várias vezes o mesmo carro. Para dois carros ou para ter à mão, é melhor o pack de 2 ou de 3.' },
-      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária em 14 h.' },
+      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária.' },
     ],
 
     fotosResenas: [],
@@ -100,9 +100,9 @@ window.PRODUTOS = [
     anticipado: {
       pct: 10,
       descuento: 2.10,
-      envio: 'Entrega prioritária em 14 h',
+      envio: 'Entrega prioritária',
       titulo: 'Pague agora',
-      sub: 'Com entrega prioritária em 14 h, sem custo. Paga-se com cartão ou PayPal.',
+      sub: 'Com entrega prioritária, sem custo. Paga-se com cartão ou PayPal.',
       precios: [18.99, 25.99, 37.79],
     },
   },
@@ -199,7 +199,7 @@ window.PRODUTOS = [
       { q: 'Tira as rugas?', a: 'Não, e quem lhe disser isso está a enganá-la. É um cosmético hidratante: quando a pele está bem hidratada as linhas ficam menos marcadas e com um aspeto mais suave. Não elimina rugas nem substitui qualquer tratamento médico.' },
       { q: 'Quanto tempo dura?', a: 'Traz 9 g. Quanto dura depende de quantas zonas aplicar e com que frequência.' },
       { q: 'Serve para pele sensível?', a: 'É um cosmético de uso externo. Como com qualquer produto novo, convém experimentar primeiro numa zona pequena. Se tem a pele reativa ou alguma doença dermatológica, fale antes com o seu dermatologista.' },
-      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 2 € — nesse caso a encomenda segue com entrega prioritária em 14 h.' },
+      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 2 € — nesse caso a encomenda segue com entrega prioritária.' },
     ],
 
     fotosResenas: [],
@@ -218,9 +218,9 @@ window.PRODUTOS = [
 
     anticipado: {
       descuento: 2,
-      envio: 'Entrega prioritária em 14 h',
+      envio: 'Entrega prioritária',
       titulo: 'Pague agora',
-      sub: 'Com entrega prioritária em 14 h, sem custo. Paga-se com cartão ou PayPal.',
+      sub: 'Com entrega prioritária, sem custo. Paga-se com cartão ou PayPal.',
       precios: [26.50, 36.50, 46.50],
     },
   },
@@ -293,7 +293,7 @@ window.PRODUTOS = [
       { q: 'Como se aplica?', a: 'Limpe e seque a zona, agite a lata 1-2 minutos e pulverize a 20-25 cm em camadas finas. Deixe secar 15-20 minutos entre camadas. Para uma fissura normal chegam 2 ou 3 camadas.' },
       { q: 'De que cor fica?', a: 'Branco. Fica uma camada branca, lisa e um pouco borrachosa sobre a fissura.' },
       { q: 'Quanto rende uma lata?', a: 'Uma lata de 400 ml dá para várias fissuras ou juntas de tamanho normal. Para um terraço ou um telhado com muitas fissuras, é melhor o pack de 2 ou de 4.' },
-      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária em 14 h.' },
+      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária.' },
     ],
 
     fotosResenas: [],
@@ -312,9 +312,9 @@ window.PRODUTOS = [
     anticipado: {
       pct: 10,
       descuento: 3,
-      envio: 'Entrega prioritária em 14 h',
+      envio: 'Entrega prioritária',
       titulo: 'Pague agora',
-      sub: 'Com entrega prioritária em 14 h, sem custo. Paga-se com cartão ou PayPal.',
+      sub: 'Com entrega prioritária, sem custo. Paga-se com cartão ou PayPal.',
       precios: [25.99, 34.99, 52.99],
     },
   },
@@ -387,7 +387,7 @@ window.PRODUTOS = [
       { q: 'Pode molhar-se?', a: 'É melhor tirá-la para tomar banho, nadar ou lavar a loiça: assim o fio e o íman duram mais.' },
       { q: 'Quem não a deve usar?', a: 'Por causa do íman, não a use se tiver pacemaker ou outro dispositivo médico implantado, nem durante a gravidez sem perguntar antes ao seu médico.' },
       { q: 'Porquê o pack de 2?', a: 'É o mais escolhido: uma para si e outra para oferecer a alguém que também quer deixar de fumar, ou para ter de reserva.' },
-      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária em 14 h.' },
+      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária.' },
     ],
 
     fotosResenas: [],
@@ -405,9 +405,9 @@ window.PRODUTOS = [
     anticipado: {
       pct: 10,
       descuento: 2.60,
-      envio: 'Entrega prioritária em 14 h',
+      envio: 'Entrega prioritária',
       titulo: 'Pague agora',
-      sub: 'Com entrega prioritária em 14 h, sem custo. Paga-se com cartão ou PayPal.',
+      sub: 'Com entrega prioritária, sem custo. Paga-se com cartão ou PayPal.',
       precios: [23.35, 34.15, 43.15],
     },
   },

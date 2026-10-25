@@ -18,7 +18,7 @@
   var PT = ((window.TEXTOS || {})._pais === 'PT');
   var L = PT ? {
     tit: 'Pague com cartão e ganhe', dto: 'de desconto', menos: 'a menos', packs: 'em todos os packs',
-    prio: 'Entrega prioritária', prio2: 'em 14 h: a sua encomenda sai primeiro',
+    prio: 'Entrega prioritária', prio2: '— a sua encomenda sai primeiro',
     seg: 'Pagamento seguro', seg2: 'com PayPal: cartão de débito ou crédito, sem criar conta',
     btn: 'Pagar com cartão', o: 'ou', ahora: 'pagando agora com cartão', y: 'e entrega prioritária'
   } : {

@@ -73,7 +73,7 @@ window.TEXTOS = {
      ecra, essa frase deixa de ser verdade assim que o cliente escolhe pagar
      adiantado. */
   notaCod: 'Paga ao estafeta quando receber a encomenda. Confirmamos a encomenda por WhatsApp.',
-  notaPre: 'Ao enviar a encomenda levamo-lo à página de pagamento. A sua encomenda segue com entrega prioritária em 14 h.',
+  notaPre: 'Ao enviar a encomenda levamo-lo à página de pagamento. A sua encomenda segue com entrega prioritária.',
   /* ---- saida por WhatsApp para quem se atrapalha no formulario ----
      Antes apontava para o correio porque nao havia numero. O mesmo numero
      de Espanha (+34), por decisao de James em 26-09-2026. A mensagem vai
@@ -105,7 +105,7 @@ window.TEXTOS = {
   avisoEntrega: 'A sua encomenda chega em 24-48 h úteis. Como paga ao receber, o estafeta entrega-a em mão: se nesses dias não estiver, avise-nos pelo WhatsApp e indicamos outro dia ou que a deixe a alguém de confiança. Assim chega à primeira 🚚',
   falloBtnWa: 'Escrever-nos por WhatsApp',
   pagaAhoraAhorra: 'Pague agora e poupe ',
-  yPrioritaria: 'e receba com entrega prioritária em 14 h',
+  yPrioritaria: 'e receba com entrega prioritária',
   seTeComplicaWa: 'Está com dificuldades? Escreva-nos por WhatsApp e tratamos nós da encomenda',
   asuntoPedido: 'Encomenda de ',
   asuntoQuiero: 'Quero encomendar ',
