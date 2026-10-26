@@ -511,7 +511,7 @@ window.PRODUCTOS = [
      ============================================================ */
   {
     id: 'pulsera', unidad: 'una', promo: 2,
-    dropiId: 2781,
+    dropiId: 2945,   /* 26-10 James: la pulsera nueva llega en estuche de regalo (PULSANTITABACO-CAJA); antes 2781 sin caja */
 
     nombre: 'Pulsera Magnética Antitabaco',
     sub: 'Piedra volcánica natural con imán · para él y para ella',
@@ -541,13 +541,14 @@ window.PRODUCTOS = [
     escasez: { hoy: 150, mejorDia: 213, quedan: 717,
       nota: 'Se despacha desde el almacén de Sevilla por orden de pedido. Pagas cuando la tienes en la mano.' },
 
-    desc: 'La Pulsera Magnética Antitabaco está hecha con cuentas de piedra volcánica natural, negra y porosa, y un pequeño imán redondo plateado. Es elástica, se ajusta sola a la muñeca y combina con todo. La idea es sencilla: la llevas puesta todo el día y, cuando llegan las ganas de fumar, la tocas, sientes el imán y recuerdas por qué has decidido dejarlo. Un gesto pequeño que te ayuda a frenar el impulso.',
+    desc: 'La Pulsera Magnética Antitabaco está hecha con cuentas de piedra volcánica natural, negra y porosa, y un pequeño dije plateado con imán. Llega en su estuche y caja de regalo. Es elástica, se ajusta sola a la muñeca y combina con todo. La idea es sencilla: la llevas puesta todo el día y, cuando llegan las ganas de fumar, la tocas, sientes el imán y recuerdas por qué has decidido dejarlo. Un gesto pequeño que te ayuda a frenar el impulso.',
 
     puntos: [
       'Piedra volcánica natural y un imán discreto',
       'Te recuerda tu decisión cuando llegan las ganas',
       'Elástica: se ajusta a cualquier muñeca',
       'Para él y para ella · el pack de 2 es para regalar',
+      'Llega en su estuche y caja de regalo',
     ],
 
     formulaRotulo: 'Por qué ayuda',
@@ -556,7 +557,7 @@ window.PRODUCTOS = [
     formula: [
       ['escudo', 'Frena el impulso', 'Las ganas llegan de golpe. Tocar la pulsera es la pausa que necesitas para no encender el cigarro.'],
       ['rayo', 'Siempre contigo', 'En el trabajo, en el coche o con el café: va en la muñeca todo el día.'],
-      ['agua', 'Piedra volcánica', 'Cuentas naturales, ligeras y porosas, con un imán redondo plateado.'],
+      ['agua', 'Piedra volcánica', 'Cuentas naturales, ligeras y porosas, con un pequeño dije plateado con imán.'],
       ['casa', 'Discreta', 'Parece una pulsera más. Nadie tiene por qué saber que la llevas por eso.'],
     ],
 
@@ -569,7 +570,7 @@ window.PRODUCTOS = [
 
     preguntas: [
       { q: '¿Me va a quitar las ganas de fumar?', a: 'No es un medicamento ni un tratamiento. Es un recordatorio que llevas en la muñeca: cuando llegan las ganas, la tocas y te ayuda a pararte un momento y recordar tu decisión. Si quieres apoyo médico para dejar el tabaco, consulta con tu médico o farmacéutico.' },
-      { q: '¿De qué está hecha?', a: 'De cuentas de piedra volcánica natural, negra, mate y porosa, montadas en un hilo elástico, con un dije redondo plateado que lleva un imán.' },
+      { q: '¿De qué está hecha?', a: 'De cuentas de piedra volcánica natural, negra, mate y porosa, montadas en un hilo elástico, con un pequeño dije plateado que lleva un imán. Llega en un estuche negro transparente dentro de una caja de regalo.' },
       { q: '¿Me queda bien la talla?', a: 'Es elástica y se ajusta a la mayoría de muñecas de adulto, de hombre y de mujer.' },
       { q: '¿Se puede mojar?', a: 'Mejor quitártela para ducharte, nadar o fregar: así el hilo y el imán duran más.' },
       { q: '¿Quién no debe usarla?', a: 'Por el imán, no la uses si llevas marcapasos u otro dispositivo médico implantado, ni durante el embarazo sin consultar antes a tu médico.' },
