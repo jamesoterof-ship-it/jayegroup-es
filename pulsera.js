@@ -69,6 +69,25 @@
       + '</section>';
   }
 
+  /* ---- CAPÍTULO 3 · así la recibes (26-10 James: la pulsera nueva llega en estuche; fotos REALES del almacén de Dropi) ---- */
+  function capituloRecibes() {
+    var fotos = [
+      ['img/pulsera-caja.webp?v=1', 'La caja negra de regalo con ventana en la que llega la pulsera', 'Al abrir el paquete', 'Su caja de regalo', 'Llega en una caja negra con ventana, lista para guardar o para regalar.'],
+      ['img/pulsera-estuche.webp?v=1', 'La pulsera de piedra volcánica dentro de su estuche negro transparente', 'Dentro', 'Su estuche personalizado', 'La pulsera viene suspendida en un estuche negro transparente: se ve entera y no se estropea.'],
+    ];
+    return '<section class="bloque pu-sec pu-recibe">'
+      + '<span class="pu-num" aria-hidden="true">03</span>'
+      + '<span class="pu-cap">Así la recibes</span>'
+      + '<h2 class="pu-h2">En su estuche, <em>lista para regalar.</em></h2>'
+      + '<p class="pu-lead">Estas son fotos reales del producto que te llega a casa.</p>'
+      + '<div class="pu-pasos">' + fotos.map(function (p, i) {
+          return '<figure class="pu-paso pu-entra" style="--i:' + i + '">'
+            + '<div class="pu-paso-img"><img src="' + p[0] + '" alt="' + p[1] + '" loading="lazy" width="800" height="1000"></div>'
+            + '<figcaption><i>' + p[2] + '</i><b>' + p[3] + '</b><span>' + p[4] + '</span></figcaption></figure>';
+        }).join('') + '</div>'
+      + '</section>';
+  }
+
   function armar() {
     var prod = document.getElementById('prod');
     if (!prod) return false;
@@ -103,6 +122,7 @@
     pon(antesDespues); pon(arriba); pon(tras);
     var ganas = nodo(capituloGanas()); pon(ganas); ganas.appendChild(boton('La quiero, pago al recibir'));
     var gesto = nodo(capituloGesto()); pon(gesto); gesto.appendChild(boton('Pedir la mía'));
+    var recibe = nodo(capituloRecibes()); pon(recibe); recibe.appendChild(boton('La quiero con su estuche'));
     pon(video); pon(porQue); pon(descripcion); pon(oferta); pon(quedan); pon(compara);
 
     if (antesDespues) {
