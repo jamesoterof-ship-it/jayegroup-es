@@ -33,15 +33,15 @@
   /* ---- CAPÍTULO 1 · las ganas llegan sin avisar ---- */
   function capituloGanas() {
     var m = [
-      [svg('<path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/>'), 'Con el café', 'El primer sorbo de la mañana y la mano ya busca el paquete.'],
-      [svg('<rect x="3" y="11" width="18" height="6" rx="2"/><path d="M5 11l2-5h10l2 5"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/>'), 'En el coche', 'Un atasco, un semáforo largo, y el mechero ya está ahí.'],
-      [svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'), 'En la pausa', 'Los demás bajan a fumar y tú te quedas con las ganas.'],
+      [svg('<path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/>'), 'Com o café', 'O primeiro gole da manhã e a mão já procura o maço.'],
+      [svg('<rect x="3" y="11" width="18" height="6" rx="2"/><path d="M5 11l2-5h10l2 5"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/>'), 'No carro', 'Um engarrafamento, um semáforo longo, e o isqueiro já está na mão.'],
+      [svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'), 'Na pausa', 'Os outros descem para fumar e você fica com a vontade.'],
     ];
     return '<section class="bloque pu-sec pu-ganas">'
       + '<span class="pu-num" aria-hidden="true">01</span>'
-      + '<span class="pu-cap">Las ganas</span>'
-      + '<h2 class="pu-h2">Llegan <em>sin avisar.</em></h2>'
-      + '<p class="pu-lead">Dejarlo es una decisión que tomas una vez. Las ganas, en cambio, vuelven muchas veces al día, en los mismos momentos de siempre.</p>'
+      + '<span class="pu-cap">A vontade</span>'
+      + '<h2 class="pu-h2">Chega <em>sem avisar.</em></h2>'
+      + '<p class="pu-lead">Deixar de fumar é uma decisão que se toma uma vez. A vontade, essa, volta muitas vezes por dia, sempre nos mesmos momentos.</p>'
       + '<ul class="pu-momentos">' + m.map(function (x, i) {
           return '<li class="pu-entra" style="--i:' + i + '">' + x[0] + '<div><b>' + x[1] + '</b><span>' + x[2] + '</span></div></li>';
         }).join('') + '</ul>'
@@ -51,21 +51,21 @@
   /* ---- CAPÍTULO 2 · el gesto que te frena (tres fotos aprobadas) ---- */
   function capituloGesto() {
     var pasos = [
-      ['img/pulsera-palma.webp?v=2', 'La pulsera de piedra volcánica con su imán redondo plateado en la palma de una mano', 'Paso 1', 'Póntela', 'Elástica, se ajusta sola. La llevas todo el día y casi no la notas.'],
-      ['img/pulsera-muneca.webp?v=2', 'Una mujer tranquila con una taza de té y la pulsera en la muñeca', 'Paso 2', 'Cuando lleguen las ganas, tócala', 'Siente la piedra y el imán. Esa pausa de unos segundos es la que frena el impulso.'],
-      ['img/pulsera-pareja.webp?v=2', 'La muñeca de un hombre y la de una mujer, cada una con la misma pulsera', 'Paso 3', 'Recuerda tu decisión', 'Cada vez que la miras te acuerdas de por qué lo dejas. Y si lo dejáis juntos, mejor.'],
+      ['img/pulsera-palma.webp?v=2', 'A pulseira de pedra vulcânica com o seu íman redondo prateado na palma da mão', 'Passo 1', 'Ponha-a no pulso', 'É elástica e ajusta-se sozinha. Anda com ela o dia todo e quase nem a sente.'],
+      ['img/pulsera-muneca.webp?v=2', 'Uma mulher tranquila com uma chávena de chá e a pulseira no pulso', 'Passo 2', 'Quando a vontade chegar, toque-lhe', 'Sinta a pedra e o íman. Essa pausa de uns segundos é a que trava o impulso.'],
+      ['img/pulsera-pareja.webp?v=2', 'O pulso de um homem e o de uma mulher, cada um com a mesma pulseira', 'Passo 3', 'Lembre-se da sua decisão', 'Sempre que olha para ela lembra-se de porque é que está a deixar. E se deixarem juntos, melhor ainda.'],
     ];
     return '<section class="bloque pu-sec pu-gesto">'
       + '<span class="pu-num" aria-hidden="true">02</span>'
-      + '<span class="pu-cap">El gesto</span>'
-      + '<h2 class="pu-h2">Un gesto pequeño <em>que te frena.</em></h2>'
-      + '<p class="pu-lead">No es magia ni un tratamiento: es un recordatorio que no se queda en casa.</p>'
+      + '<span class="pu-cap">O gesto</span>'
+      + '<h2 class="pu-h2">Um gesto pequeno <em>que o trava.</em></h2>'
+      + '<p class="pu-lead">Não é magia nem um tratamento: é um lembrete que não fica em casa.</p>'
       + '<div class="pu-pasos">' + pasos.map(function (p, i) {
           return '<figure class="pu-paso pu-entra" style="--i:' + i + '">'
             + '<div class="pu-paso-img"><img src="' + p[0] + '" alt="' + p[1] + '" loading="lazy" width="1000" height="1242"></div>'
             + '<figcaption><i>' + p[2] + '</i><b>' + p[3] + '</b><span>' + p[4] + '</span></figcaption></figure>';
         }).join('') + '</div>'
-      + '<div class="pu-aviso"><p>La pulsera acompaña tu decisión de dejar el tabaco; no sustituye la ayuda de tu médico o farmacéutico. Por el imán, no la uses si llevas marcapasos u otro dispositivo implantado.</p></div>'
+      + '<div class="pu-aviso"><p>A pulseira acompanha a sua decisão de deixar de fumar; não substitui a ajuda do seu médico ou farmacêutico. Por causa do íman, não a use se tiver pacemaker ou outro dispositivo implantado.</p></div>'
       + '</section>';
   }
 
@@ -101,20 +101,20 @@
     var ancla = hero;
     function pon(n) { if (!n) return; ancla.insertAdjacentElement('afterend', n); ancla = n; }
     pon(antesDespues); pon(arriba); pon(tras);
-    var ganas = nodo(capituloGanas()); pon(ganas); ganas.appendChild(boton('La quiero, pago al recibir'));
-    var gesto = nodo(capituloGesto()); pon(gesto); gesto.appendChild(boton('Pedir la mía'));
+    var ganas = nodo(capituloGanas()); pon(ganas); ganas.appendChild(boton('Quero a minha, pago na entrega'));
+    var gesto = nodo(capituloGesto()); pon(gesto); gesto.appendChild(boton('Quero a minha'));
     pon(video); pon(porQue); pon(descripcion); pon(oferta); pon(quedan); pon(compara);
 
     if (antesDespues) {
-      var e1 = antesDespues.querySelector('.eyebrow'); if (e1) e1.textContent = 'Antes y después';
-      var t1 = antesDespues.querySelector('h2'); if (t1) t1.innerHTML = 'El mismo café, <em>otra decisión.</em>';
+      var e1 = antesDespues.querySelector('.eyebrow'); if (e1) e1.textContent = 'Antes e depois';
+      var t1 = antesDespues.querySelector('h2'); if (t1) t1.innerHTML = 'O mesmo café, <em>outra decisão.</em>';
       var c1 = antesDespues.querySelector('.cta'); if (c1) c1.remove();
     }
     var flota = document.querySelector('.btn-flota');
-    if (flota) flota.textContent = 'La quiero';
-    if (porQue) porQue.appendChild(boton('La quiero, pago al recibir'));
+    if (flota) flota.textContent = 'Quero a minha';
+    if (porQue) porQue.appendChild(boton('Quero a minha, pago na entrega'));
     if (video) {
-      video.insertAdjacentHTML('afterbegin', '<div class="pu-vcab"><span class="pu-cap">En vídeo</span><h2 class="pu-h2">Así es <em>la pulsera.</em></h2></div>');
+      video.insertAdjacentHTML('afterbegin', '<div class="pu-vcab"><span class="pu-cap">Em vídeo</span><h2 class="pu-h2">Assim é <em>a pulseira.</em></h2></div>');
       var v = video.querySelector('video, .vid-prod');
       if (v) v.setAttribute('poster', 'img/pulsera-ficha-poster.webp?v=1');
     }
@@ -122,7 +122,7 @@
       var ot = oferta.querySelector('h2') || oferta.firstElementChild;
       if (ot) ot.insertAdjacentHTML('afterend', '<figure class="pu-foto"><img src="img/pulseira-promo-pt.webp?v=1" alt="Duas pulseiras de pedra vulcânica com o cartaz da promoção: 1 pulseira 25,95 €, 2 pulseiras 37,95 € e 3 pulseiras 47,95 €" loading="lazy" width="1000" height="1500"></figure>');
     }
-    if (compara) { var us = compara.querySelector('th.us'); if (us) us.textContent = 'Pulsera'; }
+    if (compara) { var us = compara.querySelector('th.us'); if (us) us.textContent = 'Pulseira'; }
     return true;
   }
 
