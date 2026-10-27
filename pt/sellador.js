@@ -13,7 +13,7 @@
 (function () {
   'use strict';
   var q = '';
-  try { q = new URLSearchParams(location.search).get('p') || ''; } catch (e) {}
+  try { q = (window.__P || new URLSearchParams(location.search).get('p')) || ''; } catch (e) {}
   if (q !== 'sellador') return;
 
   var CALMA = false;

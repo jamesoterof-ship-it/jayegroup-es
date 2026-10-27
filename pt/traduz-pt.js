@@ -190,7 +190,7 @@
   };
   /* a pulseira é feminina: o botão do herói (textos-pt.js) vem com "Quero o meu" */
   var prod = '';
-  try { prod = new URLSearchParams(location.search).get('p') || ''; } catch (e) {}
+  try { prod = (window.__P || new URLSearchParams(location.search).get('p')) || ''; } catch (e) {}
   if (prod === 'pulsera') {
     T['Quero o meu, pago na entrega'] = 'Quero a minha, pago na entrega';
     T['Quero o meu'] = 'Quero a minha';
