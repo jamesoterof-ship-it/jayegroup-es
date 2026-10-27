@@ -116,7 +116,7 @@
     if (video) {
       video.insertAdjacentHTML('afterbegin', '<div class="pu-vcab"><span class="pu-cap">En vídeo</span><h2 class="pu-h2">Así es <em>la pulsera.</em></h2></div>');
       var v = video.querySelector('video, .vid-prod');
-      if (v) v.setAttribute('poster', 'img/pulsera-ficha-poster.webp?v=1');
+      if (v) v.setAttribute('poster', '../img/pulsera-ficha-poster.webp?v=1');   /* 27-10: en /ro/ no existe img/…-poster (404): el hueco del video quedaba vacío */
     }
     if (oferta) {
       var ot = oferta.querySelector('h2') || oferta.firstElementChild;
