@@ -578,10 +578,10 @@ window.PRODUCTOS = window.PRODUSE;
 /* el logo y "Vezi magazinul" vuelven a /ro/, no a la tienda de España */
 window.BASE_TIENDA = '/ro/';
 
-/* 🔴 WhatsApp de Rumania: +34 661 72 98 24 (James, 24-10; es +34 aunque sea para
-   Rumania). NUNCA el +34 672 42 37 35: ese es Carmen España. ficha.js usa WA_NUM
-   para todos sus botones y enlaces de WhatsApp. */
-window.WA_RO = '34661729824';
+/* 🔴 WhatsApp de Rumania: +40 376 300 512 (James 27-10: "necesito cambiar el número";
+   antes +34 661 72 98 24). NUNCA el +34 672 42 37 35: ese es Carmen España. ficha.js usa
+   WA_NUM para todos sus botones y enlaces de WhatsApp. */
+window.WA_RO = '40376300512';
 if (window.WA_RO) window.WA_NUM = window.WA_RO;
 
 /* 25-10: solo los precios que James aprobo (los de PRECIOS_RO_POR_APROBAR que no son null). */

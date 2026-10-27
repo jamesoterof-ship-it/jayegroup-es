@@ -1008,7 +1008,7 @@
        hay bot: cada uno que escriba lo atiende una persona. El mensaje va
        prellenado con el producto, como en Chile. */
     + '<p class="formnote ayuda">' + t('dudas', '¿Se te complica llenarlo? ')
-    + '<a href="https://wa.me/' + (window.WA_NUM || '34661729824') + '?text=' + encodeURIComponent(t('msgWa', 'Hola, quiero pedir ') + p.nombre + t('msgWa2', ' y se me complica el formulario'))
+    + '<a href="https://wa.me/' + (window.WA_NUM || '40376300512') + '?text=' + encodeURIComponent(t('msgWa', 'Hola, quiero pedir ') + p.nombre + t('msgWa2', ' y se me complica el formulario'))
     + '" target="_blank" rel="noopener">' + t('ayudaWa', 'Escríbenos por WhatsApp') + '</a>' + t('yTeAyudamos', ' y te lo tomamos nosotros.') + '</p>'
     + '</form>'
     + '<div class="carriers"><span class="cl">' + t('enviamosCon', 'Enviamos con') + '</span>'
@@ -1202,7 +1202,7 @@
       + '</div></section>';
   }
   function waPedir() {
-    return 'https://wa.me/' + (window.WA_NUM || '34661729824') + '?text=' + encodeURIComponent(t('msgWaHero', 'Hola, me interesa el ') + p.nombre);
+    return 'https://wa.me/' + (window.WA_NUM || '40376300512') + '?text=' + encodeURIComponent(t('msgWaHero', 'Hola, me interesa el ') + p.nombre);
   }
 
   cont.innerHTML = seccionHero()
@@ -1568,7 +1568,7 @@
     return;
     var q = new URLSearchParams(location.search).get('pagar'); if (!q || !$('pedir') || !$('fPedido')) return;
     var cod = String(q).toLowerCase().split('').filter(function (ch) { return (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'z') || ch === '-'; }).join('');
-    var wa = '<a class="cta negro" href="https://wa.me/' + (window.WA_NUM || '34661729824') + '" target="_blank" rel="noopener" style="display:block;margin-top:10px">' + t('escribenosWa', 'Escríbenos por WhatsApp') + '</a>';
+    var wa = '<a class="cta negro" href="https://wa.me/' + (window.WA_NUM || '40376300512') + '" target="_blank" rel="noopener" style="display:block;margin-top:10px">' + t('escribenosWa', 'Escríbenos por WhatsApp') + '</a>';
     var aviso = function (tit, txt) { $('pedir').innerHTML = '<div class="listo"><h3>' + tit + '</h3><p>' + txt + '</p>' + wa + '</div>'; };
     fetch('https://n8n-production-8a42.up.railway.app/webhook/pago-info-es?p=' + encodeURIComponent(cod))
       .then(function (r) { return r.json(); })
@@ -1639,7 +1639,7 @@
       /* 29-09 (James): igual que en Chile, el aviso manda al WhatsApp de España
          (+34 672 42 37 35, lo atiende Carmen) con el pedido ya escrito. Antes
          mandaba al correo porque todavía no había número español. */
-      _a.href = 'https://wa.me/' + (window.WA_NUM || '34661729824') + '?text=' + encodeURIComponent(
+      _a.href = 'https://wa.me/' + (window.WA_NUM || '40376300512') + '?text=' + encodeURIComponent(
         t('msgWa', 'Hola, quiero pedir ') + p.nombre + t('msgWa2', ' y se me complica el formulario'));
       _a.target = '_blank'; _a.rel = 'noopener';
       _a.style.cssText = 'display:block;margin-top:6px;color:inherit;text-decoration:underline;font-weight:700';
@@ -1656,7 +1656,7 @@
        manda NADA a ningun lado (ni Chile, ni España, ni Portugal) y no se avisa
        compra a Meta: el cliente ve un aviso en rumano con el WhatsApp de Rumania. */
     if (!window.URL_PEDIDO_RO) {
-      var _waRO = 'https://wa.me/' + (window.WA_NUM || '34661729824') + '?text=' + encodeURIComponent('Bună ziua, vreau să comand ' + p.nombre);
+      var _waRO = 'https://wa.me/' + (window.WA_NUM || '40376300512') + '?text=' + encodeURIComponent('Bună ziua, vreau să comand ' + p.nombre);
       $('pedir').innerHTML = '<div class="listo"><h3>Comenzile online nu sunt încă active</h3>'
         + '<p>Momentan nu putem prelua comanda din această pagină. Scrieți-ne pe WhatsApp și vă ajutăm cu comanda.</p>'
         + '<a class="cta negro" href="' + _waRO + '" target="_blank" rel="noopener" style="width:auto;display:inline-block;padding:14px 26px;margin-top:6px">Scrieți-ne pe WhatsApp</a>'
@@ -1776,7 +1776,7 @@
            Europeo (paypal-orden-ro) y el servidor cobra y comprueba que el pago es de ESTE pedido y por
            ESTE importe antes de marcarlo 'PAGADO paypal' (paypal-captura-ro). App de PayPal propia de Rumania. */
         var _lei = window._jgEnlace ? window._jgEnlace.monto : Number(_cobra).toFixed(2);
-        var _wa = 'https://wa.me/' + (window.WA_NUM || '34661729824') + '?text=' + encodeURIComponent('Bună ziua, vreau să plătesc comanda de ' + p.nombre + ' și nu reușesc.');
+        var _wa = 'https://wa.me/' + (window.WA_NUM || '40376300512') + '?text=' + encodeURIComponent('Bună ziua, vreau să plătesc comanda de ' + p.nombre + ' și nu reușesc.');
         var _N8N = 'https://n8n-production-8a42.up.railway.app/webhook/';
         $('pedir').innerHTML = '<div class="listo"><h3>Ultimul pas: plătiți comanda</h3>'
           + '<p>Mulțumim, ' + _nom1 + '. Plătiți acum cu cardul sau prin PayPal.</p>'
@@ -1855,7 +1855,7 @@
        iba a despachar. Ahora se le dice la verdad y se le da una salida. */
     function noEntro() {
       /* 29-09: al WhatsApp de España (Carmen), como el aviso del formulario; antes iba al correo */
-      var ay = 'https://wa.me/' + (window.WA_NUM || '34661729824') + '?text=' + encodeURIComponent(t('cuerpoFallo', 'Hola, hice mi pedido de ') + p.nombre + t('cuerpoFallo2', ' en la página y no me confirmó. Mi nombre es ') + g('fNombre'));
+      var ay = 'https://wa.me/' + (window.WA_NUM || '40376300512') + '?text=' + encodeURIComponent(t('cuerpoFallo', 'Hola, hice mi pedido de ') + p.nombre + t('cuerpoFallo2', ' en la página y no me confirmó. Mi nombre es ') + g('fNombre'));
       $('pedir').innerHTML = '<div class="listo"><h3>' + t('falloTit', 'No pudimos registrar tu pedido') + '</h3>'
         + '<p>' + t('falloTxt', 'Se cayó la conexión justo al enviarlo, y no queremos decirte que quedó si no es cierto.<br>Tus datos quedaron guardados: vuelve a intentarlo en un momento, o escríbenos y lo tomamos nosotros.') + '</p>'
         + '<a class="cta negro" href="' + ay + '" style="width:auto;display:inline-block;padding:14px 26px;margin-top:6px">' + t('falloBtnWa', 'Escribirnos por WhatsApp') + '</a>'
