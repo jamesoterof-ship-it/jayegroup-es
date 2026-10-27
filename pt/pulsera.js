@@ -69,6 +69,25 @@
       + '</section>';
   }
 
+  /* ---- CAPÍTULO 3 · assim a recebe (27-10 James: a pulseira de Portugal é a do estojo, Dropi 2945; fotos REAIS do armazém) ---- */
+  function capituloRecibes() {
+    var fotos = [
+      ['img/pulsera-caja.webp?v=1', 'A caixa preta de oferta com janela em que chega a pulseira', 'Ao abrir a encomenda', 'A sua caixa de oferta', 'Chega numa caixa preta com janela, pronta para guardar ou para oferecer.'],
+      ['img/pulsera-estuche.webp?v=1', 'A pulseira de pedra vulcânica dentro do seu estojo preto transparente', 'Por dentro', 'O seu estojo personalizado', 'A pulseira vem suspensa num estojo preto transparente: vê-se inteira e não se estraga.'],
+    ];
+    return '<section class="bloque pu-sec pu-recibe">'
+      + '<span class="pu-num" aria-hidden="true">03</span>'
+      + '<span class="pu-cap">Assim a recebe</span>'
+      + '<h2 class="pu-h2">No seu estojo, <em>pronta para oferecer.</em></h2>'
+      + '<p class="pu-lead">Estas são fotos reais do produto que lhe chega a casa.</p>'
+      + '<div class="pu-pasos">' + fotos.map(function (p, i) {
+          return '<figure class="pu-paso pu-entra" style="--i:' + i + '">'
+            + '<div class="pu-paso-img"><img src="' + p[0] + '" alt="' + p[1] + '" loading="lazy" width="800" height="1000"></div>'
+            + '<figcaption><i>' + p[2] + '</i><b>' + p[3] + '</b><span>' + p[4] + '</span></figcaption></figure>';
+        }).join('') + '</div>'
+      + '</section>';
+  }
+
   function armar() {
     var prod = document.getElementById('prod');
     if (!prod) return false;
@@ -103,6 +122,7 @@
     pon(antesDespues); pon(arriba); pon(tras);
     var ganas = nodo(capituloGanas()); pon(ganas); ganas.appendChild(boton('Quero a minha, pago na entrega'));
     var gesto = nodo(capituloGesto()); pon(gesto); gesto.appendChild(boton('Quero a minha'));
+    var recibe = nodo(capituloRecibes()); pon(recibe); recibe.appendChild(boton('Quero a minha com o estojo'));
     pon(video); pon(porQue); pon(descripcion); pon(oferta); pon(quedan); pon(compara);
 
     if (antesDespues) {

@@ -354,12 +354,13 @@ window.PRODUTOS = [
     },
     acento: '#A16207',   /* o mesmo de Espanha */
 
-    desc: 'A Pulseira Magnética Antitabaco é feita com contas de pedra vulcânica natural, preta e porosa, e um pequeno íman redondo prateado. É elástica, ajusta-se sozinha ao pulso e combina com tudo. A ideia é simples: usa-a o dia todo e, quando a vontade de fumar chega, toca-lhe, sente o íman e lembra-se de porque decidiu deixar. Um gesto pequeno que o ajuda a travar o impulso.',
+    desc: 'A Pulseira Magnética Antitabaco é feita com contas de pedra vulcânica natural, preta e porosa, e um pequeno íman redondo prateado. Chega no seu estojo e caixa de oferta. É elástica, ajusta-se sozinha ao pulso e combina com tudo. A ideia é simples: usa-a o dia todo e, quando a vontade de fumar chega, toca-lhe, sente o íman e lembra-se de porque decidiu deixar. Um gesto pequeno que o ajuda a travar o impulso.',
 
     puntos: [
       'Pedra vulcânica natural e um íman discreto',
       'Lembra-lhe a sua decisão quando a vontade chega',
       'Elástica: ajusta-se a qualquer pulso',
+      'Chega no seu estojo e caixa de oferta',
       'Para ele e para ela · o pack de 2 é para oferecer',
     ],
 
@@ -382,7 +383,7 @@ window.PRODUTOS = [
 
     preguntas: [
       { q: 'Vai tirar-me a vontade de fumar?', a: 'Não é um medicamento nem um tratamento. É um lembrete que leva no pulso: quando a vontade chega, toca-lhe e ajuda-o a parar um momento e a lembrar-se da sua decisão. Se quer apoio médico para deixar o tabaco, fale com o seu médico ou farmacêutico.' },
-      { q: 'De que é feita?', a: 'De contas de pedra vulcânica natural, preta, mate e porosa, montadas num fio elástico, com um pendente redondo prateado que leva um íman.' },
+      { q: 'De que é feita?', a: 'De contas de pedra vulcânica natural, preta, mate e porosa, montadas num fio elástico, com um pendente redondo prateado que leva um íman. Chega num estojo preto transparente dentro de uma caixa de oferta.' },
       { q: 'O tamanho serve-me?', a: 'É elástica e ajusta-se à maioria dos pulsos de adulto, de homem e de mulher.' },
       { q: 'Pode molhar-se?', a: 'É melhor tirá-la para tomar banho, nadar ou lavar a loiça: assim o fio e o íman duram mais.' },
       { q: 'Quem não a deve usar?', a: 'Por causa do íman, não a use se tiver pacemaker ou outro dispositivo médico implantado, nem durante a gravidez sem perguntar antes ao seu médico.' },
