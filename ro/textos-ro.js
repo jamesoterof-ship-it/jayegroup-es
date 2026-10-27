@@ -493,7 +493,7 @@ window.TEXTOS = {
   /* 25-10 · el genero del boton cambia con el producto (brățară = ea, ochelari = ei,
      pistol / spray / balsam = el), igual que Portugal con la pulseira. */
   var prod = '';
-  try { prod = new URLSearchParams(location.search).get('p') || ''; } catch (e) {}
+  try { prod = (window.__P || new URLSearchParams(location.search).get('p')) || ''; } catch (e) {}
   if (prod === 'pulsera') {
     T['Îl vreau, plătesc la livrare'] = 'O vreau, plătesc la livrare';
     T['Îl vreau'] = 'O vreau';

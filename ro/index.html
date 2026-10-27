@@ -23,6 +23,15 @@
   }
   window.MODO_RO = q.get('p') ? 'ficha' : 'tienda';
   document.documentElement.classList.add('modo-' + window.MODO_RO);
+  /* LINK CORTO EN LA BARRA (James 26-10: "te queda prohibido hacerme esos links largos de página"; 27-10 para Rumanía:
+     "eso es una regla y usted lo hizo acá diferente"). Igual que España: el id queda en window.__P (lo leen ficha.js,
+     textos-ro.js y el script de cada producto) y la barra muestra jayegroup.com.es/ro/<carpeta> SIN recargar.
+     Solo productos con su carpeta-redirector en /ro/ (si recargan, la carpeta vuelve a la ficha). cmp, fbclid… se conservan. */
+  window.__P = q.get('p') || '';
+  var CARPETAS_RO = { pulsera: 'bratara' };
+  if (CARPETAS_RO[window.__P]) {
+    try { q.delete('p'); var r = q.toString(); history.replaceState(history.state, '', '/ro/' + CARPETAS_RO[window.__P] + (r ? '?' + r : '') + location.hash); } catch (e) {}
+  }
 })();</script>
 <style>
   /* tienda o ficha (ver el script de arriba) */
@@ -58,7 +67,7 @@ setTimeout(function(){document.documentElement.classList.add('ba-visto');},3000)
 <link rel="stylesheet" href="pulsera.css?v=1" class="solo-ficha" media="not all">
 <link rel="stylesheet" href="pistola.css?v=1" class="solo-ficha" media="not all">
 <link rel="stylesheet" href="gafas.css?v=1" class="solo-ficha" media="not all">
-<script>if(/[?&]p=/.test(location.search))document.querySelectorAll('link.solo-ficha').forEach(function(l){l.media='all';});</script>
+<script>if(window.__P||/[?&]p=/.test(location.search))document.querySelectorAll('link.solo-ficha').forEach(function(l){l.media='all';});</script>
 <!-- RUMANÍA (21-10-2026): la misma página de Portugal, solo traducida al rumano
      (orden de James: "igualita, lo único que cambia es el idioma"). -->
 <!-- 25-10: el WhatsApp de Rumania ya existe (+34 661 72 98 24, ro/produse.js WA_RO):
@@ -1387,13 +1396,13 @@ window.jayePixel = (function () {
 <script src="produse.js?v=13"></script>
 <!-- 27-10 (hero negro): la foto del hero se pide APENAS se sabe qué producto es, no cuando termina de cargar ficha.js. -->
 <script>(function () {
-  var id = new URLSearchParams(location.search).get('p'); if (!id) return;
+  var id = window.__P || new URLSearchParams(location.search).get('p'); if (!id) return;
   var p = (window.PRODUSE || []).filter(function (x) { return x.id === id; })[0], img = p && p.hero && p.hero.img; if (!img) return;
   var l = document.createElement('link'); l.rel = 'preload'; l.as = 'image'; l.href = img; l.setAttribute('fetchpriority', 'high'); document.head.appendChild(l);
 })();</script>
 <!-- RUMANIA: județe y codigo postal de 6 cifras, en vez de los distritos de Portugal. -->
 <script src="judete-ro.js?v=1"></script>
-<script src="textos-ro.js?v=10"></script>
+<script src="textos-ro.js?v=11"></script>
 <!-- Las opiniones reales de cada producto (las de España), traducidas al rumano. -->
 <script src="resenas-ro.js?v=9"></script>
 <script>/* 25-10 · TIENDA o FICHA (ver MODO_RO en <head>). La tienda carga lo mismo que la
@@ -1437,13 +1446,13 @@ window.URL_PEDIDO = window.URL_PEDIDO_RO || 'about:blank#pedido-rumania-sin-cone
      los <producto>.js de diseño son COPIAS PROPIAS de /ro/. Los .css de producto siguen
      siendo los de España: el candado de paleta no deja crearlos (falta autorizacion). -->
 <script>if (window.MODO_RO === 'ficha') window._cargaRO([
-  'ficha.js?v=7',
+  'ficha.js?v=8',
   '../lib/gsap.min.js', '../lib/ScrollTrigger.min.js', '../lib/countup.umd.js',
   'efectos-ficha.js?v=1',
-  'sellador.js?v=1', 'aranazos.js?v=1',
-  'pulsera.js?v=1', 'gafas.js?v=1',
+  'sellador.js?v=2', 'aranazos.js?v=2',
+  'pulsera.js?v=2', 'gafas.js?v=2',
   /* 25-10: la pistola de agua de Rumania (Dropi 56) usa el diseño de la ficha 'pistola' de España con sus textos */
-  'pistola.js?v=2'
+  'pistola.js?v=3'
 ]);</script>
 
 <script>
