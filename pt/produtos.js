@@ -322,8 +322,9 @@ window.PRODUTOS = [
   /* ============================================================
      PULSEIRA MAGNÉTICA ANTITABACO · PORTUGAL (22-10-2026)
      Dropi PRO id 2945 (SKU nova com caixa, 26-10; a 2781 ficou sem stock). Mesmos preços de Espanha (James 22-10 e 26-10).
-     🔴 O DESENHO é o de Espanha (../pulsera.css + ../pulsera.js, sem tocar); traduz-pt.js só
-     troca textos e fotos. Por isso o id é 'pulsera' (o pulsera.js de Espanha só atua com ?p=pulsera).
+     🔴 27-10: /pt/ é INDEPENDENTE. O desenho é o de Espanha, mas os ficheiros são os desta pasta
+     (pt/pulsera.css + pt/pulsera.js, já em português). O id continua 'pulsera' porque o pulsera.js
+     só atua com ?p=pulsera.
      🔴 NÃO é um tratamento: é um lembrete que acompanha a decisão de deixar o tabaco.
      Nada de "cura", "elimina o vício" nem "em X dias".
      ============================================================ */
