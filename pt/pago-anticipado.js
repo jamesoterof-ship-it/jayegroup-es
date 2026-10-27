@@ -11,7 +11,7 @@
    ============================================================ */
 (function () {
   var Q = new URLSearchParams(location.search);
-  if (Q.get('pagar')) return;   /* en el enlace personal de pago no hace falta */
+  if (window.__PAGAR || Q.get('pagar')) return;   /* en el enlace personal de pago no hace falta (27-10: también el corto #pagar-) */
   var TODOS = window.PRODUCTOS || [], id = window.__P || Q.get('p');
   var p = id ? TODOS.filter(function (x) { return x.id === id; })[0] : TODOS[0];
   if (!p || !p.anticipado || !p.packs) return;

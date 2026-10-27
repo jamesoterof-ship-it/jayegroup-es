@@ -1556,7 +1556,7 @@
   /* 05-10 ENLACE PERSONAL DE PAGO (Carmen/Sofía lo mandan por WhatsApp, como Camila en Chile):
      producto.html?p=<producto>&pagar=<id>-<código>. n8n (pago-info-es) comprueba el código y da el importe de la base. */
   (function enlacePago() {
-    var q = new URLSearchParams(location.search).get('pagar'); if (!q || !$('pedir') || !$('fPedido')) return;
+    var q = window.__PAGAR || new URLSearchParams(location.search).get('pagar'); if (!q || !$('pedir') || !$('fPedido')) return;   /* 27-10: link curto #pagar- */
     var cod = String(q).toLowerCase().split('').filter(function (ch) { return (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'z') || ch === '-'; }).join('');
     var wa = '<a class="cta negro" href="https://wa.me/' + (window.WA_NUM || '34672423735') + '" target="_blank" rel="noopener" style="display:block;margin-top:10px">' + t('escribenosWa', 'Escríbenos por WhatsApp') + '</a>';
     var aviso = function (tit, txt) { $('pedir').innerHTML = '<div class="listo"><h3>' + tit + '</h3><p>' + txt + '</p>' + wa + '</div>'; };

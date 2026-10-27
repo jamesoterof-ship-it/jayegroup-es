@@ -9,12 +9,17 @@
    Sem barra no fim para que img/ e os .js continuem a resolver contra /pt/. Os outros parâmetros (cmp, fbclid…) ficam. */
 (function () {
   try {
-    var q = new URLSearchParams(location.search), p = q.get('p') || '';
+    var q = new URLSearchParams(location.search), p = q.get('p') || '', h = location.hash;
     window.__P = p;
+    /* 27-10 LINK DE PAGAMENTO CURTO: jayegroup.com.es/pt/pulseira#pagar-6944-ab12 (Inês e o fluxo de pagamento antecipado).
+       O código fica em window.__PAGAR e sai da barra. O antigo ?pagar= continua a funcionar e também sai da barra. */
+    if (/^#pagar-/i.test(h)) { window.__PAGAR = h.slice(7); h = ''; }
+    else if (q.get('pagar')) { window.__PAGAR = q.get('pagar'); }
+    q.delete('pagar');
     var CURTO = { pulsera: 'pulseira', aranazos: 'riscos', sellador: 'selante', balsamo: 'balsamo' };
     if (p && CURTO[p] && /produto\.html$/.test(location.pathname)) {
       q.delete('p'); var r = q.toString();
-      history.replaceState(history.state, '', '/pt/' + CURTO[p] + (r ? '?' + r : '') + location.hash);
+      history.replaceState(history.state, '', '/pt/' + CURTO[p] + (r ? '?' + r : '') + h);
     }
   } catch (e) {}
 })();
@@ -1199,7 +1204,7 @@ window.jayePixel = (function () {
 <!-- PORTUGAL: distritos y codigos postales sin cobertura (Acores y Madeira), en vez de las
      regiones y comunas de Chile. -->
 <script src="distritos-pt.js?v=110"></script>
-<script src="textos-pt.js?v=215"></script>
+<script src="textos-pt.js?v=216"></script>
 <script src="resenas-pt.js?v=205"></script>
 <script src="efectos.js?v=4"></script>
 <script>/* A DONDE VA EL PEDIDO. Sin esto, ficha.js manda al webhook de CHILE
@@ -1207,15 +1212,15 @@ window.jayePixel = (function () {
    Santiago y plantilla de WhatsApp chilena. Flujo nuevo en n8n
    GGeFaB7R2qWLsca2, creado el 27-09-2026 y probado con ROLLBACK. */
 window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-tienda-es';</script>
-<script src="ficha.js?v=248"></script>
-<script src="pago-anticipado.js?v=3"></script>
+<script src="ficha.js?v=249"></script>
+<script src="pago-anticipado.js?v=4"></script>
 <!-- GSAP, de lib/ y del propio dominio. NO se carga ScrollTrigger: para saber
      cuando algo entra en pantalla ya sirve IntersectionObserver, que viene en
      el navegador y no pesa. Va al final para no frenar la pintura. -->
 <script src="lib/gsap.min.js"></script>
   <script src="lib/ScrollTrigger.min.js"></script>
   <script src="lib/countup.umd.js"></script>
-<script src="efectos-ficha.js?v=248"></script>
+<script src="efectos-ficha.js?v=249"></script>
 <script src="balsamo.js?v=14"></script>
 <!-- 22-10 James: selante e pulseira = a página de Espanha traduzida. traduz-pt.js troca textos e fotos;
      sellador.js / pulsera.js são os de Espanha tal qual (só atuam com ?p=sellador / ?p=pulsera). -->
