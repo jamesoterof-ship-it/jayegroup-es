@@ -13,7 +13,7 @@
 (function () {
   'use strict';
   var pid = '';
-  try { pid = new URLSearchParams(location.search).get('p') || ''; } catch (e) {}
+  try { pid = (window.__P || new URLSearchParams(location.search).get('p')) || ''; } catch (e) {}
   if (pid !== 'pulsera') return;
 
   var QUIETO = false;

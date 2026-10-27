@@ -2,6 +2,24 @@
 <html lang="es-ES">
 <head>
 <meta charset="utf-8">
+<script>
+/* LINK CORTO EN LA BARRA (James 26-10: "te queda prohibido hacerme esos links largos de página"; mismo arreglo que Chile 29-09).
+   La ficha es UNA (producto.html?p=id), pero la barra muestra jayegroup.com.es/id. El id queda en window.__P (lo leen
+   ficha.js, pago-anticipado.js y el script de cada producto) y se reescribe la barra SIN recargar. /id sin barra final
+   para que img/ y los .js sigan resolviendo contra la raíz. Solo ids con su carpeta (si recargan, la carpeta redirige).
+   Los demás parámetros (cmp, fbclid, pagar…) se conservan. */
+(function () {
+  try {
+    var q = new URLSearchParams(location.search), p = q.get('p') || '';
+    window.__P = p;
+    var CARPETAS = ['aranazos', 'balsamo', 'crema', 'ducha', 'gafas', 'pistola', 'pulsera', 'sellador'];
+    if (p && CARPETAS.indexOf(p) >= 0 && /producto\.html$/.test(location.pathname)) {
+      q.delete('p'); var r = q.toString();
+      history.replaceState(history.state, '', '/' + p + (r ? '?' + r : '') + location.hash);
+    }
+  } catch (e) {}
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Verificacion del dominio en Meta (negocio Jaye Group, dominio 1082679124366879).
      TIENE que estar dentro del <head> y en el HTML de verdad: si se inyecta con
@@ -1207,8 +1225,8 @@ window.jayePixel = (function () {
    Santiago y plantilla de WhatsApp chilena. Flujo nuevo en n8n
    GGeFaB7R2qWLsca2, creado el 27-09-2026 y probado con ROLLBACK. */
 window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-tienda-es';</script>
-<script src="ficha.js?v=241"></script>
-<script src="pago-anticipado.js?v=1"></script>
+<script src="ficha.js?v=242"></script>
+<script src="pago-anticipado.js?v=2"></script>
 <!-- GSAP, de lib/ y del propio dominio. NO se carga ScrollTrigger: para saber
      cuando algo entra en pantalla ya sirve IntersectionObserver, que viene en
      el navegador y no pesa. Va al final para no frenar la pintura. -->
@@ -1217,15 +1235,15 @@ window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-t
   <script src="lib/countup.umd.js"></script>
 <script src="efectos-ficha.js?v=223"></script>
 <!-- Diseno propio del balsamo: secciones y efectos clonados de la mascara de Chile. -->
-<script src="balsamo.js?v=12"></script>
-<script src="regalo.js?v=1"></script>
-<script src="ducha.js?v=7"></script>
-<script src="sellador.js?v=9"></script>
-<script src="aranazos.js?v=4"></script>
-<script src="pulsera.js?v=4"></script>
-<script src="pistola.js?v=7"></script>
-<script src="gafas.js?v=7"></script>
-<script src="crema.js?v=10"></script>
+<script src="balsamo.js?v=13"></script>
+<script src="regalo.js?v=2"></script>
+<script src="ducha.js?v=8"></script>
+<script src="sellador.js?v=10"></script>
+<script src="aranazos.js?v=5"></script>
+<script src="pulsera.js?v=5"></script>
+<script src="pistola.js?v=8"></script>
+<script src="gafas.js?v=8"></script>
+<script src="crema.js?v=11"></script>
 <!-- Los js de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO van aqui: no existen en este repo y daban 404. -->
 

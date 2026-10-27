@@ -10,7 +10,7 @@
 (function () {
   'use strict';
   var q = '';
-  try { q = new URLSearchParams(location.search).get('p') || ''; } catch (e) {}
+  try { q = (window.__P || new URLSearchParams(location.search).get('p')) || ''; } catch (e) {}
   var P = (window.PRODUCTOS || []).filter(function (x) { return x.id === q; })[0];
   if (!P || !P.regalo) return;
   var R = P.regalo;

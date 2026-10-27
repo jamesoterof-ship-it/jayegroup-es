@@ -11,7 +11,7 @@
 (function () {
   'use strict';
   var s = '';
-  try { s = new URLSearchParams(location.search).get('p') || ''; } catch (e) {}
+  try { s = (window.__P || new URLSearchParams(location.search).get('p')) || ''; } catch (e) {}
   if (s !== 'ducha') return;
 
   var QUIETO = false;
