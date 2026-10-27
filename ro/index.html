@@ -1100,6 +1100,9 @@ window.jayePixel = (function () {
            poster="../img/hero-tienda.webp?v=2" aria-hidden="true">
       <source src="../img/hero-tienda.mp4?v=2" type="video/mp4">
     </video>
+    <!-- 27-10 James: "el hero no sirve, se queda negro". En la ficha (?p=) la portada de la tienda no se ve, pero su video y
+         su foto se bajaban igual y le quitaban datos a la foto del producto en el celular: en la ficha se sacan antes de pedirse. -->
+    <script>if (window.MODO_RO === 'ficha') { var _cv = document.getElementById('clipHero'); if (_cv) _cv.remove(); var _f = document.querySelector('#tiendaRO .hero .foto'); if (_f) _f.style.backgroundImage = 'none'; }</script>
     <div class="capa"></div>
     <div class="txt">
       <h1>Comandați azi,<br>plătiți la livrare</h1>
@@ -1382,6 +1385,12 @@ window.jayePixel = (function () {
   </footer>
 
 <script src="produse.js?v=13"></script>
+<!-- 27-10 (hero negro): la foto del hero se pide APENAS se sabe qué producto es, no cuando termina de cargar ficha.js. -->
+<script>(function () {
+  var id = new URLSearchParams(location.search).get('p'); if (!id) return;
+  var p = (window.PRODUSE || []).filter(function (x) { return x.id === id; })[0], img = p && p.hero && p.hero.img; if (!img) return;
+  var l = document.createElement('link'); l.rel = 'preload'; l.as = 'image'; l.href = img; l.setAttribute('fetchpriority', 'high'); document.head.appendChild(l);
+})();</script>
 <!-- RUMANIA: județe y codigo postal de 6 cifras, en vez de los distritos de Portugal. -->
 <script src="judete-ro.js?v=1"></script>
 <script src="textos-ro.js?v=10"></script>
