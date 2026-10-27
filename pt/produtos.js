@@ -29,12 +29,12 @@ window.PRODUTOS = [
     etiqueta: 'Novo em Portugal',
     etiquetaOro: true,
 
-    foto: '../img/aranazos-rocia-pt.webp?v=2',
-    fotos: ['../img/aranazos-rocia-pt.webp?v=2', '../img/aranazos-frota-pt.webp?v=2', '../img/aranazos-brillo-pt.webp?v=2'],
-    video: '../img/aranazos-ficha.mp4?v=1',
+    foto: 'img/aranazos-rocia-pt.webp?v=2',
+    fotos: ['img/aranazos-rocia-pt.webp?v=2', 'img/aranazos-frota-pt.webp?v=2', 'img/aranazos-brillo-pt.webp?v=2'],
+    video: 'img/aranazos-ficha.mp4?v=1',
 
     hero: {
-      img: '../img/hero-aranazos-pt.webp?v=2',
+      img: 'img/hero-aranazos-pt.webp?v=2',
       kicker: 'Novo em Portugal',
       titulo: 'Elimina os riscos<br><b>em 60 segundos.</b>',
       sub: 'Deixe de pagar à oficina! Pulveriza, esfrega com um pano e os riscos desaparecem. O seu carro brilha como novo e fica protegido da água e do pó.',
@@ -86,7 +86,7 @@ window.PRODUTOS = [
     ],
 
     fotosResenas: [],
-    antesDespues: '../img/aranazos-ba-pt.webp?v=1',
+    antesDespues: 'img/aranazos-ba-pt.webp?v=1',
     antesDespuesSub: 'A mesma porta ao sol: cheia de riscos da lavagem, e depois do spray: brilhante como nova.',
 
     /* PREÇOS · os mesmos de Espanha (James 23-10). O envio para Portugal custa 7,39 €. */
@@ -122,16 +122,16 @@ window.PRODUTOS = [
 
     /* As mesmas três de Espanha. Tirou-se a do catálogo do fornecedor: era uma
        montagem com FOREHEAD / FACE / LIPS / BODY em INGLÊS por cima. */
-    foto: '../img/balsamo-mano.webp?v=1',
+    foto: 'img/balsamo-mano.webp?v=1',
     fotos: [
-      '../img/balsamo-uso.webp?v=1',    // a aplicar no malar
-      '../img/balsamo-mano.webp?v=1',   // na mão: lê-se o rótulo e o tamanho real
-      '../img/balsamo-bolso.webp?v=1',  // ao lado da mala: os 9 g cabem em qualquer lado
+      'img/balsamo-uso.webp?v=1',    // a aplicar no malar
+      'img/balsamo-mano.webp?v=1',   // na mão: lê-se o rótulo e o tamanho real
+      'img/balsamo-bolso.webp?v=1',  // ao lado da mala: os 9 g cabem em qualquer lado
     ],
 
     /* Vídeo do próprio vendedor do produto, cortado só nos trechos limpos:
        7,2 s, sem uma única letra e SEM ÁUDIO. */
-    video: '../img/balsamo-ficha.mp4?v=2',
+    video: 'img/balsamo-ficha.mp4?v=2',
     acento: '#A8505F',   /* o mesmo de Espanha: o anterior dava 3,8:1 */
 
     /* ---- HERO ----
@@ -141,7 +141,7 @@ window.PRODUTOS = [
        itálico e sem pontuação fica coxa.
        Só se pode falar da APARÊNCIA da pele (Regulamento UE 655/2013). */
     hero: {
-      img: '../img/hero-balsamo.webp?v=1',
+      img: 'img/hero-balsamo.webp?v=1',
       kicker: 'Novo em Portugal',
       titulo: 'Dois segundos,<br>e a pele<br><b>deixa de repuxar.</b>',
       sub: 'Bálsamo de colagénio em stick. Desliza e está feito: rosto, contorno, lábios, pescoço e decote.',
@@ -244,12 +244,12 @@ window.PRODUTOS = [
     etiqueta: 'Novo em Portugal',
     etiquetaOro: true,
 
-    foto: '../img/sellador-tienda.webp?v=1',
-    fotos: ['../img/sellador-tienda.webp?v=1', '../img/sellador-terraza-pt.webp?v=1', '../img/sellador-ventana-pt.webp?v=1'],
-    video: '../img/sellador-ficha.mp4?v=1',
+    foto: 'img/sellador-tienda.webp?v=1',
+    fotos: ['img/sellador-tienda.webp?v=1', 'img/sellador-terraza-pt.webp?v=1', 'img/sellador-ventana-pt.webp?v=1'],
+    video: 'img/sellador-ficha.mp4?v=1',
 
     hero: {
-      img: '../img/hero-sellador.webp?v=1',
+      img: 'img/hero-sellador.webp?v=1',
       kicker: 'Novo em Portugal',
       titulo: 'Fissuras seladas,<br><b>casa sem goteiras.</b>',
       sub: 'Spray selante impermeável de 400 ml. Pulveriza sobre a fissura ou a junta e forma uma camada branca que não deixa passar a água.',
@@ -297,7 +297,7 @@ window.PRODUTOS = [
     ],
 
     fotosResenas: [],
-    antesDespues: '../img/sellador-ba-pt.webp?v=1',
+    antesDespues: 'img/sellador-ba-pt.webp?v=1',
     antesDespuesSub: 'A mesma parede: a fissura por onde entrava a água e a mancha de humidade, e depois selada e seca.',
 
     /* PREÇOS · os mesmos de Espanha (James 22-10: "los mesmos precios de España").
@@ -337,12 +337,12 @@ window.PRODUTOS = [
     etiqueta: 'Lançamento em Portugal',
     etiquetaOro: true,
 
-    foto: '../img/pulseira-palma-pt.webp?v=1',
-    fotos: ['../img/pulseira-palma-pt.webp?v=1', '../img/pulseira-muneca-pt.webp?v=1', '../img/pulseira-pareja-pt.webp?v=1'],
-    video: '../img/pulsera-ficha.mp4?v=1',
+    foto: 'img/pulseira-palma-pt.webp?v=1',
+    fotos: ['img/pulseira-palma-pt.webp?v=1', 'img/pulseira-muneca-pt.webp?v=1', 'img/pulseira-pareja-pt.webp?v=1'],
+    video: 'img/pulsera-ficha.mp4?v=1',
 
     hero: {
-      img: '../img/hero-pulsera.webp?v=3',
+      img: 'img/hero-pulsera.webp?v=3',
       kicker: 'Lançamento em Portugal',
       titulo: 'Outra vez com o cigarro<br><b>na mão?</b>',
       sub: 'A pulseira magnética de pedra vulcânica que leva no pulso e lhe lembra a sua decisão sempre que a vontade chega. Discreta, confortável, para ele e para ela.',
@@ -391,7 +391,7 @@ window.PRODUTOS = [
     ],
 
     fotosResenas: [],
-    antesDespues: '../img/pulseira-ba-pt.webp?v=1',
+    antesDespues: 'img/pulseira-ba-pt.webp?v=1',
     antesDespuesSub: 'O mesmo café de todos os dias: antes com o maço na mão, depois com a pulseira no pulso.',
 
     /* PREÇOS · os mesmos de Espanha (James 22-10). 'antes' a 0: produto novo. */

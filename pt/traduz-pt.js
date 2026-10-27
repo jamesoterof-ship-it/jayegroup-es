@@ -217,7 +217,9 @@
   function foto(u) {
     if (!u || u.indexOf('img/') !== 0) return null;
     var nome = u.slice(4).split('?')[0];
-    return '../img/' + (FOTOS[nome] ? FOTOS[nome] + '?v=1' : u.slice(4));
+    /* 27-10: fotos próprias em /pt/img (Portugal independente de Espanha). Caminho ABSOLUTO: se começasse por "img/"
+       o vigia voltava a traduzi-lo sem parar e a página ficava presa. */
+    return '/pt/img/' + (FOTOS[nome] ? FOTOS[nome] + '?v=1' : u.slice(4));
   }
 
   function texto(n) {
