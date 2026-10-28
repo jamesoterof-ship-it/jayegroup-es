@@ -120,7 +120,7 @@
     }
     if (oferta) {
       var ot = oferta.querySelector('h2') || oferta.firstElementChild;
-      if (ot) ot.insertAdjacentHTML('afterend', '<figure class="pu-foto"><img src="img/pulsera-promo.webp?v=1" alt="Dos pulseras de piedra volcánica con el cartel de la promoción: 1 pulsera 25,95 €, 2 pulseras 37,95 € y 3 pulseras 47,95 €" loading="lazy" width="1000" height="1500"></figure>');
+      if (ot) ot.insertAdjacentHTML('afterend', '<figure class="pu-foto"><img src="/ro/img/pulsera-promo-estuche-ro.webp?v=1" alt="La pulsera de piedra volcánica en su estuche de regalo con la promoción en lei" loading="lazy" width="1024" height="1024"></figure>');   /* 28-10: la promo vieja (img/pulsera-promo.webp) no existía en /ro/ (404) y traía € */
     }
     if (compara) { var us = compara.querySelector('th.us'); if (us) us.textContent = 'Pulsera'; }
     return true;

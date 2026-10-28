@@ -321,13 +321,13 @@ window.PRODUSE = [
 
   /* ============================================================
      BRĂȚARĂ MAGNETICĂ ANTIFUMAT · la de España ('pulsera'), traducida.
-     Dropi PRO Rumania id 4535 (con caja regalo existe el 4500; se usa el 4535).
+     Dropi PRO Rumania id 4500 CON CAJA REGALO (28-10 James: "sí, con estuche", como España; antes 4535 en bolsa).
      🔴 NO es un tratamiento: es un recordatorio. Nada de "vindecă" ni "în X zile".
      ============================================================ */
   {
     id: 'pulsera', enlace: '?p=pulsera&', unidad: 'buc.', promo: 2,
 
-    dropiId: 4535,
+    dropiId: 4500,
     dropiSku: '',
 
     nombre: 'Brățară magnetică antifumat',
@@ -354,13 +354,14 @@ window.PRODUSE = [
     },
     acento: '#A16207',
 
-    desc: 'Brățara magnetică antifumat este făcută din mărgele de piatră vulcanică naturală, neagră și poroasă, și un mic magnet rotund argintiu. Este elastică, se potrivește singură pe încheietură și se asortează cu orice. Ideea este simplă: o purtați toată ziua și, când vine pofta de a fuma, o atingeți, simțiți magnetul și vă amintiți de ce ați hotărât să renunțați. Un gest mic care vă ajută să opriți impulsul.',
+    desc: 'Brățara magnetică antifumat este făcută din mărgele de piatră vulcanică naturală, neagră și poroasă, și un mic magnet rotund argintiu. Ajunge în caseta și cutia ei de cadou. Este elastică, se potrivește singură pe încheietură și se asortează cu orice. Ideea este simplă: o purtați toată ziua și, când vine pofta de a fuma, o atingeți, simțiți magnetul și vă amintiți de ce ați hotărât să renunțați. Un gest mic care vă ajută să opriți impulsul.',
 
     puntos: [
       'Piatră vulcanică naturală și un magnet discret',
       'Vă amintește de decizia luată când vine pofta',
       'Elastică: se potrivește pe orice încheietură',
       'Pentru el și pentru ea · pachetul de 2 e pentru cadou',
+      'Ajunge în caseta și cutia ei de cadou',
     ],
 
     formulaRotulo: 'De ce ajută',
@@ -382,7 +383,7 @@ window.PRODUSE = [
 
     preguntas: [
       { q: 'Îmi va lua pofta de fumat?', a: 'Nu este un medicament și nici un tratament. Este un memento pe care îl purtați la încheietură: când vine pofta, o atingeți și vă ajută să vă opriți o clipă și să vă amintiți de decizia luată. Dacă doriți sprijin medical ca să renunțați la fumat, întrebați medicul sau farmacistul.' },
-      { q: 'Din ce este făcută?', a: 'Din mărgele de piatră vulcanică naturală, neagră, mată și poroasă, pe un fir elastic, cu un pandantiv rotund argintiu care are un magnet.' },
+      { q: 'Din ce este făcută?', a: 'Din mărgele de piatră vulcanică naturală, neagră, mată și poroasă, pe un fir elastic, cu un pandantiv rotund argintiu care are un magnet. Ajunge într-o casetă neagră transparentă, în interiorul unei cutii de cadou.' },
       { q: 'Mi se potrivește mărimea?', a: 'Este elastică și se potrivește pe majoritatea încheieturilor de adult, de bărbat și de femeie.' },
       { q: 'Se poate uda?', a: 'Este mai bine să o scoateți la duș, la înot sau când spălați vasele: așa firul și magnetul țin mai mult.' },
       { q: 'Cine nu ar trebui să o poarte?', a: 'Din cauza magnetului, nu o purtați dacă aveți stimulator cardiac sau alt dispozitiv medical implantat și nici în timpul sarcinii fără să întrebați înainte medicul.' },
