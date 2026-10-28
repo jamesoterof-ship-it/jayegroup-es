@@ -375,6 +375,20 @@ window.TEXTOS = {
     'Así es': 'Așa este',
     'la pulsera.': 'brățara.',
     'Pulsera': 'Brățară',
+    /* 28-10 · capítulo 03 "Así la recibes" (estuche, Dropi RO 4500) */
+    'Así la recibes': 'Așa o primiți',
+    'En su estuche,': 'În caseta ei,',
+    'lista para regalar.': 'gata de dăruit.',
+    'Estas son fotos reales del producto que te llega a casa.': 'Acestea sunt fotografii reale ale produsului care vă ajunge acasă.',
+    'Al abrir el paquete': 'Când deschideți coletul',
+    'Su caja de regalo': 'Cutia ei de cadou',
+    'Llega en una caja negra con ventana, lista para guardar o para regalar.': 'Ajunge într-o cutie neagră cu fereastră, gata de păstrat sau de dăruit.',
+    'Dentro': 'Înăuntru',
+    'Su estuche personalizado': 'Caseta ei',
+    'La pulsera viene suspendida en un estuche negro transparente: se ve entera y no se estropea.': 'Brățara stă suspendată într-o casetă neagră transparentă: se vede în întregime și nu se deteriorează.',
+    'La caja negra de regalo con ventana en la que llega la pulsera': 'Cutia neagră de cadou, cu fereastră, în care ajunge brățara',
+    'La pulsera de piedra volcánica dentro de su estuche negro transparente': 'Brățara din piatră vulcanică în caseta ei neagră transparentă',
+    'La quiero con su estuche': 'O vreau, cu caseta ei',
 
     /* ---- 25-10 · pistola.js ---- */
     'El coche': 'Mașina',
