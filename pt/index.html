@@ -405,11 +405,16 @@ try{ if(!sessionStorage.getItem('jaye_vis_portada_pt')){ sessionStorage.setItem(
       <div class="redes">
         <span class="rot">Siga-nos</span>
         <div class="iconos">
-          <a href="https://www.instagram.com/jaye.group" target="_blank" rel="noopener" aria-label="Instagram">
+          <!-- 28-10 (James): el Instagram propio de Portugal (@jayegroup.pt), no el de Chile y España -->
+          <a href="https://www.instagram.com/jayegroup.pt/" target="_blank" rel="noopener" aria-label="Instagram">
             <svg viewBox="0 0 24 24" width="34" height="34"><defs><linearGradient id="jig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".62" stop-color="#d62976"/><stop offset="1" stop-color="#962fbf"/></linearGradient></defs><rect x="1" y="1" width="22" height="22" rx="6.5" fill="url(#jig)"/><rect x="6" y="6" width="12" height="12" rx="4" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="16.8" cy="7.2" r="1.05" fill="#fff"/></svg>
           </a>
           <a href="https://www.facebook.com/61595672159220" target="_blank" rel="noopener" aria-label="Facebook">
             <svg viewBox="0 0 24 24" width="34" height="34"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path fill="#fff" d="M13.4 21v-7.1h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8v2.8h2.4V21h3z"/></svg>
+          </a>
+          <!-- 28-10 (James): el WhatsApp de Portugal en las redes del pie (no estaba) -->
+          <a href="https://wa.me/351918470538" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" width="34" height="34"><circle cx="12" cy="12" r="12" fill="#25D366"/><path fill="#fff" d="M17 14.4c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.6.9-.8 1-.1.2-.3.2-.5.1a7.3 7.3 0 0 1-3.6-3.2c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5v-.5c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.1s.9 2.5 1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.2.7 3 .6.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/><path fill="#fff" d="M12 3.5A8.4 8.4 0 0 0 4.7 16l-1.2 4.5 4.6-1.2A8.4 8.4 0 1 0 12 3.5zm0 15.3c-1.3 0-2.5-.3-3.5-1l-.3-.1-2.6.7.7-2.6-.2-.3a6.9 6.9 0 1 1 5.9 3.3z"/></svg>
           </a>
           <a href="https://www.tiktok.com/@jaye.group" target="_blank" rel="noopener" aria-label="TikTok">
             <svg viewBox="0 0 24 24" width="34" height="34"><circle cx="12" cy="12" r="12" fill="#010101"/><g transform="translate(12,12) scale(0.6) translate(-12,-12)"><path fill="#25F4EE" d="M15.8 5.1a4.3 4.3 0 0 1-1.07-2.82h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .71-5.08V8.94a5.72 5.72 0 0 0-.71-.05 5.68 5.68 0 1 0 5.68 5.68V8.18a7.35 7.35 0 0 0 4.29 1.37V6.46A4.28 4.28 0 0 1 15.8 5.1z"/><path fill="#FE2C55" d="M17.4 6.54a4.3 4.3 0 0 1-1.07-2.82h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .71-5.08v-3.16a5.72 5.72 0 0 0-.71-.05 5.68 5.68 0 1 0 5.68 5.68V9.62a7.35 7.35 0 0 0 4.29 1.37V7.9a4.28 4.28 0 0 1-3.22-1.36z"/><path fill="#fff" d="M16.6 5.82A4.28 4.28 0 0 1 15.53 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .71-5.08V9.66a5.72 5.72 0 0 0-.71-.05 5.68 5.68 0 1 0 5.68 5.68V8.9a7.35 7.35 0 0 0 4.29 1.37V7.18a4.28 4.28 0 0 1-3.22-1.36z"/></g></svg>
@@ -476,6 +481,16 @@ document.addEventListener('DOMContentLoaded', function () {
   requestAnimationFrame(passo);
 });
 </script>
+
+<!-- 28-10 (James): botão flutuante de WhatsApp de Portugal na loja (as fichas já o tinham; aqui faltava), igual que Roménia -->
+<style>
+.wa{position:fixed;right:14px;bottom:16px;z-index:50;width:46px;height:46px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.wa svg{width:25px;height:25px;fill:#fff}
+.wa:hover{transform:scale(1.07)}
+</style>
+<a class="wa" href="https://wa.me/351918470538?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 32 32"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2.1 7.8L.3 31.6l8.1-2.1c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.3c-2.4 0-4.7-.6-6.7-1.9l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.4-2.1-2.1-4.6-2.1-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.7 16 28.7zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.2 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/></svg>
+</a>
 
 <!-- Aviso de cookies (obrigatório em Portugal: Lei 41/2004 art. 5 + RGPD) -->
 <div class="cookies" id="cookies" hidden>
