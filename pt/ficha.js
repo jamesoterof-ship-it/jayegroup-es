@@ -747,6 +747,9 @@
       /* 02-10 · solo si el producto tiene "Paga ahora": el sellador sale solo contra reembolso */
       p.anticipado ? ['2', 'formas de pago: al recibir o ahora con tarjeta'] : ['0 €', 'por adelantado: pagas al recibir'],
     ];
+    /* 28-10 · los textos de Portugal traen la lista fija con "2 formas de pagamento"; el caderno sale
+       solo contra entrega y eso no puede decirse. Sin "Paga ahora" va la tarjeta de pago al recibir. */
+    if (T.resDatos && !p.anticipado && T.resDatoSinAnticipo) datos = datos.slice(0, -1).concat([T.resDatoSinAnticipo]);
     return '<section class="bloque res-sec" data-rv><span class="eyebrow">' + t('resRotulo', 'Lo que te garantizamos') + '</span>'
       + '<h2 class="tit2">' + t('resTit', 'Sin letra pequeña') + '</h2>'
       + '<div class="res-grid">'

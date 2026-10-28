@@ -1,0 +1,196 @@
+/* ============================================================
+   CADERNO MÁGICO DE CALIGRAFIA · PORTUGAL · estilos próprios (28-10-2026).
+   Só com <body class="p-caderno">. ui-ux-pro-max, opção #51 (aprovada por James 28-10, "Sí, ese diseño"):
+     · Estilo  Claymorphism: macio, de brinquedo, bordas grossas (3-4 px), sombra dupla
+               (interior + exterior, sem linhas duras), cantos 16-24 px, "soft press" 200 ms.
+     · Cor     SÓ a paleta do script: #2563EB azul (primária) · #F59E0B amarelo (secundária)
+               · #EC4899 rosa (ação) · #EFF6FF fundo · #0F172A texto · #FFFFFF cartão
+               · #F1F5FD apagado · #475569 texto apagado · #E4ECFC borda · #DC2626
+               (os tons claros são estas mesmas cores com transparência)
+     · Letra   Baloo 2 (títulos) + Comic Neue (texto)
+   Contrastes (WCAG): #0F172A sobre #EFF6FF 17,1:1 · #0F172A sobre #EC4899 5,6:1 ·
+   #0F172A sobre #F59E0B 8,3:1 · #475569 sobre #FFFFFF 7,6:1 · #FFFFFF sobre #2563EB 5,2:1.
+   ============================================================ */
+body.p-caderno {
+  --cm-azul:    #2563EB;
+  --cm-amar:    #F59E0B;
+  --cm-rosa:    #EC4899;
+  --cm-fundo:   #EFF6FF;
+  --cm-tinta:   #0F172A;
+  --cm-cartao:  #FFFFFF;
+  --cm-apag:    #F1F5FD;
+  --cm-texto2:  #475569;
+  --cm-borda:   #E4ECFC;
+  --cm-amarC:   rgba(245,158,11,.14);
+  --cm-amarB:   rgba(245,158,11,.42);
+  --cm-azulC:   rgba(37,99,235,.12);
+  --cm-tit:     'Baloo 2', system-ui, sans-serif;
+  --cm-corpo:   'Comic Neue', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* a sombra de barro: uma por fora, macia, e duas por dentro (luz em cima, sombra em baixo) */
+  --cm-barro:   0 10px 24px rgba(37,99,235,.14), inset 0 -5px 0 rgba(15,23,42,.06), inset 0 4px 0 rgba(255,255,255,.9);
+  --cm-barroG:  0 18px 36px rgba(37,99,235,.18), inset 0 -6px 0 rgba(15,23,42,.07), inset 0 5px 0 rgba(255,255,255,.9);
+  --cm-mola:    cubic-bezier(.34,1.56,.64,1);
+  background: var(--cm-fundo);
+}
+body.p-caderno #prod { background: var(--cm-fundo); color: var(--cm-tinta); font-family: var(--cm-corpo); font-size: 16px; }
+body.p-caderno #prod p { color: var(--cm-texto2); line-height: 1.6; }
+
+/* barra de avanço (amarela, grossa e redonda como um lápis) */
+body.p-caderno .cm-avance { position: fixed; top: 0; left: 0; height: 5px; width: 100%; z-index: 9999; pointer-events: none;
+  background: var(--cm-amar); border-radius: 0 4px 4px 0; transform-origin: 0 50%; transform: scaleX(0); }
+
+/* ---------- títulos: Baloo 2, gordos e redondos ---------- */
+body.p-caderno #prod h1, body.p-caderno #prod h2, body.p-caderno #prod h3 { font-family: var(--cm-tit); letter-spacing: -.01em; text-transform: none; }
+body.p-caderno #prod h2.tit2, body.p-caderno .cm-h2 {
+  display: block; margin: 10px 0 12px; font-family: var(--cm-tit); font-weight: 700;
+  font-size: clamp(28px, 7.8vw, 40px); line-height: 1.08; color: var(--cm-tinta); text-wrap: balance;
+}
+body.p-caderno #prod h2 em, body.p-caderno .cm-h2 em { font-style: normal; color: var(--cm-azul); }
+body.p-caderno #prod .eyebrow, body.p-caderno .cm-cap {
+  display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 6px; border-radius: 999px;
+  background: var(--cm-amarC); border: 3px solid var(--cm-amarB); color: var(--cm-tinta);
+  font: 700 13px/1 var(--cm-tit); letter-spacing: .02em; text-transform: none;
+}
+body.p-caderno .cm-cap svg { width: 16px; height: 16px; fill: var(--cm-amar); stroke: var(--cm-tinta); stroke-width: 1.4; stroke-linejoin: round; }
+body.p-caderno #prod .sub2, body.p-caderno .cm-lead { font-size: 16.5px; line-height: 1.6; color: var(--cm-texto2); margin: 0 0 18px; }
+
+/* ---------- HERÓI (James 28-10, como os de Chile): a cena a ecrã inteiro, sem cartões, o título gigante
+   por cima da parede livre da foto, a tinta mágica que se escreve e desaparece e três dados por baixo ---------- */
+body.p-caderno .cm-heroi { position: relative; overflow: hidden; background: var(--cm-fundo); }
+body.p-caderno .cm-heroi__img { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1500; object-fit: cover; }
+body.p-caderno .cm-heroi__txt { position: absolute; top: 0; left: 0; right: 0; z-index: 2; padding: 20px 18px 0; }
+body.p-caderno .cm-heroi__kicker { display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px 6px; border-radius: 999px;
+  background: var(--cm-amar); color: var(--cm-tinta); font: 700 13px/1 var(--cm-tit); border: 3px solid var(--cm-cartao); box-shadow: var(--cm-barro); }
+body.p-caderno .cm-heroi__kicker svg { width: 15px; height: 15px; fill: var(--cm-cartao); }
+body.p-caderno .cm-heroi__h1 { margin: 14px 0 0; font: 700 clamp(36px, 10.4vw, 58px)/.98 var(--cm-tit); letter-spacing: -.02em; color: var(--cm-tinta); text-wrap: balance; }
+body.p-caderno .cm-heroi__h1 > span { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .06em; }
+body.p-caderno .cm-heroi__h1 i { display: inline-block; font-style: normal; }
+body.p-caderno .cm-heroi__h1 .cm-azul { color: var(--cm-azul); }
+html.ba-lista body.p-caderno .cm-heroi__h1 i { animation: cmSobe .7s var(--cm-mola) both; }
+html.ba-lista body.p-caderno .cm-heroi__h1 > span:nth-child(2) i { animation-delay: .12s; }
+html.ba-lista body.p-caderno .cm-heroi__h1 > span:nth-child(3) i { animation-delay: .24s; }
+@keyframes cmSobe { from { transform: translateY(105%); } to { transform: none; } }
+/* rede de segurança (a mesma do herói da loja): aos 3 s o título vê-se sempre */
+html.ba-visto body.p-caderno .cm-heroi__h1 i { animation: none; transform: none; }
+/* a tinta mágica: "a b c" desenha-se em azul, enche-se e depois desaparece */
+body.p-caderno .cm-tinta { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 4px; }
+body.p-caderno .cm-tinta svg { width: 132px; height: 40px; overflow: visible; }
+body.p-caderno .cm-tinta text { font: 700 52px var(--cm-corpo); fill: rgba(37,99,235,0); stroke: var(--cm-azul); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 420; stroke-dashoffset: 420; }
+body.p-caderno .cm-tinta span { font: 700 14px/1.2 var(--cm-corpo); color: var(--cm-texto2); max-width: 9.5em; }
+body.p-caderno .cm-tinta--escreve text { animation: cmEscreve 2.2s ease-out forwards; }
+body.p-caderno .cm-tinta--some svg { animation: cmSome 1.8s ease-in forwards; }
+@keyframes cmEscreve { 0% { stroke-dashoffset: 420; fill: rgba(37,99,235,0); } 70% { stroke-dashoffset: 0; fill: rgba(37,99,235,0); } 100% { stroke-dashoffset: 0; fill: rgba(37,99,235,1); } }
+@keyframes cmSome { from { opacity: 1; filter: blur(0); } to { opacity: 0; filter: blur(3px); } }
+body.p-caderno .cm-tinta--quieta text { stroke-dashoffset: 0; fill: var(--cm-azul); }
+/* os três dados, como as latas do desengrasante */
+body.p-caderno .cm-heroi__datos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px; background: var(--cm-azul); }
+body.p-caderno .cm-heroi__datos > div { display: grid; justify-items: center; gap: 2px; padding: 12px 6px 10px; border-radius: 18px; text-align: center;
+  background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.28); box-shadow: inset 0 3px 0 rgba(255,255,255,.18), inset 0 -4px 0 rgba(15,23,42,.14); }
+body.p-caderno .cm-heroi__datos b { font: 700 clamp(22px, 6.4vw, 30px)/1 var(--cm-tit); color: var(--cm-cartao); font-variant-numeric: tabular-nums; }
+body.p-caderno .cm-heroi__datos span { font: 700 12.5px/1.25 var(--cm-corpo); color: var(--cm-cartao); }
+/* no computador a cena não cresce até ao ecrã inteiro: fica com a medida de um telemóvel grande, ao centro */
+@media (min-width: 768px) {
+  body.p-caderno .cm-heroi, body.p-caderno .cm-heroi__datos { max-width: 560px; margin-inline: auto; }
+  body.p-caderno .cm-heroi { border-radius: 0 0 28px 28px; }
+  body.p-caderno .cm-heroi__h1 { font-size: 56px; }
+}
+
+/* ---------- BOTÕES: rosa de barro, com "soft press" ---------- */
+body.p-caderno .heroP__cta, body.p-caderno #prod .cta, body.p-caderno #prod .cm-cta, body.p-caderno .btn-flota, body.p-caderno #stickycta .btn-flota {
+  box-sizing: border-box; display: flex !important; align-items: center; justify-content: center; gap: 10px;
+  width: 100% !important; height: 58px !important; min-height: 58px; padding: 0 18px !important;
+  font: 700 18px/1 var(--cm-tit) !important; letter-spacing: 0; text-transform: none; white-space: nowrap; text-decoration: none;
+  border-radius: 20px !important; border: 3px solid rgba(15,23,42,.12) !important; background: var(--cm-rosa) !important; color: var(--cm-tinta) !important;
+  box-shadow: 0 7px 0 rgba(15,23,42,.22), 0 14px 26px rgba(236,72,153,.32), inset 0 3px 0 rgba(255,255,255,.35); cursor: pointer;
+  transition: transform .2s ease-out, box-shadow .2s ease-out, filter .2s ease-out;
+}
+body.p-caderno .heroP__cta:hover, body.p-caderno #prod .cta:hover, body.p-caderno #prod .cm-cta:hover, body.p-caderno .btn-flota:hover { filter: brightness(1.06); }
+body.p-caderno .heroP__cta:active, body.p-caderno #prod .cta:active, body.p-caderno #prod .cm-cta:active, body.p-caderno .btn-flota:active {
+  transform: translateY(5px); box-shadow: 0 2px 0 rgba(15,23,42,.22), 0 6px 12px rgba(236,72,153,.28), inset 0 3px 0 rgba(255,255,255,.35); }
+body.p-caderno .heroP__cta:focus-visible, body.p-caderno #prod .cta:focus-visible, body.p-caderno #prod .cm-cta:focus-visible { outline: 3px solid var(--cm-azul); outline-offset: 4px; }
+body.p-caderno #prod .cta.azul { background: var(--cm-cartao) !important; color: var(--cm-azul) !important; border-color: var(--cm-azul) !important; box-shadow: 0 6px 0 rgba(37,99,235,.25); }
+body.p-caderno #prod .cm-cta { margin-top: 26px; }
+body.p-caderno .cm-cta svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+body.p-caderno #stickycta .btn-flota { width: auto !important; flex: 1 1 auto; height: 52px !important; min-height: 52px; box-shadow: 0 5px 0 rgba(15,23,42,.22); }
+body.p-caderno .heroP__pie { flex-wrap: wrap; }
+
+/* ---------- compra curta ---------- */
+body.p-caderno #prod .arriba2 { background: var(--cm-fundo); }
+body.p-caderno #prod .arriba2 .datos h1 { font-family: var(--cm-tit); font-weight: 700; font-size: clamp(26px, 7.2vw, 34px); line-height: 1.08; color: var(--cm-tinta); }
+body.p-caderno #prod .precioTop { font-family: var(--cm-tit); font-weight: 700; color: var(--cm-azul); font-variant-numeric: tabular-nums; }
+body.p-caderno #prod .arriba2 .dscTop, body.p-caderno #prod .arriba2 .dscTop__ul { display: none; }
+
+/* ---------- CAPÍTULOS ---------- */
+body.p-caderno .cm-sec { padding: 46px 16px; }
+/* capítulo 1: como funciona (três cartões de barro com número) */
+body.p-caderno .cm-funciona { background: var(--cm-cartao); border-radius: 32px 32px 0 0; box-shadow: 0 -10px 24px rgba(37,99,235,.06); }
+body.p-caderno .cm-pasos { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 24px; }
+@media (min-width: 768px) { body.p-caderno .cm-pasos { grid-template-columns: repeat(3, 1fr); } }
+body.p-caderno .cm-paso { position: relative; padding: 10px; background: var(--cm-fundo); border: 3px solid var(--cm-borda); border-radius: 24px; box-shadow: var(--cm-barro); }
+body.p-caderno .cm-paso-img { overflow: hidden; aspect-ratio: 4 / 5; border-radius: 18px; background: var(--cm-azulC); }
+body.p-caderno .cm-paso-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+body.p-caderno .cm-paso-txt { display: grid; gap: 4px; padding: 14px 6px 6px; }
+body.p-caderno .cm-paso-txt i { position: absolute; top: -12px; left: -6px; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  font: 700 24px/1 var(--cm-tit); font-style: normal; color: var(--cm-cartao); background: var(--cm-azul); border: 4px solid var(--cm-cartao);
+  box-shadow: 0 6px 14px rgba(37,99,235,.35), inset 0 -4px 0 rgba(15,23,42,.18); }
+body.p-caderno .cm-paso:nth-child(2) .cm-paso-txt i { background: var(--cm-amar); color: var(--cm-tinta); }
+body.p-caderno .cm-paso:nth-child(3) .cm-paso-txt i { background: var(--cm-rosa); color: var(--cm-tinta); }
+body.p-caderno .cm-paso-txt b { font: 700 22px/1.15 var(--cm-tit); color: var(--cm-tinta); }
+body.p-caderno #prod .cm-paso-txt span { font-size: 15.5px; line-height: 1.55; color: var(--cm-texto2); }
+
+/* capítulo 2: o que vem na caixa (foto real + lista de cadernos com a sua cor) */
+body.p-caderno .cm-caixa { background: var(--cm-fundo); }
+body.p-caderno .cm-real { margin: 4px 0 20px; padding: 10px; background: var(--cm-cartao); border: 3px solid var(--cm-borda); border-radius: 24px; box-shadow: var(--cm-barroG); }
+body.p-caderno .cm-real img { display: block; width: 100%; height: auto; border-radius: 18px; }
+body.p-caderno .cm-itens { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+body.p-caderno .cm-itens li { display: flex; gap: 10px; align-items: center; padding: 14px 12px; background: var(--cm-cartao); border: 3px solid var(--cm-borda); border-radius: 20px; box-shadow: var(--cm-barro); }
+body.p-caderno .cm-itens li svg { flex: 0 0 auto; width: 30px; height: 30px; fill: none; stroke: var(--cor, var(--cm-azul)); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+body.p-caderno .cm-itens b { display: block; font: 700 18px/1.15 var(--cm-tit); color: var(--cm-tinta); }
+body.p-caderno #prod .cm-itens span { font-size: 13.5px; line-height: 1.35; color: var(--cm-texto2); }
+body.p-caderno .cm-itens .cm-item-caneta { grid-column: 1 / -1; background: var(--cm-amarC); border-color: var(--cm-amarB); }
+body.p-caderno .cm-itens .cm-item-caneta svg { stroke: var(--cm-rosa); }
+
+/* ---------- COMO AJUDA (os 4 cartões da ficha) ---------- */
+body.p-caderno #prod .form-sec { background: var(--cm-cartao); padding-top: 44px; padding-bottom: 44px; }
+body.p-caderno #prod .form-sec :has(> .ing) { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+body.p-caderno #prod .form-sec .ing { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 18px 14px; background: var(--cm-fundo); border: 3px solid var(--cm-borda); border-radius: 22px; box-shadow: var(--cm-barro); transition: box-shadow .2s ease-out; }
+body.p-caderno #prod .form-sec .ing:hover { box-shadow: var(--cm-barroG); }
+body.p-caderno #prod .form-sec .ing .cir { width: 48px; height: 48px; border-radius: 16px; background: var(--cm-azul); display: grid; place-items: center; border: 0; box-shadow: inset 0 -4px 0 rgba(15,23,42,.2), inset 0 3px 0 rgba(255,255,255,.3); }
+body.p-caderno #prod .form-sec .ing:nth-child(2) .cir { background: var(--cm-amar); }
+body.p-caderno #prod .form-sec .ing:nth-child(3) .cir { background: var(--cm-rosa); }
+body.p-caderno #prod .form-sec .ing:nth-child(4) .cir { background: var(--cm-tinta); }
+body.p-caderno #prod .form-sec .ing .cir svg { width: 24px; height: 24px; stroke: var(--cm-cartao); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+body.p-caderno #prod .form-sec .ing b { font: 700 19px/1.15 var(--cm-tit); color: var(--cm-tinta); display: block; text-transform: none; }
+body.p-caderno #prod .form-sec .ing p { font-size: 14.5px; line-height: 1.5; margin: 4px 0 0; }
+
+/* ---------- PROMOÇÃO, stock, comparativa, opiniões, formulário ---------- */
+body.p-caderno #prod section.desc { background: var(--cm-fundo); }
+body.p-caderno #prod .promo-sec, body.p-caderno #prod .cmp-sec, body.p-caderno #prod .gar-sec { background: var(--cm-cartao); }
+body.p-caderno #prod .res-sec { background: var(--cm-fundo); }
+body.p-caderno #prod .cmp { border-radius: 20px; overflow: hidden; border: 3px solid var(--cm-borda); }
+body.p-caderno #prod .cmp th.us { color: var(--cm-azul); font-family: var(--cm-tit); }
+body.p-caderno #prod .cmp .si svg { stroke: var(--cm-azul); }
+body.p-caderno #prod .sello .nom { font: 700 18px var(--cm-tit); color: var(--cm-tinta); }
+body.p-caderno .cm-foto { margin: 14px 0 20px; padding: 8px; background: var(--cm-fundo); border: 3px solid var(--cm-borda); border-radius: 24px; box-shadow: var(--cm-barro); }
+body.p-caderno .cm-foto img { display: block; width: 100%; height: auto; border-radius: 18px; }
+body.p-caderno #prod .form { background: var(--cm-fundo); }
+body.p-caderno #prod .form input, body.p-caderno #prod .form select, body.p-caderno #prod .form textarea {
+  font-family: var(--cm-corpo); font-size: 16px; border: 3px solid var(--cm-borda); border-radius: 16px; background: var(--cm-cartao);
+  box-shadow: inset 0 3px 0 rgba(15,23,42,.04); transition: border-color .2s ease-out, box-shadow .2s ease-out; }
+body.p-caderno #prod .form input:focus, body.p-caderno #prod .form select:focus, body.p-caderno #prod .form textarea:focus {
+  border-color: var(--cm-azul); outline: none; box-shadow: 0 0 0 4px rgba(37,99,235,.18); }
+body.p-caderno #prod .pasoRot { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font: 700 16px var(--cm-tit); color: var(--cm-tinta); }
+body.p-caderno #prod .pasoRot:first-of-type { margin-top: 4px; }
+body.p-caderno #prod .pasoRot b { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 10px; background: var(--cm-azul); color: var(--cm-cartao); font-size: 14px; }
+
+/* ---------- entradas que sobem com mola ao baixar ---------- */
+body.p-caderno.cm-mueve .cm-entra { opacity: 0; transform: translateY(22px) scale(.97); transition: opacity .5s ease-out, transform .6s var(--cm-mola); transition-delay: calc(var(--i, 0) * 90ms); }
+body.p-caderno.cm-mueve .cm-entra.cm-visto { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  body.p-caderno .cm-heroi__h1 i { animation: none !important; transform: none !important; }
+  body.p-caderno .cm-avance { display: none; }
+  body.p-caderno .cm-entra { opacity: 1 !important; transform: none !important; transition: none !important; }
+  body.p-caderno .heroP__cta, body.p-caderno #prod .cta, body.p-caderno #prod .cm-cta { transition: none; }
+}

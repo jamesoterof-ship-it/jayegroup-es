@@ -180,6 +180,8 @@ window.TEXTOS = {
     ['30', 'dias de garantia de satisfação'],
     ['2', 'formas de pagamento: na entrega ou já com cartão'],
   ],
+  /* 28-10: para os produtos sem pagamento antecipado (caderno) a última fica esta */
+  resDatoSinAnticipo: ['0 €', 'adiantado: paga na entrega'],
 
   /* ---- garantia ----
      Em Portugal o direito de livre resolução são 14 dias (Decreto-Lei 24/2014)

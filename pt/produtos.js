@@ -413,6 +413,90 @@ window.PRODUTOS = [
       precios: [23.35, 34.15, 43.15],
     },
   },
+
+  /* ============================================================
+     CADERNO MÁGICO DE CALIGRAFIA · PORTUGAL (28-10-2026)
+     Dropi PRO id 2294 (edição em português). Kit: 4 cadernos com sulcos (Alfabeto, Números,
+     Matemática, Desenho) + caneta mágica com recargas e apoio de dedos. A tinta desaparece
+     em 15-20 min (dado do fornecedor). A partir dos 3 anos.
+     Preços aprovados por James 28-10: 19,95 / 29,95 / 39,95 €. Só pagamento na entrega
+     (o pagamento antecipado ainda não foi aprovado: por isso não leva 'anticipado').
+     🔴 Não prometer resultados escolares nem "aprende a escrever em X dias".
+     ============================================================ */
+  {
+    id: 'caderno', enlace: 'caderno', unidad: 'um', promo: 2,
+    dropiId: 2294,
+
+    nombre: 'Caderno Mágico de Caligrafia',
+    sub: 'Kit de 4 cadernos com sulcos + caneta de tinta que desaparece',
+    categoria: 'Criança',
+    etiqueta: 'Promoção de Natal',
+    etiquetaOro: true,
+
+    foto: 'img/caderno-real.webp?v=1',
+    fotos: ['img/caderno-real.webp?v=1', 'img/caderno-passo2.webp?v=1', 'img/caderno-hero.webp?v=1'],
+
+    hero: {
+      img: 'img/caderno-heroi.webp?v=1',   /* 28-10: o caderno.js troca o herói da ficha pelo seu (a ecrã inteiro) */
+      kicker: 'Promoção de Natal',
+      titulo: 'Escreve, apaga sozinho e volta a começar.',
+      sub: 'Os cadernos com letras e números em relevo guiam a mão da criança. A tinta da caneta mágica desaparece em 15-20 minutos e o caderno fica pronto para praticar outra vez.',
+      datos: [
+        ['envio', 'Portes grátis'],
+        ['reloj', 'Em 24-48 h'],
+        ['pago', 'Paga na entrega'],
+      ],
+    },
+    acento: '#2563EB',
+    botonAlt: '#EC4899',
+
+    desc: 'O Caderno Mágico de Caligrafia é um kit de 4 cadernos com as letras, os números e os desenhos gravados em sulcos no papel. A criança passa a caneta por dentro do sulco e a própria folha guia-lhe a mão. A tinta da caneta mágica desaparece sozinha em 15-20 minutos, por isso o mesmo caderno serve para praticar uma e outra vez. Traz os cadernos de Alfabeto, Números, Matemática e Desenho, a caneta, recargas de tinta e um apoio de dedos que ensina a pegar bem na caneta.',
+
+    puntos: [
+      '4 cadernos: Alfabeto, Números, Matemática e Desenho',
+      'Sulcos no papel que guiam a mão da criança',
+      'A tinta desaparece em 15-20 min: usa-se vezes sem conta',
+      'Caneta, recargas e apoio de dedos incluídos',
+      'A partir dos 3 anos · um presente de Natal com utilidade',
+    ],
+
+    formulaRotulo: 'Como ajuda',
+    formulaTitulo: 'A folha guia, a criança pratica.',
+    formulaSub: 'O que tem de diferente de um caderno normal.',
+    formula: [
+      ['pluma', 'Sulcos que guiam', 'A caneta entra no sulco e a letra sai bem feita, sem sair da linha.'],
+      ['agua', 'Tinta que desaparece', 'Em 15-20 minutos a página fica limpa e pronta para repetir.'],
+      ['libro', '4 cadernos', 'Letras, números, contas e desenho: do primeiro traço às primeiras palavras.'],
+      ['escudo', 'Pega correta', 'O apoio de dedos ensina a segurar bem a caneta desde o início.'],
+    ],
+
+    comparaTitulo: 'Porquê o caderno mágico?',
+    compara: [
+      'Um caderno normal acaba-se. Este volta a ficar em branco sozinho.',
+      'Longe dos ecrãs: a criança pratica com papel e caneta.',
+      'Cabe numa mochila: serve em casa, no carro ou nas férias.',
+    ],
+
+    preguntas: [
+      { q: 'Para que idade é?', a: 'A partir dos 3 anos. Os mais pequenos começam pelos traços e desenhos; os maiores praticam letras, números e contas.' },
+      { q: 'A tinta desaparece mesmo?', a: 'Sim. A tinta da caneta mágica desaparece sozinha em 15-20 minutos e a página volta a ficar limpa para praticar outra vez.' },
+      { q: 'O que vem na caixa?', a: '4 cadernos (Alfabeto, Números, Matemática e Desenho), 1 caneta mágica, recargas de tinta e 1 apoio de dedos para segurar bem a caneta.' },
+      { q: 'Os cadernos estão em português?', a: 'Sim, esta é a edição em português.' },
+      { q: 'E quando a tinta acabar?', a: 'O kit já traz recargas. Basta trocar a recarga dentro da caneta.' },
+      { q: 'Porquê o pack de 2?', a: 'É o mais escolhido: um para cada filho, ou um para oferecer no Natal a um sobrinho ou afilhado.' },
+      { q: 'Como é que pago?', a: 'Paga ao estafeta quando receber a encomenda. Não precisa de pagar nada antes.' },
+    ],
+
+    fotosResenas: [],
+
+    /* PREÇOS · James 28-10. 'antes' a 0: produto novo. */
+    packs: [
+      { cant: 1, precio: 19.95, antes: 0, texto: '1 kit' },
+      { cant: 2, precio: 29.95, antes: 0, texto: '2 kits' },
+      { cant: 3, precio: 39.95, antes: 0, texto: '3 kits' },
+    ],
+    popular: 1,
+  },
 ];
 
 /* ficha.js procura window.PRODUCTOS. Em Portugal o catálogo chama-se PRODUTOS,
@@ -430,4 +514,6 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   28.99, 38.99, 58.99, 25.99, 34.99, 52.99,
   25.95, 37.95, 47.95, 23.35, 34.15, 43.15,
   /* 23-10 James "dale": spray reparador de riscos com os mesmos preços de Espanha */
-  20.99, 28.99, 41.99, 18.99, 25.99, 37.79];
+  20.99, 28.99, 41.99, 18.99, 25.99, 37.79,
+  /* 28-10 James: caderno mágico, só pagamento na entrega */
+  19.95, 29.95, 39.95];

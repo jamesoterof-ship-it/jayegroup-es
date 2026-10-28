@@ -16,7 +16,7 @@
     if (/^#pagar-/i.test(h)) { window.__PAGAR = h.slice(7); h = ''; }
     else if (q.get('pagar')) { window.__PAGAR = q.get('pagar'); }
     q.delete('pagar');
-    var CURTO = { pulsera: 'pulseira', aranazos: 'riscos', sellador: 'selante', balsamo: 'balsamo' };
+    var CURTO = { pulsera: 'pulseira', aranazos: 'riscos', sellador: 'selante', balsamo: 'balsamo', caderno: 'caderno' };
     if (p && CURTO[p] && /produto\.html$/.test(location.pathname)) {
       q.delete('p'); var r = q.toString();
       history.replaceState(history.state, '', '/pt/' + CURTO[p] + (r ? '?' + r : '') + h);
@@ -50,6 +50,8 @@ setTimeout(function(){document.documentElement.classList.add('ba-visto');},3000)
 <link rel="stylesheet" href="pulsera.css?v=3">
 <!-- 24-10: o spray de riscos o mesmo. Estilo de Espanha tal qual (só atua com body.p-aranazos). -->
 <link rel="stylesheet" href="aranazos.css?v=6">
+<!-- 28-10: caderno mágico, desenho próprio do script (só atua com body.p-caderno). -->
+<link rel="stylesheet" href="caderno.css?v=1">
 <!-- Los CSS de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO existen en este repo: daban cinco 404 en cada carga. -->
 <style>
@@ -1200,19 +1202,19 @@ window.jayePixel = (function () {
     </div>
   </footer>
 
-<script src="produtos.js?v=237"></script>
+<script src="produtos.js?v=238"></script>
 <!-- PORTUGAL: distritos y codigos postales sin cobertura (Acores y Madeira), en vez de las
      regiones y comunas de Chile. -->
 <script src="distritos-pt.js?v=110"></script>
-<script src="textos-pt.js?v=216"></script>
-<script src="resenas-pt.js?v=205"></script>
+<script src="textos-pt.js?v=217"></script>
+<script src="resenas-pt.js?v=206"></script>
 <script src="efectos.js?v=4"></script>
 <script>/* A DONDE VA EL PEDIDO. Sin esto, ficha.js manda al webhook de CHILE
    (pedido-tienda): un pedido español entraria como chileno, con hora de
    Santiago y plantilla de WhatsApp chilena. Flujo nuevo en n8n
    GGeFaB7R2qWLsca2, creado el 27-09-2026 y probado con ROLLBACK. */
 window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-tienda-es';</script>
-<script src="ficha.js?v=249"></script>
+<script src="ficha.js?v=250"></script>
 <script src="pago-anticipado.js?v=4"></script>
 <!-- GSAP, de lib/ y del propio dominio. NO se carga ScrollTrigger: para saber
      cuando algo entra en pantalla ya sirve IntersectionObserver, que viene en
@@ -1230,6 +1232,8 @@ window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-t
 <script src="pulsera.js?v=5"></script>
 <!-- 24-10: o spray de riscos igual. aranazos.js é o de Espanha tal qual (só atua com ?p=aranazos). -->
 <script src="aranazos.js?v=5"></script>
+<!-- 28-10: caderno mágico (só atua com ?p=caderno). -->
+<script src="caderno.js?v=1"></script>
 <!-- Los js de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO van aqui: no existen en este repo y daban 404. -->
 
