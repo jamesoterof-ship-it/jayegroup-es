@@ -34,14 +34,30 @@
     return b;
   }
 
+  /* LETRAS EM CASCATA (James 28-10: os textos não vão dentro das imagens, aparecem letra a letra).
+     partes = [['texto', azul?], null (= quebra de linha), …]. Cada palavra numa caixa para não partir,
+     e o índice --k corre por todo o título para a cascata não recomeçar em cada linha. */
+  function letras(partes, cls) {
+    var k = 0;
+    return partes.map(function (p) {
+      if (!p) return '<span class="hCas__salto"></span>';
+      return p[0].split(' ').map(function (palabra) {
+        return '<span class="hCas__w' + (p[1] ? ' es-oro' : '') + '" translate="no">'
+          + palabra.split('').map(function (ch) {
+              return '<span class="' + cls + '" style="--k:' + (k++) + '">' + ch.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</span>';
+            }).join('') + '</span>';
+      }).join(' ');
+    }).join(' ');
+  }
+
   /* ---- HERÓI · a cena inteira, o título por cima e a tinta que se escreve e desaparece ---- */
   function heroi() {
     return '<section class="cm-heroi">'
       + '<img class="cm-heroi__img" src="img/caderno-heroi.webp?v=1" alt="A mão de uma criança com o apoio de dedos rosa a escrever as letras a, b, c em tinta azul no caderno de caligrafia com sulcos; ao lado, o caderno Mágico de Caligrafia Alfabeto e duas recargas" width="1000" height="1500" fetchpriority="high" decoding="async">'
       + '<div class="cm-heroi__txt">'
       +   '<span class="cm-heroi__kicker">' + svg('<path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/>') + 'Promoção de Natal · 3+ anos</span>'
-      +   '<h1 class="cm-heroi__h1" aria-label="Escreve, apaga sozinho e volta a começar.">'
-      +     '<span aria-hidden="true"><i>Escreve,</i></span> <span aria-hidden="true" class="cm-azul"><i>apaga sozinho</i></span> <span aria-hidden="true"><i>e volta a começar.</i></span></h1>'
+      +   '<h1 class="cm-heroi__h1 hCas" aria-label="Escreve, apaga sozinho e volta a começar.">'
+      +     letras([['Escreve,'], null, ['apaga sozinho', true], null, ['e volta a começar.']], 'hCas__l') + '</h1>'
       /* a tinta mágica: "a b c" escreve-se em azul e, uns segundos depois, desaparece */
       +   '<div class="cm-tinta" aria-hidden="true"><svg viewBox="0 0 220 64"><text x="4" y="48">a b c</text></svg><span>… e a tinta desaparece</span></div>'
       + '</div>'
@@ -50,6 +66,9 @@
       +   '<div><b>4</b><span>cadernos</span></div>'
       +   '<div><b>15-20</b><span>min e a tinta some</span></div>'
       +   '<div><b>19,95 €</b><span>por kit</span></div>'
+      /* 28-10 James: o pagamento antecipado promove-se já no herói, como nos outros produtos */
+      +   '<a class="cm-heroi__ahorra" href="#pedir">' + svg('<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>')
+      +     '<span><b>Pague agora e poupe 10 %</b> e receba com entrega prioritária</span></a>'
       + '</div>';
   }
 
@@ -140,7 +159,12 @@
     if (porQue) porQue.appendChild(boton('Quero o meu, pago na entrega'));
     if (oferta) {
       var ot = oferta.querySelector('h2') || oferta.firstElementChild;
-      if (ot) ot.insertAdjacentHTML('afterend', '<figure class="cm-foto"><img src="img/caderno-promo.webp?v=1" alt="Promoção de Natal: 4 cadernos mágicos e caneta. 1 kit 19,95 €, 2 kits 29,95 €, 3 kits 39,95 €. Portes grátis, paga na entrega" loading="lazy" width="1000" height="1500"></figure>');
+      /* 28-10 James: nada de letras dentro da imagem; o título vai na página e cai em cascata */
+      if (ot) ot.insertAdjacentHTML('afterend', '<div class="cm-promo">'
+        + '<p class="cm-promo__tit cm-casc cm-entra" aria-label="4 cadernos mágicos + caneta">' + letras([['4 cadernos'], ['mágicos', true], null, ['+ caneta']], 'cm-l') + '</p>'
+        + '<p class="cm-promo__sub cm-casc cm-entra" aria-label="Escreve, a tinta desaparece e volta a começar">' + letras([['Escreve, a tinta desaparece e volta a começar']], 'cm-l') + '</p>'
+        + '<figure class="cm-foto"><img src="img/caderno-kit.webp?v=1" alt="Os quatro cadernos mágicos de caligrafia em leque, com a caneta de apoio rosa e duas recargas" loading="lazy" width="1000" height="1500"></figure>'
+        + '</div>');
     }
     if (compara) { var us = compara.querySelector('th.us'); if (us) us.textContent = 'Caderno mágico'; }
     return true;

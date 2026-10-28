@@ -484,7 +484,7 @@ window.PRODUTOS = [
       { q: 'Os cadernos estão em português?', a: 'Sim, esta é a edição em português.' },
       { q: 'E quando a tinta acabar?', a: 'O kit já traz recargas. Basta trocar a recarga dentro da caneta.' },
       { q: 'Porquê o pack de 2?', a: 'É o mais escolhido: um para cada filho, ou um para oferecer no Natal a um sobrinho ou afilhado.' },
-      { q: 'Como é que pago?', a: 'Paga ao estafeta quando receber a encomenda. Não precisa de pagar nada antes.' },
+      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária.' },
     ],
 
     fotosResenas: [],
@@ -496,6 +496,17 @@ window.PRODUTOS = [
       { cant: 3, precio: 39.95, antes: 0, texto: '3 kits' },
     ],
     popular: 1,
+
+    /* 28-10 James: "¿dónde está el pago anticipado?" — como nos outros produtos de Portugal: −10 % e
+       entrega prioritária. Preços 17,95 / 26,95 / 35,95 € À ESPERA DO OK de James antes de publicar. */
+    anticipado: {
+      pct: 10,
+      descuento: 2.00,
+      envio: 'Entrega prioritária',
+      titulo: 'Pague agora',
+      sub: 'Com entrega prioritária, sem custo. Paga-se com cartão ou PayPal.',
+      precios: [17.95, 26.95, 35.95],
+    },
   },
 ];
 
@@ -515,5 +526,5 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   25.95, 37.95, 47.95, 23.35, 34.15, 43.15,
   /* 23-10 James "dale": spray reparador de riscos com os mesmos preços de Espanha */
   20.99, 28.99, 41.99, 18.99, 25.99, 37.79,
-  /* 28-10 James: caderno mágico, só pagamento na entrega */
-  19.95, 29.95, 39.95];
+  /* 28-10 James: caderno mágico (na entrega) + pagamento antecipado −10 % */
+  19.95, 29.95, 39.95, 17.95, 26.95, 35.95];
