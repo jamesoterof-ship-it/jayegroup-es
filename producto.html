@@ -20,6 +20,21 @@
   } catch (e) {}
 })();
 </script>
+<script>
+/* CADA FICHA CARGA SOLO LO SUYO (James 30-10: "que cargue rápido sin dañar nada"). Ver el bloque de CSS más abajo.
+   Aquí, ANTES de cualquier hoja de estilo, solo se AVISA al navegador (preload) para que baje el CSS y el JS de esta
+   ficha en paralelo con los demás: un <script> en línea puesto después de un <link> espera a que ese CSS termine,
+   y sin este aviso el CSS del producto llegaría una vuelta más tarde. ⚠️ Al cambiar un CSS o JS de producto, subir su ?v= AQUÍ. */
+(function () {
+  var PROPIOS = ['balsamo', 'ducha', 'sellador', 'aranazos', 'pulsera', 'pistola', 'gafas', 'crema'], p = window.__P || '';
+  window.__soloEste = function (id) { return PROPIOS.indexOf(p) < 0 || p === id; };
+  window.__FICHA_CSS = { ducha: 9, sellador: 13, aranazos: 6, pulsera: 3, pistola: 11, gafas: 11, crema: 17 };
+  window.__FICHA_JS = [['balsamo', 13], ['regalo', 2], ['ducha', 8], ['sellador', 10], ['aranazos', 5], ['pulsera', 5], ['pistola', 8], ['gafas', 8], ['crema', 11]];
+  if (PROPIOS.indexOf(p) < 0 || p === 'balsamo') return;
+  if (window.__FICHA_CSS[p]) document.write('<link rel="preload" as="style" href="' + p + '.css?v=' + window.__FICHA_CSS[p] + '">');
+  for (var i = 0; i < window.__FICHA_JS.length; i++) if (window.__FICHA_JS[i][0] === p) document.write('<link rel="preload" as="script" href="' + p + '.js?v=' + window.__FICHA_JS[i][1] + '">');
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Verificacion del dominio en Meta (negocio Jaye Group, dominio 1082679124366879).
      TIENE que estar dentro del <head> y en el HTML de verdad: si se inyecta con
@@ -44,21 +59,22 @@
    titular y las letras se quedaban en opacity 0. */
 document.documentElement.classList.add('ba-lista');
 setTimeout(function(){document.documentElement.classList.add('ba-visto');},3000);</script>
+<!-- balsamo.css va SIEMPRE: tiene reglas sin prefijo (.ba-hero, .ba-sec…) que usan todas las fichas. -->
 <link rel="stylesheet" href="balsamo.css?v=15">
-<!-- Cabezal de ducha: diseño PROPIO (ui-ux-pro-max original, design-system/jaye-espana/pages/ducha.md). Solo actúa con ?p=ducha. -->
-<link rel="stylesheet" href="ducha.css?v=9">
-<!-- Spray sellador: diseño PROPIO (ui-ux-pro-max opción B, 02-10). Solo actúa con ?p=sellador. -->
-<link rel="stylesheet" href="sellador.css?v=13">
-<!-- Spray de arañazos: diseño PROPIO (ui-ux-pro-max Motion-Driven, 02-10). Solo actúa con ?p=aranazos. -->
-<link rel="stylesheet" href="aranazos.css?v=6">
-<!-- Pulsera antitabaco: diseño PROPIO (ui-ux-pro-max, joyería sobria, 07-10). Solo actúa con ?p=pulsera. -->
-<link rel="stylesheet" href="pulsera.css?v=3">
-<!-- Pistola de alta presión 48 V: diseño del script ui-ux-pro-max (brutalismo, oscuro + rojo, Bebas Neue, 09-10). Solo actúa con ?p=pistola. -->
-<link rel="stylesheet" href="pistola.css?v=11">
-<!-- Gafas multifocales 2816: concepto de Colombia (lupa + cinta), diseño ui-ux-pro-max #21 (terracota + verde, Outfit, 19-10). Solo actúa con ?p=gafas. -->
-<link rel="stylesheet" href="gafas.css?v=11">
-<!-- Crema Sangre de Dragón 1568: plano del script ui-ux-pro-max (design-system/crema-sangre-de-dragon) + referencia Charlotte Tilbury elegida por James (25-10). Solo actúa con ?p=crema. -->
-<link rel="stylesheet" href="crema.css?v=17">
+<!-- CADA FICHA CARGA SOLO LO SUYO (James 30-10: "que cargue rápido sin dañar nada").
+   Antes cada ficha bajaba los CSS y JS de los 8 productos (~330 KB que no usaba, y los CSS frenan la primera pintura).
+   Cada archivo de producto solo actúa con su ?p=, así que no cargar los ajenos no cambia nada de lo que se ve.
+   Si el id no es uno de estos (portada, id raro o vacío) se carga TODO, como antes.
+   document.write en el <head>/<body> mientras se lee la página = mismo orden y misma carga bloqueante que un <link>/<script> fijo.
+   ⚠️ Las versiones (?v=) están en __FICHA_CSS y __FICHA_JS, en el script del principio del <head>.
+   ducha: diseño propio (design-system/jaye-espana/pages/ducha.md) · sellador: opción B 02-10 · aranazos: Motion-Driven 02-10 ·
+   pulsera: joyería sobria 07-10 · pistola: brutalismo 09-10 · gafas: #21 terracota + verde 19-10 · crema: plano del script + Charlotte Tilbury 25-10. -->
+<script>
+(function () {
+  var CSS = window.__FICHA_CSS || { ducha: 9, sellador: 13, aranazos: 6, pulsera: 3, pistola: 11, gafas: 11, crema: 17 };
+  for (var k in CSS) if (!window.__soloEste || window.__soloEste(k)) document.write('<link rel="stylesheet" href="' + k + '.css?v=' + CSS[k] + '">');
+})();
+</script>
 <!-- Los CSS de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO existen en este repo: daban cinco 404 en cada carga. -->
 <style>
@@ -1236,15 +1252,17 @@ window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-t
   <script src="lib/countup.umd.js"></script>
 <script src="efectos-ficha.js?v=223"></script>
 <!-- Diseno propio del balsamo: secciones y efectos clonados de la mascara de Chile. -->
-<script src="balsamo.js?v=13"></script>
-<script src="regalo.js?v=2"></script>
-<script src="ducha.js?v=8"></script>
-<script src="sellador.js?v=10"></script>
-<script src="aranazos.js?v=5"></script>
-<script src="pulsera.js?v=5"></script>
-<script src="pistola.js?v=8"></script>
-<script src="gafas.js?v=8"></script>
-<script src="crema.js?v=11"></script>
+<!-- Solo el JS de ESTA ficha (ver "CADA FICHA CARGA SOLO LO SUYO" en el <head>). regalo.js va siempre (se guía por P.regalo).
+     Mismo orden de antes: balsamo, regalo, ducha, sellador, aranazos, pulsera, pistola, gafas, crema. -->
+<script>
+(function () {
+  var __JS = window.__FICHA_JS || [['balsamo', 13], ['regalo', 2], ['ducha', 8], ['sellador', 10], ['aranazos', 5], ['pulsera', 5], ['pistola', 8], ['gafas', 8], ['crema', 11]];
+  for (var i = 0; i < __JS.length; i++) {
+    var k = __JS[i][0];
+    if (k === 'regalo' || !window.__soloEste || window.__soloEste(k)) document.write('<script src="' + k + '.js?v=' + __JS[i][1] + '"><\/script>');
+  }
+})();
+</script>
 <!-- Los js de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO van aqui: no existen en este repo y daban 404. -->
 
