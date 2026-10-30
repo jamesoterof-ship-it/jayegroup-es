@@ -1105,10 +1105,9 @@ window.jayePixel = (function () {
 
   <section class="hero">
     <div class="foto" style="background-image:url('../img/hero-tienda.webp?v=2')"></div>
-    <video class="clip" id="clipHero" muted loop playsinline preload="metadata"
-           poster="../img/hero-tienda.webp?v=2" aria-hidden="true">
-      <source src="../img/hero-tienda.mp4?v=2" type="video/mp4">
-    </video>
+    <!-- 30-10 (auditoría de velocidad): el <video> se escribe SOLO en la tienda. Escrito fijo, el navegador pedía su portada
+         y su video apenas lo leía, antes de que el script de abajo lo sacara, y en la ficha se bajaban ~190 KB que no se ven. -->
+    <script>if (window.MODO_RO !== 'ficha') document.write('<video class="clip" id="clipHero" muted loop playsinline preload="metadata" poster="../img/hero-tienda.webp?v=2" aria-hidden="true"><source src="../img/hero-tienda.mp4?v=2" type="video/mp4"><\/video>');</script>
     <!-- 27-10 James: "el hero no sirve, se queda negro". En la ficha (?p=) la portada de la tienda no se ve, pero su video y
          su foto se bajaban igual y le quitaban datos a la foto del producto en el celular: en la ficha se sacan antes de pedirse. -->
     <script>if (window.MODO_RO === 'ficha') { var _cv = document.getElementById('clipHero'); if (_cv) _cv.remove(); var _f = document.querySelector('#tiendaRO .hero .foto'); if (_f) _f.style.backgroundImage = 'none'; }</script>
@@ -1446,15 +1445,19 @@ window.URL_PEDIDO = window.URL_PEDIDO_RO || 'about:blank#pedido-rumania-sin-cone
      25-10 (James autorizo copiar el diseño de cada producto, identico, dentro de /ro/):
      los <producto>.js de diseño son COPIAS PROPIAS de /ro/. Los .css de producto siguen
      siendo los de España: el candado de paleta no deja crearlos (falta autorizacion). -->
-<script>if (window.MODO_RO === 'ficha') window._cargaRO([
-  'ficha.js?v=8',
-  '../lib/gsap.min.js', '../lib/ScrollTrigger.min.js', '../lib/countup.umd.js',
-  'efectos-ficha.js?v=1',
-  'sellador.js?v=2', 'aranazos.js?v=2',
-  'pulsera.js?v=5', 'gafas.js?v=2',
-  /* 25-10: la pistola de agua de Rumania (Dropi 56) usa el diseño de la ficha 'pistola' de España con sus textos */
-  'pistola.js?v=3'
-]);</script>
+<script>if (window.MODO_RO === 'ficha') {
+  /* 30-10 (auditoría de velocidad): de los <producto>.js se baja SOLO el del producto abierto. Cada uno
+     "solo actúa con su ?p=", así que los demás no hacían nada en esta ficha: solo frenaban la carga. */
+  var _pidRO = ''; try { _pidRO = (window.__P || new URLSearchParams(location.search).get('p')) || ''; } catch (e) {}
+  var _jsRO = { sellador: 'sellador.js?v=2', aranazos: 'aranazos.js?v=2', pulsera: 'pulsera.js?v=5', gafas: 'gafas.js?v=2',
+    /* 25-10: la pistola de agua de Rumania (Dropi 56) usa el diseño de la ficha 'pistola' de España con sus textos */
+    pistola: 'pistola.js?v=3' };
+  window._cargaRO([
+    'ficha.js?v=8',
+    '../lib/gsap.min.js', '../lib/ScrollTrigger.min.js', '../lib/countup.umd.js',
+    'efectos-ficha.js?v=1'
+  ].concat(_jsRO[_pidRO] ? [_jsRO[_pidRO]] : []));
+}</script>
 
 <script>
 /* ---- el video del producto NO se baja al abrir la pagina ----
