@@ -24,6 +24,27 @@
   } catch (e) {}
 })();
 </script>
+<script>
+/* 30-10 VELOCIDAD (James: "que cargue rápido sin dañar nada del diseño"). Solo pulseira y caderno:
+   1) la foto del héroe y las letras del producto empiezan a bajar YA, sin esperar a los scripts del final;
+   2) no se bajan los css/js de los OTROS productos. Cada uno de esos archivos solo actúa con su propio ?p=
+      (los css van con body.p-xxx), así que quitarlos no cambia nada de lo que se ve. Comprobado elemento por
+      elemento (posición, color, letra) antes y después.
+   El resto de productos y la ficha sin ?p siguen cargando todo como antes. */
+(function () {
+  var SOLO = {
+    pulsera: { img: 'img/hero-pulsera.webp?v=3', js: 'pulsera.js?v=5', letras: 'https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;0,700;1,600&family=Montserrat:wght@400;500;600;700&display=swap' },
+    caderno: { img: 'img/caderno-heroi.webp?v=1', js: 'caderno.js?v=2', letras: 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Comic+Neue:wght@300;400;700&display=swap' }
+  };
+  var s = SOLO[window.__P];
+  window.__SOLO = s ? window.__P : '';
+  /* escribe la etiqueta salvo que la página sea de otro producto rápido */
+  window.__carga = function (prod, tag) { if (!window.__SOLO || window.__SOLO === prod) document.write(tag); };
+  if (s) document.write('<link rel="preload" as="image" href="' + s.img + '" fetchpriority="high">'
+    + '<link rel="preload" as="style" href="' + s.letras + '">'
+    + '<link rel="preload" as="script" href="' + s.js + '">');
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="facebook-domain-verification" content="bh17zp72fh5ewf4yle14ommqnjdgcx" />
 <title>Bálsamo de Colagénio VITALIS · Jaye Group Portugal</title>
@@ -46,12 +67,13 @@ setTimeout(function(){document.documentElement.classList.add('ba-visto');},3000)
 <link rel="stylesheet" href="balsamo.css?v=14">
 <!-- 22-10 James: selante e pulseira = o MESMO desenho de Espanha, só traduzido. Estilos de Espanha tal qual
      (só atuam com body.p-sellador / body.p-pulsera); os textos troca-os traduz-pt.js. -->
-<link rel="stylesheet" href="sellador.css?v=13">
-<link rel="stylesheet" href="pulsera.css?v=3">
+<!-- 30-10: cada uno solo baja en su página cuando es pulseira o caderno (ver __carga arriba). -->
+<script>__carga('sellador', '<link rel="stylesheet" href="sellador.css?v=13">');
+__carga('pulsera', '<link rel="stylesheet" href="pulsera.css?v=3">');</script>
 <!-- 24-10: o spray de riscos o mesmo. Estilo de Espanha tal qual (só atua com body.p-aranazos). -->
-<link rel="stylesheet" href="aranazos.css?v=6">
+<script>__carga('aranazos', '<link rel="stylesheet" href="aranazos.css?v=6">');</script>
 <!-- 28-10: caderno mágico, desenho próprio do script (só atua com body.p-caderno). -->
-<link rel="stylesheet" href="caderno.css?v=2">
+<script>__carga('caderno', '<link rel="stylesheet" href="caderno.css?v=2">');</script>
 <!-- Los CSS de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO existen en este repo: daban cinco 404 en cada carga. -->
 <style>
@@ -1225,17 +1247,17 @@ window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-t
   <script src="lib/ScrollTrigger.min.js"></script>
   <script src="lib/countup.umd.js"></script>
 <script src="efectos-ficha.js?v=249"></script>
-<script src="balsamo.js?v=14"></script>
+<script>__carga('balsamo', '<script src="balsamo.js?v=14"><\/script>');</script>
 <!-- 22-10 James: selante e pulseira = a página de Espanha traduzida.
      🔴 27-10: estes ficheiros são os DESTA pasta (/pt/), não os de Espanha; o pulsera.js já está
      em português. Só atuam com ?p=sellador / ?p=pulsera. -->
 <script src="traduz-pt.js?v=13"></script>
-<script src="sellador.js?v=10"></script>
-<script src="pulsera.js?v=5"></script>
+<script>__carga('sellador', '<script src="sellador.js?v=10"><\/script>');
+__carga('pulsera', '<script src="pulsera.js?v=5"><\/script>');</script>
 <!-- 24-10: o spray de riscos igual. aranazos.js é o de Espanha tal qual (só atua com ?p=aranazos). -->
-<script src="aranazos.js?v=5"></script>
+<script>__carga('aranazos', '<script src="aranazos.js?v=5"><\/script>');</script>
 <!-- 28-10: caderno mágico (só atua com ?p=caderno). -->
-<script src="caderno.js?v=2"></script>
+<script>__carga('caderno', '<script src="caderno.js?v=2"><\/script>');</script>
 <!-- Los js de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO van aqui: no existen en este repo y daban 404. -->
 
