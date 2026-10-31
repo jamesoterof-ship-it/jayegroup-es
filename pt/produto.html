@@ -43,8 +43,17 @@
   if (s) document.write('<link rel="preload" as="image" href="' + s.img + '" fetchpriority="high">'
     + '<link rel="preload" as="style" href="' + s.letras + '">'
     + '<link rel="preload" as="script" href="' + s.js + '">');
+  if (s) document.documentElement.classList.add('carga-' + window.__P);
 })();
 </script>
+<style>
+/* 30-10 MIENTRAS CARGA (James: "arréglalo"): #prod viene vacío y lo arman los scripts del final; con 4G lento
+   el cliente veía unos segundos SOLO el encabezado y el pie. Mientras #prod está vacío ocupa la pantalla con el
+   color de fondo del héroe de su producto. En cuanto se arma la ficha deja de estar vacío y esto ya no aplica:
+   la página final queda igual. */
+html.carga-pulsera #prod:empty { min-height: 100vh; background: #1C1917; }
+html.carga-caderno #prod:empty { min-height: 100vh; background: #EFF6FF; }
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="facebook-domain-verification" content="bh17zp72fh5ewf4yle14ommqnjdgcx" />
 <title>Bálsamo de Colagénio VITALIS · Jaye Group Portugal</title>
