@@ -360,3 +360,29 @@ window.RESENAS = window.RESENAS.concat([
   {"producto":"Caderno Mágico de Caligrafia","nombre":"António F.","estrellas":4,"fecha":"2025-11-30","pais":"ES","verificada":true,"texto":"caderno para praticar caligrafia para os pequenos. Amanhã vou levar para minha filha usar."},
   {"producto":"Caderno Mágico de Caligrafia","nombre":"Sérgio L.","estrellas":5,"fecha":"2025-11-23","pais":"UA","verificada":true,"texto":"Bom livro de prática de caligrafia, embora eu esperasse que fosse maior."},
 ]);
+
+/* 02-11-2026 · CREME SANGUE DE DRAGÃO (EELHOE, Dropi PRO 1568). As MESMAS 20 opiniões reais do AliExpress que estão na
+   página de Espanha (resenas.js, 25-10), traduzidas para português. País, data, estrelas e fotos são os do comprador;
+   os nomes vão em português, como nas outras fichas de Portugal. */
+window.RESENAS = (window.RESENAS || []).concat([
+  {"producto":"Creme Sangue de Dragão","nombre":"Paula M.","estrellas":5,"fecha":"2026-01-08","pais":"ES","verificada":true,"texto":"Uso-o há uns dias e gostei, absorve depressa e deixa a pele suave"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Helena R.","estrellas":4,"fecha":"2025-10-27","foto":"img/res-crema-1.webp","pais":"ES","verificada":true,"texto":"Adoro. Cheiro perfeito e muito suave. Vou comprar mais"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Andreia R.","estrellas":5,"fecha":"2026-02-25","pais":"US","verificada":true,"texto":"Tenho-o usado porque no inverno a minha pele fica muito seca, e as loções costumam irritar-me a cara quando está assim. Este hidrata sem deixar sensação oleosa nem ardor, e deixa a pele super suave. Gosto muito, sobretudo porque hidrata."},
+  {"producto":"Creme Sangue de Dragão","nombre":"Beatriz Z.","estrellas":5,"fecha":"2026-01-05","pais":"ES","verificada":true,"texto":"O creme é incrível, e o estafeta que mo trouxe também foi super simpático e cuidadoso com a encomenda. Obrigada!"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Rosário P.","estrellas":5,"fecha":"2025-11-28","foto":"img/res-crema-2.webp","pais":"ES","verificada":true,"texto":"O produto é bom. A embalagem chegou amolgada, mas não afetou o produto."},
+  {"producto":"Creme Sangue de Dragão","nombre":"Lurdes L.","estrellas":5,"fecha":"2025-11-18","pais":"ES","verificada":true,"texto":"Adoro, deixa-me a pele muito bem, cumpre o que promete"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Carina A.","estrellas":5,"fecha":"2026-05-08","pais":"AU","verificada":true,"texto":"Vendedor fantástico! Adoro o sangue de dragão, sente-se lindamente na pele. Obrigada! 😊"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Natália N.","estrellas":5,"fecha":"2025-12-14","pais":"ES","verificada":true,"texto":"Bom produto, não fica nada oleoso, absorve bastante bem e deixa a pele suave"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Conceição S.","estrellas":5,"fecha":"2026-01-03","pais":"ES","verificada":true,"texto":"Muito bom, já o usei várias vezes"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Daniela K.","estrellas":5,"fecha":"2026-02-15","pais":"KZ","verificada":true,"texto":"Experimentei e gosto, é muito suave e com os dias nota-se mais"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Teresa V.","estrellas":5,"fecha":"2026-01-27","foto":"img/res-crema-3.webp","pais":"ES","verificada":true,"texto":"Excelente, como sempre."},
+  {"producto":"Creme Sangue de Dragão","nombre":"Bárbara O.","estrellas":5,"fecha":"2025-10-28","pais":"ES","verificada":true,"texto":"Excelente produto e chegou super rápido"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Mónica F.","estrellas":5,"fecha":"2026-02-20","pais":"ES","verificada":true,"texto":"Perfeito, adoro"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Ana T.","estrellas":5,"fecha":"2025-10-30","pais":"ES","verificada":true,"texto":"Muito boa qualidade"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Rosa M.","estrellas":5,"fecha":"2025-11-08","pais":"ES","verificada":true,"texto":"Tudo ótimo"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Luísa P.","estrellas":5,"fecha":"2025-10-30","pais":"ES","verificada":true,"texto":"Boa relação qualidade-preço"},
+  {"producto":"Creme Sangue de Dragão","nombre":"Carla B.","estrellas":5,"fecha":"2026-03-02","pais":"IT","verificada":true,"texto":"Adoro."},
+  {"producto":"Creme Sangue de Dragão","nombre":"Noémia L.","estrellas":5,"fecha":"2026-08-24","pais":"IL","verificada":true,"texto":"Sente-se muito bem na pele. Não é oleoso nem pegajoso. Hidrata e nutre, e o aroma é muito agradável, não demasiado forte."},
+  {"producto":"Creme Sangue de Dragão","nombre":"Tânia D.","estrellas":5,"fecha":"2026-08-25","foto":"img/res-crema-4.webp","pais":"IL","verificada":true,"texto":"O creme é um pouco líquido, algo mais espesso do que um sérum. O aroma é agradável e a pele fica mais suave."},
+  {"producto":"Creme Sangue de Dragão","nombre":"Marta G.","estrellas":4,"fecha":"2025-12-24","foto":"img/res-crema-5.webp","pais":"ES","verificada":true,"texto":"É um creme hidratante; não sei que efeito terá a longo prazo, para já como qualquer outro creme. Espero continuar a usá-lo e ver como funciona."},
+]);

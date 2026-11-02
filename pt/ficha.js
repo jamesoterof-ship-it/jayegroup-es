@@ -726,11 +726,11 @@
      Solo aparece si el producto tiene foto de antes y despues. */
   function seccionCambio() {
     if (!p.antesDespues) return '';
-    return '<section class="bloque ba-sec"><span class="eyebrow">El cambio</span>'
-      + '<h2 class="tit2">El antes y después que se nota</h2>'
+    return '<section class="bloque ba-sec"><span class="eyebrow">A mudança</span>'
+      + '<h2 class="tit2">O antes e depois que se nota</h2>'
       + (p.antesDespuesSub ? '<p class="sub2">' + esc(p.antesDespuesSub) + '</p>' : '')
       + '<div class="ba-img"><img src="' + esc(p.antesDespues) + '" alt="Antes y después" loading="lazy" onerror="this.parentNode.remove()"></div>'
-      + '<button class="cta rojo" onclick="document.getElementById(\'pedir\').scrollIntoView({behavior:\'smooth\'})">Quiero ese cambio</button></section>';
+      + '<button class="cta rojo" onclick="document.getElementById(\'pedir\').scrollIntoView({behavior:\'smooth\'})">Quero esta mudança</button></section>';
   }
 
   /* ---------- 7 · RESULTADOS · numeros REALES de la operacion ---------- */

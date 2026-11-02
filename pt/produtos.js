@@ -508,6 +508,103 @@ window.PRODUTOS = [
       precios: [17.95, 26.95, 35.95],
     },
   },
+
+  /* ============================================================
+     CREME SANGUE DE DRAGÃO · PORTUGAL (02-11-2026)
+     Dropi PRO 1568 · SKU CREMA-DRAGON · custo 2,89 €. É a mesma ficha de Espanha (productos.js 'crema'), traduzida;
+     o crema.js (cópia do de Espanha, textos em português) troca o herói da ficha pelo seu.
+     Rotação real (Dropdata ES, mesmo armazém): 212/dia em 14 dias, 236/dia nos últimos 7.
+     Concorrência em Portugal (Biblioteca de Meta, 02-11): só Velofy (velofy-portugal.com), 28 anúncios desde 19-10,
+     Pack 2×1 a 39,99 €. Preços aprovados por James 02-11 ("Sí, la crema"): 2 cremes 34,95 € · 4 cremes 54,95 €.
+     🔴 Alegações só de APARÊNCIA (Regulamento UE 655/2013): nada de "elimina rugas" nem "rejuvenesce".
+     ============================================================ */
+  {
+    id: 'crema', enlace: 'creme', unidad: 'creme', promo: 4, promoRef: true,
+    resenasTotal: 141,   /* avaliações REAIS do creme EELHOE Dragon Blood no AliExpress (141); escritas só ~20 */
+    dropiId: 1568,
+    dropiSku: 'CREMA-DRAGON',
+
+    nombre: 'Creme Sangue de Dragão',
+    sub: 'Creme facial em gel · 50 g · rosto e pescoço',
+    categoria: 'Beleza',
+    etiqueta: 'Novo em Portugal',
+    etiquetaOro: false,
+
+    foto: 'img/crema-caja.webp?v=1',
+    fotos: ['img/crema-mano.webp?v=1', 'img/crema-noche.webp?v=1', 'img/crema-caja.webp?v=1'],
+    video: 'img/crema-ficha.mp4?v=1',
+
+    hero: {
+      img: 'img/crema-hero3.webp?v=1',
+      kicker: 'Sangue de Dragão · EELHOE',
+      titulo: 'Desperte a sua pele num minuto por dia.',
+      sub: 'Creme facial em gel com partículas douradas: hidrata, deixa a pele suave e luminosa, e ajuda a suavizar a aparência das linhas de expressão.',
+      datos: [
+        ['envio', 'Portes grátis'],
+        ['reloj', 'Em 24-48 h'],
+        ['pago', 'Pague agora ou ao receber'],
+      ],
+    },
+    acento: '#DC2626',
+
+    desc: 'O Creme Sangue de Dragão da EELHOE é um creme facial em gel, rosado e com pequenas partículas douradas, que se espalha com facilidade e absorve depressa sem deixar a pele oleosa. Hidrata o rosto e o pescoço, deixa a pele mais suave e com um aspeto mais luminoso e uniforme, e ajuda a suavizar a aparência das linhas de expressão com o uso diário. Vem num boião de vidro de 50 g com tampa dourada, na sua caixa.',
+
+    puntos: [
+      'Hidrata e deixa a pele suave, sem sensação oleosa',
+      'Pele com aspeto mais luminoso e uniforme',
+      'Ajuda a suavizar a aparência das linhas de expressão',
+      'Boião de 50 g · o pack de 2 é o mais pedido',
+    ],
+
+    formulaRotulo: 'Como é',
+    formulaTitulo: 'Um gel que a sua pele bebe.',
+    formulaSub: 'Leve, rápido a absorver e agradável de usar todos os dias.',
+    formula: [
+      ['agua', 'Hidratação', 'Textura de gel que absorve depressa e deixa a pele fresca, não oleosa.'],
+      ['sol', 'Luminosidade', 'Pele com um aspeto mais luminoso e um tom mais uniforme.'],
+      ['pluma', 'Suavidade', 'Deixa o rosto e o pescoço suaves ao toque desde a primeira aplicação.'],
+      ['escudo', 'Para todos os dias', 'De manhã e à noite, sobre a pele limpa.'],
+    ],
+
+    comparaTitulo: 'Porquê este e não outro creme?',
+    compara: [
+      'Textura de gel: absorve depressa e não deixa a pele oleosa.',
+      'Rosto e pescoço com um só creme.',
+      'Boião de vidro de 50 g, na sua caixa.',
+      'O pack de 2: um para si e outro para oferecer, ou para não ficar sem ele.',
+    ],
+
+    preguntas: [
+      { q: 'Como se usa?', a: 'Sobre a pele limpa do rosto e do pescoço, de manhã e à noite. Tire um pouco com a ponta dos dedos e espalhe com uma massagem suave até absorver.' },
+      { q: 'Deixa a pele oleosa?', a: 'Não. É um creme em gel: absorve depressa e deixa a pele suave, sem sensação oleosa nem pegajosa.' },
+      { q: 'Quanto dura um boião?', a: 'Depende de quanto usar, mas com um uso diário normal, no rosto e no pescoço, um boião de 50 g costuma dar para várias semanas.' },
+      { q: 'Serve para o meu tipo de pele?', a: 'É um creme hidratante para o dia a dia. Se tiver a pele muito sensível, experimente primeiro numa zona pequena. Não aplique sobre feridas nem perto dos olhos.' },
+      { q: 'Porquê o pack de 2?', a: 'É o mais escolhido: um para si e outro para oferecer, ou dois para não ficar sem creme a meio do tratamento.' },
+      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária.' },
+      { q: 'E se não me convencer?', a: 'Tem 14 dias desde que o recebe para o devolver por abrir. Se chegar com algum defeito, escreva-nos por WhatsApp e resolvemos.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: 'img/crema-ba-pt.webp?v=1',
+    antesDespuesSub: 'Imagem ilustrativa: o aspeto da pele com o uso diário do creme. Os resultados variam de pessoa para pessoa.',
+
+    /* PREÇOS · James 02-11. 'antes' a 0: produto novo. Não há unidade solta (como em Espanha e na Velofy). */
+    packs: [
+      { cant: 2, precio: 34.95, antes: 0, texto: '2 cremes' },
+      { cant: 4, precio: 54.95, antes: 0, texto: '4 cremes' },
+    ],
+    popular: 0,
+
+    /* Pagamento antecipado −10 % como os outros produtos de Portugal: 31,45 / 49,45 € aprovado por James 02-11. */
+    anticipado: {
+      pct: 10,
+      descuento: 2.00,
+      envio: 'Entrega prioritária',
+      titulo: 'Pague agora',
+      sub: 'Com entrega prioritária, sem custo. Paga-se com cartão ou PayPal.',
+      precios: [31.45, 49.45],
+    },
+  },
 ];
 
 /* ficha.js procura window.PRODUCTOS. Em Portugal o catálogo chama-se PRODUTOS,
@@ -527,4 +624,6 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* 23-10 James "dale": spray reparador de riscos com os mesmos preços de Espanha */
   20.99, 28.99, 41.99, 18.99, 25.99, 37.79,
   /* 28-10 James: caderno mágico (na entrega) + pagamento antecipado −10 % */
-  19.95, 29.95, 39.95, 17.95, 26.95, 35.95];
+  19.95, 29.95, 39.95, 17.95, 26.95, 35.95,
+  /* 02-11 James "Sí, la crema": creme sangue de dragão 2 × 34,95 · 4 × 54,95 (antecipado 31,45 / 49,45 à espera do OK) */
+  34.95, 54.95, 31.45, 49.45];
