@@ -12,7 +12,7 @@
   try {
     var q = new URLSearchParams(location.search), p = q.get('p') || '';
     window.__P = p;
-    var CARPETAS = ['aranazos', 'balsamo', 'crema', 'ducha', 'gafas', 'pistola', 'pulsera', 'sellador'];
+    var CARPETAS = ['almohada', 'aranazos', 'balsamo', 'crema', 'ducha', 'gafas', 'pistola', 'pulsera', 'sellador'];
     if (p && CARPETAS.indexOf(p) >= 0 && /producto\.html$/.test(location.pathname)) {
       q.delete('p'); var r = q.toString();
       history.replaceState(history.state, '', '/' + p + (r ? '?' + r : '') + location.hash);
