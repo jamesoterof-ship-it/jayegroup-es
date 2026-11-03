@@ -899,6 +899,104 @@ window.PRODUCTOS = [
       precios: [26.05, 44.05],
     },
   },
+
+  {
+    /* 03-11-2026 · ALMOHADA CERVICAL MARIPOSA (James 02-11: "vamos primero con almohada", "promociona la 2, ese combo").
+       Dropi PRO 2901 · SKU ALMOHAGRIS-25180 · 8,25 € + IVA · 1,32 kg, llega enrollada al vacío · 62,7 x 37 cm · gris con laterales blancos.
+       Diseño: skill ui-ux-pro-max (almohada-espana, 03-11): E-Ink / Paper, fondo crema #FFFBEB, marrón #92400E, mostaza #A16207,
+       botón violeta #6366F1, Russo One / Chakra Petch (James 03-11: "vale, ya hazlo"). Estilos en almohada.css, ajustes en almohada.js.
+       🔴 Sin promesas médicas: comodidad, postura y descanso; nada de "cura" ni "elimina el dolor". */
+    id: 'almohada', unidad: 'una', promo: 2,
+    resenasTotal: 726,   /* 03-11: valoraciones REALES de la misma almohada en AliExpress (1005009087622535: 726, 4,7 estrellas) */
+    dropiId: 2901,
+    dropiSku: 'ALMOHAGRIS-25180',
+
+    nombre: 'Almohada Cervical Mariposa',
+    sub: 'Viscoelástica · funda lavable · de lado, boca arriba o boca abajo',
+    categoria: 'Descanso',
+    etiqueta: 'Nuevo en España',
+    etiquetaOro: false,
+
+    foto: 'img/almohada-sola.webp?v=1',
+    fotos: ['img/almohada-sola.webp?v=1', 'img/almohada-detalle.webp?v=1', 'img/almohada-posturas.webp?v=1'],
+    video: 'img/almohada-ficha.mp4?v=1',   /* 03-11: anuncio de la Biblioteca de Meta del MISMO modelo mariposa (funda gris oscuro);
+                                              se quitaron los rótulos de arriba y las banderas (recorte 360x440). Sin sonido. */
+
+    hero: {
+      img: 'img/almohada-hero.webp?v=1',   /* James 03-11: "la del hero debe ser la almohada sola" */
+      kicker: 'Nuevo en España',
+      titulo: 'Despierta sin el cuello<br><b>cargado.</b>',
+      sub: 'Almohada cervical en forma de mariposa: el centro hundido sujeta la cabeza, el borde acompaña el cuello y los laterales dejan sitio a los brazos.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Paga ahora o al recibir'],
+      ],
+    },
+    acento: '#2563EB',   /* 03-11 plano #91 de la skill (Neubrutalism): botón azul */
+
+    desc: 'La Almohada Cervical Mariposa es de espuma viscoelástica de rebote lento: se adapta a la forma de tu cabeza y vuelve a su sitio cuando te levantas. El centro hundido sujeta la cabeza, el borde contorneado acompaña el cuello y los dos laterales en forma de ala dejan sitio para apoyar los brazos cuando duermes de lado. Sirve para dormir de lado, boca arriba o boca abajo. La funda es transpirable, se quita con cremallera y se lava a máquina. Llega enrollada al vacío: al abrirla recupera su forma en unas horas.',
+
+    puntos: [
+      'Centro hundido que sujeta la cabeza y alinea el cuello',
+      'Laterales para apoyar los brazos al dormir de lado',
+      'Viscoelástica de rebote lento: no se aplasta con las noches',
+      'Funda transpirable con cremallera, lavable · el pack de 2 es el más pedido',
+    ],
+
+    formulaRotulo: 'Cómo es',
+    formulaTitulo: 'Una forma pensada para tu cuello.',
+    formulaSub: 'Cada zona de la almohada tiene su función.',
+    formula: [
+      ['ondas', 'Centro hundido', 'La cabeza queda recogida y no se va de lado durante la noche.'],
+      ['escudo', 'Borde para el cuello', 'Acompaña la curva del cuello para que no quede doblado.'],
+      ['pluma', 'Rebote lento', 'La espuma viscoelástica se adapta a ti y no se aplasta con el uso.'],
+      ['agua', 'Funda lavable', 'Tejido transpirable y fresco, con cremallera para lavarla a máquina.'],
+    ],
+
+    comparaTitulo: '¿Por qué esta y no una almohada normal?',
+    compara: [
+      'Una almohada normal es igual de alta por todas partes: esta tiene un centro hundido y un borde para el cuello.',
+      'Los laterales en forma de ala dejan sitio a los brazos cuando duermes de lado.',
+      'La viscoelástica de rebote lento no se queda plana a las pocas semanas.',
+      'El pack de 2: una para ti y otra para tu pareja, o una de recambio.',
+    ],
+
+    preguntas: [
+      { q: '¿Sirve si duermo de lado?', a: 'Sí. Sirve para dormir de lado, boca arriba o boca abajo. De lado, el hombro y el brazo quedan en los laterales en forma de ala y el cuello sobre el borde.' },
+      { q: '¿Llega aplastada?', a: 'Llega enrollada al vacío para que el envío sea más fácil. Al sacarla del plástico recupera su forma en unas horas; lo ideal es dejarla 24 h antes de usarla.' },
+      { q: '¿Se puede lavar?', a: 'La funda sí: se quita con la cremallera y se lava a máquina. La espuma no se lava, solo se airea.' },
+      { q: '¿Cuánto mide?', a: 'Unos 62 x 37 cm, el tamaño de una almohada normal de matrimonio individual. Cabe en una funda estándar.' },
+      { q: '¿Cuesta acostumbrarse?', a: 'Algunas personas notan la diferencia la primera noche; a otras les lleva dos o tres noches acostumbrarse a la forma. Si tienes una lesión o un problema de columna, consulta con tu médico o fisioterapeuta.' },
+      { q: '¿Por qué el pack de 2?', a: 'Es el más elegido: una para cada lado de la cama, o una para casa y otra de recambio mientras lavas la funda.' },
+      { q: '¿Y si no me convence?', a: 'Tienes 14 días desde que la recibes para devolverla sin usar en su embalaje. Si llega con algún fallo, nos escribes por WhatsApp y lo resolvemos.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: 'img/almohada-ba.webp?v=1',
+    antesDespuesSub: 'Imagen ilustrativa: con una almohada normal el cuello queda doblado; con la mariposa queda en línea con la espalda.',
+
+    /* PRECIOS aprobados por James 02-11-2026 ("dale"): 1 u. 28,99 € · 2 u. 46,99 € · 3 u. 57,99 €.
+       Competencia en la Biblioteca de Meta España (02-11): la más barata tutiendadesdecasa.shop 29,99 € (sin contra reembolso);
+       contra reembolso Noctis 39,90 €, Esleap 39,90 €, Orizon 39,99 €, Glowan CloudSleep 44,95 €.
+       'antes' en 0: producto nuevo (Ley 7/1996 art. 20.1). */
+    packs: [
+      { cant: 1, precio: 28.99, antes: 0, texto: '1 almohada' },
+      { cant: 2, precio: 46.99, antes: 0, texto: '2 almohadas' },
+      { cant: 3, precio: 57.99, antes: 0, texto: '3 almohadas' },
+    ],
+    popular: 1,
+
+    /* Pago anticipado aprobado por James 02-11-2026: 25,99 · 41,99 · 51,99 €. */
+    anticipado: {
+      pct: 10,
+      descuento: 3.00,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [25.99, 41.99, 51.99],
+    },
+  },
 ];
 
 /* ============================================================
@@ -932,4 +1030,6 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* gafas multifocales 2816, aprobados 17-10-2026 (opción A) y su pago anticipado −10 % (37,95 y 34,15 ya están) */
   19.95, 28.95, 17.95, 26.05,
   /* crema sangre de dragón 1568, aprobados 25-10-2026 (2 cremas 28,95 ya está) y su pago anticipado −10 % (26,05 ya está) */
-  48.95, 44.05];
+  48.95, 44.05,
+  /* almohada cervical mariposa 2901, aprobados 02-11-2026 y su pago anticipado (28,99 · 25,99 · 41,99 ya están) */
+  46.99, 57.99, 51.99];

@@ -1,0 +1,191 @@
+/* ============================================================
+   ALMOHADA CERVICAL MARIPOSA · ESPAÑA · estilos (03-11-2026)
+   Plano del script ui-ux-pro-max #91 (design-system/almohada-espana/MASTER.md + pages/almohada.md), aprobado por James 03-11.
+   · Estilo Neubrutalism: borde de 3 px casi negro, sombra sólida 4px 4px 0, esquinas rectas (0), sin degradados,
+     tipografía en negrita. El negro del borde y la sombra es el texto de la paleta (#09090B).
+   · Colores: primario #18181B · secundario #3F3F46 · botón #2563EB (letra #FFFFFF) · fondo #FAFAFA · texto #09090B ·
+     tarjeta #FFFFFF · apagado #E8ECF0 · texto 2 #475569 · borde #E4E4E7 · rojo #DC2626
+   · Letras: EB Garamond (títulos) / Lato (texto)
+   · Página: brillo mínimo en texto sobre oscuro (0 0 10px), de oscuro a claro, foco visible,
+     transiciones de 150-300 ms, nada que mueva el diseño al pasar el ratón, todo quieto con "reducir movimiento".
+   Solo con body.p-almohada (lo pone almohada.js con ?p=almohada). Encabezado y pie NO se tocan.
+   ============================================================ */
+body.p-almohada {
+  --al-primario: #18181B;
+  --al-sobre-primario: #FFFFFF;
+  --al-secundario: #3F3F46;
+  --al-boton: #2563EB;
+  --al-sobre-boton: #FFFFFF;
+  --al-fondo: #FAFAFA;
+  --al-texto: #09090B;
+  --al-tarjeta: #FFFFFF;
+  --al-apagado: #E8ECF0;
+  --al-texto2: #475569;
+  --al-borde: #E4E4E7;
+  --al-rojo: #DC2626;
+  --al-raya: 3px solid var(--al-texto);
+  --al-sombra: 4px 4px 0 var(--al-texto);
+  --al-sombra-baja: 2px 2px 0 var(--al-texto);
+  --al-tit: 'EB Garamond', Georgia, serif;
+  --al-txt: 'Lato', system-ui, sans-serif;
+  background: var(--al-fondo);
+}
+
+/* ---------- base dentro de la ficha ---------- */
+body.p-almohada #prod, body.p-almohada #prod .bloque, body.p-almohada #prod section { background: var(--al-fondo); color: var(--al-texto); font-family: var(--al-txt); }
+body.p-almohada #prod p, body.p-almohada #prod li { font-size: 16px; line-height: 1.6; }
+body.p-almohada #prod :is(.sub, .sub2, .ctaSub, .formnote, .promo-uni, .verif, small, .heroP__sub) { color: var(--al-texto2); }
+body.p-almohada #prod :is(h1, h2, h3) { font-family: var(--al-tit); color: var(--al-primario); font-weight: 700; font-style: normal; letter-spacing: -.01em; text-transform: none; }
+body.p-almohada #prod h2 { display: block; font-size: clamp(30px, 8.4vw, 46px); line-height: 1.06; padding-left: 0; }
+body.p-almohada #prod h2::before, body.p-almohada #prod h2::after { display: none; }
+body.p-almohada #prod h2 em, body.p-almohada .al-h2 em { display: inline; font-style: italic; color: var(--al-boton); }
+/* antes y después: los rótulos van en HTML, sobre cada mitad de la imagen ilustrativa */
+body.p-almohada #prod .ba-sec .ba-img { position: relative; }
+body.p-almohada .al-ba { position: absolute; top: 12px; padding: 4px 10px; font: 900 13px/1.2 var(--al-txt); letter-spacing: .1em; text-transform: uppercase; border: 2px solid var(--al-texto); box-shadow: var(--al-sombra-baja); }
+body.p-almohada .al-ba--antes { left: 12px; background: var(--al-tarjeta); color: var(--al-primario); }
+body.p-almohada .al-ba--despues { right: 12px; background: var(--al-boton); color: var(--al-sobre-boton); }
+body.p-almohada #prod .eyebrow, body.p-almohada .al-rot {
+  display: inline-block; margin: 0 0 14px; padding: 4px 10px; font: 900 12px/1.3 var(--al-txt); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--al-sobre-primario); background: var(--al-primario); border: var(--al-raya); border-radius: 0;
+}
+body.p-almohada #prod .eyebrow::before { display: none; }
+body.p-almohada #prod :focus-visible { outline: 3px solid var(--al-boton); outline-offset: 3px; }
+
+/* ---------- héroe: la almohada sola y grande, el titular encima en la zona oscura vacía, de oscuro a claro ---------- */
+body.p-almohada .heroP { background: var(--al-fondo); }
+body.p-almohada .heroP__marco { position: relative; margin: 0; background: var(--al-primario); border-bottom: var(--al-raya); }
+body.p-almohada .heroP__fundido { display: none; }
+body.p-almohada .al-heroTit { position: absolute; top: 0; left: 0; right: 0; padding: 26px 18px 0; text-align: center; }
+body.p-almohada .al-heroTit .heroP__kicker, body.p-almohada .al-heroTit .heroP__nota {
+  display: inline-flex; align-items: center; gap: 6px; margin: 0 0 14px; padding: 5px 12px;
+  background: var(--al-tarjeta); color: var(--al-primario); border: var(--al-raya); box-shadow: var(--al-sombra); border-radius: 0;
+  font: 900 13px/1.2 var(--al-txt); letter-spacing: .06em; text-transform: uppercase;
+}
+body.p-almohada .al-heroTit .heroP__kicker i { background: var(--al-boton); border-radius: 0; }
+body.p-almohada .al-heroTit .heroP__nota b, body.p-almohada .al-heroTit .heroP__nota a { color: var(--al-primario); }
+body.p-almohada #prod .heroP .al-heroTit .heroP__h1 {
+  font-family: var(--al-tit); font-style: normal; font-weight: 700; color: var(--al-sobre-primario);
+  font-size: clamp(44px, 13vw, 82px); line-height: .98; letter-spacing: -.02em; margin: 0;
+  text-shadow: 0 0 10px rgba(255, 255, 255, .18);
+}
+body.p-almohada #prod .heroP .al-heroTit .heroP__h1 b { font-style: italic; color: var(--al-apagado); font-weight: 700; }
+/* las letras de la cascada (plantilla) traen su propio color: aquí heredan el blanco del titular */
+body.p-almohada #prod .heroP .al-heroTit .heroP__h1 :is(span, i, em, .hCas__l) { color: inherit; }
+body.p-almohada .heroP__txt { padding: 22px 18px 0; color: var(--al-texto); }
+body.p-almohada .heroP__sub { font-size: 17px; line-height: 1.55; }
+body.p-almohada .heroP__dato {
+  background: var(--al-tarjeta); color: var(--al-primario); border: var(--al-raya); border-radius: 0; box-shadow: var(--al-sombra);
+  font: 700 13px/1.2 var(--al-txt);
+}
+body.p-almohada .heroP__dato svg { color: var(--al-boton); }
+body.p-almohada .heroP__dato--oro { background: var(--al-boton); color: var(--al-sobre-boton); }
+body.p-almohada .heroP__dato--oro svg { color: var(--al-sobre-boton); }
+body.p-almohada .heroP__precio b, body.p-almohada .heroP__precio span { color: var(--al-primario); font-family: var(--al-tit); }
+body.p-almohada .heroP__ahorra { border: var(--al-raya); border-radius: 0; background: var(--al-apagado); color: var(--al-primario); }
+
+/* ---------- botones: azul, borde oscuro, sombra sólida; al pulsar la sombra se "hunde" (sin mover el diseño) ---------- */
+body.p-almohada .al-btn, body.p-almohada #prod .cta, body.p-almohada .heroP__cta, body.p-almohada #stickycta .btn-flota, body.p-almohada .btn-flota {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 14px 24px; width: 100%; max-width: 520px;
+  background: var(--al-boton); color: var(--al-sobre-boton); border: var(--al-raya); border-radius: 0; box-shadow: var(--al-sombra);
+  font: 900 17px/1.2 var(--al-txt); letter-spacing: .01em; text-transform: none; cursor: pointer;
+  transition: box-shadow 150ms ease, background-color 200ms ease;
+}
+body.p-almohada .al-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+body.p-almohada .al-btn:hover, body.p-almohada #prod .cta:hover, body.p-almohada .heroP__cta:hover, body.p-almohada .btn-flota:hover { background: var(--al-primario); box-shadow: var(--al-sombra-baja); }
+body.p-almohada .al-btn:active, body.p-almohada #prod .cta:active, body.p-almohada .btn-flota:active { box-shadow: none; }
+body.p-almohada .al-btn:focus-visible, body.p-almohada #prod .cta:focus-visible { outline: 3px solid var(--al-primario); outline-offset: 3px; }
+body.p-almohada .al-btn { margin: 28px auto 0; }
+
+/* ---------- secciones del plano ---------- */
+body.p-almohada .al-sec { padding: 56px 18px; border-bottom: var(--al-raya); background: var(--al-fondo); }
+body.p-almohada .al-sec > * { max-width: 680px; margin-left: auto; margin-right: auto; }
+body.p-almohada .al-h2 { font-family: var(--al-tit); font-weight: 700; color: var(--al-primario); font-size: clamp(32px, 9vw, 48px); line-height: 1.04; margin: 0 auto 26px; }
+body.p-almohada .al-caja { background: var(--al-tarjeta); border: var(--al-raya); border-radius: 0; box-shadow: var(--al-sombra); }
+
+/* el problema: fondo carbón, las cajas blancas */
+body.p-almohada .al-problema { background: var(--al-primario); }
+body.p-almohada .al-problema .al-rot { background: var(--al-tarjeta); color: var(--al-primario); }
+body.p-almohada #prod .al-problema .al-h2 { color: var(--al-sobre-primario); text-shadow: 0 0 10px rgba(255, 255, 255, .15); }
+body.p-almohada #prod .al-problema .al-h2 em { color: var(--al-apagado); }
+body.p-almohada #prod .al-problema { background: var(--al-primario); }
+body.p-almohada .al-lista { list-style: none; padding: 0; margin: 0 auto; display: grid; gap: 18px; }
+body.p-almohada .al-lista li { display: flex; gap: 14px; align-items: flex-start; padding: 18px 16px; }
+body.p-almohada .al-num { flex: 0 0 auto; display: grid; place-items: center; width: 44px; height: 44px; background: var(--al-boton); color: var(--al-sobre-boton); border: var(--al-raya); font: 900 18px/1 var(--al-txt); }
+body.p-almohada .al-lista strong { display: block; font: 900 18px/1.3 var(--al-txt); color: var(--al-primario); margin-bottom: 4px; }
+body.p-almohada .al-lista p { margin: 0; color: var(--al-secundario); }
+
+/* la solución */
+body.p-almohada .al-marco { margin: 0 auto 22px; border: var(--al-raya); box-shadow: var(--al-sombra); background: var(--al-apagado); }
+body.p-almohada .al-marco img { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; }
+body.p-almohada .al-marco figcaption { padding: 12px 14px; border-top: var(--al-raya); background: var(--al-tarjeta); font: 700 15px/1.4 var(--al-txt); color: var(--al-primario); }
+body.p-almohada .al-zonas { list-style: none; padding: 0; margin: 0 auto 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+body.p-almohada .al-zonas li { padding: 14px 12px; }
+body.p-almohada .al-zonas strong { display: block; font: 900 16px/1.25 var(--al-txt); color: var(--al-primario); margin-bottom: 4px; }
+body.p-almohada .al-zonas span { font-size: 14px; line-height: 1.45; color: var(--al-secundario); }
+
+/* antes y después, vídeo */
+body.p-almohada #prod .ba-sec .ba-img, body.p-almohada #prod .vid-wrap video { border: var(--al-raya); border-radius: 0; box-shadow: var(--al-sombra); }
+body.p-almohada #prod .ba-sec .ba-img img { border-radius: 0; }
+body.p-almohada #prod .vid-wrap { padding: 56px 18px !important; border-bottom: var(--al-raya); }
+body.p-almohada #prod .vid-wrap > .al-rot, body.p-almohada #prod .vid-wrap > .al-h2 { margin-left: 0; margin-right: 0; }
+body.p-almohada #prod .vid-wrap video { display: block; width: 100%; max-width: 480px; height: auto; margin: 0 auto; background: var(--al-primario); }
+
+/* reseñas en carrusel */
+body.p-almohada #prod .al-opin { background: var(--al-apagado); }
+body.p-almohada .al-car { outline: none; }
+body.p-almohada .al-car:focus-visible { outline: 3px solid var(--al-boton); outline-offset: 4px; }
+body.p-almohada .al-slide { margin: 0; }
+body.p-almohada .al-slide[hidden] { display: none; }
+body.p-almohada .al-slide img { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-bottom: var(--al-raya); }
+body.p-almohada .al-slide figcaption { padding: 16px; }
+body.p-almohada .al-est { display: inline-flex; gap: 2px; margin-bottom: 8px; }
+body.p-almohada .al-est svg { width: 18px; height: 18px; fill: var(--al-primario); }
+body.p-almohada .al-slide q { display: block; font: italic 600 20px/1.4 var(--al-tit); color: var(--al-primario); margin-bottom: 10px; }
+body.p-almohada .al-slide b { display: block; font: 900 15px/1.3 var(--al-txt); color: var(--al-primario); }
+body.p-almohada .al-slide small { font: 400 13px/1.3 var(--al-txt); color: var(--al-texto2); }
+body.p-almohada .al-ctrl { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; }
+body.p-almohada .al-cb {
+  display: grid; place-items: center; width: 48px; height: 48px; padding: 0; cursor: pointer;
+  background: var(--al-tarjeta); color: var(--al-primario); border: var(--al-raya); border-radius: 0; box-shadow: var(--al-sombra);
+  transition: box-shadow 150ms ease, background-color 200ms ease;
+}
+body.p-almohada .al-cb svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+body.p-almohada .al-cb:hover { background: var(--al-apagado); box-shadow: var(--al-sombra-baja); }
+body.p-almohada .al-cb:focus-visible { outline: 3px solid var(--al-boton); outline-offset: 3px; }
+body.p-almohada .al-pos { min-width: 64px; text-align: center; font: 900 15px/1 var(--al-txt); color: var(--al-primario); }
+
+/* reseñas de la plantilla, promoción, pago y formulario: mismas cajas de borde oscuro */
+body.p-almohada #prod .res-sec .r, body.p-almohada #prod .promo-card, body.p-almohada #prod .pack, body.p-almohada #prod .pagoOp,
+body.p-almohada #prod .form, body.p-almohada #prod .cmp, body.p-almohada #prod .rev-bars, body.p-almohada #prod .gar-sec .sello {
+  background: var(--al-tarjeta); border: var(--al-raya) !important; border-radius: 0 !important; box-shadow: var(--al-sombra);
+}
+body.p-almohada #prod .promo-banner { background: var(--al-primario); color: var(--al-sobre-primario); border-radius: 0; border-bottom: var(--al-raya); font-family: var(--al-txt); font-weight: 900; }
+body.p-almohada #prod .promo-precio, body.p-almohada #prod .pagoOp__pr { font-family: var(--al-tit); color: var(--al-primario); }
+body.p-almohada #prod .promo-off, body.p-almohada #prod .pagoOp__cinta { background: var(--al-boton); color: var(--al-sobre-boton); border: 2px solid var(--al-texto); border-radius: 0; }
+body.p-almohada #prod .pack.sel, body.p-almohada #prod .pagoOp.sel { background: var(--al-apagado); box-shadow: 4px 4px 0 var(--al-boton); }
+/* forma de pago: dos cajas lado a lado (la plantilla no trae su maqueta; cada producto pone la suya) */
+body.p-almohada #prod .pagoSel { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
+body.p-almohada #prod .pagoOp {
+  position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; width: 100%; min-height: 0;
+  padding: 16px 12px 14px; text-align: left; color: var(--al-primario); cursor: pointer; transition: box-shadow 150ms ease, background-color 200ms ease;
+}
+body.p-almohada #prod .pagoOp__ico { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 6px; border: 2px solid var(--al-texto); border-radius: 0; background: var(--al-apagado); color: var(--al-primario); }
+body.p-almohada #prod .pagoOp__ico svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+body.p-almohada #prod .pagoOp.sel .pagoOp__ico { background: var(--al-boton); color: var(--al-sobre-boton); }
+body.p-almohada #prod .pagoOp__tit { font: 900 15px/1.25 var(--al-txt); }
+body.p-almohada #prod .pagoOp__pr { font-size: 26px; line-height: 1.1; font-weight: 700; }
+body.p-almohada #prod .pagoOp__sub { font-size: 13px; line-height: 1.35; color: var(--al-texto2); }
+body.p-almohada #prod .pagoOp__logos img { height: 14px; width: auto; }
+body.p-almohada #prod .pagoOp__cinta { position: absolute; top: -12px; right: 8px; padding: 3px 8px; font: 900 12px/1.2 var(--al-txt); }
+body.p-almohada #prod .form :is(input, select, textarea) { border: 2px solid var(--al-texto); border-radius: 0; font-family: var(--al-txt); font-size: 16px; }
+body.p-almohada #prod .form :is(input, select, textarea):focus { outline: none; border-color: var(--al-boton); box-shadow: 0 0 0 3px var(--al-apagado); }
+body.p-almohada #prod .err { color: var(--al-rojo); }
+
+@media (min-width: 768px) {
+  body.p-almohada .al-sec { padding: 72px 24px; }
+  body.p-almohada .al-zonas { grid-template-columns: repeat(4, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.p-almohada .al-btn, body.p-almohada .al-cb, body.p-almohada #prod .cta { transition: none; }
+}
