@@ -28,7 +28,7 @@
 (function () {
   var PROPIOS = ['balsamo', 'ducha', 'sellador', 'aranazos', 'pulsera', 'pistola', 'gafas', 'crema', 'almohada'], p = window.__P || '';
   window.__soloEste = function (id) { return PROPIOS.indexOf(p) < 0 || p === id; };
-  window.__FICHA_CSS = { ducha: 9, sellador: 13, aranazos: 6, pulsera: 3, pistola: 11, gafas: 11, crema: 17, almohada: 9 };
+  window.__FICHA_CSS = { ducha: 9, sellador: 13, aranazos: 6, pulsera: 3, pistola: 11, gafas: 11, crema: 17, almohada: 10 };
   window.__FICHA_JS = [['balsamo', 13], ['regalo', 2], ['ducha', 8], ['sellador', 10], ['aranazos', 5], ['pulsera', 5], ['pistola', 8], ['gafas', 8], ['crema', 11], ['almohada', 5]];
   if (PROPIOS.indexOf(p) < 0 || p === 'balsamo') return;
   if (window.__FICHA_CSS[p]) document.write('<link rel="preload" as="style" href="' + p + '.css?v=' + window.__FICHA_CSS[p] + '">');
@@ -71,7 +71,7 @@ setTimeout(function(){document.documentElement.classList.add('ba-visto');},3000)
    pulsera: joyería sobria 07-10 · pistola: brutalismo 09-10 · gafas: #21 terracota + verde 19-10 · crema: plano del script + Charlotte Tilbury 25-10. -->
 <script>
 (function () {
-  var CSS = window.__FICHA_CSS || { ducha: 9, sellador: 13, aranazos: 6, pulsera: 3, pistola: 11, gafas: 11, crema: 17, almohada: 9 };
+  var CSS = window.__FICHA_CSS || { ducha: 9, sellador: 13, aranazos: 6, pulsera: 3, pistola: 11, gafas: 11, crema: 17, almohada: 10 };
   for (var k in CSS) if (!window.__soloEste || window.__soloEste(k)) document.write('<link rel="stylesheet" href="' + k + '.css?v=' + CSS[k] + '">');
 })();
 </script>
