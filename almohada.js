@@ -237,10 +237,11 @@
       poner(video);
     }
     var car = seccionCarrusel(); if (car) poner(car);
+    poner(resenas);
     poner(seccionPromo());
     poner(anticipado);
     poner(pedir);
-    poner(resenas); poner(garantia); poner(preguntas); poner(envios);
+    poner(garantia); poner(preguntas); poner(envios);
 
     if (antesDespues) {
       antesDespues.classList.add('al2-sec');

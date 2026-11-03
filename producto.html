@@ -29,7 +29,7 @@
   var PROPIOS = ['balsamo', 'ducha', 'sellador', 'aranazos', 'pulsera', 'pistola', 'gafas', 'crema', 'almohada'], p = window.__P || '';
   window.__soloEste = function (id) { return PROPIOS.indexOf(p) < 0 || p === id; };
   window.__FICHA_CSS = { ducha: 9, sellador: 13, aranazos: 6, pulsera: 3, pistola: 11, gafas: 11, crema: 17, almohada: 10 };
-  window.__FICHA_JS = [['balsamo', 13], ['regalo', 2], ['ducha', 8], ['sellador', 10], ['aranazos', 5], ['pulsera', 5], ['pistola', 8], ['gafas', 8], ['crema', 11], ['almohada', 5]];
+  window.__FICHA_JS = [['balsamo', 13], ['regalo', 2], ['ducha', 8], ['sellador', 10], ['aranazos', 5], ['pulsera', 5], ['pistola', 8], ['gafas', 8], ['crema', 11], ['almohada', 6]];
   if (PROPIOS.indexOf(p) < 0 || p === 'balsamo') return;
   if (window.__FICHA_CSS[p]) document.write('<link rel="preload" as="style" href="' + p + '.css?v=' + window.__FICHA_CSS[p] + '">');
   for (var i = 0; i < window.__FICHA_JS.length; i++) if (window.__FICHA_JS[i][0] === p) document.write('<link rel="preload" as="script" href="' + p + '.js?v=' + window.__FICHA_JS[i][1] + '">');
@@ -1256,7 +1256,7 @@ window.URL_PEDIDO = 'https://n8n-production-8a42.up.railway.app/webhook/pedido-t
      Mismo orden de antes: balsamo, regalo, ducha, sellador, aranazos, pulsera, pistola, gafas, crema. -->
 <script>
 (function () {
-  var __JS = window.__FICHA_JS || [['balsamo', 13], ['regalo', 2], ['ducha', 8], ['sellador', 10], ['aranazos', 5], ['pulsera', 5], ['pistola', 8], ['gafas', 8], ['crema', 11], ['almohada', 5]];
+  var __JS = window.__FICHA_JS || [['balsamo', 13], ['regalo', 2], ['ducha', 8], ['sellador', 10], ['aranazos', 5], ['pulsera', 5], ['pistola', 8], ['gafas', 8], ['crema', 11], ['almohada', 6]];
   for (var i = 0; i < __JS.length; i++) {
     var k = __JS[i][0];
     if (k === 'regalo' || !window.__soloEste || window.__soloEste(k)) document.write('<script src="' + k + '.js?v=' + __JS[i][1] + '"><\/script>');
