@@ -933,7 +933,7 @@ window.PRODUCTOS = [
         ['pago', 'Paga ahora o al recibir'],
       ],
     },
-    acento: '#2563EB',   /* 03-11 plano #91 de la skill (Neubrutalism): botón azul */
+    acento: '#64748B',   /* 03-11 plano #92 de la skill (Voice-First, gris pizarra; el botón naranja #EA580C va en almohada.css) */
 
     desc: 'La Almohada Cervical Mariposa es de espuma viscoelástica de rebote lento: se adapta a la forma de tu cabeza y vuelve a su sitio cuando te levantas. El centro hundido sujeta la cabeza, el borde contorneado acompaña el cuello y los dos laterales en forma de ala dejan sitio para apoyar los brazos cuando duermes de lado. Sirve para dormir de lado, boca arriba o boca abajo. La funda es transpirable, se quita con cremallera y se lava a máquina. Llega enrollada al vacío: al abrirla recupera su forma en unas horas.',
 

@@ -1,7 +1,7 @@
 # Almohada Page Overrides
 
 > **PROJECT:** almohada-espana
-> **Generated:** 2026-11-03 14:13:09
+> **Generated:** 2026-11-03 14:54:18
 > **Page Type:** General
 
 > ⚠️ **IMPORTANT:** Rules in this file **override** the Master file (`design-system/MASTER.md`).
@@ -30,9 +30,8 @@
 
 ### Component Overrides
 
-- Avoid: Fixed width images overflow
-- Avoid: Override system gestures
-- Avoid: Keyboard traps or illogical tab order
+- Avoid: Static URLs for dynamic content
+- Avoid: Show only a top-level error without identifying each invalid field
 
 ---
 
@@ -45,6 +44,5 @@
 ## Recommendations
 
 - Effects: Minimal glow (text-shadow: 0 0 10px), dark-to-light transitions, low white emission, high readability, visible focus
-- Responsive: Use max-width: 100% on images
-- Touch: Avoid horizontal swipe on main content
-- Accessibility: Keep tab order aligned with visual order and test every action without a pointer
+- Navigation: Update URL on state/view changes
+- Forms: Show a specific error below the input and reference it with aria-describedby

@@ -7,8 +7,9 @@
 ---
 
 **Project:** almohada-espana
-**Generated:** 2026-11-03 14:13:09
-**Category:** White Noise & Ambient Sound
+**Generated:** 2026-11-03 14:54:18
+**Category:** Sleep Tracker
+**Design Dials:** Variance 9/10 (Bold / Asymmetric) | Motion 7/10 (Standard) | Density 3/10 (Spacious)
 
 ---
 
@@ -18,48 +19,50 @@
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#18181B` | `--color-primary` |
+| Primary | `#64748B` | `--color-primary` |
 | On Primary | `#FFFFFF` | `--color-on-primary` |
-| Secondary | `#3F3F46` | `--color-secondary` |
-| On Secondary | `#FFFFFF` | `--color-on-secondary` |
-| Accent/CTA | `#2563EB` | `--color-accent` |
-| On Accent/CTA | `#FFFFFF` | `--color-on-accent` |
-| Background | `#FAFAFA` | `--color-background` |
-| Foreground | `#09090B` | `--color-foreground` |
+| Secondary | `#94A3B8` | `--color-secondary` |
+| On Secondary | `#0F172A` | `--color-on-secondary` |
+| Accent/CTA | `#EA580C` | `--color-accent` |
+| On Accent/CTA | `#000000` | `--color-on-accent` |
+| Background | `#F8FAFC` | `--color-background` |
+| Foreground | `#334155` | `--color-foreground` |
 | Card | `#FFFFFF` | `--color-card` |
-| Card Foreground | `#09090B` | `--color-card-foreground` |
-| Muted | `#E8ECF0` | `--color-muted` |
+| Card Foreground | `#334155` | `--color-card-foreground` |
+| Muted | `#EBF0F5` | `--color-muted` |
 | Muted Foreground | `#475569` | `--color-muted-foreground` |
-| Border | `#E4E4E7` | `--color-border` |
+| Border | `#E2E8F0` | `--color-border` |
 | Destructive | `#DC2626` | `--color-destructive` |
 | On Destructive | `#FFFFFF` | `--color-on-destructive` |
-| Ring | `#18181B` | `--color-ring` |
+| Ring | `#64748B` | `--color-ring` |
 
-**Color Notes:** Monochrome + blue accent
+**Color Notes:** Industrial grey + safety orange [Accent adjusted from #F97316]
 
 ### Typography
 
-- **Heading Font:** EB Garamond
-- **Body Font:** Lato
-- **Mood:** legal, professional, traditional, trustworthy, formal, authoritative
-- **Google Fonts:** [EB Garamond + Lato](https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap)
+- **Heading Font:** Nunito
+- **Body Font:** DM Sans
+- **Mood:** claymorphism, clay, rounded, playful, candy, bubbly, soft, 3d, children, education, tactile, spring, nunito, dm sans
+- **Google Fonts:** [Nunito + DM Sans](https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Nunito:ital,wght@0,700;0,800;0,900;1,700)
 
 **CSS Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Nunito:ital,wght@0,700;0,800;0,900;1,700&display=swap');
 ```
 
 ### Spacing Variables
+
+*Density: 3/10 — Spacious*
 
 | Token | Value | Usage |
 |-------|-------|-------|
 | `--space-xs` | `4px` / `0.25rem` | Tight gaps |
 | `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
+| `--space-md` | `24px` / `1.5rem` | Standard padding |
+| `--space-lg` | `32px` / `2rem` | Section padding |
+| `--space-xl` | `48px` / `3rem` | Large gaps |
+| `--space-2xl` | `64px` / `4rem` | Section margins |
+| `--space-3xl` | `96px` / `6rem` | Hero padding |
 
 ### Shadow Depths
 
@@ -79,8 +82,8 @@
 ```css
 /* Primary Button */
 .btn-primary {
-  background: #2563EB;
-  color: #FFFFFF;
+  background: #EA580C;
+  color: #000000;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -96,8 +99,8 @@
 /* Secondary Button */
 .btn-secondary {
   background: transparent;
-  color: #18181B;
-  border: 2px solid #18181B;
+  color: #64748B;
+  border: 2px solid #64748B;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -110,7 +113,7 @@
 
 ```css
 .card {
-  background: #FAFAFA;
+  background: #F8FAFC;
   border-radius: 12px;
   padding: 24px;
   box-shadow: var(--shadow-md);
@@ -136,9 +139,9 @@
 }
 
 .input:focus {
-  border-color: #18181B;
+  border-color: #64748B;
   outline: none;
-  box-shadow: 0 0 0 3px #18181B20;
+  box-shadow: 0 0 0 3px #64748B20;
 }
 ```
 
@@ -164,13 +167,13 @@
 
 ## Style Guidelines
 
-**Style:** Neubrutalism
+**Style:** Voice-First Multimodal
 
-**Keywords:** Bold borders, black outlines, primary colors, thick shadows, no gradients, flat colors, 45° shadows, playful, Gen Z
+**Keywords:** Voice UI, multimodal, audio feedback, conversational, hands-free, ambient, contextual, speech recognition
 
-**Best For:** Gen Z brands, startups, creative agencies, Figma-style apps, Notion-style interfaces, tech blogs
+**Best For:** Voice assistants, accessibility apps, hands-free tools, smart home, automotive UI, cooking apps
 
-**Key Effects:** box-shadow: 4px 4px 0 #000, border: 3px solid #000, no gradients, sharp corners (0px), bold typography
+**Key Effects:** Voice waveform visualization, listening pulse, processing spinner, speak animation, smooth transitions
 
 ### Page Pattern
 
@@ -182,9 +185,24 @@
 
 ---
 
+## Motion
+
+**Stagger List** (Standard) — Trigger: load or scroll | Duration: 300-450ms | Easing: `back.out(1.4)`
+
+```js
+gsap.from('.grid-item', { opacity: 0, scale: 0.92, y: 16, duration: 0.4, stagger: { each: 0.06, from: 'start', grid: 'auto' }, ease: 'back.out(1.4)' });
+```
+
+**Framework notes:** grid: 'auto' lets GSAP infer rows/columns from a CSS grid layout for a natural wave stagger; Use matchMedia('(prefers-reduced-motion: reduce)') to skip non-essential motion and render the final state immediately
+
+- ✅ Combine with from: 'center' for a bento-grid layout to draw the eye inward first
+- ❌ Don't use back.out on dense data tables; the overshoot reads as sloppy on informational UI
+- ⚡ Group DOM writes; avoid interleaving layout reads (getBoundingClientRect) between staggered tweens
+
+---
+
 ## Anti-Patterns (Do NOT Use)
 
-- ❌ Excessive decoration
 - ❌ Pure white backgrounds
 
 ### Additional Forbidden Patterns
