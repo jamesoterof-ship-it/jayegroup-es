@@ -83,7 +83,8 @@ body.p-almohada #prod .al2-h1 {
 body.p-almohada #prod .al2-h1 em { font-style: italic; font-weight: 800; color: var(--a2-primario); }
 body.p-almohada .al2-cae__w { display: inline-block; white-space: nowrap; }
 body.p-almohada .al2-cae { display: inline-block; animation: a2cae 420ms var(--a2-rebote) both; animation-delay: calc(var(--k) * 32ms); }
-@keyframes a2cae { from { opacity: 0; transform: translateY(-0.55em) scale(.92); } to { opacity: 1; transform: none; } }
+/* solo se mueve, no se esconde: si el navegador no anima (navegador de Facebook en segundo plano), el titular se ve igual */
+@keyframes a2cae { from { transform: translateY(-0.55em) scale(.92); } to { transform: none; } }
 body.p-almohada .al2-onda { width: 78%; height: 46px; margin: 18px 0 6px; }
 body.p-almohada .al2-onda svg { width: 100%; height: 100%; overflow: visible; }
 body.p-almohada .al2-onda__l { fill: none; stroke: var(--a2-boton); stroke-width: 3; stroke-linecap: round; transform-origin: center; animation: a2respira 4.2s ease-in-out infinite; }
