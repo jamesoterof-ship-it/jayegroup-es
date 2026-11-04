@@ -238,8 +238,8 @@
     }
     var car = seccionCarrusel(); if (car) poner(car);
     poner(seccionPromo());
-    poner(resenas); poner(garantia); poner(preguntas); poner(envios);
     poner(anticipado);
+    poner(resenas); poner(garantia); poner(preguntas); poner(envios);
     poner(pedir);
 
     if (antesDespues) {
