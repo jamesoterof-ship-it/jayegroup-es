@@ -1074,9 +1074,11 @@ window.jayePixel = (function () {
       <span>Darmowa dostawa w całej Polsce</span><span>·</span>
       <span>Płatność przy odbiorze</span><span>·</span>
       <span>Szybka dostawa przez InPost</span><span>·</span>
+      <span>Zapłać teraz i oszczędź 10 %</span><span>·</span>
       <span>Darmowa dostawa w całej Polsce</span><span>·</span>
       <span>Płatność przy odbiorze</span><span>·</span>
       <span>Szybka dostawa przez InPost</span><span>·</span>
+      <span>Zapłać teraz i oszczędź 10 %</span><span>·</span>
     </div>
   </div>
 
@@ -1096,11 +1098,9 @@ window.jayePixel = (function () {
   </div>
 
   <!-- ============================================================
-       SKLEP (/ro/ bez ?p=) · 25-10 · strona główna Portugalii (/pt/index.html) w
-<budget:token_budget>200000</budget:token_budget>
-
-      rumański: bohater, zaufanie, gwarancja, produkty, opinie i wideo marki.
-       Bez paska "zapłać już i oszczędzaj" (w Rumunii nie ma ustalonej płatności z góry).
+       SKLEP (/pl/ bez ?p=): bohater, zaufanie, dwie formy płatności, gwarancja, produkty, opinie i wideo marki.
+       04-11 James: "la página de inicio tampoco tiene el tema del pago anticipado" → como la tienda de España:
+       cinta, héroe y franja "dos formas de pago" con el −10 % pagando ahora.
        ============================================================ -->
   <div id="tiendaRO">
 
@@ -1114,8 +1114,8 @@ window.jayePixel = (function () {
     <script>if (window.MODO_RO === 'ficha') { var _cv = document.getElementById('clipHero'); if (_cv) _cv.remove(); var _f = document.querySelector('#tiendaRO .hero .foto'); if (_f) _f.style.backgroundImage = 'none'; }</script>
     <div class="capa"></div>
     <div class="txt">
-      <h1>Zamów dziś,<br>zapłać przy odbiorze</h1>
-      <p>Darmowa wysyłka w całej Polsce. Płacisz kurierowi gotówką, gdy odbierasz paczkę. Nic z góry.</p>
+      <h1>Zamów dziś,<br>zapłać jak wolisz</h1>
+      <p>Darmowa wysyłka w całej Polsce. Zapłać kurierowi przy odbiorze albo teraz kartą lub PayPal i oszczędź 10 %.</p>
       <a class="cta" href="#productos">Zobacz produkty
         <svg class="ic" viewBox="0 0 24 24" style="width:17px;height:17px;stroke-width:2.4"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
       </a>
@@ -1130,7 +1130,7 @@ window.jayePixel = (function () {
       </div>
       <div data-rv style="--d:.07s">
         <svg class="ic" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="1.6"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01"/></svg>
-        Płatność przy odbiorze
+        Przy odbiorze lub teraz
       </div>
       <div data-rv style="--d:.14s">
         <svg class="ic" viewBox="0 0 24 24"><path d="M12 2.7l8.5 4.4v9.8L12 21.3 3.5 16.9V7.1z"/><path d="M3.5 7.1L12 11.5l8.5-4.4M12 11.5v9.8"/></svg>
@@ -1138,6 +1138,23 @@ window.jayePixel = (function () {
       </div>
     </div>
   </div>
+
+  <!-- 04-11 James: el pago anticipado también en la portada. Las DOS formas de pago al mismo nivel, como la tienda de España -->
+  <section class="dosPagos" aria-label="Wybierz, jak zapłacić" style="background:#15120c;color:#f6efe2;padding:28px 16px 30px;text-align:center">
+    <p style="margin:0 0 6px;font:800 12px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d8a52e">Ty wybierasz, jak zapłacić</p>
+    <h2 style="margin:0 0 18px;font:800 clamp(24px,6vw,34px)/1.1 'Barlow Condensed',sans-serif;text-transform:uppercase">Dwie formy, obie bezpieczne</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;max-width:720px;margin:0 auto;text-align:left">
+      <div style="border:1px solid #3b3222;border-radius:14px;padding:16px 16px 14px;background:#1d1911">
+        <b style="display:block;font:800 20px/1.1 'Barlow Condensed',sans-serif;text-transform:uppercase;color:#fff">Płacę przy odbiorze</b>
+        <p style="margin:8px 0 0;font:400 14.5px/1.5 Inter,sans-serif;color:#e7dcc6">Płacisz kurierowi, gdy masz paczkę w rękach. Darmowa dostawa przez InPost.</p>
+      </div>
+      <div style="position:relative;border:1.5px solid #d8a52e;border-radius:14px;padding:16px 16px 14px;background:#221c10">
+        <span style="position:absolute;top:-11px;right:14px;background:#d8a52e;color:#15120c;font:800 12px/1 Inter,sans-serif;padding:5px 9px;border-radius:999px">−10 %</span>
+        <b style="display:block;font:800 20px/1.1 'Barlow Condensed',sans-serif;text-transform:uppercase;color:#fff">Płacę teraz i oszczędzam</b>
+        <p style="margin:8px 0 0;font:400 14.5px/1.5 Inter,sans-serif;color:#e7dcc6">Kartą lub przez PayPal przy zamówieniu: <b style="color:#fff">10 % mniej</b> w każdym zestawie, a kurierowi nie płacisz nic.</p>
+      </div>
+    </div>
+  </section>
 
   <section class="nos" id="nosotros">
     <div class="nos-in">
@@ -1403,7 +1420,7 @@ window.jayePixel = (function () {
 })();</script>
 <!-- RUMANIA: județe y codigo postal de 6 cifras, en vez de los distritos de Portugal. -->
 <script src="judete-ro.js?v=20"></script>
-<script src="textos-ro.js?v=22"></script>
+<script src="textos-ro.js?v=24"></script>
 <!-- Las opiniones reales de cada producto (las de España), traducidas al rumano. -->
 <script src="resenas-ro.js?v=20"></script>
 <script>/* 25-10 · TIENDA o FICHA (ver MODO_RO en <head>). La tienda carga lo mismo que la
@@ -1456,9 +1473,9 @@ window.URL_PEDIDO = window.URL_PEDIDO_RO || 'about:blank#pedido-polonia-sin-cone
     /* 25-10: la pistola de agua de Rumania (Dropi 56) usa el diseño de la ficha 'pistola' de España con sus textos */
     pistola: 'pistola.js?v=3' };
   window._cargaRO([
-    'ficha.js?v=21',
+    'ficha.js?v=22',
     '../lib/gsap.min.js', '../lib/ScrollTrigger.min.js', '../lib/countup.umd.js',
-    'efectos-ficha.js?v=21'
+    'efectos-ficha.js?v=22'
   ].concat(_jsRO[_pidRO] ? [_jsRO[_pidRO]] : []));
 }</script>
 

@@ -63,7 +63,9 @@ window.TEXTOS = {
   /* ---- buton și note ----
      El texto del boton tiene que decir que el pedido obliga a pagar (Directiva
      2011/83/UE, art. 8.2, transpuesta en Rumania por la OUG 34/2014). */
-  btnPedir: 'Zamawiam z obowiązkiem zapłaty · płatność przy odbiorze',
+  /* 04-11 James: "los botones se les salen los textos": corto como el de España ("Comprar · pago al recibir");
+     "Kupuję" deja claro que el pedido obliga a pagar. */
+  btnPedir: 'Kupuję, płacę kurierowi',
   enviando: 'Wysyłanie…',
   notaCod: 'Płacisz kurierowi, kiedy otrzymasz paczkę. Potwierdzamy zamówienie na WhatsAppie.',
   notaPre: 'Po wysłaniu zamówienia przeniesiemy Cię na stronę płatności.',
@@ -125,7 +127,7 @@ ahorras: 'Oszczędzasz ',
   masExp: 'Więcej opinii nabywców tego produktu',
 
   /* ---- antet și butonul mare ---- */
-  ctaGrande: 'Chcę to mieć, płacę przy odbiorze',
+  ctaGrande: 'Chcę, płacę przy odbiorze',
   ctaSub: 'Darmowa dostawa · Nie płacisz nic z góry',
   recienLlegado: 'Właśnie dotarło do Polski · bądź wśród pierwszych, którzy to wypróbują',
   pideTit: 'Zamów swój',

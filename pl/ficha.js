@@ -2365,3 +2365,69 @@ function abrirUpsell(nombre, telWA, upsell) {
 
 
 })();
+
+/* ============================================================
+   04-11 POLONIA · "ZAPŁAĆ KARTĄ I ZYSKAJ" debajo de la promoción (James: "la promoción debe llevar debajo el pago
+   anticipado", "como la de España"). Es el mismo bloque de ../pago-anticipado.js de España (tarjeta blanca, borde
+   superior con el acento del producto, 3 puntos y botón), escrito aquí con los textos en polaco y los precios en zł,
+   para que /pl/ no dependa del archivo de España. Sin "entrega prioritaria": en Polonia no está prometida.
+   ============================================================ */
+(function () {
+  var Q = new URLSearchParams(location.search);
+  if (Q.get('pagar')) return;
+  var TODOS = window.PRODUCTOS || [], id = window.__P || Q.get('p');
+  var p = id ? TODOS.filter(function (x) { return x.id === id; })[0] : null;
+  if (!p || !p.anticipado || !p.packs || !window.PAYPAL_RO_ID) return;
+  var L = { tit: 'Zapłać kartą i zyskaj', dto: 'rabatu', packs: 'na wszystkie zestawy',
+    prio: 'Nic nie płacisz kurierowi', prio2: '— paczka przychodzi już opłacona',
+    seg: 'Bezpieczna płatność', seg2: 'przez PayPal: karta debetowa lub kredytowa, bez zakładania konta',
+    btn: 'Zapłać kartą', o: 'lub', ahora: 'płacąc teraz kartą' };
+  var ac = p.acento || '#0f8a4b';
+  var zl = function (n) { return Number(n).toLocaleString('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' zł'; };
+  var pre = function (i) { var l = p.anticipado.precios; return (l && l[i] != null) ? l[i] : p.packs[i].precio; };
+  var dto = p.anticipado.pct + '&nbsp;%';
+  var intentos = 0;
+  function poner() {
+    if (document.querySelector('.pagoAntES')) return;
+    var promo = document.querySelector('.promo-sec');
+    if (!promo) { if (++intentos < 40) setTimeout(poner, 150); return; }
+    var h2 = document.querySelector('.tit2, h2');
+    var fTit = h2 ? getComputedStyle(h2).fontFamily : 'inherit';
+    /* 1) en la promoción: el precio pagando ahora */
+    var bp = document.getElementById('btnPromo'), uni = promo.querySelector('.promo-uni');
+    var i = bp ? Number(bp.getAttribute('data-i')) : -1;
+    if (uni && i >= 0 && p.packs[i]) {
+      var lin = document.createElement('p');
+      lin.className = 'promo-uni promo-tarjeta';
+      lin.innerHTML = L.o + ' <b>' + zl(pre(i)) + '</b> ' + L.ahora + ' · −' + dto;
+      uni.parentNode.insertBefore(lin, uni.nextSibling);
+    }
+    /* 2) la sección, debajo de la promoción */
+    var ic = function (d) {
+      return '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="' + ac + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px">' + d + '</svg>';
+    };
+    var li = function (d, h) {
+      return '<li style="display:flex;gap:10px;align-items:flex-start;margin:10px 0;font-size:15.5px;line-height:1.45;color:#1E293B">' + ic(d) + '<span>' + h + '</span></li>';
+    };
+    var s = document.createElement('section');
+    s.className = 'bloque pagoAntES';
+    s.innerHTML = '<div style="background:#FFFFFF;border:1px solid #E2E8F0;border-top:4px solid ' + ac + ';border-radius:16px;padding:18px 16px 16px;box-shadow:0 6px 18px rgba(15,23,42,.06)">'
+      + '<p style="display:flex;align-items:center;gap:10px;margin:0 0 4px;font-family:' + fTit.split('"').join("'") + ';font-weight:800;font-size:22px;line-height:1.15;color:#1E293B">'
+      + '<span style="background:' + ac + ';color:#fff;border-radius:8px;padding:4px 9px;font-size:15px;white-space:nowrap">−' + dto + '</span>' + L.tit + '</p>'
+      + '<ul style="list-style:none;padding:0;margin:0 0 14px">'
+      + li('<path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>', '<b>' + dto + ' ' + L.dto + '</b> ' + L.packs)
+      + li('<path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>', '<b>' + L.prio + '</b> ' + L.prio2)
+      + li('<rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/>', '<b>' + L.seg + '</b> ' + L.seg2)
+      + '</ul>'
+      + '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">'
+      + '<span style="display:flex;gap:7px;align-items:center"><img src="/img/pago/paypal-texto.svg" alt="PayPal" width="58" height="18"><img src="/img/pago/visa-claro.svg" alt="Visa" width="38" height="23"><img src="/img/pago/mastercard-claro.svg" alt="Mastercard" width="38" height="23"></span>'
+      + '<button type="button" id="btnPagoAnt" style="background:' + ac + ';color:#fff;border:0;border-radius:12px;padding:13px 20px;font-weight:800;font-size:16px;cursor:pointer;min-height:48px">' + L.btn + '</button>'
+      + '</div></div>';
+    promo.parentNode.insertBefore(s, promo.nextSibling);
+    document.getElementById('btnPagoAnt').addEventListener('click', function () {
+      var op = document.querySelector('.pagoOp[data-pago="pre"]'); if (op) op.click();
+      var d = document.getElementById('pedir'); if (d) d.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', poner); else poner();
+})();
