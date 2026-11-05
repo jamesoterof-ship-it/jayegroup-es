@@ -2428,6 +2428,16 @@ function abrirUpsell(nombre, telWA, upsell) {
       var op = document.querySelector('.pagoOp[data-pago="pre"]'); if (op) op.click();
       var d = document.getElementById('pedir'); if (d) d.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+    /* 04-11 James: "el tema de la promoción, ponlo antes del video": la promoción y el pago anticipado suben justo
+       antes del video. Se repite unos segundos porque pulsera.js también acomoda secciones al cargar. */
+    var mover = function () {
+      var pr = document.querySelector('.promo-sec'), pa = document.querySelector('.pagoAntES'), vid = document.querySelector('.vid-wrap');
+      if (!pr || !pa || !vid || !vid.parentNode) return;
+      if (pa.nextElementSibling === vid && pr.nextElementSibling === pa) return;
+      vid.parentNode.insertBefore(pr, vid); vid.parentNode.insertBefore(pa, vid);
+      if (window.ScrollTrigger && window.ScrollTrigger.refresh) try { window.ScrollTrigger.refresh(); } catch (e) {}
+    };
+    mover(); [300, 1000, 2500, 5000].forEach(function (ms) { setTimeout(mover, ms); });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', poner); else poner();
 })();
