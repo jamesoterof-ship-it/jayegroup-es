@@ -997,6 +997,103 @@ window.PRODUCTOS = [
       precios: [25.99, 41.99, 51.99],
     },
   },
+
+  {
+    /* 09-11-2026 · AMPLIFICADOR DE PANTALLA 12" (James 08-11: "vamos con él", rotación y Navidad; "dale, avanza").
+       Dropi PRO 6 · SKU PANAMP-NEGRO · 2,09 € · negro, plegable, lente de 12" y soporte para el móvil detrás.
+       Diseño: skill ui-ux-pro-max (amplificador-pantalla-es, propuesta nº 137, diales variance 9 · motion 10 · density 3): Dimensional Layering,
+       morado #7C3AED / #A78BFA, botón naranja #EA580C, fondo #FAF5FF, texto #4C1D95, IBM Plex Sans (James 09-11: "Dale y vemos").
+       Estilos en amplificador.css, secciones y movimiento en amplificador.js.
+       🔴 Sin promesas de vista ni de salud: ver más grande y más cómodo, nada de "cura" ni "protege los ojos". */
+    id: 'amplificador', unidad: 'uno', promo: 2,
+    resenasTotal: 612,   /* 09-11: valoraciones REALES de 5 publicaciones de AliExpress del mismo amplificador de 12" (117 + 259 + 103 + 40 + 93) */
+    dropiId: 6,
+    dropiSku: 'PANAMP-NEGRO',
+
+    nombre: 'Amplificador de Pantalla 12"',
+    sub: 'Ve el móvil en grande · sin pilas, sin cables, sin apps',
+    categoria: 'Hogar',
+    etiqueta: 'Regalo de Navidad',
+    etiquetaOro: false,
+
+    foto: 'img/amplificador-sola.webp?v=1',
+    fotos: ['img/amplificador-sola.webp?v=1', 'img/amplificador-abuelos.webp?v=1', 'img/amplificador-ninos.webp?v=1', 'img/amplificador-manos.webp?v=1'],
+    video: 'img/amplificador-ficha.mp4?v=1',   /* 09-11: vídeo real del mismo amplificador (AliExpress 1005010642549349), sin sonido */
+
+    hero: {
+      img: 'img/amplificador-sola.webp?v=1',   /* héroe = el producto solo y grande (foto de Dropi PRO) */
+      kicker: 'Regalo de Navidad',
+      titulo: 'Tu móvil,<br><b>en grande.</b>',
+      sub: 'Pones el móvil detrás de la lente de 12" y ves el fútbol, las series y las videollamadas mucho más grandes, con las manos libres.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Paga ahora o al recibir'],
+      ],
+    },
+    acento: '#7C3AED',
+
+    desc: 'El Amplificador de Pantalla 12" es una lente plegable que agranda lo que se ve en el móvil. Abres la base, levantas la lente, pones el móvil en su soporte de atrás y la imagen se ve mucho más grande delante. No lleva pilas, ni cables, ni aplicaciones, y sirve para cualquier móvil. Es para ver el fútbol, películas, series, recetas o videollamadas sin sostener el teléfono ni acercarlo a la cara. Plegado ocupa como un libro y se lleva a cualquier sitio.',
+
+    puntos: [
+      'Lente de 12 pulgadas: la imagen del móvil se ve mucho más grande',
+      'Sin pilas, sin cables y sin aplicaciones: abrir, poner el móvil y mirar',
+      'Sirve para cualquier móvil, también con funda',
+      'Se pliega como un libro · el pack de 2 es el más pedido para regalar',
+    ],
+
+    formulaRotulo: 'Cómo es',
+    formulaTitulo: 'Una pantalla grande que cabe en un cajón.',
+    formulaSub: 'Tres piezas, ningún cable.',
+    formula: [
+      ['ondas', 'Lente de 12"', 'Agranda la imagen del móvil que tiene detrás.'],
+      ['escudo', 'Soporte del móvil', 'El teléfono queda quieto atrás, en horizontal.'],
+      ['pluma', 'Base plegable', 'Se abre en segundos y se cierra como un libro.'],
+      ['agua', 'Sin pilas ni cables', 'No hay nada que cargar, conectar ni instalar.'],
+    ],
+
+    comparaTitulo: '¿Por qué esto y no forzar la vista con el móvil?',
+    compara: [
+      'Con el móvil en la mano la imagen es pequeña y hay que acercarlo a la cara: aquí se ve grande a un palmo.',
+      'Las manos quedan libres: para comer, cocinar o hacer punto mientras ves algo.',
+      'Es más barato que una tablet o una tele pequeña y no gasta luz.',
+      'El pack de 2: uno para casa y otro para los abuelos o los niños.',
+    ],
+
+    preguntas: [
+      { q: '¿Sirve para mi móvil?', a: 'Sí. Vale para cualquier móvil, también con funda. El teléfono se pone en horizontal en el soporte de atrás.' },
+      { q: '¿Necesita pilas, cables o una aplicación?', a: 'No. Es una lente: no lleva pilas, no se conecta a nada y no hay que instalar nada en el móvil.' },
+      { q: '¿Cuánto se agranda?', a: 'La lente mide 12 pulgadas. La imagen del móvil se ve bastante más grande y con las manos libres.' },
+      { q: '¿Cómo se ve mejor?', a: 'Mirando de frente, a un palmo o dos, con el brillo del móvil alto. Si hay mucha luz detrás puede reflejar: se gira un poco y listo.' },
+      { q: '¿Lo pueden ver dos personas a la vez?', a: 'Se ve mejor de frente, así que es más cómodo para una o dos personas sentadas una al lado de la otra.' },
+      { q: '¿Por qué el pack de 2?', a: 'Es el más elegido: uno para casa y otro para regalar a los abuelos, a los niños o para llevar de viaje.' },
+      { q: '¿Y si no me convence?', a: 'Tienes 14 días desde que lo recibes para devolverlo sin usar en su embalaje. Si llega con algún fallo, nos escribes por WhatsApp y lo resolvemos.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: 'img/amplificador-ba.webp?v=1',
+    antesDespuesSub: 'Imagen ilustrativa: con el móvil en la mano se ve pequeño; con el amplificador se ve grande y con las manos libres.',
+
+    /* PRECIOS aprobados por James 08-11-2026 ("dale, avanza"): 1 u. 18,95 € · 2 u. 27,95 € · 3 u. 34,95 €.
+       Competencia en la Biblioteca de Meta España (08-11): la más barata Factory Los Alcores 19,99 € (1 u., contra reembolso, el mismo
+       SKU de Dropi PRO); también anuncian Nuvendia y Elmejorr us. 'antes' en 0: producto nuevo (Ley 7/1996 art. 20.1). */
+    packs: [
+      { cant: 1, precio: 18.95, antes: 0, texto: '1 amplificador' },
+      { cant: 2, precio: 27.95, antes: 0, texto: '2 amplificadores' },
+      { cant: 3, precio: 34.95, antes: 0, texto: '3 amplificadores' },
+    ],
+    popular: 1,
+
+    /* Pago anticipado 16,99 · 24,99 · 30,99 € (09-11, propuesto: James pidió avanzar sin más preguntas; se le muestra antes de publicar). */
+    anticipado: {
+      pct: 10,
+      descuento: 2.00,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [16.99, 24.99, 30.99],
+    },
+  },
 ];
 
 /* ============================================================
@@ -1032,4 +1129,6 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* crema sangre de dragón 1568, aprobados 25-10-2026 (2 cremas 28,95 ya está) y su pago anticipado −10 % (26,05 ya está) */
   48.95, 44.05,
   /* almohada cervical mariposa 2901, aprobados 02-11-2026 y su pago anticipado (28,99 · 25,99 · 41,99 ya están) */
-  46.99, 57.99, 51.99];
+  46.99, 57.99, 51.99,
+  /* amplificador de pantalla 12" (Dropi PRO 6), aprobados 08-11-2026, y su pago anticipado 16,99 · 24,99 (30,99 ya está) */
+  18.95, 27.95, 34.95, 16.99, 24.99];
