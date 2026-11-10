@@ -615,7 +615,8 @@ window.PRODUCTOS = window.PRODUTOS;
 window.BASE_TIENDA = '/pt/';
 /* 23-10-2026: Portugal já tem o seu próprio WhatsApp (+351 918 470 538), dado por James.
    ficha.js usa (window.WA_NUM || '34672423735'), por isso Espanha fica como estava. */
-window.WA_NUM = '351918470538';
+/* 10-11-2026: o +351 foi bloqueado pela Meta (07-11). Enquanto não há número português novo, Portugal atende pelo +34 661 72 98 24 (Inês já responde aí). */
+window.WA_NUM = '34661729824';
 
 window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* 22-10 James: selante e pulseira com os mesmos preços de Espanha (com e sem pagamento antecipado) */
