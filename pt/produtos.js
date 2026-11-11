@@ -617,7 +617,9 @@ window.PRODUTOS = [
      A Velofy vende 2 frascos (1+1 grátis) a 29,99 €: nós damos os mesmos 2 por menos e o pack de 10 que ninguém tem.
      ============================================================ */
   {
-    id: 'desentupidor', enlace: 'desentupidor', unidad: 'um', promo: 2,
+    /* promo: 10 = a secção de promoção da loja empurra o pack de 10. promoRef: o preço riscado é o de comprar esses
+       10 frascos em packs de 2 a 27,99 € (139,95 €), um preço que se aplica HOJE nesta mesma página. */
+    id: 'desentupidor', enlace: 'desentupidor', unidad: 'um', promo: 10, promoRef: true,
     dropiId: 1925,
 
     nombre: 'Desentupidor em Pó',

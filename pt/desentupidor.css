@@ -101,6 +101,35 @@ body.p-desentupidor #prod > .dp-oculto{display:none !important}
 .p-desentupidor .dp-cd i{font-style:normal;font-size:11px;font-weight:700;color:var(--gris);margin-right:5px}
 @media (min-width:620px){.p-desentupidor .dp-compra-grid{grid-template-columns:200px 1fr;gap:28px}.p-desentupidor .dp-escalera{grid-template-columns:1fr 1fr 1fr}.p-desentupidor .dp-esc{flex-direction:column;align-items:flex-start;gap:2px}}
 
+/* ---------- PROMOÇÃO (a secção das fichas, com a cor e as letras da DRAINPRO) ---------- */
+body.p-desentupidor #prod .promo-sec.dp-promo{background:var(--agua);padding:44px 20px 48px;margin:0;position:relative;overflow:hidden}
+body.p-desentupidor #prod .dp-promo::before{content:'';position:absolute;inset:-40% -20% auto;height:80%;background:radial-gradient(closest-side,rgba(34,200,230,.22),transparent);pointer-events:none;animation:dp-aura 6s ease-in-out infinite alternate}
+@keyframes dp-aura{from{transform:translateX(-12%)}to{transform:translateX(12%)}}
+body.p-desentupidor #prod .dp-promo .promo-card{position:relative;max-width:var(--max);margin:0 auto;border:2px solid var(--cian);border-radius:18px;background:linear-gradient(170deg,#10334f,#0b2a45);box-shadow:0 0 0 6px rgba(34,200,230,.08),0 22px 50px rgba(0,0,0,.35);overflow:hidden}
+body.p-desentupidor #prod .dp-promo .promo-banner{background:var(--amar);color:var(--negro);font-family:var(--disp);font-weight:900;font-size:20px;letter-spacing:.12em;text-transform:uppercase;padding:11px 16px}
+body.p-desentupidor #prod .dp-promo .promo-banner .chispa{display:inline-block;animation:dp-gira 3.2s linear infinite}
+@keyframes dp-gira{to{transform:rotate(360deg)}}
+body.p-desentupidor #prod .dp-promo .promo-banner-sub{font-family:var(--disp);font-size:14px;color:var(--negro);opacity:.85}
+body.p-desentupidor #prod .dp-promo .promo-cuerpo{padding:18px 18px 20px;color:var(--tenue);font-family:var(--ff)}
+body.p-desentupidor #prod .dp-promo-foto{margin:0 0 14px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+body.p-desentupidor #prod .dp-promo-foto img{width:100%;height:auto;display:block}
+body.p-desentupidor #prod .dp-promo-txt{margin:0 0 14px;font-size:15px;line-height:1.6;color:var(--tenue)}
+body.p-desentupidor #prod .dp-promo-txt b{color:#fff}
+body.p-desentupidor #prod .dp-promo .promo-qt{font-family:var(--disp);font-weight:900;font-size:30px;letter-spacing:.02em;text-transform:uppercase;color:#fff}
+body.p-desentupidor #prod .dp-promo .promo-antes{color:var(--tenue);font-family:var(--disp);font-size:22px}
+body.p-desentupidor #prod .dp-promo .promo-precio{font-family:var(--disp);font-weight:900;font-size:56px;color:var(--amar);text-shadow:0 0 24px rgba(255,210,31,.35)}
+body.p-desentupidor #prod .dp-promo .promo-off{background:var(--cian);color:var(--noche);font-family:var(--disp);font-weight:900;font-size:20px;border-radius:8px;padding:3px 9px;animation:dp-late 1.8s ease-in-out infinite}
+@keyframes dp-late{0%,100%{transform:scale(1)}50%{transform:scale(1.1);box-shadow:0 0 18px rgba(34,200,230,.7)}}
+body.p-desentupidor #prod .dp-promo .promo-uni{color:#e6eef5;font-size:15px}
+body.p-desentupidor #prod .dp-promo .promo-uni b{color:var(--amar)}
+body.p-desentupidor #prod .dp-promo .cuenta>div{background:rgba(255,255,255,.04);border:1.5px solid rgba(34,200,230,.45);border-radius:12px}
+body.p-desentupidor #prod .dp-promo .cuenta b{font-family:var(--disp);font-weight:900;color:var(--amar)}
+body.p-desentupidor #prod .dp-promo .cuenta span{color:var(--tenue)}
+body.p-desentupidor #prod .dp-promo .cta{background:var(--amar);color:var(--negro);font-family:var(--disp);font-weight:900;font-size:22px;letter-spacing:.04em;text-transform:uppercase;border-radius:14px;box-shadow:0 12px 30px rgba(255,210,31,.28);position:relative;overflow:hidden;isolation:isolate}
+body.p-desentupidor #prod .dp-promo .cta::after{content:'';position:absolute;top:0;bottom:0;left:-42%;width:34%;z-index:-1;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-18deg);animation:dp-brillo 3.6s ease-in-out 1.4s infinite}
+body.p-desentupidor #prod .dp-promo a,body.p-desentupidor #prod .dp-promo p{color:inherit}
+@media (prefers-reduced-motion:reduce){body.p-desentupidor #prod .dp-promo::before,body.p-desentupidor #prod .dp-promo .promo-off,body.p-desentupidor #prod .dp-promo .chispa,body.p-desentupidor #prod .dp-promo .cta::after{animation:none}}
+
 /* ---------- passos ---------- */
 .p-desentupidor .dp-linea{position:relative;margin-top:30px;padding-left:54px}
 .p-desentupidor .dp-riel{position:absolute;left:19px;top:8px;bottom:8px;width:2px;background:rgba(255,255,255,.1);border-radius:2px}

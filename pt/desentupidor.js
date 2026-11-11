@@ -172,8 +172,8 @@
       +   '<span class="dp-rot">Veja como funciona</span>'
       +   '<h2 class="dp-h2">Deita, espera <em>e a água escoa.</em></h2>'
       +   '<div class="dp-video-caja dp-rev">'
-      +     '<video class="dp-video-prod" autoplay muted loop playsinline controls preload="metadata" poster="img/desentupidor-video-poster.webp?v=1">'
-      +       '<source src="img/desentupidor-video.mp4?v=1" type="video/mp4">'
+      +     '<video class="dp-video-prod" autoplay muted loop playsinline controls preload="metadata" poster="img/desentupidor-video-poster.webp?v=2">'
+      +       '<source src="img/desentupidor-video.mp4?v=2" type="video/mp4">'
       +     '</video>'
       +   '</div>'
       + '</div>'
@@ -231,24 +231,40 @@
     }
 
     /* o que fica da loja: opiniões, pagamento antecipado, com quem enviamos, outros produtos e o pedido */
+    /* 11-11 James: "la sección de promoción no está igual a la de Chile… está muy simple, tiene bastante texto": em vez
+       da compra curta vai a secção de PROMOÇÃO das fichas (faixa, preço riscado, −%, preço por frasco, poupança,
+       contagem e botão), com a foto do pack de 10. */
+    var promoSec = prod.querySelector('.promo-sec');
     function fica(n) {
-      return n.id === 'resenas' || n.id === 'pedir' || n.classList.contains('pagoAntES')
+      return n === promoSec || n.id === 'resenas' || n.id === 'pedir' || n.classList.contains('pagoAntES')
         || !!n.querySelector('.sellos') || !!n.querySelector('.otros');
     }
     [].slice.call(prod.children).forEach(function (n) { if (!fica(n)) n.classList.add('dp-oculto'); });
 
     /* as secções da DRAINPRO, pela ordem do Chile, à frente de tudo */
     var antes = prod.firstElementChild;
-    nodos(heroi() + cifras() + compra() + passos() + cambio() + usos() + formula() + video() + compara())
-      .forEach(function (n) { prod.insertBefore(n, antes); });
+    var arriba = nodos(heroi() + cifras());
+    var abajo = nodos(passos() + cambio() + usos() + formula() + video() + compara());
+    arriba.forEach(function (n) { prod.insertBefore(n, antes); });
+    if (promoSec) {
+      prod.insertBefore(promoSec, antes);
+      promoSec.classList.add('dp-promo');
+      var corpo = promoSec.querySelector('.promo-cuerpo');
+      if (corpo) corpo.insertAdjacentHTML('afterbegin', '<figure class="dp-promo-foto"><img src="img/desentupidor-promo.webp?v=1" alt="Dez frascos do desentupidor em pó: pack para todos os ralos da casa" width="900" height="900" loading="lazy"></figure>'
+        + '<p class="dp-promo-txt">Um frasco por cada ralo da casa: cozinha, duche, lavatório e sanita, e os outros guardados para a próxima vez. Ninguém em Portugal dá <b>10 frascos</b> por este preço.</p>');
+    } else {
+      nodos(compra()).forEach(function (n) { prod.insertBefore(n, antes); });
+    }
+    abajo.forEach(function (n) { prod.insertBefore(n, antes); });
 
     /* garantia + perguntas: depois das opiniões (como no Chile), ou antes do "com quem enviamos" se ainda não há opiniões */
     var gar = nodos(garantia())[0];
     var res = document.getElementById('resenas');
     if (res && res.parentNode === prod) res.insertAdjacentElement('afterend', gar);
     else {
+      /* sem opiniões: antes do "com quem enviamos" (ou do pedido), ao fim da página como no Chile */
       var ref = null;
-      [].slice.call(prod.children).forEach(function (n) { if (!ref && !n.classList.contains('dp-oculto') && !/^dp-/.test(n.className) && n.id !== 'inicio' && n.className.indexOf('dp-') !== 0) ref = n; });
+      [].slice.call(prod.children).forEach(function (n) { if (!ref && (n.querySelector('.sellos') || n.id === 'pedir')) ref = n; });
       prod.insertBefore(gar, ref || document.getElementById('pedir'));
     }
 
