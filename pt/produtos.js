@@ -605,6 +605,102 @@ window.PRODUTOS = [
       precios: [31.45, 49.45],
     },
   },
+
+  /* ============================================================
+     DESENTUPIDOR EM PÓ · PORTUGAL (11-11-2026)
+     Dropi PRO id 1925 "Limpiadores de Desagües Potente 110G" · custo 1,49 € sem IVA (1,80 € com IVA).
+     É o mesmo frasco "Sink & Drain Cleaner · VALUE PACK!" que no Chile se vende como DRAINPRO.
+     James 11-11: "arma la misma página que tenemos en Chile, solamente cámbiale cosas de Portugal" + "Sí, autorizo"
+     → desenho da DRAINPRO do Chile (desentupidor.css + desentupidor.js, só atuam com body.p-desentupidor),
+     ligado à loja: o formulário, os packs, o pagamento antecipado e o painel são os da loja.
+     PREÇOS aprovados por James 11-11 ("Sí, aprobado"): 2 frascos 27,99 · 4 frascos 37,99 · 10 frascos 54,99 €.
+     A Velofy vende 2 frascos (1+1 grátis) a 29,99 €: nós damos os mesmos 2 por menos e o pack de 10 que ninguém tem.
+     ============================================================ */
+  {
+    id: 'desentupidor', enlace: 'desentupidor', unidad: 'um', promo: 2,
+    dropiId: 1925,
+
+    nombre: 'Desentupidor em Pó',
+    sub: 'Oxigénio ativo · desentope canos e ralos em 20 minutos',
+    categoria: 'Casa',
+    etiqueta: 'Novo em Portugal',
+    etiquetaOro: true,
+
+    foto: 'img/desentupidor-frasco.webp?v=1',
+    fotos: ['img/desentupidor-frasco.webp?v=1', 'img/desentupidor-cozinha.webp?v=1', 'img/desentupidor-duche.webp?v=1'],
+
+    hero: {
+      img: 'img/desentupidor-heroi.webp?v=1',   /* o desentupidor.js troca o herói da ficha pelo da DRAINPRO */
+      kicker: 'Oxigénio ativo · sem canalizador · sem soda cáustica',
+      titulo: 'O cano entupido, desentupido em 20 minutos.',
+      sub: 'Deita o pó, junta água quente e a água volta a escoar. Lava-loiça, duche, lavatório e sanita.',
+      datos: [
+        ['envio', 'Portes grátis'],
+        ['reloj', 'Em 24-48 h'],
+        ['pago', 'Paga na entrega'],
+      ],
+    },
+    acento: '#22C8E6',
+    botonAlt: '#FFD21F',
+
+    desc: 'O Desentupidor em Pó desentope o lava-loiça, o duche, o lavatório e a sanita sem chamar o canalizador. É oxigénio ativo: em contacto com a água quente liberta pressão e calor controlados que soltam a gordura, o cabelo, o papel e os restos de comida presos no cano. Não é corrosivo, por isso não estraga canos de PVC, metal nem cobre, e não deixa o cheiro a químico dos desentupidores líquidos. Cada frasco traz 110 g.',
+
+    puntos: [
+      'Desentope em 20-30 minutos',
+      'Oxigénio ativo: sem soda cáustica',
+      'Seguro para PVC, metal e cobre',
+      'Lava-loiça, duche, lavatório e sanita',
+      'Tira o mau cheiro de raiz',
+    ],
+
+    formulaRotulo: 'O que é',
+    formulaTitulo: 'Não é soda cáustica: é oxigénio ativo.',
+    formulaSub: 'O que acontece quando junta a água quente.',
+    formula: [
+      ['agua', 'Oxigénio ativo', 'Com a água quente liberta pressão e calor que soltam o que está preso.'],
+      ['escudo', 'Não corrosivo', 'Seguro para canos de PVC, metal e cobre. Não deforma o plástico.'],
+      ['rayo', 'Em 20 minutos', 'Deita, espera e enxagua: a água volta a escoar.'],
+      ['casa', 'Para toda a casa', 'Cozinha, duche, lavatório e sanita com o mesmo pó.'],
+    ],
+
+    comparaTitulo: 'Contra os desentupidores líquidos',
+    compara: [
+      'Dissolve gordura, cabelo, papel e restos de comida.',
+      'Não é corrosivo: não estraga os canos.',
+      'Um frasco por ralo, guardado para a próxima vez.',
+    ],
+
+    preguntas: [
+      { q: 'Em quanto tempo desentope?', a: 'Na maioria dos casos o ralo fica livre 20 a 30 minutos depois de aplicar. Num entupimento forte, repita a aplicação.' },
+      { q: 'Estraga os canos?', a: 'Não. Não é corrosivo: é seguro para canos de PVC, metal e cobre. Não deforma o plástico nem estraga as ligações.' },
+      { q: 'Onde posso usar?', a: 'No lava-loiça, no lavatório, no duche, na banheira e na sanita. Funciona com entupimentos de gordura, cabelo, papel e restos de comida.' },
+      { q: 'Como se usa?', a: 'Deite 50 a 100 g de pó no ralo seco, junte uma chávena de água quente (cerca de 60 °C, sem ferver) e espere 20-30 minutos. Depois enxague com água da torneira.' },
+      { q: 'Quanto rende um frasco?', a: 'Cada frasco traz 110 g: dá para uma aplicação num ralo muito entupido ou duas de manutenção. Por isso compensa o pack de 10: um para cada ralo da casa e outros guardados para a próxima.' },
+      { q: 'Como é que pago?', a: 'À escolha. Pode pagar ao estafeta quando receber a encomenda, ou pagar agora com cartão e poupar 10 % — nesse caso a encomenda segue com entrega prioritária.' },
+    ],
+
+    fotosResenas: [],
+    antesDespues: 'img/desentupidor-cano.webp?v=1',
+    antesDespuesSub: 'O mesmo cano por dentro: entupido de gordura, e 20 minutos depois de uma aplicação.',
+
+    /* PREÇOS · James 11-11 ("Sí, aprobado"). 'antes' a 0: produto novo. O pack de 10 é o destacado. */
+    packs: [
+      { cant: 2, precio: 27.99, antes: 0, texto: '2 frascos' },
+      { cant: 4, precio: 37.99, antes: 0, texto: '4 frascos' },
+      { cant: 10, precio: 54.99, antes: 0, texto: '10 frascos' },
+    ],
+    popular: 2,
+
+    /* Pagamento antecipado −10 % como nos outros produtos de Portugal: 25,19 / 34,19 / 49,49 € À ESPERA DO OK de James. */
+    anticipado: {
+      pct: 10,
+      descuento: 2.80,
+      envio: 'Entrega prioritária',
+      titulo: 'Pague agora',
+      sub: 'Com entrega prioritária, sem custo. Paga-se com cartão ou PayPal.',
+      precios: [25.19, 34.19, 49.49],
+    },
+  },
 ];
 
 /* ficha.js procura window.PRODUCTOS. Em Portugal o catálogo chama-se PRODUTOS,
@@ -628,4 +724,6 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* 28-10 James: caderno mágico (na entrega) + pagamento antecipado −10 % */
   19.95, 29.95, 39.95, 17.95, 26.95, 35.95,
   /* 02-11 James "Sí, la crema": creme sangue de dragão 2 × 34,95 · 4 × 54,95 (antecipado 31,45 / 49,45 à espera do OK) */
-  34.95, 54.95, 31.45, 49.45];
+  34.95, 54.95, 31.45, 49.45,
+  /* 11-11 James "Sí, aprobado": desentupidor 2 × 27,99 · 4 × 37,99 · 10 × 54,99 (antecipado 25,19 / 34,19 / 49,49 à espera do OK) */
+  27.99, 37.99, 54.99, 25.19, 34.19, 49.49];

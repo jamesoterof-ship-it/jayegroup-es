@@ -16,7 +16,7 @@
     if (/^#pagar-/i.test(h)) { window.__PAGAR = h.slice(7); h = ''; }
     else if (q.get('pagar')) { window.__PAGAR = q.get('pagar'); }
     q.delete('pagar');
-    var CURTO = { pulsera: 'pulseira', aranazos: 'riscos', sellador: 'selante', balsamo: 'balsamo', caderno: 'caderno', crema: 'creme' };
+    var CURTO = { pulsera: 'pulseira', aranazos: 'riscos', sellador: 'selante', balsamo: 'balsamo', caderno: 'caderno', crema: 'creme', desentupidor: 'desentupidor' };
     if (p && CURTO[p] && /produto\.html$/.test(location.pathname)) {
       q.delete('p'); var r = q.toString();
       history.replaceState(history.state, '', '/pt/' + CURTO[p] + (r ? '?' + r : '') + h);
@@ -36,7 +36,9 @@
     pulsera: { img: 'img/hero-pulsera.webp?v=3', js: 'pulsera.js?v=5', letras: 'https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;0,700;1,600&family=Montserrat:wght@400;500;600;700&display=swap' },
     caderno: { img: 'img/caderno-heroi.webp?v=1', js: 'caderno.js?v=2', letras: 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Comic+Neue:wght@300;400;700&display=swap' },
     /* 02-11: creme sangue de dragão (mesmas letras que o crema.js pede) */
-    crema: { img: 'img/crema-hero3.webp?v=1', js: 'crema.js?v=1', letras: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap' }
+    crema: { img: 'img/crema-hero3.webp?v=1', js: 'crema.js?v=1', letras: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap' },
+    /* 11-11: desentupidor = desenho da DRAINPRO do Chile (James "Sí, autorizo") */
+    desentupidor: { img: 'img/desentupidor-heroi.webp?v=1', js: 'desentupidor.js?v=1', letras: 'https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Inter:wght@400;600;800&display=swap' }
   };
   var s = SOLO[window.__P];
   window.__SOLO = s ? window.__P : '';
@@ -56,6 +58,7 @@
 html.carga-pulsera #prod:empty { min-height: 100vh; background: #1C1917; }
 html.carga-caderno #prod:empty { min-height: 100vh; background: #EFF6FF; }
 html.carga-crema #prod:empty { min-height: 100vh; background: #FFF1F2; }
+html.carga-desentupidor #prod:empty { min-height: 100vh; background: #061a2e; }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="facebook-domain-verification" content="bh17zp72fh5ewf4yle14ommqnjdgcx" />
@@ -88,6 +91,8 @@ __carga('pulsera', '<link rel="stylesheet" href="pulsera.css?v=3">');</script>
 <script>__carga('caderno', '<link rel="stylesheet" href="caderno.css?v=2">');</script>
 <!-- 02-11: creme sangue de dragão = o MESMO desenho de Espanha (crema.css tal qual, só atua com body.p-crema). -->
 <script>__carga('crema', '<link rel="stylesheet" href="crema.css?v=1">');</script>
+<!-- 11-11: desentupidor em pó = desenho da DRAINPRO do Chile (só atua com body.p-desentupidor). -->
+<script>__carga('desentupidor', '<link rel="stylesheet" href="desentupidor.css?v=1">');</script>
 <!-- Los CSS de los productos de Chile (organizador, clorofila, lymphoria,
      antena, cargador) NO existen en este repo: daban cinco 404 en cada carga. -->
 <style>
@@ -1272,6 +1277,8 @@ __carga('pulsera', '<script src="pulsera.js?v=5"><\/script>');</script>
 <script>__carga('aranazos', '<script src="aranazos.js?v=5"><\/script>');</script>
 <!-- 28-10: caderno mágico (só atua com ?p=caderno). -->
 <script>__carga('caderno', '<script src="caderno.js?v=2"><\/script>');</script>
+<!-- 11-11: desentupidor em pó (só atua com ?p=desentupidor). -->
+<script>__carga('desentupidor', '<script src="desentupidor.js?v=1"><\/script>');</script>
 <!-- 02-11: creme sangue de dragão (só atua com ?p=crema). -->
 <script>__carga('crema', '<script src="crema.js?v=1"><\/script>');</script>
 <!-- Los js de los productos de Chile (organizador, clorofila, lymphoria,
