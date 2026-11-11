@@ -42,7 +42,9 @@ body.p-crema .cr-heroe__img { display: block; width: 100%; height: auto; aspect-
 /* James 25-10: el titular ENCIMA de la foto, en la zona clara de arriba (sobre la cabeza de la clienta), sin franja ni fondo
    detrás y sin tapar a la clienta ni el producto; las letras entran en cascada */
 body.p-crema .cr-heroe__txt { position: absolute; top: 0; left: 0; right: 0; padding: var(--space-xl) var(--space-md) 0; text-align: center; background: none; }
-body.p-crema .cr-heroe__nota { margin: 0 0 var(--space-sm); font: 600 14px/1.3 var(--cr-txt); color: var(--color-foreground); letter-spacing: .04em; }
+body.p-crema .cr-heroe__nota { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 var(--space-sm); padding: 6px 14px; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 999px; box-shadow: 0 4px 14px rgba(15,23,42,.14); font: 600 15px/1.3 var(--cr-txt); color: var(--color-foreground); letter-spacing: .02em; }
+body.p-crema .cr-heroe__nota b { font-weight: 800; }
+body.p-crema .cr-heroe__nota .cr-est { font-size: 16px; letter-spacing: 1px; }
 body.p-crema .cr-heroe__h1 {
   margin: 0; font-family: var(--cr-tit); font-weight: 700; color: var(--color-foreground);
   font-size: clamp(30px, 8vw, 60px); line-height: 1.05; letter-spacing: -.01em;

@@ -140,6 +140,8 @@
     var notaEl = hero.querySelector('.heroP__nota');
     /* James 25-10: "las estrellas de calificación siempre de color dorado" */
     var nota = notaEl ? '<span class="cr-est" aria-hidden="true">★★★★★</span> ' + notaEl.innerText.replace(/\s+/g, ' ').replace(/★/g, '').trim() : '';
+    /* 11-11 James: la calificación de arriba no se veía → "4,9 · 141 reseñas" con la nota en negrita, en pastilla (crema.css) */
+    if (nota) nota = nota.replace(/<\/span> (\d+[,.]\d) /, '</span> <b>$1</b> · ');
 
     /* fuera la portada de la plantilla y la segunda presentación del producto (James: "presentas el producto dos veces") */
     var hijos = [].slice.call(prod.children);
