@@ -58,7 +58,8 @@
       + '</div>'
       + '<div class="dp-hero-pie">'
       +   '<div class="dp-hero-cta dp-casc" style="--d:1.15s">'
-      +     '<button type="button" class="dp-btn" data-i="' + TOP + '">Quero desentupir <span>' + K[TOP].cant + ' frascos · ' + eur(K[TOP].precio) + '</span></button>'
+      /* 11-11 James: no herói vai o preço de ENTRADA (2 frascos), não o da promoção */
+      +     '<button type="button" class="dp-btn" data-i="0">Quero desentupir <span>' + K[0].cant + ' frascos · ' + eur(K[0].precio) + '</span></button>'
       +     '<span class="dp-hero-nota">Portes grátis · paga na entrega</span>'
       +   '</div>'
       + '</div>'
@@ -172,8 +173,8 @@
       +   '<span class="dp-rot">Veja como funciona</span>'
       +   '<h2 class="dp-h2">Deita, espera <em>e a água escoa.</em></h2>'
       +   '<div class="dp-video-caja dp-rev">'
-      +     '<video class="dp-video-prod" autoplay muted loop playsinline controls preload="metadata" poster="img/desentupidor-video-poster.webp?v=3">'
-      +       '<source src="img/desentupidor-video.mp4?v=3" type="video/mp4">'
+      +     '<video class="dp-video-prod" autoplay muted loop playsinline controls preload="metadata" poster="img/desentupidor-video-poster.webp?v=4">'
+      +       '<source src="img/desentupidor-video.mp4?v=4" type="video/mp4">'
       +     '</video>'
       +   '</div>'
       + '</div>'
@@ -246,16 +247,20 @@
     var arriba = nodos(heroi() + cifras());
     var abajo = nodos(passos() + cambio() + usos() + formula() + video() + compara());
     arriba.forEach(function (n) { prod.insertBefore(n, antes); });
+    abajo.forEach(function (n) { prod.insertBefore(n, antes); });
     if (promoSec) {
-      prod.insertBefore(promoSec, antes);
+      /* 11-11 James: "la promoción tienes que ponerla más abajo: después del vídeo o después de las reseñas" */
+      var res0 = document.getElementById('resenas');
+      var trasDe = (res0 && res0.parentNode === prod) ? res0 : prod.querySelector('.dp-video-sec');
+      if (trasDe) trasDe.insertAdjacentElement('afterend', promoSec); else prod.insertBefore(promoSec, antes);
       promoSec.classList.add('dp-promo');
       var corpo = promoSec.querySelector('.promo-cuerpo');
       if (corpo) corpo.insertAdjacentHTML('afterbegin', '<figure class="dp-promo-foto"><img src="img/desentupidor-promo.webp?v=1" alt="Dez frascos do desentupidor em pó: pack para todos os ralos da casa" width="900" height="900" loading="lazy"></figure>'
         + '<p class="dp-promo-txt">Um frasco por cada ralo da casa: cozinha, duche, lavatório e sanita, e os outros guardados para a próxima vez. Ninguém em Portugal dá <b>10 frascos</b> por este preço.</p>');
     } else {
-      nodos(compra()).forEach(function (n) { prod.insertBefore(n, antes); });
+      var vs = prod.querySelector('.dp-video-sec');
+      nodos(compra()).forEach(function (n) { if (vs) vs.insertAdjacentElement('afterend', n); else prod.insertBefore(n, antes); });
     }
-    abajo.forEach(function (n) { prod.insertBefore(n, antes); });
 
     /* garantia + perguntas: depois das opiniões (como no Chile), ou antes do "com quem enviamos" se ainda não há opiniões */
     var gar = nodos(garantia())[0];
