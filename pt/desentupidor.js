@@ -57,6 +57,8 @@
       +   '</div>'
       + '</div>'
       + '<div class="dp-hero-pie">'
+      /* 11-11 James: "¿dónde está el precio de 2 unidades arriba?" → o preço grande e à vista no herói */
+      +   '<div class="dp-hero-precio dp-casc" style="--d:1.05s"><b>' + eur(K[0].precio) + '</b><span>' + K[0].cant + ' frascos<br>portes grátis</span></div>'
       +   '<div class="dp-hero-cta dp-casc" style="--d:1.15s">'
       /* 11-11 James: no herói vai o preço de ENTRADA (2 frascos), não o da promoção */
       +     '<button type="button" class="dp-btn" data-i="0">Quero desentupir <span>' + K[0].cant + ' frascos · ' + eur(K[0].precio) + '</span></button>'

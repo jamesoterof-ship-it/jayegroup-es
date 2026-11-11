@@ -60,6 +60,9 @@ body.p-desentupidor #prod > .dp-oculto{display:none !important}
 .p-desentupidor .dp-frase{margin:0;max-width:55%;font-size:14px;line-height:1.45;color:#e6eef5;text-shadow:0 1px 10px rgba(0,0,0,.85)}
 .p-desentupidor .dp-hero-pie{position:relative;z-index:2;padding:16px 20px 26px;max-width:640px;margin:0 auto}
 .p-desentupidor .dp-hero-cta{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.p-desentupidor .dp-hero-precio{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.p-desentupidor .dp-hero-precio b{font-family:var(--disp);font-weight:900;font-size:clamp(46px,13vw,64px);line-height:1;color:var(--amar);text-shadow:0 0 24px rgba(255,210,31,.35);font-variant-numeric:tabular-nums}
+.p-desentupidor .dp-hero-precio span{font-family:var(--disp);font-weight:700;font-size:16px;line-height:1.15;letter-spacing:.1em;text-transform:uppercase;color:#fff}
 .p-desentupidor .dp-hero-nota{font-family:var(--disp);font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cian2)}
 /* cascata (só se o desentupidor.js pôs .dp-arranca) */
 .dp-arranca.p-desentupidor .dp-h1 .dp-pal{transform:translateY(-115%);opacity:0}
