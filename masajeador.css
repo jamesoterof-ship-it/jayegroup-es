@@ -3,17 +3,21 @@
    Plano ui-ux-pro-max opción 227 (design-system/masajeador-cervical-es, pages/masajeador.md), aprobado por James 17-11
    ("eso es como la camisilla"): fondo #050510, tarjetas #101823 / #1D1D28, borde #333344, texto #E0E0FF / #94A3B8,
    cian #00FFFF (botón en cian en vez del fucsia #FF00FF, aprobado), violeta #7B61FF, letra Space Grotesk.
+   17-11 tarde: James pidió AZUL en vez del cian (se veía verde) → --mz-cian = azul del producto (--acento de la ficha).
    Solo colores y letra del plano (candado de paleta). Encabezado y pie = los de la tienda (tienda.css): no se tocan.
    Solo actúa con body.p-masajeador.
    ============================================================ */
 body.p-masajeador{
   --mz-fondo:#050510; --mz-tarjeta:#101823; --mz-tenue:#1D1D28; --mz-borde:#333344;
-  --mz-texto:#E0E0FF; --mz-gris:#94A3B8; --mz-cian:#00FFFF; --mz-violeta:#7B61FF; --mz-tinta:#0F172A;
+  --mz-texto:#E0E0FF; --mz-gris:#94A3B8; --mz-violeta:#7B61FF;
+  /* James 17-11: "¿por qué verde si es azul?" — el cian del plano se veía verdoso; ahora es el AZUL del producto (--acento de la ficha) */
+  --mz-cian:var(--acento); --mz-tinta:#0F172A;
   --mz-vidrio:rgba(16,24,35,.62); --mz-vidrio-borde:rgba(224,224,255,.14);
 }
 body.p-masajeador .mz-oculto{display:none!important}
-/* James 17-11: las reseñas, el pago, la garantía, las preguntas y el FORMULARIO quedan con el diseño de SIEMPRE (el de todas las
-   páginas). Por eso el fondo oscuro va solo en las secciones propias (.mz-heroe, .mz-sec, .mz-cinta), de borde a borde, y no en #prod. */
+/* James 17-11: las reseñas, el pago, la garantía y las preguntas quedan con el diseño de SIEMPRE (el de todas las páginas).
+   Por eso el fondo oscuro va solo en las secciones propias (.mz-heroe, .mz-sec, .mz-cinta), de borde a borde, y no en #prod.
+   Después James pidió el FORMULARIO en oscuro (bloque "FORMULARIO EN OSCURO", más abajo): solo colores, la forma no cambia. */
 body.p-masajeador #prod{overflow-x:hidden}
 body.p-masajeador :is(.mz-heroe,.mz-sec,.mz-cinta){font-family:'Space Grotesk',sans-serif;color:var(--mz-texto)}
 body.p-masajeador :is(.mz-heroe,.mz-sec){background:var(--mz-fondo);box-shadow:0 0 0 100vmax var(--mz-fondo);clip-path:inset(0 -100vmax)}
@@ -28,7 +32,7 @@ body.p-masajeador #prod .mz-h1,body.p-masajeador #prod .mz-h2{font-family:'Space
 body.p-masajeador #prod .mz-h1{font-size:clamp(48px,14vw,80px);line-height:.92;text-shadow:0 4px 30px rgba(0,0,0,.7)}
 body.p-masajeador #prod .mz-h2{font-size:clamp(38px,10.5vw,68px);line-height:.95;text-align:center;margin-bottom:18px;display:block}
 body.p-masajeador #prod .mz-h2::before,body.p-masajeador #prod .mz-h2::after{content:none;display:none}
-body.p-masajeador #prod .mz-h1 em,body.p-masajeador #prod .mz-h2 em{font-style:normal;color:var(--mz-cian);text-shadow:0 0 24px rgba(0,255,255,.45)}
+body.p-masajeador #prod .mz-h1 em,body.p-masajeador #prod .mz-h2 em{font-style:normal;color:var(--mz-cian);text-shadow:0 0 24px color-mix(in srgb,var(--mz-cian) 45%,transparent)}
 body.p-masajeador #prod .mz-rot{display:block;text-align:center;font:600 13px/1 'Space Grotesk',sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--mz-cian);margin:0 0 12px}
 body.p-masajeador #prod .mz-txt{font-size:18px;color:var(--mz-gris);text-align:center;max-width:580px;margin:0 auto 24px}
 body.p-masajeador #prod .mz-txt b{color:var(--mz-texto)}
@@ -38,9 +42,9 @@ body.p-masajeador .mz-sec{padding:60px 16px;max-width:760px;margin:0 auto;positi
 body.p-masajeador .mz-btn{
   display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:520px;margin:0 auto;min-height:58px;padding:14px 22px;border:0;border-radius:14px;cursor:pointer;
   background:var(--mz-cian);color:var(--mz-tinta);font:700 19px/1 'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:.04em;
-  box-shadow:0 0 0 1px rgba(0,255,255,.5),0 10px 34px rgba(0,255,255,.35);transition:transform .18s ease,box-shadow .18s ease}
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--mz-cian) 50%,transparent),0 10px 34px color-mix(in srgb,var(--mz-cian) 35%,transparent);transition:transform .18s ease,box-shadow .18s ease}
 body.p-masajeador .mz-btn svg{width:22px;height:22px;transition:transform .18s ease}
-body.p-masajeador .mz-btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(0,255,255,.7),0 14px 40px rgba(0,255,255,.5)}
+body.p-masajeador .mz-btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px color-mix(in srgb,var(--mz-cian) 70%,transparent),0 14px 40px color-mix(in srgb,var(--mz-cian) 50%,transparent)}
 body.p-masajeador .mz-btn:hover svg{transform:translateX(4px)}
 body.p-masajeador .mz-btn:active{transform:translateY(1px)}
 body.p-masajeador .mz-btn--sombra{background:rgba(29,29,40,.85);color:var(--mz-texto);box-shadow:inset 0 0 0 1px var(--mz-borde)}
@@ -64,7 +68,7 @@ body.p-masajeador .mz-oferta{margin:4px 0 18px;padding:16px}
 body.p-masajeador .mz-oferta__uno{display:flex;align-items:center;gap:12px;margin:0 0 12px}
 body.p-masajeador .mz-oferta__uno b{font:700 34px/1 'Space Grotesk',sans-serif;color:var(--mz-texto);white-space:nowrap}
 body.p-masajeador #prod .mz-oferta__uno span{font-size:13px;color:var(--mz-gris)}
-body.p-masajeador .mz-oferta__promo{padding:14px;border-radius:14px;border:1px solid rgba(0,255,255,.45);background:rgba(0,255,255,.07)}
+body.p-masajeador .mz-oferta__promo{padding:14px;border-radius:14px;border:1px solid color-mix(in srgb,var(--mz-cian) 45%,transparent);background:color-mix(in srgb,var(--mz-cian) 7%,transparent)}
 body.p-masajeador #prod .mz-oferta__rot{margin:0;font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--mz-cian)}
 body.p-masajeador #prod .mz-oferta__dos{margin:4px 0 8px;font:700 34px/1 'Space Grotesk',sans-serif;text-transform:uppercase;color:var(--mz-texto)}
 body.p-masajeador .mz-oferta__ahorro{display:flex;align-items:center;gap:10px;margin:0}
@@ -80,7 +84,7 @@ body.p-masajeador .mz-heroe__btns{display:grid;gap:12px;max-width:520px}
 body.p-masajeador #prod .mz-ya{margin:12px 0 0;font-size:14px;color:var(--mz-gris)}
 body.p-masajeador #prod .mz-ya b{color:var(--mz-cian)}
 body.p-masajeador .mz-ondas{position:absolute;left:50%;top:62%;width:0;height:0;z-index:1;pointer-events:none}
-body.p-masajeador .mz-ondas i{position:absolute;left:-120px;top:-120px;width:240px;height:240px;border-radius:50%;border:2px solid rgba(0,255,255,.55);opacity:0;animation:mzOnda 3.6s ease-out infinite}
+body.p-masajeador .mz-ondas i{position:absolute;left:-120px;top:-120px;width:240px;height:240px;border-radius:50%;border:2px solid color-mix(in srgb,var(--mz-cian) 55%,transparent);opacity:0;animation:mzOnda 3.6s ease-out infinite}
 body.p-masajeador .mz-ondas i:nth-child(2){animation-delay:1.2s}
 body.p-masajeador .mz-ondas i:nth-child(3){animation-delay:2.4s}
 body.p-masajeador .mz-datos{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);max-width:524px;margin:22px auto 0;padding:14px 0}
@@ -97,11 +101,11 @@ body.p-masajeador .mz-letra{display:inline-block;opacity:0;transform:translateY(
 /* --- marcos de imagen --- */
 body.p-masajeador .mz-marco{margin:0 auto;max-width:560px;border-radius:20px;overflow:hidden;border:1px solid var(--mz-borde);box-shadow:0 24px 60px rgba(0,0,0,.6)}
 body.p-masajeador .mz-marco img{width:100%;height:auto}
-body.p-masajeador .mz-marco--brillo{box-shadow:0 0 0 1px rgba(0,255,255,.35),0 0 60px rgba(0,255,255,.25)}
+body.p-masajeador .mz-marco--brillo{box-shadow:0 0 0 1px color-mix(in srgb,var(--mz-cian) 35%,transparent),0 0 60px color-mix(in srgb,var(--mz-cian) 25%,transparent)}
 body.p-masajeador .mz-marco + .mz-caja,body.p-masajeador .mz-caja + .mz-marco{margin-top:22px}
 
 /* --- cinta inclinada --- */
-body.p-masajeador .mz-cinta{position:relative;margin:30px -8px;transform:rotate(-3deg);background:var(--mz-cian);box-shadow:0 0 40px rgba(0,255,255,.45);overflow:hidden;padding:14px 0}
+body.p-masajeador .mz-cinta{position:relative;margin:30px -8px;transform:rotate(-3deg);background:var(--mz-cian);box-shadow:0 0 40px color-mix(in srgb,var(--mz-cian) 45%,transparent);overflow:hidden;padding:14px 0}
 body.p-masajeador .mz-cinta__pista{display:flex;gap:26px;width:max-content;animation:mzCinta 26s linear infinite;font:700 22px/1 'Space Grotesk',sans-serif;text-transform:uppercase;color:var(--mz-tinta);white-space:nowrap}
 body.p-masajeador .mz-cinta__pista i{font-style:normal;opacity:.5}
 
@@ -116,7 +120,7 @@ body.p-masajeador #prod .mz-tarjetas p{margin:0;font-size:14px;color:var(--mz-gr
 
 /* --- vídeo real --- */
 body.p-masajeador #prod .mz-video{background:transparent}
-body.p-masajeador #prod .mz-video video{width:100%;max-width:560px;margin:0 auto;border-radius:20px;border:1px solid var(--mz-borde);box-shadow:0 0 50px rgba(0,255,255,.18)}
+body.p-masajeador #prod .mz-video video{width:100%;max-width:560px;margin:0 auto;border-radius:20px;border:1px solid var(--mz-borde);box-shadow:0 0 50px color-mix(in srgb,var(--mz-cian) 18%,transparent)}
 
 /* --- antes y después (la imagen ya trae ANTES / DESPUÉS) --- */
 body.p-masajeador #prod .ba-sec.mz-ba{background:transparent;padding-top:60px}
@@ -145,7 +149,7 @@ body.p-masajeador .mz-op small{display:block;margin-top:4px;color:var(--mz-cian)
 /* --- oferta --- */
 body.p-masajeador .mz-caja{max-width:520px;margin:0 auto;padding:24px 18px;text-align:center}
 body.p-masajeador .mz-caja__pr{display:flex;align-items:baseline;justify-content:center;gap:12px;margin:0}
-body.p-masajeador .mz-caja__pr b{font:700 54px/1 'Space Grotesk',sans-serif;color:var(--mz-cian);text-shadow:0 0 26px rgba(0,255,255,.45)}
+body.p-masajeador .mz-caja__pr b{font:700 54px/1 'Space Grotesk',sans-serif;color:var(--mz-cian);text-shadow:0 0 26px color-mix(in srgb,var(--mz-cian) 45%,transparent)}
 body.p-masajeador .mz-caja__pr s{font-size:20px;color:var(--mz-gris)}
 body.p-masajeador #prod .mz-caja__u{margin:8px 0 0;font-weight:600}
 body.p-masajeador #prod .mz-caja__ya{margin:8px 0 0;font-size:14px;color:var(--mz-gris)}
@@ -165,6 +169,54 @@ body.p-masajeador #prod .pagoOp__pr{font-weight:700;font-size:24px;line-height:1
 body.p-masajeador #prod .pagoOp__sub{font-size:13px;line-height:1.35}
 body.p-masajeador #prod .pagoOp__logos img{height:14px;width:auto}
 body.p-masajeador #prod .pagoOp__cinta{position:absolute;top:-12px;right:12px;padding:4px 10px;border-radius:8px;font-size:12px;font-weight:700}
+
+/* --- FORMULARIO EN OSCURO (James 17-11, segunda orden: "ahora cambia el formulario por oscuro").
+     Misma forma, mismos campos y mismo orden de la plantilla: solo cambian los colores a los del plano.
+     Reseñas, garantía, preguntas y envío siguen con el diseño de siempre. --- */
+body.p-masajeador #prod #pedir{background:var(--mz-fondo);box-shadow:0 0 0 100vmax var(--mz-fondo);clip-path:inset(0 -100vmax -8px)}
+body.p-masajeador #prod #pedir h2{color:var(--mz-texto)}
+body.p-masajeador #prod #pedir .baj{color:var(--mz-gris)}
+body.p-masajeador #prod #pedir .formcard{background:var(--mz-tarjeta);border-color:var(--mz-borde);color:var(--mz-texto);box-shadow:0 18px 50px rgba(0,0,0,.55)}
+body.p-masajeador #prod #pedir .cod-badge{background:color-mix(in srgb,var(--mz-cian) 8%,transparent);color:var(--mz-texto);border-color:color-mix(in srgb,var(--mz-cian) 45%,transparent)}
+body.p-masajeador #prod #pedir .pasoRot{color:var(--mz-texto)}
+body.p-masajeador #prod #pedir .pack{background:var(--mz-tenue);border-color:var(--mz-borde)}
+body.p-masajeador #prod #pedir .pack:hover{border-color:var(--mz-gris)}
+body.p-masajeador #prod #pedir .pack .radio{border-color:var(--mz-gris)}
+body.p-masajeador #prod #pedir .pack .info .t,body.p-masajeador #prod #pedir .pack .pr .n{color:var(--mz-texto)}
+body.p-masajeador #prod #pedir .pack .info .s{color:var(--mz-cian)}
+body.p-masajeador #prod #pedir .pack .pr .w{color:var(--mz-gris)}
+body.p-masajeador #prod #pedir .pack.sel{border-color:var(--mz-cian);background:color-mix(in srgb,var(--mz-cian) 8%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--mz-cian) 15%,transparent)}
+body.p-masajeador #prod #pedir .pack.sel .radio{border-color:var(--mz-cian);background:radial-gradient(circle,var(--mz-cian) 42%,transparent 46%)}
+body.p-masajeador #prod #pedir .pack .tag{background:var(--mz-cian);color:var(--mz-tinta)}
+body.p-masajeador #prod #pedir .pack:last-child .tag{background:var(--mz-violeta);color:var(--mz-texto)}
+body.p-masajeador #prod #pedir .pagoOp{background:var(--mz-tenue);border:1.5px solid var(--mz-borde);color:var(--mz-texto)}
+body.p-masajeador #prod #pedir .pagoOp.sel{border-color:var(--mz-cian);background:color-mix(in srgb,var(--mz-cian) 8%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--mz-cian) 15%,transparent)}
+body.p-masajeador #prod #pedir .pagoOp__ico{background:color-mix(in srgb,var(--mz-cian) 10%,transparent);color:var(--mz-cian)}
+body.p-masajeador #prod #pedir .pagoOp__sub{color:var(--mz-gris)}
+body.p-masajeador #prod #pedir .pagoOp__cinta{background:var(--mz-cian);color:var(--mz-tinta)}
+body.p-masajeador #prod #pedir .pagoOp__logos{padding:4px 6px;border-radius:6px;background:var(--mz-texto)}
+body.p-masajeador #prod #pedir .summary{background:var(--mz-tenue);border-color:var(--mz-borde);color:var(--mz-gris)}
+body.p-masajeador #prod #pedir .summary .desc{color:#EF4444}
+body.p-masajeador #prod #pedir .summary .free{color:var(--mz-cian)}
+body.p-masajeador #prod #pedir .summary .tot{color:var(--mz-texto);border-top-color:var(--mz-borde)}
+body.p-masajeador #prod #pedir .field label,body.p-masajeador #prod #pedir .field .opc{color:var(--mz-gris)}
+body.p-masajeador #prod #pedir .field :is(input,select),body.p-masajeador #prod #pedir .cc-btn{background:var(--mz-fondo);border-color:var(--mz-borde);color:var(--mz-texto)}
+body.p-masajeador #prod #pedir .field input::placeholder{color:var(--mz-gris);opacity:.7}
+body.p-masajeador #prod #pedir .field :is(input,select):focus{border-color:var(--mz-cian);box-shadow:0 0 0 3px color-mix(in srgb,var(--mz-cian) 18%,transparent)}
+body.p-masajeador #prod #pedir .field select option{background:var(--mz-tarjeta);color:var(--mz-texto)}
+body.p-masajeador #prod #pedir .field .err{color:#EF4444}
+body.p-masajeador #prod #pedir .field.mal :is(input,select){border-color:#EF4444}
+body.p-masajeador #prod #pedir .cc-lista{background:var(--mz-tarjeta);border-color:var(--mz-borde)}
+body.p-masajeador #prod #pedir .cc-lista button{color:var(--mz-texto);background:transparent}
+body.p-masajeador #prod #pedir .cc-lista button:hover{background:var(--mz-tenue)}
+body.p-masajeador #prod #pedir .cc-lista i{color:var(--mz-gris)}
+body.p-masajeador #prod #pedir :is(.formnote,.ctaSub){color:var(--mz-gris)!important}
+body.p-masajeador #prod #pedir .carriers{border-top-color:var(--mz-borde)}
+body.p-masajeador #prod #pedir .carriers .cl{color:var(--mz-gris)}
+body.p-masajeador #prod #pedir .cbadges{padding:8px 14px;border-radius:10px;background:var(--mz-texto)}
+body.p-masajeador #prod #pedir .listo{background:var(--mz-tarjeta);border-color:var(--mz-cian);color:var(--mz-texto)}
+body.p-masajeador #prod #pedir .listo h3{color:var(--mz-texto)}
+body.p-masajeador #prod #pedir .listo p{color:var(--mz-gris)}
 
 /* --- entradas al bajar --- */
 body.p-masajeador.mz-anima .mz-sec,body.p-masajeador.mz-anima .mz-cascada > *{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
