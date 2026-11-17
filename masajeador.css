@@ -105,6 +105,8 @@ body.p-masajeador .mz-marco--brillo{box-shadow:0 0 0 1px color-mix(in srgb,var(-
 body.p-masajeador .mz-marco + .mz-caja,body.p-masajeador .mz-caja + .mz-marco{margin-top:22px}
 
 /* --- cinta inclinada --- */
+/* detrás de la cinta inclinada quedaba blanco en las esquinas (James 17-11): la sección de arriba alarga su fondo oscuro por detrás */
+body.p-masajeador #prod .mz-sec:has(+ .mz-cinta){clip-path:inset(0 -100vmax -90px)}
 body.p-masajeador .mz-cinta{position:relative;z-index:2;margin:0 -8px;transform:rotate(-3deg);background:var(--mz-cian);box-shadow:0 0 40px color-mix(in srgb,var(--mz-cian) 45%,transparent);overflow:hidden;padding:14px 0}
 body.p-masajeador .mz-cinta__pista{display:flex;gap:26px;width:max-content;animation:mzCinta 26s linear infinite;font:700 22px/1 'Space Grotesk',sans-serif;text-transform:uppercase;color:var(--mz-tinta);white-space:nowrap}
 body.p-masajeador .mz-cinta__pista i{font-style:normal;opacity:.5}
@@ -239,7 +241,10 @@ body.p-masajeador #prod .sello{background:var(--mz-texto)!important;border-color
 body.p-masajeador #prod > .bloque:not(#resenas) .sello :is(.nom,small,b,strong){color:var(--mz-tinta)!important}
 
 /* --- entradas al bajar --- */
-body.p-masajeador.mz-anima .mz-sec,body.p-masajeador.mz-anima .mz-cascada > *{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+/* James 17-11 ("mira el fondo blanco"): antes se desvanecía la SECCIÓN entera y, mientras entraba, se veía el blanco de la tienda
+   detrás. Ahora el fondo oscuro queda quieto y solo entra el contenido. */
+body.p-masajeador.mz-anima .mz-sec > *,body.p-masajeador.mz-anima .mz-cascada > *{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+body.p-masajeador.mz-anima .mz-sec.mz-visto > *{opacity:1;transform:none}
 body.p-masajeador.mz-anima .mz-cascada > *:nth-child(2){transition-delay:.08s}
 body.p-masajeador.mz-anima .mz-cascada > *:nth-child(3){transition-delay:.16s}
 body.p-masajeador.mz-anima .mz-cascada > *:nth-child(4){transition-delay:.24s}
