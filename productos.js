@@ -1106,6 +1106,78 @@ window.PRODUCTOS = [
       precios: [16.99, 24.99, 30.99],
     },
   },
+
+  {
+    /* 17-11-2026 · MASAJEADOR CERVICAL MARIPOSA (Dropi PRO 351, MASAJEADORCERVICAL, TENS/EMS, 8 modos, recargable USB).
+       James 17-11 "vamos con el proyector y el masajeador": precios aprobados 27,99 · 39,99 · 49,99 € y anticipado −10 %.
+       Competencia Biblioteca de Meta ES (17-11): el más barato del mismo modelo Nuvela "Neck Pulse" 29,99 €; Podaris 34,99; Varilo 39,99.
+       Estilo de página: el de la camisilla de Colombia en AZUL (James 17-11 "mira el estilo de la camisilla"). Estilos en masajeador.css.
+       🔴 Sin promesas médicas: alivio, relajación, masaje. No curar, no tratar enfermedades. */
+    id: 'masajeador', unidad: 'uno', promo: 2,
+    resenasTotal: 658,   /* 17-11: valoraciones REALES del mismo masajeador en AliExpress (1005005879932831: 658, 4,5 estrellas) */
+    dropiId: 351,
+    dropiSku: 'MASAJEADORCERVICAL',
+
+    nombre: 'Masajeador Cervical Mariposa',
+    sub: 'Pulsos suaves para relajar el cuello · recargable · sin cables',
+    categoria: 'Bienestar',
+    etiqueta: 'Regalo de Navidad',
+    etiquetaOro: false,
+
+    foto: 'img/masajeador-heroe.webp?v=1',
+    fotos: ['img/masajeador-heroe.webp?v=1', 'img/masajeador-sofa.webp?v=1', 'img/masajeador-ligero.webp?v=1', 'img/masajeador-regalo.webp?v=1'],
+    video: 'img/masajeador-ficha.mp4?v=1',   /* vídeo real del mismo masajeador (AliExpress 1005005879932831), 30 s sin sonido, sin la parte con letras en inglés */
+    fotosResenas: [],
+    antesDespues: 'img/masajeador-ba.webp?v=1',
+    antesDespuesSub: 'Imagen ilustrativa: la misma persona con el cuello cargado y después de una sesión con el masajeador en la nuca.',
+
+    hero: {
+      img: 'img/masajeador-heroe.webp?v=1',
+      kicker: 'Regalo de Navidad',
+      titulo: 'Alivio para tu<br><b>cuello.</b>',
+      sub: 'Te lo pegas en la nuca, eliges uno de sus 8 modos y en 15 minutos el cuello cargado se relaja. Sin cables y recargable.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Paga ahora o al recibir'],
+      ],
+    },
+    acento: '#3B82F6',
+
+    desc: 'El Masajeador Cervical Mariposa es un pequeño masajeador eléctrico que se pega directamente en la piel. Emite pulsos suaves (tecnología TENS / EMS) que masajean y relajan los músculos del cuello y los hombros, y también de la espalda, los brazos o las piernas. Tiene 8 modos y varios niveles de intensidad, se maneja con tres botones y se recarga por USB. Es ligero, no tiene cables y se usa en el sofá, en la oficina o antes de dormir.',
+
+    puntos: [
+      'Pulsos suaves que relajan el cuello y los hombros cargados',
+      '8 modos de masaje y varios niveles de intensidad',
+      'Sin cables y recargable por USB: se pega y listo',
+      'Sirve también para espalda, brazos y piernas · el pack de 2 es el más pedido para regalar',
+    ],
+
+    preguntas: [
+      { q: '¿Cómo se usa?', a: 'Se pega la almohadilla en la nuca o en la zona que quieres relajar, se enciende con el botón y se elige el modo y la intensidad. Una sesión de unos 15 minutos es suficiente.' },
+      { q: '¿Duele?', a: 'No. Se siente como un hormigueo o un masaje suave. Se empieza en la intensidad más baja y se sube poco a poco hasta donde resulte agradable.' },
+      { q: '¿Cómo se carga?', a: 'Con el cable USB que viene en la caja. Se carga en cualquier cargador de móvil o en el ordenador.' },
+      { q: '¿En qué zonas se puede usar?', a: 'Cuello, hombros, espalda, brazos y piernas. Nunca en la parte delantera del cuello ni en la cabeza.' },
+      { q: '¿Quién no debe usarlo?', a: 'Personas con marcapasos u otro implante electrónico, embarazadas, personas con epilepsia o problemas de corazón, y niños. Ante cualquier duda de salud, consulta con tu médico.' },
+      { q: '¿Por qué el pack de 2?', a: 'Es el más elegido: uno para ti y otro para regalar esta Navidad a tus padres, a tu pareja o a quien trabaja muchas horas sentado.' },
+    ],
+
+    packs: [
+      { cant: 1, precio: 27.99, antes: 0, texto: '1 masajeador' },
+      { cant: 2, precio: 39.99, antes: 0, texto: '2 masajeadores' },
+      { cant: 3, precio: 49.99, antes: 0, texto: '3 masajeadores' },
+    ],
+    popular: 1,
+
+    anticipado: {
+      pct: 10,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [25.19, 35.99, 44.99],
+    },
+  },
+
 ];
 
 /* ============================================================
@@ -1143,4 +1215,8 @@ window.PRECIOS_APROBADOS = [28.50, 38.50, 48.50, 26.50, 36.50, 46.50,
   /* almohada cervical mariposa 2901, aprobados 02-11-2026 y su pago anticipado (28,99 · 25,99 · 41,99 ya están) */
   46.99, 57.99, 51.99,
   /* amplificador de pantalla 12" (Dropi PRO 6), aprobados 08-11-2026, y su pago anticipado 16,99 · 24,99 (30,99 ya está) */
-  18.95, 27.95, 34.95, 16.99, 24.99];
+  18.95, 27.95, 34.95, 16.99, 24.99,
+  /* masajeador cervical mariposa (Dropi PRO 351), aprobados 17-11-2026 (39,99 ya está) y su pago anticipado −10 % */
+  27.99, 49.99, 25.19, 35.99, 44.99,
+  /* proyector de luces de Navidad exterior (Dropi PRO 2334), aprobados 17-11-2026 (34,99 ya está) y su pago anticipado −10 % */
+  54.99, 69.99, 31.49, 49.49, 62.99];
