@@ -243,6 +243,11 @@ body.p-masajeador #prod > .bloque details{border-color:var(--mz-borde)}
 body.p-masajeador #prod .sello{background:var(--mz-texto)!important;border-color:var(--mz-borde)!important}
 body.p-masajeador #prod > .bloque:not(#resenas) .sello :is(.nom,small,b,strong){color:var(--mz-tinta)!important}
 
+/* --- WhatsApp como en las páginas de Chile (James 17-11): la barra de abajo lleva SOLO el botón de pedir, a lo ancho,
+     y el WhatsApp es el círculo verde suelto, encima de la barra. --- */
+body.p-masajeador #stickycta .waFlota{display:none!important}
+body.p-masajeador:has(.stickycta.show) .wa{opacity:1;pointer-events:auto;bottom:calc(84px + env(safe-area-inset-bottom))}
+
 /* --- entradas al bajar --- */
 /* James 17-11 ("mira el fondo blanco"): antes se desvanecía la SECCIÓN entera y, mientras entraba, se veía el blanco de la tienda
    detrás. Ahora el fondo oscuro queda quieto y solo entra el contenido. */
