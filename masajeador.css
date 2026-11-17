@@ -227,6 +227,8 @@ body.p-masajeador #prod #pedir .listo p{color:var(--mz-gris)}
      Pago con tarjeta, garantía, preguntas, envíos, vídeo y antes/después: misma forma y mismo texto; solo cambian los colores. --- */
 body.p-masajeador #prod > .bloque:not(#resenas){display:flow-root;padding-bottom:26px;background:var(--mz-fondo)!important;box-shadow:0 0 0 100vmax var(--mz-fondo);clip-path:inset(0 -100vmax);color:var(--mz-texto)}
 body.p-masajeador #prod #pedir{margin-top:0}
+/* James 17-11: la sección oscura de abajo tapaba el borde de las tarjetas de reseñas → aire debajo de las reseñas (solo espacio, el diseño no cambia) */
+body.p-masajeador #prod > #resenas{display:flow-root;padding-bottom:44px}
 body.p-masajeador #prod > .bloque:not(#resenas) :is(h2,h3,.tit2,summary,b,strong,li,li span){color:var(--mz-texto)!important}
 body.p-masajeador #prod > .bloque:not(#resenas) :is(p,.sub2,.sub,small){color:var(--mz-gris)!important}
 /* pago con tarjeta: la tarjeta blanca pasa a tarjeta oscura (los estilos vienen escritos en la etiqueta, por eso !important) */
