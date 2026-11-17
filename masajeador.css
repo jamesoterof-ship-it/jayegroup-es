@@ -105,7 +105,7 @@ body.p-masajeador .mz-marco--brillo{box-shadow:0 0 0 1px color-mix(in srgb,var(-
 body.p-masajeador .mz-marco + .mz-caja,body.p-masajeador .mz-caja + .mz-marco{margin-top:22px}
 
 /* --- cinta inclinada --- */
-body.p-masajeador .mz-cinta{position:relative;margin:30px -8px;transform:rotate(-3deg);background:var(--mz-cian);box-shadow:0 0 40px color-mix(in srgb,var(--mz-cian) 45%,transparent);overflow:hidden;padding:14px 0}
+body.p-masajeador .mz-cinta{position:relative;z-index:2;margin:0 -8px;transform:rotate(-3deg);background:var(--mz-cian);box-shadow:0 0 40px color-mix(in srgb,var(--mz-cian) 45%,transparent);overflow:hidden;padding:14px 0}
 body.p-masajeador .mz-cinta__pista{display:flex;gap:26px;width:max-content;animation:mzCinta 26s linear infinite;font:700 22px/1 'Space Grotesk',sans-serif;text-transform:uppercase;color:var(--mz-tinta);white-space:nowrap}
 body.p-masajeador .mz-cinta__pista i{font-style:normal;opacity:.5}
 
@@ -217,6 +217,26 @@ body.p-masajeador #prod #pedir .cbadges{padding:8px 14px;border-radius:10px;back
 body.p-masajeador #prod #pedir .listo{background:var(--mz-tarjeta);border-color:var(--mz-cian);color:var(--mz-texto)}
 body.p-masajeador #prod #pedir .listo h3{color:var(--mz-texto)}
 body.p-masajeador #prod #pedir .listo p{color:var(--mz-gris)}
+
+/* --- TODAS LAS SECCIONES EN OSCURO MENOS LAS RESEÑAS (James 17-11: "todas las secciones deben ser oscuras, solo deja reseñas claro").
+     Pago con tarjeta, garantía, preguntas, envíos, vídeo y antes/después: misma forma y mismo texto; solo cambian los colores. --- */
+body.p-masajeador #prod > .bloque:not(#resenas){display:flow-root;padding-bottom:26px;background:var(--mz-fondo)!important;box-shadow:0 0 0 100vmax var(--mz-fondo);clip-path:inset(0 -100vmax);color:var(--mz-texto)}
+body.p-masajeador #prod #pedir{margin-top:0}
+body.p-masajeador #prod > .bloque:not(#resenas) :is(h2,h3,.tit2,summary,b,strong,li,li span){color:var(--mz-texto)!important}
+body.p-masajeador #prod > .bloque:not(#resenas) :is(p,.sub2,.sub,small){color:var(--mz-gris)!important}
+/* pago con tarjeta: la tarjeta blanca pasa a tarjeta oscura (los estilos vienen escritos en la etiqueta, por eso !important) */
+body.p-masajeador #prod .pagoAntES > div{background:var(--mz-tarjeta)!important;border-color:var(--mz-borde)!important;border-top-color:var(--mz-cian)!important;box-shadow:0 18px 50px rgba(0,0,0,.55)!important}
+body.p-masajeador #prod > .bloque.pagoAntES:not(#resenas) > div > p{color:var(--mz-texto)!important}
+body.p-masajeador #prod .pagoAntES > div > p > span{color:var(--mz-texto)!important}
+body.p-masajeador #prod .pagoAntES > div > div > span:first-child{padding:5px 8px;border-radius:8px;background:var(--mz-texto)}
+/* garantía */
+body.p-masajeador #prod .gar-chips span{background:var(--mz-tenue)!important;border-color:var(--mz-borde)!important;color:var(--mz-texto)!important}
+/* preguntas */
+body.p-masajeador #prod > .bloque .fq{border-color:var(--mz-borde)}
+body.p-masajeador #prod > .bloque details{border-color:var(--mz-borde)}
+/* envíos: los logos de las transportadoras van en ficha clara para que se lean */
+body.p-masajeador #prod .sello{background:var(--mz-texto)!important;border-color:var(--mz-borde)!important}
+body.p-masajeador #prod > .bloque:not(#resenas) .sello :is(.nom,small,b,strong){color:var(--mz-tinta)!important}
 
 /* --- entradas al bajar --- */
 body.p-masajeador.mz-anima .mz-sec,body.p-masajeador.mz-anima .mz-cascada > *{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
