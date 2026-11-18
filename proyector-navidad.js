@@ -52,23 +52,34 @@
 
   /* ---------- 1 · portada verde pino ---------- */
   function hHeroe() {
-    var antes = Math.round(UNO * 2 * 100) / 100, ahorro = Math.round((UNO * 2 - DOS) * 100) / 100;
     return '<section class="pn-heroe" aria-label="Proyector de luces de Navidad exterior">'
       + '<figure class="pn-heroe__foto"><span class="pn-cinta">Promoción · 2 x ' + eur(DOS) + '</span>'
       +   '<img src="img/proyector-heroe.webp' + V + '" width="900" height="1350" fetchpriority="high"'
-      +   ' alt="El proyector negro con aros rojo y verde clavado en el césped lanza puntos de luz rojos y verdes sobre la fachada de una casa de noche"></figure>'
+      +   ' alt="El proyector negro con aros rojo y verde clavado en el césped lanza puntos de luz rojos y verdes sobre la fachada de una casa de noche">'
+      +   puntos() + '<span class="pn-haz" aria-hidden="true"></span></figure>'
       + '<div class="pn-heroe__txt">'
       +   '<h1 class="pn-h1">Tu casa llena de <em>luces</em> en un minuto</h1>'
       /* la nota solo se muestra si la sección de reseñas existe (la plantilla de España exige 8 opiniones reales o no pinta ninguna) */
       +   (OPS.length >= 8 ? '<a class="pn-estrellas" href="#resenas"><i aria-hidden="true">★★★★★</i>' + NOTA.toFixed(1).replace('.', ',') + ' · ' + CUANTAS + ' reseñas</a>' : '')
       +   '<p class="pn-lead">Lo clavas en el jardín, lo enchufas y miles de puntos de luz rojos y verdes cubren tu fachada. Sin escaleras, sin cables por el tejado y resistente a la lluvia.</p>'
+      /* James 17-11: en la portada va el precio de UNA unidad; la promoción de 2 va en su propia sección, y debajo el pago anticipado */
       +   '<div class="pn-oferta">'
-      +     '<div><b>' + eur(DOS) + '</b> <s>' + eur(antes) + '</s></div>'
-      +     '<div><span>2 proyectores · pagas al recibir · envío gratis a toda España</span><span class="pn-ahorro">Ahorras ' + eur(ahorro) + '</span></div>'
+      +     '<div><b>' + eur(UNO) + '</b></div>'
+      +     '<div><span>1 proyector · pagas al recibir · envío gratis a toda España</span><span class="pn-ahorro">Promoción: 2 por ' + eur(DOS) + '</span></div>'
       +   '</div>'
       +   '<div class="pn-heroe__btns"></div>'
       + '</div>'
       + '</section>';
+  }
+
+  /* James 17-11 "al hero ponle efectos": puntitos de luz que titilan sobre la foto (rojo, dorado y blanco), en sitios al azar */
+  function puntos() {
+    var CL = ['pn-p-r', 'pn-p-o', 'pn-p-b'], h = '';
+    for (var i = 0; i < 46; i++) {
+      h += '<i class="' + CL[i % 3] + '" style="left:' + (Math.random() * 100).toFixed(1) + '%;top:' + (8 + Math.random() * 70).toFixed(1)
+        + '%;animation-delay:' + (Math.random() * 3).toFixed(2) + 's;animation-duration:' + (1.6 + Math.random() * 2.2).toFixed(2) + 's"></i>';
+    }
+    return '<span class="pn-puntos" aria-hidden="true">' + h + '</span>';
   }
 
   /* ---------- franja roja con 3 datos ---------- */
@@ -115,6 +126,26 @@
       + '</section>';
   }
 
+  /* ---------- promoción: imagen de oferta + escalera 1 / 2 / 3 (la de 2 destacada); al tocar, elige ese pack y baja al pedido ---------- */
+  function hPromo() {
+    var TRES = PK[2] ? PK[2].precio : 69.99;
+    var ahorro2 = Math.round((UNO * 2 - DOS) * 100) / 100, ahorro3 = Math.round((UNO * 3 - TRES) * 100) / 100;
+    var sec = nodo('<section class="pn-sec" id="pn-promo">'
+      + '<h2 class="pn-h2">Promoción de <em>Navidad</em></h2>'
+      + '<p class="pn-txt">Uno para la fachada y otro para el jardín, o uno para regalar. Pagas al recibir y el envío es gratis.</p>'
+      + '<figure class="pn-foto"><img src="img/proyector-promo.webp' + V + '" width="900" height="900" loading="lazy"'
+      +   ' alt="Oferta de Navidad: 2 proyectores por ' + eur(DOS) + ', pago contra reembolso y envío gratis"></figure>'
+      + '<div class="pn-escalera">'
+      +   '<button type="button" class="pn-esc" data-n="1"><b>1 proyector</b><strong>' + eur(UNO) + '</strong><small>Pagas al recibir</small></button>'
+      +   '<button type="button" class="pn-esc pn-esc--top" data-n="2" data-cinta="Más pedido"><b>2 proyectores</b><strong>' + eur(DOS) + '</strong><small>Ahorras ' + eur(ahorro2) + '</small></button>'
+      +   '<button type="button" class="pn-esc" data-n="3"><b>3 proyectores</b><strong>' + eur(TRES) + '</strong><small>Ahorras ' + eur(ahorro3) + '</small></button>'
+      + '</div>'
+      + '</section>');
+    Array.prototype.forEach.call(sec.querySelectorAll('.pn-esc'), function (b) { b.addEventListener('click', function () { aPedir(+b.getAttribute('data-n')); }); });
+    sec.appendChild(boton('Quiero 2 por ' + eur(DOS), 'pn-rebota', function () { aPedir(2); }));
+    return sec;
+  }
+
   /* ---------- montaje sobre la plantilla ---------- */
   function armar() {
     var prod = document.getElementById('prod');
@@ -145,8 +176,8 @@
     var cola = [];
     var heroe = nodo(hHeroe());
     var hb = heroe.querySelector('.pn-heroe__btns');
-    hb.appendChild(boton('Pedir 2 proyectores por ' + eur(DOS), 'pn-rebota', function () { aPedir(2); }));
-    hb.appendChild(boton('Paga ahora: ' + eur(DOS_YA) + ' · 10 % menos', 'pn-btn--pino', function () { aPedir(2, true); }));
+    hb.appendChild(boton('Pedir el mío · ' + eur(UNO), 'pn-rebota', function () { aPedir(1); }));
+    hb.appendChild(boton('Ver la promoción · 2 por ' + eur(DOS), 'pn-btn--pino', function () { bajar(document.getElementById('pn-promo')); }));
     hb.appendChild(boton('Ver cómo se ve', 'pn-btn--pino', function () { bajar(document.getElementById('pn-video')); }));
     cola.push(heroe);
     cola.push(nodo(hDatos()));
@@ -166,6 +197,8 @@
       var bc = ba.querySelector('.cta'); if (bc) bc.remove();
       cola.push(ba);
     }
+    /* James 17-11: sección de PROMOCIÓN y justo debajo el PAGO ANTICIPADO (el bloque de siempre de la plantilla) */
+    cola.push(hPromo());
     /* reseñas, pago, garantía, preguntas, envío y formulario: los de SIEMPRE, sin tocar (James 17-11) */
     [pAnt, res, gar, faq, envio, pedir].forEach(function (e) { if (e) cola.push(e); });
 

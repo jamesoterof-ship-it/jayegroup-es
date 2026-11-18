@@ -52,6 +52,30 @@ body.p-proyector-navidad .pn-oferta s{color:rgba(255,255,255,.6);font-size:18px}
 body.p-proyector-navidad .pn-oferta span{display:block;font-size:15px;color:rgba(255,255,255,.9)}
 body.p-proyector-navidad .pn-oferta .pn-ahorro{background:var(--pn-rojo);color:var(--pn-blanco);font-weight:700;border-radius:999px;padding:4px 10px;font-size:14px;display:inline-block;margin-top:6px}
 
+/* --- efectos de la portada (James 17-11 "al hero ponle efectos") --- */
+/* la foto se acerca despacio */
+body.p-proyector-navidad .pn-heroe__foto{overflow:hidden}
+body.p-proyector-navidad .pn-heroe__foto img{animation:pnAcerca 16s ease-out both}
+@keyframes pnAcerca{from{transform:scale(1.14)}to{transform:scale(1)}}
+/* puntitos de luz que titilan sobre la casa */
+body.p-proyector-navidad .pn-puntos{position:absolute;inset:0;z-index:1;pointer-events:none}
+body.p-proyector-navidad .pn-puntos i{position:absolute;width:5px;height:5px;border-radius:50%;opacity:0;animation:pnPunto 2.4s ease-in-out infinite}
+body.p-proyector-navidad .pn-puntos .pn-p-r{background:var(--pn-rojo);box-shadow:0 0 8px 2px rgba(220,38,38,.75)}
+body.p-proyector-navidad .pn-puntos .pn-p-o{background:var(--pn-oro);box-shadow:0 0 8px 2px rgba(212,160,23,.75)}
+body.p-proyector-navidad .pn-puntos .pn-p-b{width:3px;height:3px;background:var(--pn-blanco);box-shadow:0 0 6px 2px rgba(255,255,255,.7)}
+@keyframes pnPunto{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1.25)}}
+/* un brillo que barre la foto de lado a lado, como el haz del proyector */
+body.p-proyector-navidad .pn-haz{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(105deg,rgba(255,255,255,0) 35%,rgba(255,255,255,.16) 50%,rgba(255,255,255,0) 65%);
+  transform:translateX(-100%);animation:pnHaz 5.5s ease-in-out 1.2s infinite}
+@keyframes pnHaz{0%{transform:translateX(-100%)}45%,100%{transform:translateX(100%)}}
+/* el titular entra desde abajo y "LUCES" respira con brillo dorado */
+body.p-proyector-navidad #prod .pn-h1{animation:pnSube .9s cubic-bezier(.2,.8,.2,1) .2s both}
+body.p-proyector-navidad #prod .pn-h1 em{animation:pnBrilla 2.6s ease-in-out 1.1s infinite}
+@keyframes pnSube{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes pnBrilla{0%,100%{text-shadow:0 0 0 rgba(212,160,23,0)}50%{text-shadow:0 0 18px rgba(212,160,23,.85),0 0 36px rgba(212,160,23,.45)}}
+body.p-proyector-navidad .pn-oferta{animation:pnSube .9s cubic-bezier(.2,.8,.2,1) .45s both}
+
 /* --- botones rojos con estrellitas doradas que titilan (los de la funda) --- */
 body.p-proyector-navidad .pn-btn{position:relative;overflow:hidden;isolation:isolate;display:flex;align-items:center;justify-content:center;width:100%;min-height:58px;border:0;border-radius:14px;cursor:pointer;
   background:var(--pn-rojo);color:var(--pn-blanco);font:800 21px/1.1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em;text-align:center;padding:12px 18px;
@@ -115,6 +139,37 @@ body.p-proyector-navidad .pn-cifras b{display:block;font:800 34px/1 'Barlow Cond
 /* --- antes y después (el de la plantilla, con el título de la funda) --- */
 body.p-proyector-navidad #prod .ba-sec.pn-ba .ba-img{max-width:560px;margin:0 auto;border-radius:18px;overflow:hidden;border:2px solid var(--pn-linea)}
 body.p-proyector-navidad #prod .ba-sec.pn-ba :is(.sub,p){color:var(--pn-gris);text-align:center}
+
+/* --- promoción: escalera 1 / 2 / 3 (la de 2 destacada con su cinta), como la de la funda --- */
+body.p-proyector-navidad .pn-escalera{display:grid;gap:14px;max-width:520px;margin:4px auto 0}
+body.p-proyector-navidad .pn-esc{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 12px;width:100%;padding:16px;border:2px solid var(--pn-linea);border-radius:16px;
+  background:var(--pn-blanco);color:var(--pn-noche);font:inherit;text-align:left;cursor:pointer;transition:transform .15s ease,border-color .15s ease}
+body.p-proyector-navidad .pn-esc:hover{border-color:var(--pn-rojo)}
+body.p-proyector-navidad .pn-esc:focus-visible{outline:3px solid var(--pn-oro);outline-offset:3px}
+body.p-proyector-navidad .pn-esc b{font:800 26px/1 'Barlow Condensed',sans-serif;text-transform:uppercase}
+body.p-proyector-navidad .pn-esc strong{grid-row:span 2;font:800 30px/1 'Barlow Condensed',sans-serif;color:var(--pn-rojo)}
+body.p-proyector-navidad .pn-esc small{color:var(--pn-gris);font-size:14px}
+body.p-proyector-navidad .pn-esc--top{border:3px solid var(--pn-rojo);background:var(--pn-crema);transform:scale(1.02);box-shadow:0 12px 28px rgba(220,38,38,.18)}
+body.p-proyector-navidad .pn-esc--top::before{content:attr(data-cinta);position:absolute;top:-13px;left:16px;background:var(--pn-rojo);color:var(--pn-blanco);
+  font:800 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+
+/* --- "¿Cómo quieres pagar?" del formulario: la misma forma que en las demás fichas de España (dos tarjetas lado a lado,
+     ícono de 26 px, la elegida marcada). James 17-11: sin esto los íconos salían enormes. El resto del formulario no se toca. --- */
+body.p-proyector-navidad #prod .pagoSel{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 4px}
+body.p-proyector-navidad #prod .pagoOp{position:relative;display:grid;grid-template-areas:"ico" "tit" "pr" "sub";align-content:start;justify-items:start;text-align:left;
+  padding:14px 12px 12px;border:2px solid var(--pn-linea);border-radius:14px;background:var(--pn-blanco);color:var(--pn-noche);cursor:pointer;font:inherit;transition:border-color .15s ease,box-shadow .15s ease}
+body.p-proyector-navidad #prod .pagoOp:active{transform:scale(.985)}
+body.p-proyector-navidad #prod .pagoOp.sel{border-color:var(--pn-rojo);background:var(--pn-crema);box-shadow:0 0 0 3px rgba(220,38,38,.14)}
+body.p-proyector-navidad #prod .pagoOp:focus-visible{outline:2px solid var(--pn-pino);outline-offset:3px}
+body.p-proyector-navidad #prod .pagoOp__ico{grid-area:ico;margin-bottom:4px}
+body.p-proyector-navidad #prod .pagoOp__ico svg{width:26px;height:26px;fill:none;stroke:var(--pn-gris);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+body.p-proyector-navidad #prod .pagoOp.sel .pagoOp__ico svg{stroke:var(--pn-rojo)}
+body.p-proyector-navidad #prod .pagoOp__tit{grid-area:tit;font-size:14px;font-weight:700;line-height:1.25;color:var(--pn-noche)}
+body.p-proyector-navidad #prod .pagoOp__pr{grid-area:pr;margin-top:2px;font:800 22px/1.1 'Barlow Condensed',sans-serif;color:var(--pn-noche)}
+body.p-proyector-navidad #prod .pagoOp__sub{grid-area:sub;margin-top:3px;font-size:12px;line-height:1.35;color:var(--pn-gris)}
+body.p-proyector-navidad #prod .pagoOp__logos{margin-top:6px}
+body.p-proyector-navidad #prod .pagoOp__logos img{height:16px;width:auto}
+body.p-proyector-navidad #prod .pagoOp__cinta{position:absolute;top:-9px;right:10px;padding:3px 9px;border-radius:5px;background:var(--pn-pino2);color:var(--pn-blanco);font:800 12px/1.2 'Barlow Condensed',sans-serif;white-space:nowrap}
 
 /* --- botón fijo de abajo: rojo con estrellitas, como el de la funda · WhatsApp como en Chile (solo el círculo verde) --- */
 body.p-proyector-navidad #stickycta .btn-flota{position:relative;overflow:hidden;isolation:isolate;background:var(--pn-rojo);color:var(--pn-blanco);border-radius:14px;
