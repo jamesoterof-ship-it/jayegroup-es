@@ -1178,6 +1178,78 @@ window.PRODUCTOS = [
     },
   },
 
+  {
+    /* 17-11-2026 · PROYECTOR DE LUCES DE NAVIDAD EXTERIOR (Dropi PRO 2334, PROY-NAVI24820, impermeable, estaca, enchufe).
+       James 17-11: precios aprobados 34,99 · 54,99 · 69,99 € y anticipado −10 %. Isabela (Dropi PRO): repone stock en ~15 días.
+       Competencia Biblioteca de Meta ES (17-11): mismo modelo exterior Vivanto 39,99 € (el único); de interior Wylo 34,99, SCNDR 35/36/49.
+       🔴 España casi sin nieve en Navidad: fotos sin nieve (James 17-11). Estilos en proyector.css. */
+    /* 17-11 James: "igual a las fundas de Colombia, letras de Navidad". Se llama 'proyector-navidad' (no 'proyector') para no pisar
+       el candado de diseño de la página del proyector de Chile. Estilos en proyector-navidad.css / proyector-navidad.js. */
+    id: 'proyector-navidad', unidad: 'uno', promo: 2,
+    resenasTotal: 45,   /* 17-11: 45 opiniones REALES (44 con texto + 1 con foto) de 23 publicaciones del mismo proyector láser en AliExpress (ninguna inventada) */
+    dropiId: 2334,
+    dropiSku: 'PROY-NAVI24820',
+
+    nombre: 'Proyector de Luces de Navidad Exterior',
+    sub: 'Tu fachada llena de luces en 1 minuto · sin escaleras ni cables por el tejado',
+    categoria: 'Hogar',
+    etiqueta: 'Navidad',
+    etiquetaOro: false,
+
+    foto: 'img/proyector-heroe.webp?v=1',
+    fotos: ['img/proyector-heroe.webp?v=1', 'img/proyector-balcon.webp?v=1', 'img/proyector-clavar.webp?v=1', 'img/proyector-lluvia.webp?v=1'],
+    /* 17-11: vídeo REAL de TikTok del mismo tipo de aparato (puntos láser rojos y verdes), sin voz, sin textos ni marcas */
+    video: 'img/proyector-navidad-ficha.mp4?v=1',
+    fotosResenas: [],
+    antesDespues: 'img/proyector-ba.webp?v=1',
+    antesDespuesSub: 'Imagen ilustrativa: la misma casa sin luces y con el proyector encendido en el jardín.',
+
+    hero: {
+      img: 'img/proyector-heroe.webp?v=1',
+      kicker: 'Navidad 2026',
+      titulo: 'Tu casa, la más<br><b>bonita</b> de la calle.',
+      sub: 'Lo clavas en el jardín, lo enchufas y miles de puntos de luz rojos y verdes cubren tu fachada. Sin escaleras ni cables por el tejado.',
+      datos: [
+        ['envio', 'Envío gratis'],
+        ['reloj', 'En 24-48 h'],
+        ['pago', 'Paga ahora o al recibir'],
+      ],
+    },
+    acento: '#DC2626',
+
+    desc: 'El Proyector de Luces de Navidad Exterior llena la fachada de tu casa de miles de puntos de luz rojos y verdes que se mueven. Se clava en el césped con su estaca, se enchufa y se apunta a la pared: no hay que subir escaleras ni colgar cables por el tejado. Es resistente al agua para dejarlo fuera toda la temporada y cubre una superficie grande, como la fachada de una casa, un árbol o un muro.',
+
+    puntos: [
+      'Miles de puntos de luz rojos y verdes sobre la fachada',
+      'Se clava en el jardín y se enchufa: listo en un minuto',
+      'Resistente al agua, para dejarlo fuera toda la Navidad',
+      'Sin escaleras ni cables por el tejado · el pack de 2 cubre fachada y jardín',
+    ],
+
+    preguntas: [
+      { q: '¿Cómo se instala?', a: 'Se clava la estaca en el césped o en una maceta, se enchufa a la corriente y se apunta hacia la pared. En un minuto está funcionando.' },
+      { q: '¿Se puede dejar fuera si llueve?', a: 'Sí, es resistente al agua y está pensado para exterior. El enchufe debe quedar protegido de la lluvia.' },
+      { q: '¿Funciona con pilas?', a: 'No, funciona enchufado a la corriente con su cable y su adaptador.' },
+      { q: '¿Qué superficie cubre?', a: 'Una fachada de casa, un árbol o un muro. Cuanto más lejos se pone, más grande es la zona iluminada.' },
+      { q: '¿Se puede usar dentro de casa?', a: 'Sí, también se puede apuntar a una pared o al techo de un salón.' },
+      { q: '¿Por qué el pack de 2?', a: 'Es el más elegido: uno para la fachada y otro para el jardín o los árboles, o uno para regalar.' },
+    ],
+
+    packs: [
+      { cant: 1, precio: 34.99, antes: 0, texto: '1 proyector' },
+      { cant: 2, precio: 54.99, antes: 0, texto: '2 proyectores' },
+      { cant: 3, precio: 69.99, antes: 0, texto: '3 proyectores' },
+    ],
+    popular: 1,
+
+    anticipado: {
+      pct: 10,
+      envio: 'Entrega prioritaria en 14 h',
+      titulo: 'Paga ahora',
+      sub: 'Con entrega prioritaria en 14 h, sin coste. Se paga con tarjeta o PayPal.',
+      precios: [31.49, 49.49, 62.99],
+    },
+  },
 ];
 
 /* ============================================================

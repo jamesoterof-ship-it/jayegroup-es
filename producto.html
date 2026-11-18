@@ -12,7 +12,7 @@
   try {
     var q = new URLSearchParams(location.search), p = q.get('p') || '';
     window.__P = p;
-    var CARPETAS = ['almohada', 'amplificador', 'masajeador', 'aranazos', 'balsamo', 'crema', 'ducha', 'gafas', 'pistola', 'pulsera', 'sellador'];
+    var CARPETAS = ['almohada', 'amplificador', 'masajeador', 'proyector-navidad','aranazos', 'balsamo', 'crema', 'ducha', 'gafas', 'pistola', 'pulsera', 'sellador'];
     if (p && CARPETAS.indexOf(p) >= 0 && /producto\.html$/.test(location.pathname)) {
       q.delete('p'); var r = q.toString();
       history.replaceState(history.state, '', '/' + p + (r ? '?' + r : '') + location.hash);
@@ -26,10 +26,10 @@
    ficha en paralelo con los demás: un <script> en línea puesto después de un <link> espera a que ese CSS termine,
    y sin este aviso el CSS del producto llegaría una vuelta más tarde. ⚠️ Al cambiar un CSS o JS de producto, subir su ?v= AQUÍ. */
 (function () {
-  var PROPIOS = ['balsamo', 'ducha', 'sellador', 'aranazos', 'pulsera', 'pistola', 'gafas', 'crema', 'almohada', 'amplificador', 'masajeador'], p = window.__P || '';
+  var PROPIOS = ['balsamo', 'ducha', 'sellador', 'aranazos', 'pulsera', 'pistola', 'gafas', 'crema', 'almohada', 'amplificador', 'masajeador', 'proyector-navidad'], p = window.__P || '';
   window.__soloEste = function (id) { return PROPIOS.indexOf(p) < 0 || p === id; };
-  window.__FICHA_CSS = { ducha: 9, sellador: 13, aranazos: 6, pulsera: 3, pistola: 11, gafas: 11, crema: 20, almohada: 10, amplificador: 1, masajeador: 10 };
-  window.__FICHA_JS = [['balsamo', 13], ['regalo', 2], ['ducha', 8], ['sellador', 10], ['aranazos', 5], ['pulsera', 5], ['pistola', 8], ['gafas', 8], ['crema', 12], ['almohada', 8], ['amplificador', 1], ['masajeador', 3]];
+  window.__FICHA_CSS = { ducha: 9, sellador: 13, aranazos: 6, pulsera: 3, pistola: 11, gafas: 11, crema: 20, almohada: 10, amplificador: 1, masajeador: 10, 'proyector-navidad': 1 };
+  window.__FICHA_JS = [['balsamo', 13], ['regalo', 2], ['ducha', 8], ['sellador', 10], ['aranazos', 5], ['pulsera', 5], ['pistola', 8], ['gafas', 8], ['crema', 12], ['almohada', 8], ['amplificador', 1], ['masajeador', 3], ['proyector-navidad', 1]];
   if (PROPIOS.indexOf(p) < 0 || p === 'balsamo') return;
   if (window.__FICHA_CSS[p]) document.write('<link rel="preload" as="style" href="' + p + '.css?v=' + window.__FICHA_CSS[p] + '">');
   for (var i = 0; i < window.__FICHA_JS.length; i++) if (window.__FICHA_JS[i][0] === p) document.write('<link rel="preload" as="script" href="' + p + '.js?v=' + window.__FICHA_JS[i][1] + '">');
@@ -1231,11 +1231,11 @@ window.jayePixel = (function () {
     </div>
   </footer>
 
-<script src="productos.js?v=265"></script>
+<script src="productos.js?v=266"></script>
 <!-- ESPAÑA: provincias y codigos postales sin cobertura, en vez de las
      regiones y comunas de Chile. -->
 <script src="provincias-es.js?v=110"></script>
-<script src="resenas.js?v=218"></script>
+<script src="resenas.js?v=219"></script>
 <script src="efectos.js?v=4"></script>
 <script>/* A DONDE VA EL PEDIDO. Sin esto, ficha.js manda al webhook de CHILE
    (pedido-tienda): un pedido español entraria como chileno, con hora de
